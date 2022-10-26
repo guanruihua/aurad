@@ -2,6 +2,8 @@ lockfileVersion: 5.4
 
 specifiers:
   '@babel/core': ^7.19.3
+  '@commitlint/cli': ^17.1.2
+  '@commitlint/config-conventional': ^17.1.0
   '@formatjs/ts-transformer': ^3.11.1
   '@types/react': ^18.0.21
   '@types/react-dom': ^18.0.6
@@ -40,6 +42,8 @@ dependencies:
 
 devDependencies:
   '@babel/core': 7.19.3
+  '@commitlint/cli': 17.1.2
+  '@commitlint/config-conventional': 17.1.0
   '@formatjs/ts-transformer': 3.11.1
   '@types/react': 18.0.21
   '@types/react-dom': 18.0.6
@@ -289,6 +293,13 @@ packages:
     transitivePeerDependencies:
       - '@swc/core'
       - '@swc/wasm'
+    dev: true
+
+  /@commitlint/config-conventional/17.1.0:
+    resolution: {integrity: sha512-WU2p0c9/jLi8k2q2YrDV96Y8XVswQOceIQ/wyJvQxawJSCasLdRB3kUIYdNjOCJsxkpoUlV/b90ZPxp1MYZDiA==}
+    engines: {node: '>=v14'}
+    dependencies:
+      conventional-changelog-conventionalcommits: 5.0.0
     dev: true
 
   /@commitlint/config-validator/17.1.0:
@@ -1549,6 +1560,15 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       compare-func: 2.0.0
+      q: 1.5.1
+    dev: true
+
+  /conventional-changelog-conventionalcommits/5.0.0:
+    resolution: {integrity: sha512-lCDbA+ZqVFQGUj7h9QBKoIpLhl8iihkO0nCTyRNzuXtcd7ubODpYB04IFy31JloiJgG0Uovu8ot8oxRzn7Nwtw==}
+    engines: {node: '>=10'}
+    dependencies:
+      compare-func: 2.0.0
+      lodash: 4.17.21
       q: 1.5.1
     dev: true
 
