@@ -7,6 +7,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "commitlint": "commitlint -e",
+    "prepare": "husky install",
     "start": "cross-env NODE_ENV=development node config/webpack.dev.js",
     "release": "npm version prerelease",
     "build": "cross-env webpack --config config/webpack.npm.js",
