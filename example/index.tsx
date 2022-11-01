@@ -17,7 +17,8 @@ function App() {
 						style={{
 							display: 'inline-block',
 							marginRight: 5,
-							color: '#eee',
+							background: '#123123',
+							color: '#fff',
 							fontSize: 5,
 							padding: 1
 						}}

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, ChangeEvent } from "react"
 import styles from './index.module.less'
 
 interface TextAreaProps {
@@ -7,13 +7,15 @@ interface TextAreaProps {
 
 export function TextArea(props: TextAreaProps) {
 	const { } = props
+	// eslint-disable-next-line
 	const [replicatedValue, setReplicatedValue] = useState<string>("")
 	return <div
-		className={styles['grow-wrap']}
+		className={styles['rh-textarea']}
 		data-replicated-value={replicatedValue}
 	>
-		<textarea onInput={function (e: any) {
-			setReplicatedValue(e.target.value || '')
-		}} />
+		<textarea
+			onInput={function (e: ChangeEvent<HTMLTextAreaElement>) {
+				setReplicatedValue(e.target.value || '')
+			}} />
 	</div>
 }

@@ -2,20 +2,36 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require("path")
 const formatTS = require('@formatjs/ts-transformer')
+const { ESBuildPlugin } = require('esbuild-loader')
+
+const args = process.argv.splice(2)
+let isESBuild = false
+if (Array.isArray(args) && args.includes('--esbuild')) {
+	isESBuild = true
+}
 
 module.exports = {
-	entry:'./example/index.tsx',
+	entry: './example/index.tsx',
 	mode: 'development',
 	// stats: 'errors-only',
 	resolve: {
 		alias: {
 			'@': path.resolve(__dirname, '../src'),
 		},
-		extensions: ['.tsx', '.js', '.ts', '.less', '.css','.module.less','.d.ts']
+		extensions: ['.tsx', '.js', '.ts', '.less', '.css', '.module.less', '.d.ts']
 	},
 	module: {
 		rules: [
-			{
+			isESBuild ? {
+				test: /\.[jt]sx?$/,
+				exclude: /node_modules/,
+				loader: 'esbuild-loader',
+				options: {
+					target: 'esnext',
+					jsxFactory: 'React.createElement',
+					jsxFragment: 'React.Fragment',
+				},
+			} : {
 				test: /\.(js|jsx)?$/,
 				use: {
 					loader: 'babel-loader',
@@ -110,6 +126,7 @@ module.exports = {
 		]
 	},
 	plugins: [
+		isESBuild && new ESBuildPlugin(),
 		//数组 放着所有的webpack插件
 		new HtmlWebpackPlugin({
 			title: 'RH-Design',

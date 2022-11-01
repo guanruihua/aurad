@@ -1,0 +1,27 @@
+.rh-textarea {
+  /* 简单的方法将元素叠加在一起，并根据最高者的高度确定它们的大小。 */
+  display: grid;
+}
+.rh-textarea::after {
+  /* 注意奇怪的空间！需要预防跳动行为 */
+  content: attr(data-replicated-value) " ";
+  /* 这就是textarea文本的表现形式 */
+  white-space: pre-wrap;
+  /* 隐藏在视图，点击和屏幕阅读器中 */
+  visibility: hidden;
+}
+.rh-textarea > textarea {
+  /* 您可以保留此设置，但是在用户调整大小后，它将破坏自动调整大小 */
+  resize: none;
+  /* Firefox显示增长的滚动条，您可以像这样隐藏。 */
+  overflow: hidden;
+}
+.rh-textarea > textarea,
+.rh-textarea::after {
+  /* 需要相同的样式！ */
+  border: 1px solid black;
+  padding: 0.5rem;
+  font: inherit;
+  /* 放在彼此之上 */
+  grid-area: 1 / 1 / 2 / 2;
+}

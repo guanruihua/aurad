@@ -1,9 +1,9 @@
 import React from "react"
-import { classNames, ComponetBaseProps } from '@/assets'
+import { classNames, ComponentBaseProps } from '@/assets'
 import type {} from '@/assets/type'
 import styles from './index.module.less'
 
-export interface ButtonProps extends ComponetBaseProps, Partial<HTMLButtonElement> {
+export interface ButtonProps extends ComponentBaseProps, Partial<HTMLButtonElement> {
 
 	/**
 	 * @description 按钮类型

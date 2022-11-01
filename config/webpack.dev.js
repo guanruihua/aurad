@@ -32,8 +32,6 @@ const devConfig = {
 	]),
 }
 
-
-
 const compiler = Webpack({ ...webpackConfig, ...devConfig });
 const server = new WebpackDevServer(devServer, compiler);
 

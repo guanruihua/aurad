@@ -1,4 +1,4 @@
-export interface ComponetBaseProps extends Record<string, any> {
+export interface ComponentBaseProps extends Record<string, any> {
 	/**
  * @description 
  * @default 'rh'
