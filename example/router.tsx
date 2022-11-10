@@ -22,7 +22,7 @@ export const menu: MenuObject[] = [{
 	element: <VirtualListPage />
 },
 {
-	path: '/datail',
+	path: '/detail',
 	element: <DetailPage />
 },
 {

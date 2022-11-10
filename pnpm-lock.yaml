@@ -28,6 +28,7 @@ specifiers:
   react-dom: ^18.2.0
   react-router: ^6.4.2
   react-router-dom: ^6.4.2
+  rh-js-methods: ^2.1.12
   style-loader: ^3.3.1
   terser-webpack-plugin: ^5.3.6
   ts-loader: ^9.4.1
@@ -66,6 +67,7 @@ devDependencies:
   postcss: 8.4.18
   postcss-loader: 7.0.1_igyeriywjd4lwzfk4socqbj2qi
   react-router-dom: 6.4.2_biqbaboplfbrettd7655fr4n2y
+  rh-js-methods: 2.1.12
   style-loader: 3.3.1_webpack@5.74.0
   terser-webpack-plugin: 5.3.6_webpack@5.74.0
   ts-loader: 9.4.1_qqxisngxjbp7lstdk7boexbu3e
@@ -4051,6 +4053,17 @@ packages:
   /reusify/1.0.4:
     resolution: {integrity: sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==}
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
+    dev: true
+
+  /rh-js-methods/2.1.12:
+    resolution: {integrity: sha512-lu9o77OqBfLAs3gCSrG7usZngYeWavBhBg7xtV2QPeYMj9pNrY5hcOlTtRibd9VQ/CgDJ3zf1Ukf1f0+WLQWsw==}
+    engines: {node: '>=16'}
+    dependencies:
+      rh-ts-methods: 0.0.2
+    dev: true
+
+  /rh-ts-methods/0.0.2:
+    resolution: {integrity: sha512-6UL1x2zlTTsDtl/4TIwDzpaucySm9gHBy0HQFPKL29NTRRbikTMxRFf+/iXNTXUUZSAgpwLERD5ISV1wtAGErw==}
     dev: true
 
   /rimraf/2.7.1:
