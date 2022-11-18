@@ -32,8 +32,9 @@
   },
   "exclude": [
     "dist",
-    "example/**/*",
     "node_modules",
+    "**/*/__test__/*",
+    "example/**/*",
     "config/*.ts"
   ],
   "include": [

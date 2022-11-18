@@ -1,14 +1,6 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import { RouteObject } from 'react-router-dom'
-import { ButtonPage } from './button'
 import { Demo1 } from './demo'
-import { DetailPage } from './detail'
-import { DialogPage } from './dialog'
-import { ProgressPage } from './progress'
-import { RichTextPage } from './RichText'
-import { SelectPage } from './select'
-import { TextAreaPage } from './textarea'
-import { VirtualListPage } from './virtualList'
 
 interface _MenuObject extends Record<string, any> {
 	name?: string
@@ -16,43 +8,34 @@ interface _MenuObject extends Record<string, any> {
 
 export type MenuObject = RouteObject & _MenuObject
 
-export const menu: MenuObject[] = [{
-	name: '虚拟列表',
-	path: '/vrList',
-	element: <VirtualListPage />
-},
-{
-	path: '/detail',
-	element: <DetailPage />
-},
-{
-	path: '/progress',
-	element: <ProgressPage />
-},
+const list = [
+	'virtualList',
+	'input',
+	'detail',
+	'progress',
+	'button',
+	'select',
+	'richText',
+	'textarea',
+	'dialog',
+].map(name => {
+	return {
+		name,
+		path: '/' + name,
+		element: <Suspense fallback={<div>Loading</div>}>
+			{React.createElement(lazy(() => import(`../src/${name}/__test__`)))}
+		</Suspense>
+	}
+})
+
+// console.log(list)
+
+export const menu: MenuObject[] = [
 {
 	path: '/',
 	element: <Demo1 />
 },
-{
-	path: '/button',
-	element: <ButtonPage />
-},
-{
-	path: '/select',
-	element: <SelectPage />
-},
-{
-	path: '/RichText',
-	element: <RichTextPage />
-},
-{
-	path: '/textarea',
-	element: <TextAreaPage />
-},
-{
-	path: '/dialog',
-	element: <DialogPage />
-}]
+].concat(list)
 
 
 export const routers: RouteObject[] = Array.from(menu, (item: MenuObject) => ({ path: item.path, element: item.element }))

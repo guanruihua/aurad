@@ -18,3 +18,9 @@ function setColor() {
 }
 </script>
  */
+import React from "react"
+import { Input } from '..'
+
+export default function InputTestCmp() {
+	return <Input></Input>
+}

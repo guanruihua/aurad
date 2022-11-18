@@ -1,7 +1,7 @@
 import React from "react"
-import { TextArea } from '../components'
+import { TextArea } from '..'
 
-export function TextAreaPage(){
+export default function TextAreaPage(){
 	return <div>
 		TextAreaPage
 		<TextArea/>

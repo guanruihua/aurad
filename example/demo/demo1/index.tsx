@@ -46,7 +46,6 @@ function ThemedButton() {
 
 export function Demo1() {
 
-
 	const [theme, setTheme] = useState<string>("dark")
 
 	return <div>
