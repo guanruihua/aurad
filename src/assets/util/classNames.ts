@@ -44,9 +44,9 @@ export function classNames(...rest: ClassNameUnit[]): string {
 	forEachData(rest)
 
 
-	for (const key in choicesMap as Record<string, any>) {
-		checkValid(choicesMap[key], key)
-	}
+	// for (const key in choicesMap as Record<string, any>) {
+	// 	checkValid(choicesMap[key], key)
+	// }
 
 	return [...resultSet].join(' ')
 }

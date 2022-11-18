@@ -3,6 +3,10 @@ import { classNames, ComponentBaseProps } from '@/assets'
 import type { } from '@/assets/type'
 import './index.less'
 
+/**
+ *  缺少点击后状态 outline 
+ */
+
 export interface ButtonProps extends ComponentBaseProps, Partial<HTMLButtonElement> {
 
 	/**
@@ -10,6 +14,8 @@ export interface ButtonProps extends ComponentBaseProps, Partial<HTMLButtonEleme
 	 * @default: 'default'
 	 */
 	type?: 'primary' | 'ghost' | 'dashed' | 'link' | 'text' | 'default'
+	ghost?: boolean
+	block?: boolean
 	/**
 	 * @default ''
 	 */
@@ -18,11 +24,15 @@ export interface ButtonProps extends ComponentBaseProps, Partial<HTMLButtonEleme
 
 export function Button(props: ButtonProps) {
 
-	const { children = '', className, type = 'default', prefixCls = 'rh', ...rest } = props
+	const { children = '', ghost = false, block, className, type = 'default', prefixCls = 'rh', ...rest } = props
 	// console.log(props)
 
 	return <button
 		className={classNames(
+			{
+				[`${prefixCls}-btn-ghost`]: ghost,
+				[`${prefixCls}-btn-ghost`]: block,
+			},
 			`${prefixCls}-btn`,
 			`${prefixCls}-btn-${type}`,
 			className
