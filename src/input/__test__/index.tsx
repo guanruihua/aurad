@@ -22,5 +22,14 @@ import React from "react"
 import { Input } from '..'
 
 export default function InputTestCmp() {
-	return <Input></Input>
+	return <>
+		<div>
+			<Input />
+		</div>
+		<div>
+			<Input onChange={(e: any) => {
+				console.log(e.target.value)
+			}} />
+		</div>
+	</>
 }

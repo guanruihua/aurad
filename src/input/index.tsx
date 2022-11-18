@@ -1,25 +1,50 @@
-import React, { useState } from "react"
-import './index.less'
+/* eslint-disable*/
+import React, { ChangeEvent, useState } from "react"
+import { FormAction, FormRecord } from "../form/type"
+// import './index.less'
 
-export interface InputProps {
+export interface InputProps extends Partial<HTMLInputElement> {
 	[key: string]: any
 }
 
-export function Input(props: InputProps) {
-	const { } = props
-	const [labelClassName, setLabelClassName] = useState<string>('userNameTip')
 
-	return <div className="test-content">
-		<div className="user_name">
-			<label htmlFor="userName" className={labelClassName}>请输入您的用户名</label>
-			<input type="text" id="userName"
-				onFocus={() => {
-					setLabelClassName('userNameTip userNameTipA')
-				}}
-				onBlur={() => {
-					setLabelClassName('userNameTip')
-				}}
-			/>
-		</div>
-	</div>
+export interface InputExpandProps extends Partial<FormAction> {
+	setValueBefore?: (newValues: FormRecord) => void
+	[key: string]: any
+}
+
+function handleAction<T = any>(actions: Record<string, any> = {}, e: T) {
+	const { before, action, after } = actions
+	before && before(e)
+	action && action(e)
+	after && after(e)
+}
+
+type InputChangeEvent = ChangeEvent<HTMLInputElement>
+
+export function Input(props: InputProps & InputExpandProps) {
+	const { name, setValueBefore, onChange, oninput, ...rest } = props
+	// const [labelClassName, setLabelClassName] = useState<string>('userNameTip')
+	// console.log(setValueBefore)
+	const before = (e: InputChangeEvent) => {
+		console.log('before', e.target?.value)
+		name && setValueBefore && setValueBefore({ [name]: e.target.value })
+	}
+	return <input
+		onInput={(e: InputChangeEvent) => handleAction<InputChangeEvent>({ before, action: onChange }, e)}
+		{...rest as any}
+	/>
+	// return <div className="test-content">
+	// 	<div className="user_name">
+	// 		<label htmlFor="userName" className={labelClassName}>请输入您的用户名</label>
+	// 		<input type="text" id="userName"
+	// 			onFocus={() => {
+	// 				setLabelClassName('userNameTip userNameTipA')
+	// 			}}
+	// 			onBlur={() => {
+	// 				setLabelClassName('userNameTip')
+	// 			}}
+	// 		/>
+	// 	</div>
+	// </div>
 }

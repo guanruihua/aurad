@@ -18,6 +18,7 @@ const list = [
 	'richText',
 	'textarea',
 	'dialog',
+	'form',
 ].map(name => {
 	return {
 		name,
