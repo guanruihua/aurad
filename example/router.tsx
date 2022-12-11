@@ -9,11 +9,11 @@ interface _MenuObject extends Record<string, any> {
 export type MenuObject = RouteObject & _MenuObject
 
 const list = [
+	'button',
 	'virtualList',
 	'input',
 	'detail',
 	'progress',
-	'button',
 	'select',
 	'richText',
 	'textarea',
@@ -29,15 +29,12 @@ const list = [
 	}
 })
 
-// console.log(list)
-
 export const menu: MenuObject[] = [
 {
 	path: '/',
 	element: <Demo1 />
 },
 ].concat(list)
-
 
 export const routers: RouteObject[] = Array.from(menu, (item: MenuObject) => ({ path: item.path, element: item.element }))
 

@@ -16,6 +16,7 @@ export interface ButtonProps extends ComponentBaseProps, Partial<HTMLButtonEleme
 	type?: 'primary' | 'ghost' | 'dashed' | 'link' | 'text' | 'default'
 	ghost?: boolean
 	block?: boolean
+	onClick?: () => void
 	/**
 	 * @default ''
 	 */
@@ -24,7 +25,7 @@ export interface ButtonProps extends ComponentBaseProps, Partial<HTMLButtonEleme
 
 export function Button(props: ButtonProps) {
 
-	const { children = '', ghost = false, block, className, type = 'default', prefixCls = 'rh', ...rest } = props
+	const { children = '', ghost = false, block, className, type = 'default', prefixCls = 'mo', ...rest } = props
 	// console.log(props)
 
 	return <button
