@@ -19,4 +19,4 @@ export function Select(props: SelectProps) {
 	</RcSelect>
 }
 
-export const SelectOption = Option
+Select.Option = Option
