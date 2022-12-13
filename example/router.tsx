@@ -10,14 +10,14 @@ export type MenuObject = RouteObject & _MenuObject
 
 const list = [
 	'button',
-	'virtualList',
+	// 'virtualList',
 	'input',
-	'detail',
-	'progress',
+	// 'detail',
+	// 'progress',
 	'select',
-	'richText',
+	// 'richText',
 	'textarea',
-	'dialog',
+	// 'dialog',
 	'form',
 ].map(name => {
 	return {

@@ -1,22 +1,22 @@
+/* eslint-disable*/
 import React from "react"
+import { classNames } from '@/assets'
+import RcSelect, { Option, SelectProps as RcSelectProps } from 'rc-select'
+import './index.less'
 
-interface SelectProps {
+interface SelectProps extends RcSelectProps {
+	children?: any
 	[key: string]: any
 }
 
 export function Select(props: SelectProps) {
-	const { } = props
-	return <div>
-		<input list="magicHouses" id="myHouse" name="myHouse" placeholder="type here..." />
-		<datalist id="magicHouses">
-			<option value="Gryfindor" />
-			<option value="Hufflepuff" />
-			<option value="Slytherin" />
-			<option value="Ravenclaw" />
-			<option value="Horned Serpent" />
-			<option value="Thunderbird" />
-			<option value="Pukwudgie" />
-			<option value="Wampus" />
-		</datalist>
-	</div>
+	const { className, children, ...rest } = props
+	return <RcSelect
+		className={classNames('mo-select', className)}
+		{...rest}
+	>
+		{children}
+	</RcSelect>
 }
+
+export const SelectOption = Option
