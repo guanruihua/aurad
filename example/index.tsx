@@ -1,10 +1,8 @@
-import React, { Suspense } from "react"
+import React, { Suspense, useState, useEffect } from "react"
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, useNavigate, useRoutes } from 'react-router-dom';
+import { BrowserRouter, useNavigate, useRoutes } from 'react-router-dom'
 import { routers, menu, MenuObject } from './router'
 import './index.less'
-import { useEffect } from "react";
-import { useState } from "react";
 
 function App() {
 	const element = useRoutes(routers)
