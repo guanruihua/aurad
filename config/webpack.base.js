@@ -4,17 +4,11 @@ const path = require("path")
 const formatTS = require('@formatjs/ts-transformer')
 const { ESBuildPlugin } = require('esbuild-loader')
 
-const args = process.argv.splice(2)
-let isESBuild = false
-if (Array.isArray(args) && args.includes('--esbuild')) {
-	isESBuild = true
-}
-
 const plugins = [
-	isESBuild && new ESBuildPlugin(),
+	new ESBuildPlugin(),
 	//数组 放着所有的webpack插件
 	new HtmlWebpackPlugin({
-		title: 'RH-Design',
+		title: '0Design',
 		template: path.resolve(__dirname, '../public/index.html'),
 		filename: 'index.html', //打包后的文件名
 		hash: true,
@@ -31,6 +25,26 @@ const plugins = [
 ].filter(Boolean)
 
 const rules = [
+	{
+		test: /\.(ts|tsx)$/,
+		use: [
+			{
+				loader: 'ts-loader',
+				options: {
+					getCustomTransformers() {
+						return {
+							before: [
+								formatTS.transform({
+									overrideIdFn: '[sha512:contenthash:base64:6]',
+								}),
+							],
+						};
+					},
+				},
+			},
+		],
+		exclude: /node_modules/,
+	},
 	{
 		test: /\.(js)?$/,
 		use: {
@@ -105,43 +119,8 @@ const rules = [
 
 ]
 
-if (isESBuild) {
-	rules.push({
-		test: /\.[jt]sx?$/,
-		exclude: /node_modules/,
-		loader: 'esbuild-loader',
-		options: {
-			loader: 'tsx',
-			target: 'esnext',
-			jsxFactory: 'React.createElement',
-			jsxFragment: 'React.Fragment',
-		},
-	})
-} else {
-	rules.push({
-		test: /\.(ts|tsx)$/,
-		use: [
-			{
-				loader: 'ts-loader',
-				options: {
-					getCustomTransformers() {
-						return {
-							before: [
-								formatTS.transform({
-									overrideIdFn: '[sha512:contenthash:base64:6]',
-								}),
-							],
-						};
-					},
-				},
-			},
-		],
-		exclude: /node_modules/,
-	})
-}
-
 module.exports = {
-	entry: './example/index.tsx',
+	entry: './background/index.tsx',
 	mode: 'development',
 	// stats: 'errors-only',
 	resolve: {

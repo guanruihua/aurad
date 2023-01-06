@@ -34,7 +34,7 @@
     "dist",
     "node_modules",
     "**/*/__test__/*",
-    "example/**/*",
+    "background/**/*",
     "config/*.ts"
   ],
   "include": [
