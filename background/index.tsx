@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter, useNavigate, useRoutes } from 'react-router-dom'
 import { routers, menu, MenuObject } from './router'
 import './index.less'
+import '../src/index.less'
 
 function App() {
 	const element = useRoutes(routers)

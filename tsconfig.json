@@ -32,6 +32,7 @@
   },
   "exclude": [
     "dist",
+    "temp",
     "node_modules",
     "**/*/__test__/*",
     "background/**/*",

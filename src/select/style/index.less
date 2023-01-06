@@ -1,0 +1,54 @@
+@select-prefix: ~'select';
+@select-border-radius: 4px;
+
+.@{select-prefix} {
+	position: relative;
+  &-input {
+    outline: none;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 4px 12px;
+    font-size: 14px;
+    line-height: 1.5714285714285714;
+    list-style: none;
+    display: inline-block;
+    width: 100%;
+    min-width: 0;
+    background-image: none;
+    border: 1px solid #424242;
+    border-radius: @select-border-radius;
+    transition: all 0.2s;
+    // pointer-events: none;
+    cursor: pointer;
+  }
+
+  &-options {
+		position: absolute;
+    border: none;
+    padding: 6px;
+    margin-top: 4px;
+    border-radius: @select-border-radius;
+    box-shadow: 0 6px 16px 0 rgb(0 0 0 / 8%),
+      0 3px 6px -4px rgb(0 0 0 / 12%),
+      0 9px 28px 8px rgb(0 0 0 / 5%);
+    display: none;
+		width: 100%;
+		background-color: #fff;
+
+    &-hover {
+      display: block;
+    }
+
+    &-item {
+      padding: 8px 8px;
+      // margin: 0 6px;
+      border-radius: @select-border-radius;
+      cursor: pointer;
+
+      &:hover, .selected {
+        background-color: #eee;
+      }
+    }
+  }
+}
