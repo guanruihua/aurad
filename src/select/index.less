@@ -1,9 +1,9 @@
-.mo-select {
+.zero-select {
   outline: none;
   text-overflow: ellipsis;
   box-sizing: border-box;
   margin: 0;
-  padding: 4px 11px;
+  padding: 4px 0;
   font-size: 14px;
   line-height: 1.5714285714285714;
   list-style: none;
@@ -30,6 +30,9 @@
   }
 }
 
+div.rc-select-dropdown {
+  position: relative;
+}
 
 @select-prefix: ~'rc-select';
 
@@ -53,6 +56,7 @@
   position: relative;
 
   &-disabled {
+
     &,
     & input {
       cursor: not-allowed;
@@ -299,6 +303,7 @@
     transform: scale(1);
   }
 }
+
 .@{select-prefix}-selection__choice-zoom-leave {
   opacity: 1;
   transform: scale(1);
@@ -316,6 +321,7 @@
 }
 
 .@{select-prefix}-dropdown {
+
   &-slide-up-enter,
   &-slide-up-appear {
     .effect();
@@ -366,18 +372,21 @@
     transform-origin: 0% 0%;
     transform: scaleY(0);
   }
+
   100% {
     opacity: 1;
     transform-origin: 0% 0%;
     transform: scaleY(1);
   }
 }
+
 @keyframes rcSelectDropdownSlideUpOut {
   0% {
     opacity: 1;
     transform-origin: 0% 0%;
     transform: scaleY(1);
   }
+
   100% {
     opacity: 0;
     transform-origin: 0% 0%;
@@ -417,6 +426,7 @@
   0% {
     transform: rotate(0);
   }
+
   100% {
     transform: rotate(360deg);
   }

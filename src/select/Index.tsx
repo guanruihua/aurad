@@ -12,7 +12,7 @@ interface SelectProps extends RcSelectProps {
 export function Select(props: SelectProps) {
 	const { className, children, ...rest } = props
 	return <RcSelect
-		className={classNames('mo-select', className)}
+		className={classNames('zero-select', className)}
 		{...rest}
 	>
 		{children}
