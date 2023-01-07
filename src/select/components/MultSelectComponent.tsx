@@ -12,7 +12,7 @@ export interface MultSelectComponentProps {
 }
 
 export function MultSelectComponent(props: MultSelectComponentProps) {
-	const { options = [], placeholder = '', open = false, defaultValue } = props
+	const { options = [], placeholder = '', open = false, defaultValue, disabled = false } = props
 	const [isHover, setHover] = useState<boolean>(open)
 
 	const [isLeave, setLeave] = useSetState<Record<string, boolean>>({ input: false, options: false })
@@ -21,20 +21,20 @@ export function MultSelectComponent(props: MultSelectComponentProps) {
 	const selectOptionsClassName = classNames('select-options', {
 		'select-options-hover': isHover
 	})
-	const inputRef: any = useRef(null)
 
-	return <div
-		className="select"
-	>
-		<div>
+	return <div className={classNames("select", { hidden: disabled })}>
+		<div className={classNames('mult-select-input', 'select-input', { isHover: isHover && !disabled })}>
+			<span>
+				{selectValues.map((item: string, index: number) => {
+					return <span key={index.toString()}>{item}</span>
+				})}
+			</span>
 			<input
 				onMouseLeave={() => setLeave({ input: true })}
 				onMouseEnter={() => setLeave({ input: false })}
-				ref={inputRef}
 				key={selectValues.join(',')}
-				className="select-input"
 				placeholder={placeholder}
-				value={selectValues.join(',')}
+				// value={}
 				onClick={() => {
 					setLeave({ input: true })
 					setHover(true)
@@ -45,7 +45,8 @@ export function MultSelectComponent(props: MultSelectComponentProps) {
 				readOnly
 				unselectable="on" />
 		</div>
-		<div className={selectOptionsClassName}
+		{!disabled && <div
+			className={selectOptionsClassName}
 			onMouseLeave={() => setLeave({ options: true })}
 			onMouseEnter={() => setLeave({ options: false })}
 		>
@@ -66,6 +67,6 @@ export function MultSelectComponent(props: MultSelectComponentProps) {
 					{label}
 				</div>
 			})}
-		</div>
+		</div>}
 	</div>
 }

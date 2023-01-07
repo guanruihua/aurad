@@ -2,12 +2,11 @@
 import React from "react"
 import { classNames } from '@/assets'
 import { SelectComponent, MultSelectComponent } from './components'
-// import RcSelect, { Option, SelectProps as RcSelectProps } from 'rc-select'
 import './style/index.less'
 
-// interface SelectProps extends RcSelectProps {
 interface SelectProps {
 	prefix?: string
+	disabled?: boolean
 	options?: { value: string, label: string }[]
 	mode?: "multiple"
 	children?: any

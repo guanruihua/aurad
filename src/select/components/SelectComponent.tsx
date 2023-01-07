@@ -12,34 +12,39 @@ export interface SelectComponentProps {
 }
 
 export function SelectComponent(props: SelectComponentProps) {
-	const { options = [], placeholder = '', open = false, defaultValue } = props
+	const {
+		options = [],
+		placeholder = '',
+		open = false,
+		defaultValue,
+		disabled = false
+	} = props
+
 	const [isHover, setHover] = useState<boolean>(open)
 	const [isLeave, setLeave] = useState<boolean>(false)
 	const [selectValue, setSelectValue] = useState<string>(defaultValue)
 	const selectOptionsClassName = classNames('select-options', {
 		'select-options-hover': isHover
 	})
-	const inputRef: any = useRef(null)
 
-	return <div className="select">
-		<div>
+	return <div className={classNames("select", { hidden: disabled })}>
+		<div className={classNames("select-input", { isHover: isHover&&!disabled })}>
 			<input
-				ref={inputRef}
 				key={selectValue}
-				className="select-input"
 				placeholder={placeholder}
 				value={selectValue}
 				onFocus={() => {
 					setHover(true)
 				}}
 				onBlur={() => {
-					console.log('blur')
 					isLeave && setHover(false)
 				}}
 				readOnly
 				unselectable="on" />
 		</div>
-		<div className={selectOptionsClassName}
+		{!disabled && <div
+			className={selectOptionsClassName}
+			onMouseEnter={() => setLeave(false)}
 			onMouseLeave={() => setLeave(true)}
 		>
 			{options?.map((item, index) => {
@@ -48,8 +53,6 @@ export function SelectComponent(props: SelectComponentProps) {
 					key={index.toString()}
 					onClick={() => {
 						setSelectValue(value)
-						inputRef.current.focus()
-						// inputRef.focus()
 						setHover(false)
 					}}
 					className={classNames('select-options-item', {
@@ -58,6 +61,6 @@ export function SelectComponent(props: SelectComponentProps) {
 					{label}
 				</div>
 			})}
-		</div>
+		</div>}
 	</div>
 }

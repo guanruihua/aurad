@@ -26,7 +26,7 @@ export default function SelectPage() {
 		<div>
 			<h2>基础使用</h2>
 			<Select
-				defaultOpen={true}
+				// defaultOpen={true}
 				options={options}
 				placeholder='name'
 			/>
@@ -46,7 +46,7 @@ export default function SelectPage() {
 			<h2>基础使用</h2>
 			<Select
 				mode="multiple"
-				defaultOpen={true}
+				// defaultOpen={true}
 				options={options}
 				placeholder='name'
 			/>
