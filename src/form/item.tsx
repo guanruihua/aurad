@@ -25,16 +25,9 @@ function ItemContent(props: ItemProps & FormAction) {
 
 	return <div>
 		{label && <label style={{ marginRight: 4 }}>{label}:</label>}
-		{/* {children} */}
-		{children && React.cloneElement(children,
-			{
-				name,
-				setValueBefore: setValues
-			}
-		)}
+		{children && React.cloneElement(children, { name, } )}
 	</div>
 }
-
 
 export function Item(props: ItemProps) {
 	return <FormContext.Consumer>

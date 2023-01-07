@@ -1,10 +1,10 @@
 /* eslint-disable*/
 import React, { useState } from "react"
 import { FormContext } from './context'
-import {useSetState} from '../assets'
+import { useSetState } from '../assets'
 import { Item } from './item'
 import type { FormAction, FormRecord } from './type'
-
+import { getFormValues } from './util'
 export interface FormProps {
 	onSubmit?: (values: FormRecord) => void
 	[key: string]: any
@@ -14,13 +14,12 @@ export interface FormProps {
 export function Form(props: FormProps) {
 	const { children, onSubmit } = props
 	const [values, setValues] = useSetState<FormRecord>({})
-	
+
 	return <FormContext.Provider value={{ values, setValues }}>
 		<form
-			onSubmit={(e) => {
+			onSubmit={(e: any) => {
 				e.preventDefault()
-				onSubmit && onSubmit(values)
-				// console.log({ values })
+				onSubmit && onSubmit(getFormValues(e))
 			}}
 		>
 			{children}
