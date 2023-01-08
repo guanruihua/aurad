@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  0hook: ^0.0.4
   '@babel/core': ^7.19.3
   '@commitlint/cli': ^17.1.2
   '@commitlint/config-conventional': ^17.1.0
@@ -45,6 +46,7 @@ dependencies:
   react-router: 6.4.2_react@18.2.0
 
 devDependencies:
+  0hook: 0.0.4_zbur65pq5ttfo7ncb2n2vp2s3m
   '@babel/core': 7.19.3
   '@commitlint/cli': 17.1.2
   '@commitlint/config-conventional': 17.1.0
@@ -79,6 +81,18 @@ devDependencies:
   webpack-dev-server: 4.11.1_5v66e2inugklgvlh4huuavolfq
 
 packages:
+
+  /0hook/0.0.4_zbur65pq5ttfo7ncb2n2vp2s3m:
+    resolution: {integrity: sha512-fhkpKbaAz1Cq1eqR9F/UMrrPZUfZwg1TxsrYXZQqO3bGQf1tvCSKAVaUhN6c2Yard+YSW3/piathhaP2drWyKA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      css-loader: 6.7.1_webpack@5.74.0
+      react: 18.2.0
+      style-loader: 3.3.1_webpack@5.74.0
+    transitivePeerDependencies:
+      - webpack
+    dev: true
 
   /@ampproject/remapping/2.2.0:
     resolution: {integrity: sha512-qRmjj8nj9qmLTQXXmaR1cck3UXSRMPrbsLJAasZpF+t3riI71BXed5ebIOYwQntykeZuhjsdweEc9BxH5Jc26w==}

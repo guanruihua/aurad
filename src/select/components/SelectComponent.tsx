@@ -23,27 +23,24 @@ export function SelectComponent(props: SelectComponentProps) {
 	const [isHover, setHover] = useState<boolean>(open)
 	const [isLeave, setLeave] = useState<boolean>(false)
 	const [selectValue, setSelectValue] = useState<string>(defaultValue)
-	const selectOptionsClassName = classNames('select-options', {
-		'select-options-hover': isHover
-	})
+
+	console.log({ isHover, isLeave, selectValue })
 
 	return <div className={classNames("select", { hidden: disabled })}>
-		<div className={classNames("select-input", { isHover: isHover&&!disabled })}>
+		<div className={classNames("select-input", { isHover: isHover && !disabled })}>
 			<input
 				key={selectValue}
 				placeholder={placeholder}
 				value={selectValue}
-				onFocus={() => {
-					setHover(true)
-				}}
-				onBlur={() => {
-					isLeave && setHover(false)
-				}}
+				onFocus={() => setHover(true)}
+				onClick={() => setHover(true)}
+				onMouseLeave={() => setLeave(true)}
+				onBlur={() => isLeave && setHover(false)}
 				readOnly
 				unselectable="on" />
 		</div>
 		{!disabled && <div
-			className={selectOptionsClassName}
+			className={classNames('select-options', { 'select-options-hover': open || isHover })}
 			onMouseEnter={() => setLeave(false)}
 			onMouseLeave={() => setLeave(true)}
 		>
@@ -55,9 +52,7 @@ export function SelectComponent(props: SelectComponentProps) {
 						setSelectValue(value)
 						setHover(false)
 					}}
-					className={classNames('select-options-item', {
-						'selected': selectValue === value
-					})}>
+					className={classNames('select-options-item', { 'selected': selectValue === value })}>
 					{label}
 				</div>
 			})}
