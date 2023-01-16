@@ -1,3 +1,4 @@
+/* eslint-disable*/
 import React, { Suspense, useState, useEffect } from "react"
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, useNavigate, useRoutes } from 'react-router-dom'

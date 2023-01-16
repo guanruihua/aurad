@@ -1,6 +1,6 @@
 const path = require("path")
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const miniCSS = require('mini-css-extract-plugin')
+// const miniCSS = require('mini-css-extract-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const formatTS = require('@formatjs/ts-transformer')
 
@@ -59,7 +59,7 @@ module.exports = {
 					{
 						loader: 'style-loader',
 					},
-					miniCSS.loader,
+					// miniCSS.loader,
 					{
 						loader: 'css-loader', // translates CSS into CommonJS
 					},
@@ -82,7 +82,7 @@ module.exports = {
 				exclude: /node_modules/,
 				use: [
 					'style-loader',
-					miniCSS.loader,
+					// miniCSS.loader,
 					{
 						loader: 'css-loader',
 						options: {
@@ -106,17 +106,30 @@ module.exports = {
 					},
 				],
 			},
+			// {
+			// 	test: /\.(jpe?g|png|gif|svg|woff|woff2|eot|ttf|otf|ico)$/i,
+			// 	type: 'asset/resource',
+			// 	exclude
+			// },
 			{
-				test: /\.(jpe?g|png|gif|svg|woff|woff2|eot|ttf|otf|ico)$/i,
+				test: /\.(jpe?g|png|gif|)$/i,
 				type: 'asset/resource',
-				exclude
+				generator: {
+					filename: 'img/[name][ext]'
+				}
+			},
+			{
+				test: /\.(svg|woff|woff2|eot|ttf|otf|ico)$/i,
+				// test: /\.(jpe?g|png|gif|svg|woff|woff2|eot|ttf|otf|ico)$/i,
+				type: 'asset/resource',
+				exclude: /node_modules/,
 			},
 
 		]
 	},
 	output: {
 		filename: "index.umd.js",
-		library: ['rh-design'],
+		library: ['0design'],
 		// libraryTarget: "esm"
 		libraryTarget: "umd"
 	},
@@ -134,8 +147,8 @@ module.exports = {
 	},
 	plugins: [
 		new CleanWebpackPlugin(),
-		new miniCSS({
-			filename: 'css/rh.css'
-		})
+		// new miniCSS({
+		// 	filename: 'css/index.css'
+		// })
 	]
 };
