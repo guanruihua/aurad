@@ -1,20 +1,9 @@
 /* eslint-disable*/
 import React from "react"
 import { Button } from '..'
-import { data } from './demo/data'
-import ReactMarkdown from 'react-markdown'
-import one from './demo/1.png'
-console.log(one)
 
 export default function ButtonPage() {
 	return <>
-		<div>
-			<ReactMarkdown
-				transformImageUri={(src, alt, title) => {					
-					return 'img'+src
-				}}
-				children={data.data} />
-		</div>
 		<div>
 			<Button type='primary' onClick={() => { console.log('primary') }}>Primary</Button>
 			<Button type='primary' disabled onClick={() => { console.log('primary disabled') }}>Primary(disabled)</Button>

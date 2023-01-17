@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react'
 import { RouteObject } from 'react-router-dom'
-import { Demo1 } from './demo'
+// import { Demo1 } from './demo'
 
 interface _MenuObject extends Record<string, any> {
 	name?: string
@@ -19,6 +19,7 @@ const list = [
 	'textarea',
 	// 'dialog',
 	'form',
+	'markdown',
 ].map(name => {
 	return {
 		name,
@@ -32,7 +33,7 @@ const list = [
 export const menu: MenuObject[] = [
 {
 	path: '/',
-	element: <Demo1 />
+	element: <div />
 },
 ].concat(list)
 

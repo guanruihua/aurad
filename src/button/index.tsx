@@ -6,9 +6,9 @@ import './index.less'
 /**
  *  缺少点击后状态 outline 
  */
-
-export interface ButtonProps extends ComponentBaseProps, Partial<HTMLButtonElement> {
-
+//  Partial<HTMLButtonElement>
+export interface ButtonProps extends ComponentBaseProps, Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
+	htmlType?: 'submit' | 'reset' | 'button'
 	/**
 	 * @description 按钮类型
 	 * @default: 'default'
@@ -16,19 +16,21 @@ export interface ButtonProps extends ComponentBaseProps, Partial<HTMLButtonEleme
 	type?: 'primary' | 'ghost' | 'dashed' | 'link' | 'text' | 'default'
 	ghost?: boolean
 	block?: boolean
-	onClick?: () => void
+	onClick?: (e?: any) => void
 	/**
 	 * @default ''
 	 */
 	children?: any
+	// ButtonHTMLAttributes<HTMLButtonElement>
+	[key: string]: any
 }
 
 export function Button(props: ButtonProps) {
 
-	const { children = '', ghost = false, block, className, type = 'default', prefixCls = 'mo', ...rest } = props
-	// console.log(props)
+	const { htmlType = 'button', children = '', ghost = false, block, className, type = 'default', prefixCls = 'mo', ...rest } = props
 
 	return <button
+		type={htmlType}
 		className={classNames(
 			{
 				[`${prefixCls}-btn-ghost`]: ghost,

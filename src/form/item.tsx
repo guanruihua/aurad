@@ -23,9 +23,9 @@ function ItemContent(props: ItemProps & FormAction) {
 		}
 	}, [])
 
-	return <div>
-		{label && <label style={{ marginRight: 4 }}>{label}:</label>}
-		{children && React.cloneElement(children, { name, } )}
+	return <div className="form-item">
+		{label && <label style={{ display: 'block', marginRight: 4, marginBottom: 8 }}>{label}:</label>}
+		{children && React.cloneElement(children, { name, })}
 	</div>
 }
 
