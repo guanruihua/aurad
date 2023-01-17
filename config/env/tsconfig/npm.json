@@ -21,14 +21,14 @@
     "paths": {
       "@/*": [
         "src/*"
-      ],
+      ]
     },
     "typeRoots": [
       "typings/*.d.ts",
       "node_modules/@types",
       "node_modules/*.d.ts",
       "src/assets/type/*.d.ts"
-    ],
+    ]
   },
   "exclude": [
     "dist",

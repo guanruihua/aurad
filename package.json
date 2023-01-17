@@ -1,6 +1,6 @@
 {
   "name": "0desgin",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "module": "dist/index.umd.js",
   "main": "dist/index.umd.js",
@@ -9,9 +9,9 @@
     "git:style": "bash ./config/script/style.bat",
     "commitlint": "commitlint -e",
     "prepare": "husky install",
-    "start": "cross-env NODE_ENV=development node config/webpack.dev.js",
     "release": "npm version prerelease",
-    "build": "cross-env TS_NODE_PROJECT=/tsconfig.production.json webpack --config config/webpack.npm.js",
+    "start": "cross-env NODE_ENV=development node config/webpack.dev.js",
+    "build": "rimraf dist && cross-env webpack --config config/webpack.npm.js",
     "pub": "npm publish"
   },
   "keywords": [],
