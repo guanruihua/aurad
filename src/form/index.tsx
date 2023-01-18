@@ -16,14 +16,14 @@ export interface FormProps {
 
 export function Form(props: FormProps) {
 
-	const { children, onSubmit, form, ...rest } = props
+	const { children, onSubmit, form = {}, ...rest } = props
 	const [values, setValues] = useSetState<FormRecord>({})
 
 	// console.log({ form })
 
 	return <FormContext.Provider value={{ values, setValues }}>
 		<form
-			ref={form}
+			ref={form.ref}
 			// ref={ref => form=ref}
 			// encType="application/x-www-form-urlencoded"
 			onReset={(e: any) => {
