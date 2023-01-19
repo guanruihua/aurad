@@ -6,7 +6,7 @@ import type { FormAction, FormRecord } from './type'
 export interface ItemProps {
 	name: string
 	label?: any
-	rules?: {}
+	rules?: any[]
 	[key: string]: any
 }
 
@@ -14,10 +14,13 @@ function ItemContent(props: ItemProps & FormAction) {
 	const {
 		values = {},
 		setValues = (newValues: FormRecord) => { },
-		name, label, children
+		name, label, rules,
+		children
 	} = props
 
+
 	useEffect(() => {
+		rules && console.log(rules);
 		if (values && setValues) {
 			setValues({ [name]: undefined })
 		}

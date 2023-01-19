@@ -36,6 +36,7 @@
     "node_modules",
     "background/**/*",
     "**/*/__test__/*",
+    "**/*/__demo__/*",
     "config/*.ts"
   ],
   "include": [

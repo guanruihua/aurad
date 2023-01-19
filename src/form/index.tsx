@@ -1,5 +1,5 @@
 /* eslint-disable*/
-import React from "react"
+import React, { forwardRef, Ref } from "react"
 import { FormContext } from './context'
 import { useSetState } from '../assets'
 import { Item } from './item'
@@ -10,24 +10,22 @@ import './index.less'
 export * from './hook'
 export interface FormProps {
 	form?: any
+	onReset?: (e?: any) => void
 	onSubmit?: (values: FormRecord) => void
 	[key: string]: any
 }
 
-export function Form(props: FormProps) {
+export const Form: any = forwardRef((props: FormProps, ref: Ref<any>) => {
 
-	const { children, onSubmit, form = {}, ...rest } = props
+	const { children, onSubmit, onReset, form = {}, ...rest } = props
 	const [values, setValues] = useSetState<FormRecord>({})
 
-	// console.log({ form })
-
-	return <FormContext.Provider value={{ values, setValues }}>
+	return <FormContext.Provider
+		value={{ values, setValues }}>
 		<form
-			ref={form.ref}
-			// ref={ref => form=ref}
-			// encType="application/x-www-form-urlencoded"
+			ref={ref || form.ref}
 			onReset={(e: any) => {
-				console.log(e.target.elements)
+				onReset && onReset(e)
 			}}
 			onSubmit={(e: any) => {
 				e.preventDefault()
@@ -38,6 +36,6 @@ export function Form(props: FormProps) {
 			{children}
 		</form>
 	</FormContext.Provider>
-}
+})
 
 Form.Item = Item
