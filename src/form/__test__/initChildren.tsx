@@ -5,11 +5,21 @@ import { Input, Button } from '../..'
 export const initChildren = (form: UseForm) => {
 	return <Fragment>
 		<Form.Item
-			name="array"
-			label={'Label(array)'}
+			name="validate"
+			label={'Label(validate)'}
 			rules={[
-				
+				{ required: true, message: '不可以为空' }
 			]}>
+			<Input
+				type='text'
+				// defaultValue="1"
+				onChange={(e: any) => {
+					console.log(e.target.value)
+				}} />
+		</Form.Item>
+		<Form.Item
+			name="array"
+			label={'Label(array)'}>
 			<Input
 				type='text'
 				index={'0'}

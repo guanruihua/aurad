@@ -13,11 +13,23 @@ export function useForm(): UseForm {
 
 	const getFieldsValue = useCallback(getFieldsValueHoc(ref), [ref.current])
 
+	const validateFieldValue = useCallback(() => {
+		const elements: HTMLFormControlsCollection | undefined = ref.current?.elements
+		console.log(elements)
+	}, [ref.current])
+
+	const validateFieldsValue = useCallback(() => {
+		const elements: HTMLFormControlsCollection | undefined = ref.current?.elements
+		console.log(elements)
+	}, [ref.current])
+
 	return {
 		ref,
 		getFieldsValue,
 		getFieldValue,
 		setFieldValue,
 		setFieldsValue,
+		validateFieldsValue,
+		validateFieldValue,
 	}
 }

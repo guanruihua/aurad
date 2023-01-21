@@ -1,10 +1,11 @@
 import { RefObject } from "react"
 import { FormElementValue } from '../type'
+import { ObjectType } from 'abandonjs'
 
 /**
  * @description useForm 和 useClassForm 类型
  */
-export interface UseForm {
+export interface UseForm extends ObjectType {
 	/**
 	 * Form Ref
 	 */
