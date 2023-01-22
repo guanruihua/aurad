@@ -17,6 +17,7 @@ export const initChildren = (form: UseForm) => {
 					console.log(e.target.value)
 				}} />
 		</Form.Item>
+		
 		<Form.Item
 			name="array"
 			label={'Label(array)'}>

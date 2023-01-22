@@ -25,7 +25,8 @@ const list = [
 		name,
 		path: '/' + name,
 		element: <Suspense fallback={<div>Loading</div>}>
-			{React.createElement(lazy(() => import(`../src/${name}/__test__`)))}
+			{/* {React.createElement(lazy(() => import(`../src/${name}/__test__`)))} */}
+			{React.createElement(lazy(() => import(`../src/${name}/demo`)))}
 		</Suspense>
 	}
 })

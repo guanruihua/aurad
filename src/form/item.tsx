@@ -1,8 +1,9 @@
 /* eslint-disable*/
-import { ObjectType } from "abandonjs"
 import React, { RefObject, useEffect, useRef, useState } from "react"
+import { ObjectType } from "abandonjs"
 import { FormContext } from './context'
 import type { FormAction } from './type'
+import { useValidator } from './hook'
 export interface ItemProps {
 	name: string
 	label?: any
@@ -25,52 +26,13 @@ function ItemContent(props: ItemProps & FormAction) {
 		children
 	} = props
 
-	const ref: RefObject<any> = useRef(null)
-	// const ref: RefObject<HTMLDivElement> = useRef(null)
-	const [errorStatus, setErrorStatus] = useState<boolean>(false)
-	const [errorMsg, setErrorMsg] = useState<any>('')
+	const { errorStatus, errorMsg, expandProps } = useValidator(rules)
 
-	useEffect(() => {
-		if (ref.current === null) return;
-		rules.forEach((rule: ObjectType, index: number) => {
-			const { required = false, message = '', trigger = 'onChange' } = rule
-			// const { required = false, message = '', trigger = 'onChange' } = rule
-			ref.current?.addEventListener('change', (e:any) => {
-			// ref.current?.addEventListener(trigger as keyof ElementEventMap, (e:any) => {
-				console.log(trigger, e)
-			})
-		})
-		// ref && console.log(ref);
-
-	}, [ref.current, rules.length])
-	useEffect(() => {
-		// rules && console.log(rules, ref);
-
-		// if (values && setValues) {
-		// 	setValues({ [name]: undefined })
-		// }
-	}, [])
-
-	// console.log(children)
-	const expandProps = {
-		ref,
-		name,
-		onChange: (e: any) => {
-			const value: string = e.target.value || ''
-			if (value.trim() === '') {
-				setErrorStatus(true)
-				setErrorMsg('不可以为空')
-			} else {
-				setErrorStatus(false)
-			}
-		}
-	}
-	const { type, props: childProps } = children
+	const newProps = childPropsHoc(children.props, { name, ...expandProps })
 
 	return <div className="form-item">
 		{label && <label style={{ display: 'block', marginRight: 4, marginBottom: 8 }}>{label}:</label>}
-		{type(childPropsHoc(childProps, expandProps))}
-		{/* {children && React.cloneElement(children, { name })} */}
+		{children && React.cloneElement(children, newProps)}
 		{errorStatus && <div>{errorMsg}</div>}
 	</div>
 }
