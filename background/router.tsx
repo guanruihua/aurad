@@ -19,7 +19,9 @@ const list = [
 	'textarea',
 	// 'dialog',
 	'form',
-	'markdown',
+	'layout',
+	'card',
+	// 'markdown',
 ].map(name => {
 	return {
 		name,
