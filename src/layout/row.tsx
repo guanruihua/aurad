@@ -1,28 +1,34 @@
-import React from "react"
-import { ObjectType } from 'abandonjs'
-import { classNames } from '@/assets'
-
-export interface Row extends ObjectType {
-	className?: string
+import React, { CSSProperties } from "react"
+import { classNames, ComponentBaseProps } from '@/assets'
+export interface Row extends ComponentBaseProps {
 	/**
-	 * @description 间隔
+	 * @description 间隔 
 	 */
-	gap?: number
+	gap?: number | string
 	/**
 	 * @description 列数
-	 * @default 24
+	 * @default 子元素个数
 	 */
-	colCount?: number
-	children?: any
+	columns?: number
 }
 
 export function Row(props: Row) {
-	const { className, children, ...rest } = props
+	const {
+		columns, gap = 0,
+		className, style = {},
+		children, ...rest
+	} = props
+
+	const newColumns = columns === undefined ? React.Children.count(children) : columns
+	const newStyle: CSSProperties = {
+		gap,
+		gridTemplateColumns: `repeat(${newColumns}, 1fr)`,
+		...style
+	}
+
 	return <div
 		className={classNames(className, 'row')}
-		style={{
-			gridTemplateColumns: '1fr 1fr'
-		}}
+		style={newStyle}
 		{...rest}>
 		{children}
 	</div>

@@ -7,7 +7,7 @@ import './index.less'
  *  缺少点击后状态 outline 
  */
 //  Partial<HTMLButtonElement>
-export interface ButtonProps extends ComponentBaseProps, Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
+export interface ButtonProps extends ComponentBaseProps, Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type' | 'children'> {
 	htmlType?: 'submit' | 'reset' | 'button'
 	/**
 	 * @description 按钮类型
@@ -17,12 +17,7 @@ export interface ButtonProps extends ComponentBaseProps, Omit<ButtonHTMLAttribut
 	ghost?: boolean
 	block?: boolean
 	onClick?: (e?: any) => void
-	/**
-	 * @default ''
-	 */
-	children?: any
 	// ButtonHTMLAttributes<HTMLButtonElement>
-	[key: string]: any
 }
 
 export function Button(props: ButtonProps) {
