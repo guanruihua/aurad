@@ -20,6 +20,7 @@ const list = [
 	// 'dialog',
 	'form',
 	'table',
+	'paging',
 	'layout',
 	'card',
 	// 'markdown',
