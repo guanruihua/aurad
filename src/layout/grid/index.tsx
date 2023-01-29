@@ -1,9 +1,10 @@
 import React, { CSSProperties } from "react"
+import { isNumber } from "check-it-type"
 import { classNames, ComponentBaseProps } from '@/assets'
 import { Item } from './item'
-import { getGridBorder } from './unit'
+import { getGridBorder, getGridSpanLayout, initIgnore } from './util'
+import { Merge } from './type'
 import './index.less'
-import { isNumber } from "check-it-type"
 
 export interface Grid extends ComponentBaseProps {
 	/**
@@ -42,11 +43,16 @@ export interface Grid extends ComponentBaseProps {
 	 * @default true
 	 */
 	fill?: boolean
+
+	/**
+	 * @description 合并单元格 { [index]:{row: number, column:number} }
+	 */
+	merge?: Merge
 }
 
 export function Grid(props: Grid) {
 	const {
-		fill = true,
+		fill = true, merge = {},
 		columns = 12, rows = 'auto', maxRows = 'auto',
 		border, childClassName, childStyle = {}, fillChildClassName,
 		style = {}, className, children, ...rest
@@ -60,7 +66,9 @@ export function Grid(props: Grid) {
 		total = useRows * columns
 		extra = 0
 	}
-	const getBorder = getGridBorder(columns, total)
+	const getBorder = getGridBorder(columns, total, border)
+	const getSpanLayout = getGridSpanLayout(merge, columns)
+	const ignore = initIgnore(merge, columns)
 
 	return <div
 		className={classNames('grid', className)}
@@ -72,11 +80,12 @@ export function Grid(props: Grid) {
 		{...rest}>
 		{React.Children.map(children, (child, index: number) => {
 			const { className: unitClassName, style: unitStyle, ...unitRest } = child?.props || {}
-			if ((index + 1) > total) return;
+			if ((index + 1) > total || (ignore as number[]).includes(index)) return;
 			return React.cloneElement(child, {
 				className: classNames(childClassName, unitClassName),
 				style: {
-					...getBorder(index, border),
+					...getBorder(index),
+					...getSpanLayout(index),
 					...childStyle,
 					...unitStyle
 				},
@@ -87,7 +96,7 @@ export function Grid(props: Grid) {
 			const index = i + count
 			return <div
 				style={{
-					...getBorder(index, border),
+					...getBorder(index),
 					...childStyle,
 				}}
 				key={index}

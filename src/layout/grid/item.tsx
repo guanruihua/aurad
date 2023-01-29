@@ -1,3 +1,4 @@
+/* eslint-disable*/
 import React from "react"
 import { classNames, ComponentBaseProps } from '@/assets'
 
@@ -7,11 +8,16 @@ export interface GridItem extends ComponentBaseProps {
 	 * @default 'center'
 	 */
 	align?: 'center' | 'start' | 'end'
+	/**
+	 * @description 垂直对齐方式
+	 * @default 'center'
+	 */
 	verticalAlign?: 'center' | 'start' | 'end'
 }
 
 export function Item(props: GridItem) {
 	const {
+		left, top,
 		align = 'center', verticalAlign = 'center',
 		style = {}, className,
 		children, ...rest

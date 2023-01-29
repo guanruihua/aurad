@@ -19,6 +19,7 @@ const list = [
 	'textarea',
 	// 'dialog',
 	'form',
+	'table',
 	'layout',
 	'card',
 	// 'markdown',
