@@ -18,7 +18,7 @@ const options = [
 ]
 
 export default function SelectPage() {
-	return <div>
+	return <div style={{ background: '#fff', padding: 10 }}>
 		<div style={{
 			display: 'grid',
 			gridTemplateColumns: '1fr 1fr 1fr 1fr',
@@ -27,6 +27,16 @@ export default function SelectPage() {
 			<div>
 				<h3>基础使用</h3>
 				<Select
+					// defaultOpen={true}
+					// open={true}
+					options={options}
+					placeholder='name'
+				/>
+			</div>
+			<div>
+				<h3>基础使用(value)</h3>
+				<Select
+					value={'lucy1'}
 					// defaultOpen={true}
 					// open={true}
 					options={options}
@@ -57,8 +67,7 @@ export default function SelectPage() {
 				<h3>基础使用</h3>
 				<Select
 					mode="multiple"
-					defaultValue={['lucy1', 'lucy2', 'lucy1',
-					]}
+					defaultValue={['lucy1', 'lucy2', 'lucy1']}
 					// defaultOpen={true}
 					options={options}
 					placeholder='name'

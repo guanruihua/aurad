@@ -1,17 +1,17 @@
 /* eslint-disable*/
 import React, { useRef, useState } from "react"
 import { classNames } from "@/assets"
+import { SelectProps } from '../type'
+import { isArray } from "check-it-type"
 
-export interface SelectComponentProps {
-	open?: boolean
-	options?: { value: string, label: string }[]
-	placeholder?: string
-	prefix?: string
-	children?: any
-	[key: string]: any
+const getSelectValue = (list: { value: string, label: string }[], value?: string) => {
+	if (value === undefined) return undefined
+	for (let i = 0; i < list.length; i++) {
+		if (list[i].value === value) return list[i].label
+	}
 }
 
-export function SelectComponent(props: SelectComponentProps) {
+export function SelectComponent(props: SelectProps) {
 	const {
 		options = [],
 		placeholder = '',
@@ -22,16 +22,18 @@ export function SelectComponent(props: SelectComponentProps) {
 
 	const [isHover, setHover] = useState<boolean>(open)
 	const [isLeave, setLeave] = useState<boolean>(false)
-	const [selectValue, setSelectValue] = useState<string>(defaultValue)
 
-	console.log({ isHover, isLeave, selectValue })
+	const [selectValue, setSelectValue] = useState<string | undefined>(isArray(defaultValue) ? defaultValue[0] : defaultValue)
+
+	// console.log({ isHover, isLeave, selectValue })
 
 	return <div className={classNames("select", { hidden: disabled })}>
 		<div className={classNames("select-input", { isHover: isHover && !disabled })}>
 			<input
 				key={selectValue}
 				placeholder={placeholder}
-				value={selectValue}
+				// value={selectValue}
+				value={getSelectValue(options, selectValue)}
 				onFocus={() => setHover(true)}
 				onClick={() => setHover(true)}
 				onMouseLeave={() => setLeave(true)}

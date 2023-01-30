@@ -2,18 +2,12 @@
 import React from "react"
 import { classNames } from '@/assets'
 import { SelectComponent, MultSelectComponent } from './components'
+import { SelectProps } from './type'
 import './style/index.less'
 
-interface SelectProps {
-	prefix?: string
-	disabled?: boolean
-	options?: { value: string, label: string }[]
-	mode?: "multiple"
-	children?: any
-	[key: string]: any
-}
+export type Select = SelectProps
 
-export function Select(props: SelectProps) {
+export function Select(props: Select) {
 	const { mode, className, ...rest } = props
 	if (mode == 'multiple') {
 		return <MultSelectComponent
