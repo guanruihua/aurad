@@ -1,4 +1,4 @@
-import React, { forwardRef, Ref } from "react"
+import React, { forwardRef, Ref, useId } from "react"
 import { FormContext } from './context'
 import { useSetState } from '../assets'
 import { Item } from './item'
@@ -15,15 +15,17 @@ export interface FormProps {
 	onSubmit?: (values: FormRecord) => void
 	[key: string]: any
 }
+
 // 没有编辑过的控件无法辨别''和undefined
 export const Form: any = forwardRef((props: FormProps, ref: Ref<HTMLFormElement>) => {
 
-	const { children, onSubmit, onReset, form, ...rest } = props
+	const { name = useId(), children, onSubmit, onReset, form, ...rest } = props
 	const [values, setValues] = useSetState<FormRecord>({})
 
 	return <FormContext.Provider
-		value={{ values, setValues }}>
+		value={{ formName: name, values, setValues }}>
 		<form
+			name={name}
 			ref={ref || form?.ref}
 			onReset={(e: any) => {
 				onReset && onReset(e)

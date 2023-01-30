@@ -1,29 +1,35 @@
-import React, { useState } from "react"
+import React, { RefObject, useEffect, useRef, useState } from "react"
 import { classNames } from "@/assets"
 import { SelectProps } from '../type'
 import { isArray } from "check-it-type"
-
-const getSelectValue = (list: { value: string, label: string }[], value?: string) => {
-	if (value === undefined) return undefined
-	for (let i = 0; i < list.length; i++) {
-		if (list[i].value === value) return list[i].label
-	}
-}
+import { getSelectValue } from '../util'
 
 export function SelectComponent(props: SelectProps) {
 
 	const {
+		name, formName,
 		options = [],
 		placeholder = '',
 		open = false,
 		defaultValue,
-		disabled = false
+		disabled = false,
 	} = props
+	const ref: RefObject<HTMLInputElement> = useRef<HTMLInputElement>(null)
 
 	const [isHover, setHover] = useState<boolean>(open)
 	const [isLeave, setLeave] = useState<boolean>(false)
 
 	const [selectValue, setSelectValue] = useState<string | undefined>(isArray(defaultValue) ? defaultValue[0] : defaultValue)
+
+	useEffect(() => {
+		if (formName === undefined || name == undefined) return;
+		(window as any)[`${formName}__${name}`] = (value: any) => {
+			console.log('aaa', formName, name, value, ref)
+		}
+		return () => {
+			delete (window as any)[`${formName}__${name}`]
+		}
+	}, [ref.current])
 
 	return <div className={classNames("select", { hidden: disabled })}>
 		<div className={classNames("select-input", { isHover: isHover && !disabled })}>
@@ -38,6 +44,13 @@ export function SelectComponent(props: SelectProps) {
 				onBlur={() => isLeave && setHover(false)}
 				readOnly
 				unselectable="on" />
+			{name && <input
+				ref={ref}
+				name={name}
+				style={{ display: 'none' }}
+				onChange={(e) => {
+					console.log(name, e.target.value)
+				}} />}
 		</div>
 		{!disabled && <div
 			className={classNames('select-options', { 'select-options-hover': open || isHover })}

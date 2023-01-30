@@ -18,16 +18,18 @@ function childPropsHoc(oldProps: ObjectType, expandProps: ObjectType) {
 }
 
 function ItemContent(props: ItemProps & FormAction) {
+	// console.log(props)
 	const {
 		// values = {},
 		// setValues = (newValues: FormRecord) => { },
-		name, label, rules = [],
+		formName, name, 
+		label, rules = [],
 		children
 	} = props
 
 	const { errorStatus, errorMsg, expandProps } = useValidator(rules)
 
-	const newProps = childPropsHoc(children.props, { name, ...expandProps })
+	const newProps = childPropsHoc(children.props, { name, formName, ...expandProps })
 
 	return <div className="form-item">
 		{label && <label style={{ display: 'block', marginRight: 4, marginBottom: 8 }}>{label}:</label>}

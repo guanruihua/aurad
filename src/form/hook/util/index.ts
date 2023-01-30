@@ -53,6 +53,8 @@ export const setFieldValueHoc = (ref: RefObject<HTMLFormElement>) =>
 	(fieldName: string, value: any, fieldIndex?: string): boolean => {
 		if (ref === null) return false
 		const elements: HTMLFormControlsCollection | undefined = ref.current?.elements
+		const formName = ref.current?.name
+		// console.log(formName)
 		let result = false
 		if (!elements) return false;
 		for (const item of elements) {
@@ -62,12 +64,14 @@ export const setFieldValueHoc = (ref: RefObject<HTMLFormElement>) =>
 			try {
 				if (fieldIndex !== undefined) {
 					if (index !== null && fieldIndex === index) {
-						(item as HTMLFormElement).value = value
+						(item as HTMLFormElement).value = value;
+						(window as any)[`${formName}__${name}`](value);
 						result = true
 					}
 					continue;
 				}
-				(item as HTMLFormElement).value = value
+				(item as HTMLFormElement).value = value;
+				(window as any)[`${formName}__${name}`](value);
 				result = true
 				continue;
 			} catch (error) {
@@ -79,6 +83,8 @@ export const setFieldValueHoc = (ref: RefObject<HTMLFormElement>) =>
 
 export const setFieldsValueHoc = (ref: RefObject<HTMLFormElement>) => (record: { [fieldName: string]: any | Record<string, any> }): boolean => {
 	const elements: HTMLFormControlsCollection | undefined = ref.current?.elements
+	const formName = ref.current?.name
+
 	if (!elements) return false;
 	for (const item of elements) {
 		const { name = '' } = item as HTMLFormElement
@@ -88,11 +94,14 @@ export const setFieldsValueHoc = (ref: RefObject<HTMLFormElement>) => (record: {
 			const value = record[name];
 			if (index !== null && isObject(value)) {
 				for (const unit in value)
-					if (unit === index)
-						(item as HTMLFormElement).value = value[unit]
+					if (unit === index) {
+						(item as HTMLFormElement).value = value[unit];
+						(window as any)[`${formName}__${name}`](value[unit]);
+					}
 				continue;
 			}
-			(item as HTMLFormElement).value = value
+			(item as HTMLFormElement).value = value;
+			(window as any)[`${formName}__${name}`](value);
 		} catch (error) {
 			return false
 		}
