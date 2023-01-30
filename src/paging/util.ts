@@ -1,9 +1,3 @@
-/* eslint-disable*/
-import { once, stringify } from "abandonjs"
-
-// const log = once(console.log)
-const log = console.log
-
 export function getShowPageNumRange(current: number, showPageNum: number, total: number) {
 	if (total <= 9) return new Array(total).fill(null).map((u, i) => i + 1)
 	const before = Math.ceil(showPageNum / 2)
@@ -25,6 +19,5 @@ export function getShowPageNumRange(current: number, showPageNum: number, total:
 		result.push(total)
 	}
 	
-	// log({ before, after, start, result: stringify(result) })
 	return result
 }

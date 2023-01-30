@@ -1,16 +1,15 @@
-/* eslint-disable*/
 import { useState, useEffect } from "react"
-import { ObjectType } from 'abandonjs'
+// import { ObjectType } from 'abandonjs'
 
 export function useValidator(rules: any[] = [] ) {
 	const [errorStatus, setErrorStatus] = useState<boolean>(false)
 	const [errorMsg, setErrorMsg] = useState<any>('')
 	
 	useEffect(() => {
-		rules.forEach((rule: ObjectType, index: number) => {
-			const { required = false, message = '', trigger = 'onChange' } = rule
-			// const { required = false, message = '', trigger = 'onChange' } = rule
-		})
+		// rules.forEach((rule: ObjectType, index: number) => {
+		// 	const { required = false, message = '', trigger = 'onChange' } = rule
+		// 	// const { required = false, message = '', trigger = 'onChange' } = rule
+		// })
 
 	}, [rules.length])
 

@@ -1,7 +1,5 @@
-/* eslint-disable*/
 import React from 'react'
 import { Form, useClassForm } from '..'
-import { Input, Button } from '../..'
 import { FormRecord } from '../type'
 import { initChildren } from './initChildren'
 

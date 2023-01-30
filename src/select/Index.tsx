@@ -1,4 +1,3 @@
-/* eslint-disable*/
 import React from "react"
 import { classNames } from '@/assets'
 import { SelectComponent, MultSelectComponent } from './components'

@@ -7,7 +7,6 @@ interface TextAreaProps {
 
 export function TextArea(props: TextAreaProps) {
 	const { } = props
-	// eslint-disable-next-line
 	const [replicatedValue, setReplicatedValue] = useState<string>("")
 	return <div
 		className={styles['rh-textarea']}

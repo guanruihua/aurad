@@ -1,5 +1,4 @@
-/* eslint-disable*/
-import React, { FC, forwardRef, Ref } from "react"
+import React, { forwardRef, Ref } from "react"
 import { FormContext } from './context'
 import { useSetState } from '../assets'
 import { Item } from './item'

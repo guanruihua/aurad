@@ -1,5 +1,4 @@
-/* eslint-disable*/
-import React, { CSSProperties, DetailedHTMLProps, TdHTMLAttributes } from "react"
+import React, { DetailedHTMLProps, TdHTMLAttributes } from "react"
 import { isNumber, ObjectType } from "abandonjs"
 import { classNames, ComponentBaseProps } from "@/assets"
 import './index.less'

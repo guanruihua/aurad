@@ -1,4 +1,3 @@
-/* eslint-disable*/
 import { RefObject } from 'react'
 import { isObject } from 'abandonjs'
 // import { FormElementValue } from '../../type'

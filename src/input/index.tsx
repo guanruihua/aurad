@@ -1,5 +1,4 @@
-/* eslint-disable*/
-import React, { ChangeEvent } from "react"
+import React from "react"
 import { classNames } from '@/assets'
 import { FormAction, FormRecord } from "../form/type"
 import './index.less'
@@ -13,16 +12,16 @@ export interface InputExpandProps extends Partial<FormAction> {
 	[key: string]: any
 }
 
-function handleAction<T = any>(actions: Record<string, any> = {}, e: T) {
-	const { before, action, after } = actions
-	before && before(e)
-	action && action(e)
-	after && after(e)
-}
+// function handleAction<T = any>(actions: Record<string, any> = {}, e: T) {
+// 	const { before, action, after } = actions
+// 	before && before(e)
+// 	action && action(e)
+// 	after && after(e)
+// }
 
 // type InputChangeEvent = ChangeEvent<HTMLInputElement>
 
-export function Input(props: InputProps & InputExpandProps) {
+export function Input(props: InputProps) {
 	// const { name, setValueBefore, onChange, oninput, ...rest } = props
 	const { className, ...rest } = props
 	// const [labelClassName, setLabelClassName] = useState<string>('userNameTip')
@@ -32,7 +31,7 @@ export function Input(props: InputProps & InputExpandProps) {
 	// name && setValueBefore && setValueBefore({ [name]: e.target.value })
 	// }
 	return <input
-		className={classNames("mo-input", className)}
+		className={classNames("input", className)}
 		// onInput={(e: InputChangeEvent) => handleAction<InputChangeEvent>({ before, action: onChange }, e)}
 		{...rest as any}
 	/>
