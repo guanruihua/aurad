@@ -1,7 +1,6 @@
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require("path")
-const formatTS = require('@formatjs/ts-transformer')
 const { ESBuildPlugin } = require('esbuild-loader')
 
 module.exports = {
