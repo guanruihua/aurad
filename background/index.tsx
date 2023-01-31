@@ -10,6 +10,7 @@ function App() {
 	const element = useRoutes(routers)
 	const [select, setSelect] = useState<string>('')
 	const nav = useNavigate()
+
 	useEffect(() => {
 		const names = /(\w+)$/.exec(location.href)
 		if (names && names.length) {
@@ -24,17 +25,17 @@ function App() {
 		<aside className="menu">
 			{menu.map((item: MenuObject) => {
 				const { name, path } = item
-				if (path && path !== '/') {
+				if (path && path !== '/')
 					return <div
 						className={select === name ? 'isSelect' : ''}
 						key={name + path}
 						onClick={() => {
 							nav(path)
 							name && setSelect(name)
-						}}
-					>{name || path.replace('/', '')}
+						}} >
+						{name || path.replace('/', '')}
 					</div>
-				}
+
 			})}
 		</aside>
 		<div className="docs-component-content">

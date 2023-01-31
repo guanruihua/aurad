@@ -17,27 +17,20 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.(ts|tsx)$/,
+				test: /\.tsx?$/,
+
 				use: [
 					{
-						loader: 'ts-loader',
+						loader: 'esbuild-loader',
 						options: {
-							getCustomTransformers() {
-								return {
-									before: [
-										formatTS.transform({
-											overrideIdFn: '[sha512:contenthash:base64:6]',
-										}),
-									],
-								};
-							},
+							loader: 'tsx'
 						},
 					},
 				],
 				exclude: /node_modules/,
 			},
 			{
-				test: /\.(js)?$/,
+				test: /\.jsx?$/,
 				use: {
 					loader: 'babel-loader',
 					options: {
@@ -103,12 +96,12 @@ module.exports = {
 				],
 			},
 			{
-        test: /\.(jpe?g|png|gif|)$/i,
-        type: 'asset/resource',
-        generator: {
-          filename: 'img/[name][ext]'
-        }
-      },
+				test: /\.(jpe?g|png|gif|)$/i,
+				type: 'asset/resource',
+				generator: {
+					filename: 'img/[name][ext]'
+				}
+			},
 			{
 				test: /\.(svg|woff|woff2|eot|ttf|otf|ico)$/i,
 				// test: /\.(jpe?g|png|gif|svg|woff|woff2|eot|ttf|otf|ico)$/i,
