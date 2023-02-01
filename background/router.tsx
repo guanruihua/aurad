@@ -23,23 +23,27 @@ const list = [
 	'paging',
 	'layout',
 	'card',
+	'test'
 	// 'markdown',
 ].map(name => {
 	return {
 		name,
 		path: '/' + name,
 		element: <Suspense fallback={<div>Loading</div>}>
+
 			{/* {React.createElement(lazy(() => import(`../src/${name}/__test__`)))} */}
-			{React.createElement(lazy(() => import(`../src/${name}/demo`)))}
+			{React.createElement(lazy(() =>
+				import(name === 'test' ? `../src/${name}` : `../src/${name}/demo`))
+			)}
 		</Suspense>
 	}
 })
 
 export const menu: MenuObject[] = [
-{
-	path: '/',
-	element: <div />
-},
+	{
+		path: '/',
+		element: <div />
+	},
 ].concat(list)
 
 export const routers: RouteObject[] = Array.from(menu, (item: MenuObject) => ({ path: item.path, element: item.element }))
