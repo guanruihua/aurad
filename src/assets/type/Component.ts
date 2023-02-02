@@ -1,7 +1,12 @@
-export interface ComponentBaseProps extends Record<string, any> {
+import { CSSProperties } from 'react'
+import { ObjectType } from 'abandonjs'
+export interface ComponentBaseProps extends ObjectType {
 	/**
- * @description 
- * @default 'rh'
- */
+		* @description 
+		* @default ''
+		*/
 	prefixCls?: string
+	className?: string
+	style?: CSSProperties
+	children?: any
 }

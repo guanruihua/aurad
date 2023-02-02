@@ -1,0 +1,101 @@
+* {
+  box-sizing: border-box;
+}
+
+.paging {
+  padding: 6px 8px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+
+  &>div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    min-width: 30px;
+    height: 30px;
+
+    font-size: 14px;
+    border: 1px solid #d9d9d9;
+    background-color: #ffff;
+    border-radius: 12px;
+    margin-right: 5px;
+    cursor: pointer;
+    user-select: none;
+
+    &:last-child {
+      margin-right: none;
+    }
+
+    &.selected {
+      color: #fff;
+      background-color: #108ee9;
+      border-color: #108ee9;
+    }
+
+    &.jump-next,
+    &.jump-prev {
+      border: none;
+
+      // background-color: none;
+      svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &.jump-next {
+      content: '\2022\2022\2022';
+      display: inline-block;
+      letter-spacing: 2px;
+      color: rgba(0, 0, 0, .25);
+      text-align: center;
+    }
+  }
+
+  .total {
+    border: none;
+  }
+
+  .pageSize-select {
+    border: none;
+    height: 30px;
+    width: 90px;
+
+    &>.select {
+      margin: 0;
+    }
+
+    & .select-input {
+      &>input {
+        text-align: center;
+      }
+
+      border-radius: 12px;
+      border: 1px solid #d9d9d9;
+    }
+  }
+
+  .goto {
+    border: none;
+    height: 30px;
+    margin: 0;
+
+    div {
+      display: block;
+      margin-right: 5px;
+    }
+
+    &>input {
+      margin: 0;
+      display: block;
+      border-radius: 12px;
+      border: 1px solid #d9d9d9;
+      height: 30px;
+      width: 50px;
+    }
+  }
+}

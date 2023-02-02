@@ -4,6 +4,8 @@ const webpackConfig = require('./webpack.base.js');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const path = require('path')
 
+require('./env/tsconfig/index')('dev')
+
 const devServer = {
 	port: '3300', //默认是8080
 	// client: { logging: "error" },//浏览器中设置日志级别

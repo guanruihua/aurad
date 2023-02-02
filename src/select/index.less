@@ -1,41 +1,7 @@
-.mo-select {
-  outline: none;
-  text-overflow: ellipsis;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 4px 11px;
-  font-size: 14px;
-  line-height: 1.5714285714285714;
-  list-style: none;
-  display: inline-block;
-  width: 100%;
-  min-width: 0;
-  background-image: none;
-  border: 1px solid #424242;
-  border-radius: 6px;
-  transition: all 0.2s;
-  margin-bottom: 5px;
-
-  // &>input {
-  //   border: none;
-  //   outline: none;
-  //   width: 100%;
-  // }
-
-  &:focus,
-  &:hover,
-  &:active {
-    border-color: #4989e7;
-    box-shadow: #4989e7 0 0 3px;
-  }
-}
-
+@import "./keyframes.less";
 
 @select-prefix: ~'rc-select';
-
-* {
-  box-sizing: border-box;
-}
+// @select-prefix: ~'zero-select';
 
 .search-input-without-border() {
   .@{select-prefix}-selection-search-input {
@@ -49,10 +15,33 @@
 .@{select-prefix} {
   display: inline-block;
   font-size: 12px;
-  width: 100px;
   position: relative;
+  outline: none;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5714285714285714;
+  list-style: none;
+  display: inline-block;
+  width: 100%;
+  min-width: 0;
+  background-image: none;
+  border: 1px solid #424242;
+  border-radius: 6px;
+  transition: all 0.2s;
+  height: 30px;
+
+  &:focus,
+  &:hover,
+  &:active {
+    border-color: #4989e7;
+    box-shadow: #4989e7 0 0 3px;
+  }
+
 
   &-disabled {
+
     &,
     & input {
       cursor: not-allowed;
@@ -229,10 +218,13 @@
 
   // ============== Dropdown ===============
   &-dropdown {
-    border: 1px solid green;
+    border: none;
+    width: 100%;
+    border-radius: 4px;
     min-height: 100px;
     position: absolute;
     background: #fff;
+    padding: 4px;
 
     &-hidden {
       display: none;
@@ -241,9 +233,10 @@
 
   // =============== Option ================
   &-item {
-    font-size: 16px;
-    line-height: 1.5;
+    // font-size: 16px;
+    // line-height: 1.5;
     padding: 4px 16px;
+    border-radius: 4px;
 
     // >>> Group
     &-group {
@@ -299,6 +292,7 @@
     transform: scale(1);
   }
 }
+
 .@{select-prefix}-selection__choice-zoom-leave {
   opacity: 1;
   transform: scale(1);
@@ -316,6 +310,7 @@
 }
 
 .@{select-prefix}-dropdown {
+
   &-slide-up-enter,
   &-slide-up-appear {
     .effect();
@@ -357,67 +352,5 @@
   &-slide-up-leave&-slide-up-leave-active&-placement-topRight {
     animation-name: rcSelectDropdownSlideDownOut;
     animation-play-state: running;
-  }
-}
-
-@keyframes rcSelectDropdownSlideUpIn {
-  0% {
-    opacity: 0;
-    transform-origin: 0% 0%;
-    transform: scaleY(0);
-  }
-  100% {
-    opacity: 1;
-    transform-origin: 0% 0%;
-    transform: scaleY(1);
-  }
-}
-@keyframes rcSelectDropdownSlideUpOut {
-  0% {
-    opacity: 1;
-    transform-origin: 0% 0%;
-    transform: scaleY(1);
-  }
-  100% {
-    opacity: 0;
-    transform-origin: 0% 0%;
-    transform: scaleY(0);
-  }
-}
-
-@keyframes rcSelectDropdownSlideDownIn {
-  0% {
-    transform: scaleY(0);
-    transform-origin: 100% 100%;
-    opacity: 0;
-  }
-
-  100% {
-    transform: scaleY(1);
-    transform-origin: 100% 100%;
-    opacity: 1;
-  }
-}
-
-@keyframes rcSelectDropdownSlideDownOut {
-  0% {
-    transform: scaleY(1);
-    transform-origin: 100% 100%;
-    opacity: 1;
-  }
-
-  100% {
-    transform: scaleY(0);
-    transform-origin: 100% 100%;
-    opacity: 0;
-  }
-}
-
-@keyframes rcSelectLoadingIcon {
-  0% {
-    transform: rotate(0);
-  }
-  100% {
-    transform: rotate(360deg);
   }
 }

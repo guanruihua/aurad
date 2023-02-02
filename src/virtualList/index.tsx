@@ -1,6 +1,5 @@
-/* eslint-disable*/
-import React, { useState, useEffect, useRef } from "react"
-import { flushSync } from 'react-dom';
+import React, { useRef } from "react"
+// import { flushSync } from 'react-dom';
 import VariableSizeList from './VariableSizeList'
 
 
@@ -8,6 +7,7 @@ import VariableSizeList from './VariableSizeList'
 // 列表项组件
 function Item({ index, data, setHeight }: any) {
   const itemRef: any = useRef();
+  console.log(setHeight)
   // useEffect(() => {
   //   setHeight(index, itemRef.current.getBoundingClientRect().height);
   // }, [setHeight, index]);

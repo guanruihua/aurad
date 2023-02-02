@@ -1,4 +1,4 @@
-import { type } from 'rh-js-methods'
+import { type } from 'abandonjs'
 
 type ClassNameBaseUnit = Record<string, any> | string | undefined | null | number | boolean
 
