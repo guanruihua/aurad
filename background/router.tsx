@@ -1,6 +1,5 @@
 import React, { lazy, Suspense } from 'react'
 import { RouteObject } from 'react-router-dom'
-// import { Demo1 } from './demo'
 
 interface _MenuObject extends Record<string, any> {
 	name?: string
@@ -20,11 +19,10 @@ const list = [
 	// 'dialog',
 	'form',
 	'table',
-	'paging',
+	'pagination',
 	'layout',
 	'card',
 	'test'
-	// 'markdown',
 ].map(name => {
 	return {
 		name,

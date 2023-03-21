@@ -1,13 +1,13 @@
 import React from "react"
 
-export interface ASideProps {
+export interface SideProps {
 	[key: string]: any
 }
 
-export function ASide(props: ASideProps){
+export function Side(props: SideProps){
 	const {} = props
 	return <div>
-		ASide
+		Side
 		{JSON.stringify(Object.keys(props))}
 	</div>
 }

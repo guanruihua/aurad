@@ -1,6 +1,0 @@
-export const data = {
-	"name": "web点击劫持X-Frame-Options.md",
-	"path": "../guanruihua.github.io/Front-End/浏览器",
-	"data": "# Web 点击劫持X-Frame-Options\n\n### 原理解释\n\n> 点击劫持，[clickjacking](https://baike.baidu.com/item/clickjacking)，也被称为UI-覆盖攻击。这个词首次出现在2008年，是由[互联网]\n\nX-Frame-Options HTTP 响应头是用来给浏览器指示允许一个页面可否在 <frame>, </iframe> 或者 customHeaders>\n  </httpProtocol>\n  ...\n</system.webServer>\n```\n\nHAProxy配置\n\n添加下面这行到 ‘front-end, listen, or backend’配置中\n\n```bash\nrspadd X-Frame-Options:\\ SAMEORIGIN\n```\n\nTomcat配置\n\n在 ‘conf/web.xml’填加以下配置\n\n```xml\n<filter>\n        <filter-name>httpHeaderSecurity</filter-name>\n        <filter-class>org.apache.catalina.filters.HttpHeaderSecurityFilter</filter-class>\n        <init-param>\n            <param-name>antiClickJackingOption</param-name>\n            <param-value>SAMEORIGIN</param-value>\n        </init-param>\n        <async-supported>true</async-supported>\n    </filter>\n<filter-mapping>\n        <filter-name>httpHeaderSecurity</filter-name>\n        <url-pattern>/*</url-pattern>\n    <dispatcher>REQUEST</dispatcher>\n    <dispatcher>FORWARD</dispatcher>\n</filter-mapping>\n```\n\n配置后如何确定X-Frame-Options是否已生效呢？我这里以Google浏览器为例，打开网站按F12键，选择Network，找到对应的Headers，如下图所示\n\n![img](/1.png)\n",
-	"children": []
-}
