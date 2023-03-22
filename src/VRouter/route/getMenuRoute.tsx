@@ -1,9 +1,9 @@
-import React, { lazy, Suspense, ComponentType } from 'react'
+import React from 'react'
 import { MenuObject } from '../type'
 import { Menu } from "./menu"
 
-export interface TestMenuRouteProps {
-	modules: { name: string, element: React.ReactNode }[]
+export interface MenuRouteProps {
+	modules: MenuObject[]
 	path?: string,
 	/**
  * @default true
@@ -11,19 +11,16 @@ export interface TestMenuRouteProps {
 	fold?: boolean
 }
 
-export function lazyLoad(element: Promise<{ default: ComponentType<any> }>, Loading = <div>Loading</div>): React.ReactNode {
-	return <Suspense fallback={Loading}> {React.createElement(lazy(() => element))}</Suspense>
-}
-
-export function getTestMenuRoute(props: TestMenuRouteProps): MenuObject {
-	const { modules, path = '/', fold = true } = props
+export function getMenuRoute(props: MenuRouteProps): MenuObject {
+	const { modules, path = '/', fold = true, ...rest } = props
 
 	const children = modules.map(module => {
-		const { name, element } = module
+		const { name, element, ...mRest } = module
 		return {
 			name,
 			path: path + name,
 			element,
+			...mRest
 		}
 	})
 
@@ -31,5 +28,6 @@ export function getTestMenuRoute(props: TestMenuRouteProps): MenuObject {
 		path,
 		element: <Menu fold={fold} menu={children} />,
 		children,
+		...rest,
 	}
 }

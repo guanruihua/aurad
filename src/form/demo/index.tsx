@@ -1,6 +1,6 @@
 import React from "react"
-import { TestFormFunc } from './FCTest'
-import { TestFormClass } from './classTest'
+import TestFormFunc from './FCTest'
+import TestFormClass from './classTest'
 
 export default function FormTestPage() {
 

@@ -1,54 +1,62 @@
 /* eslint-disable*/
-import React, { Suspense, useState, useEffect } from "react"
+import React from "react"
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, useNavigate, useRoutes } from 'react-router-dom'
-import { routers, menu, MenuObject } from './router'
-import './index.less'
-import '../src/index.less'
+import { BrowserContainer, Lazy, getMenuRoute } from '../src'
 
-function App() {
-	const element = useRoutes(routers)
-	const [select, setSelect] = useState<string>('')
-	const nav = useNavigate()
-
-	useEffect(() => {
-		const names = /(\w+)$/.exec(location.href)
-		if (names && names.length) {
-			setSelect(names[0])
+createRoot(document.getElementById('root')!).render(
+	<BrowserContainer
+		menu={[
+			getMenuRoute({
+				fold: true,
+				path: '/',
+				modules: [
+					'button',
+					// 'virtualList',
+					'input',
+					// 'detail',
+					// 'progress',
+					'select',
+					// 'richText',
+					'textarea',
+					// 'dialog',
+					'table',
+					'pagination',
+					'layout',
+					'card',
+					// 'test'
+				].map(name => {
+					return {
+						name,
+						path: '/' + name,
+						element: Lazy(import(`../src/${name}/demo`))
+					}
+				}).concat(
+					[
+						{
+							name: 'form',
+							path: '/form',
+							children: [
+								{
+									name: 'class',
+									path: '/form/class',
+									element: Lazy(import('../src/form/demo/classTest')),
+								},
+								{
+									name: 'function',
+									path: '/form/fc',
+									element: Lazy(import('../src/form/demo/FCTest')),
+								},
+							]
+						},
+						{
+							path: '/menu',
+							name: 'menu',
+							element: Lazy(import('../src/layout/menu/demo'))
+						}
+					] as any
+				)
+			})
+		]
 		}
-	}, [])
-
-	return (<div className="main">
-		<aside className="menu">
-			{menu.map((item: MenuObject) => {
-				const { name, path } = item
-				if (path && path !== '/')
-					return <div
-						className={select === name ? 'isSelect' : ''}
-						key={name + path}
-						onClick={() => {
-							nav(path)
-							name && setSelect(name)
-						}} >
-						{name || path.replace('/', '')}
-					</div>
-
-			})}
-		</aside>
-		<div className="docs-component-content">
-			<Suspense fallback={<div>loading...</div>}>
-				<div>{element}</div>
-			</Suspense>
-		</div>
-	</div>
-	)
-}
-
-const container = document.getElementById('root');
-const root = createRoot(container!);
-
-root.render(
-	<BrowserRouter basename="/">
-		<App />
-	</BrowserRouter>
+	/>
 );

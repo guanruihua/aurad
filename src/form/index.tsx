@@ -23,7 +23,7 @@ export const Form: any = forwardRef((props: FormProps, ref: Ref<HTMLFormElement>
 	const [values, setValues] = useSetState<FormRecord>({})
 
 	return <FormContext.Provider
-		value={{ formName: name, values, setValues }}>
+		value={{ fname: name, values, setValues }}>
 		<form
 			name={name}
 			ref={ref || form?.ref}

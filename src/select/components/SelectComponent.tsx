@@ -1,7 +1,7 @@
 import React, { RefObject, useEffect, useRef, useState } from "react"
 import { classNames } from "@/assets"
 import { SelectProps } from '../type'
-import { isArray } from "check-it-type"
+import { isArray } from "asura-eye"
 import { getSelectValue } from '../util'
 
 export function SelectComponent(props: SelectProps) {

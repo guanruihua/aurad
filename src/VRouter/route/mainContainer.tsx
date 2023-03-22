@@ -1,10 +1,12 @@
+/* eslint-disable*/
 import React from "react"
-import { isArray } from "check-it-type"
-import { BrowserRouter, Routes, Route, RouteProps } from 'react-router-dom'
-import type { CMM, MenuObject } from '../type'
+import { isArray } from "asura-eye"
+import { BrowserRouter, Routes, Route, RouteProps, useRoutes, RouteObject } from 'react-router-dom'
+import type { MenuObject } from '../type'
+import type { ComponentBaseProps } from '@/assets'
 import './index.less'
 
-export interface MainContainer extends CMM {
+export interface BrowserContainer extends ComponentBaseProps {
 	menu: MenuObject[]
 	/**
 	 * @default '/'
@@ -14,35 +16,20 @@ export interface MainContainer extends CMM {
 	window?: Window
 }
 
-export function MainContainer(props: MainContainer) {
-	const { basename = '/', window } = props
-	return (
-		<BrowserRouter
-			basename={basename}
-			window={window} >
+const GetRoute = (props: { routes: MenuObject[] }) => {
+	return useRoutes(props.routes as RouteObject[])
+}
 
-			<Routes location={props.location}>
-				{props.menu.map(router => {
-					const { path, element, children, ...rest } = router
-					if (children) {
-						return <Route
-							key={path}
-							path={path}
-							element={element}>
-							{isArray(children) && children.map((item) => {
-								return <Route
-									key={item.path}
-									{...item as RouteProps}
-								/>
-							})}
-						</Route>
-					}
-					return <Route
-						key={path}
-						path={path}
-						element={element} {...rest} />
-				})}
-			</Routes>
-		</BrowserRouter>
+export function BrowserContainer(props: BrowserContainer) {
+	const { basename = '/', window, menu } = props
+	console.log(menu)
+	return (
+		<React.StrictMode>
+			<BrowserRouter
+				basename={basename}
+				window={window} >
+				<GetRoute routes={menu} />
+			</BrowserRouter>
+		</React.StrictMode>
 	)
 }

@@ -1,5 +1,6 @@
 import React, { DetailedHTMLProps, TdHTMLAttributes } from "react"
-import { isNumber, ObjectType } from "abandonjs"
+import { ObjectType } from "abandonjs"
+import { isNumber } from 'asura-eye'
 import { classNames, ComponentBaseProps } from "@/assets"
 import './index.less'
 

@@ -3,12 +3,12 @@ import { Form, useClassForm } from '..'
 import { FormRecord } from '../type'
 import { initChildren } from './initChildren'
 
-export class TestFormClass extends React.Component {
+export default class TestFormClass extends React.Component {
 
 	form = useClassForm()
 
 	render(): React.ReactNode {
-		
+		console.log('class')
 		return <div style={{ margin: 10 }}>
 			<Form
 				form={this.form}

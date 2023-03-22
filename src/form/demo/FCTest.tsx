@@ -3,10 +3,11 @@ import { Form, useForm } from '..'
 import { FormRecord } from "../type"
 import { initChildren } from './initChildren'
 
-export function TestFormFunc() {
+export default function TestFormFunc() {
 	const form = useForm()
 	const [result, setResult] = React.useState<string>('')
 
+	console.log('fc')
 	return <div style={{ margin: 10 }}>
 		<Form
 			form={form}

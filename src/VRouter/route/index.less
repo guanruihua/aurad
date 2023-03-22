@@ -1,36 +1,12 @@
-.scrollbar() {
-
-  /* 滚动条整体 */
-  &::-webkit-scrollbar {
-    height: 10px;
-    width: 10px;
-  }
-
-  /* 两个滚动条交接处 -- x轴和y轴 */
-  &::-webkit-scrollbar-corner {
-    background-color: transparent;
-  }
-
-  /* 滚动条滑块 */
-  &::-webkit-scrollbar-thumb {
-    border-radius: 12px;
-    -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
-    background: #535353;
-  }
-
-  /* 滚动条轨道 */
-  &::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
-    border-radius: 12px;
-    background: transparent;
-  }
-}
+@import url('../../style/scrollbar.less');
 
 .main {
   display: grid;
   gap: 0;
+  width: 100%;
   grid-template-columns: 10vw 1fr;
-  transition: all .2s ease-in-out;
+  transition: all .3s ease-in-out;
+  .scrollbar();
 
   &.fold {
     grid-template-columns: 60px 1fr;
@@ -40,24 +16,50 @@
 aside.menu {
   display: block;
   box-sizing: border-box;
-  min-height: 100vh;
+  width: 100%;
+  height: 100vh;
   padding: 5px;
   padding-top: 10px;
+  padding-right: 7px;
   color: #c5c5c5;
   height: 100vh;
   overflow-y: auto;
+  background: rgba(17, 17, 17, 0.822);
 
   .scrollbar();
 
-  &>a {
+  .lv2 {
+    display: inline-block;
+    position: fixed;
+    background: rgba(17, 17, 17, 0.822);
+    transition: all .3s ease-in-out;
+
+    &>a {
+      text-align: start;
+    }
+
+    & a {
+      display: block;
+
+      &.isSelect,
+      &:hover {
+        color: #9afc8d;
+        background: #1f1f1f;
+      }
+    }
+  }
+
+  a {
+    display: block;
     color: #eee;
     text-decoration: none;
     text-transform: capitalize;
+    padding: 10px;
+  }
+
+  &>div {
     display: block;
     text-align: left;
-    font-size: 5;
-    padding: 1;
-    padding: 10px;
     cursor: pointer;
     border-radius: 8px;
     margin-bottom: 5px;
@@ -65,12 +67,10 @@ aside.menu {
     text-overflow: ellipsis;
     font-weight: bold;
     font-size: small;
-    transition: all .45s ease-in-out;
+    transition: all .3s ease-in-out;
 
     &.fold {
       text-align: center;
-      font-size: 18px;
-      font-weight: bold;
     }
 
     &.isSelect,
@@ -82,10 +82,11 @@ aside.menu {
   }
 }
 
-.docs-component-content {
+.content {
   height: 100vh;
   overflow-y: auto;
   width: 100%;
+  padding: 20px;
   padding-top: 70px;
   padding-bottom: 40px;
   .scrollbar();
@@ -95,8 +96,11 @@ aside.menu {
     top: 0;
     right: 0;
     left: 0;
+    height: 60px;
+    color: #c5c5c5;
     margin-left: 10vw;
-    transition: all .2s ease-in-out;
+    padding-right: 20px;
+    transition: all .3s ease-in-out;
     background: transparent;
     background-color: rgba(17, 17, 17, 0.822);
     border-radius: 0;
@@ -132,16 +136,6 @@ aside.menu {
   }
 
   &>div {
-    * {
-      border-radius: 4px;
-      font-weight: bolder;
-      color: #c5c5c5;
-      border-color: #c5c5c5;
-      background-color: transparent;
-    }
-
-    border-radius: 8px;
-    padding: 10px;
 
     button,
     input {

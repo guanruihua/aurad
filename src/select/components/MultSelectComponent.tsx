@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { classNames, useSetState } from "@/assets"
 import { SelectProps } from '../type'
 import { Icon } from '../../icon'
-import { isArray } from "check-it-type"
+import { isArray } from "asura-eye"
 
 export function MultSelectComponent(props: SelectProps) {
 	const { options = [], placeholder = '', open = false, defaultValue = [], disabled = false } = props

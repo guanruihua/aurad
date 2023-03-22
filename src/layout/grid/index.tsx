@@ -1,5 +1,5 @@
 import React, { CSSProperties } from "react"
-import { isNumber } from "check-it-type"
+import { isNumber } from "asura-eye"
 import { classNames, ComponentBaseProps } from '@/assets'
 import { Item } from './item'
 import { getGridBorder, getGridSpanLayout, initIgnore } from './util'

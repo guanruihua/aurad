@@ -1,15 +1,6 @@
-import { CSSProperties } from 'react'
 import { RouteObject } from 'react-router-dom'
 
-export interface CMM {
-	style?: CSSProperties
-	className?: string
-	children?: any
-	[key: string]: any
-}
-
-interface _MenuObject extends Record<string, any> {
+export interface MenuObject extends Omit<RouteObject, 'children'> {
 	name?: string
+	children?: MenuObject[]
 }
-
-export type MenuObject = RouteObject & _MenuObject
