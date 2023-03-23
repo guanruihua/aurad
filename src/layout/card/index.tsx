@@ -1,6 +1,6 @@
 import React from "react"
 import { ObjectType } from "abandonjs"
-import { classNames } from '@/assets'
+import { classNames } from 'harpe'
 import './index.less'
 
 export function Card(props: ObjectType) {

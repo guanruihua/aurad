@@ -1,5 +1,5 @@
 import React from "react"
-import { classNames } from '@/assets'
+import { classNames } from 'harpe'
 import { SelectComponent, MultSelectComponent } from './components'
 import { SelectProps } from './type'
 import './style/index.less'

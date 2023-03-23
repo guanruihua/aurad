@@ -1,5 +1,6 @@
 import React from "react"
-import { classNames, ComponentBaseProps } from '@/assets'
+import { ComponentBaseProps } from '@/assets'
+import { classNames } from 'harpe'
 
 export interface GridItem extends ComponentBaseProps {
 	/**

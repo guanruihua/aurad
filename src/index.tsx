@@ -1,14 +1,11 @@
 export * from './button'
 export * from './textarea'
-// export * from './richText'
 export * from './select'
-export * from './card'
-// export * from './dialog'
 // export * from './progress'
-// export * from './detail'
 // export * from './virtualList'
 export * from './input'
 export * from './VRouter'
+export * from './layout'
 
 export * from './utils'
 

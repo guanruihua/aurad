@@ -1,6 +1,7 @@
 import React, { CSSProperties } from "react"
 import { isNumber } from "asura-eye"
-import { classNames, ComponentBaseProps } from '@/assets'
+import { ComponentBaseProps } from '@/assets'
+import { classNames } from 'harpe'
 import { Item } from './item'
 import { getGridBorder, getGridSpanLayout, initIgnore } from './util'
 import { Merge } from './type'

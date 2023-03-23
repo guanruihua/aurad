@@ -1,5 +1,6 @@
 import React, { CSSProperties } from "react"
-import { classNames, ComponentBaseProps } from '@/assets'
+import { ComponentBaseProps } from '@/assets'
+import { classNames } from 'harpe'
 export interface Row extends ComponentBaseProps {
 	/**
 	 * @description 间隔 

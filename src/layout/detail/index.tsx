@@ -3,7 +3,7 @@ import React from "react"
 export interface DetailProps {
 	[key: string]: any
 }
-// Detail and Summary
+
 export function Detail(props: DetailProps) {
 	const { } = props
 	return <div>

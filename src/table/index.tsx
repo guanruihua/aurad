@@ -1,7 +1,8 @@
 import React, { DetailedHTMLProps, TdHTMLAttributes } from "react"
 import { ObjectType } from "abandonjs"
 import { isNumber } from 'asura-eye'
-import { classNames, ComponentBaseProps } from "@/assets"
+import { ComponentBaseProps } from "@/assets"
+import { classNames } from "harpe"
 import './index.less'
 
 export interface Table extends ComponentBaseProps {

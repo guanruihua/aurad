@@ -4,12 +4,8 @@ import { Button } from '..'
 export default function ButtonPage() {
 	return <>
 		<div>
-			<Button type='primary' onClick={() => { console.log('primary') }}>Primary</Button>
+			<Button type='primary' onClick={() => { console.log('primary'); }}>Primary</Button>
 			<Button type='primary' disabled onClick={() => { console.log('primary disabled') }}>Primary(disabled)</Button>
-		</div>
-		<div>
-			<Button type='ghost' onClick={() => { console.log('ghost') }}>Ghost</Button>
-			<Button type='ghost' disabled onClick={() => { console.log('ghost disabled') }}>Ghost(disabled)</Button>
 		</div>
 		<div>
 			<Button type='dashed' onClick={() => { console.log('dashed') }}>Dashed</Button>

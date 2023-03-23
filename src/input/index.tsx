@@ -1,5 +1,5 @@
 import React from "react"
-import { classNames } from '@/assets'
+import { classNames } from 'harpe'
 import { FormAction, FormRecord } from "../form/type"
 import './index.less'
 

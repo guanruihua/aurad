@@ -28,27 +28,6 @@ aside.menu {
 
   .scrollbar();
 
-  .lv2 {
-    display: inline-block;
-    position: fixed;
-    background: rgba(17, 17, 17, 0.822);
-    transition: all .3s ease-in-out;
-
-    &>a {
-      text-align: start;
-    }
-
-    & a {
-      display: block;
-
-      &.isSelect,
-      &:hover {
-        color: #9afc8d;
-        background: #1f1f1f;
-      }
-    }
-  }
-
   a {
     display: block;
     color: #eee;
@@ -57,7 +36,7 @@ aside.menu {
     padding: 10px;
   }
 
-  &>div {
+  & a {
     display: block;
     text-align: left;
     cursor: pointer;
@@ -78,7 +57,6 @@ aside.menu {
       color: #9afc8d;
       background: #1f1f1f;
     }
-
   }
 }
 
@@ -86,7 +64,7 @@ aside.menu {
   height: 100vh;
   overflow-y: auto;
   width: 100%;
-  padding: 20px;
+  padding: 10px;
   padding-top: 70px;
   padding-bottom: 40px;
   .scrollbar();
@@ -103,8 +81,10 @@ aside.menu {
     transition: all .3s ease-in-out;
     background: transparent;
     background-color: rgba(17, 17, 17, 0.822);
+    backdrop-filter: blur(1px);
     border-radius: 0;
-
+    z-index: 999;
+    
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -113,18 +93,19 @@ aside.menu {
       margin-left: 60px;
     }
 
-    &>h2 {
+    h2 {
       padding-right: 10px;
     }
 
-    &>button {
+    button {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 32px;
-      height: 32px;
+      width: 48px;
+      height: 48px;
       padding: 0;
       margin: 0;
+      border-radius: 12px;
       border-width: 0;
       color: #c5c5c5;
       background-color: transparent;
@@ -133,25 +114,5 @@ aside.menu {
         background-color: #1f1f1f;
       }
     }
-  }
-
-  &>div {
-
-    button,
-    input {
-      border-width: 2px;
-      padding: 8px 12px;
-      margin: 4px 4px 4px 0;
-    }
-
-    button {
-      background-color: #353535;
-
-      &:hover {
-        color: #9afc8d;
-        background-color: #434343;
-      }
-    }
-
   }
 }

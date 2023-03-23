@@ -1,6 +1,6 @@
 import React from 'react'
 import { MenuObject } from '../type'
-import { Menu } from "./menu"
+import { Menu } from "../../layout"
 
 export interface MenuRouteProps {
 	modules: MenuObject[]
