@@ -3,70 +3,41 @@
 :where(.au-checkbox) {
   display: inline-block;
   min-height: 32px;
+  height: 32px;
+  width: auto;
   .flexCenter();
   cursor: pointer;
 
-  input[type=checkbox] {
+  .au-checkbox-icon {
+    .flexCenter(center);
     width: 16px;
     height: 16px;
-    inset: 0;
-    z-index: 1;
+    border-radius: 4px;
     margin-left: 8px;
     margin-inline-start: 8px;
     cursor: pointer;
+    border: none;
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    transition: all .2s ease-in-out;
+
+    &.au-checkbox-select {
+      background: #1890ff;
+      border: none;
+    }
   }
 
-  input[type=checkbox]:checked::after {
-    content: "";
-    background-color: #037DF3;
-    border-color: #037DF3;
-    background-color: #037DF3;
-  }
 
   input[type=checkbox] {
-    cursor: pointer;
-    position: relative;
-  }
-
-  input[type=checkbox]::after {
-    position: absolute;
-    top: 0;
-    background-color: #fff;
-    color: #fff;
-    width: 14px;
-    height: 14px;
-    display: inline-block;
-    visibility: visible;
-    padding-left: 0px;
-    text-align: center;
-    content: ' ';
-    border-radius: 2px;
-    box-sizing: border-box;
-    border: 1px solid #ddd;
-  }
-
-  input[type=checkbox]:checked::after {
-    content: "";
-    background-color: #037DF3;
-    border-color: #037DF3;
-    background-color: #037DF3;
-  }
-
-  input[type=checkbox]:checked::before {
-    content: '';
-    position: absolute;
-    top: 1px;
-    left: 5px;
-    width: 3px;
-    height: 8px;
-    border: solid white;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-    z-index: 1;
+    width: 0;
+    height: 0;
+    inset: 0;
+    z-index: -1;
   }
 
   label {
     margin: 0 8px;
+    color: rgba(0, 0, 0, .88);
     cursor: pointer;
   }
 }

@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom'
 import { isUndefined } from "asura-eye"
 import { classNames } from 'harpe'
 import type { MenuObject } from './type'
-import { getIcon } from '../../icon'
+import { Icon } from '../../icon'
 import { SubMenu } from './submenu'
 import './index.less'
 
@@ -40,7 +40,10 @@ export function Menu(props: Menu) {
 					onClick={() => {
 						setFold(!fold)
 					}}>
-					{getIcon(fold ? 'fold' : 'unFold', 32, '#c5c5c5')}
+					<Icon
+						type={fold ? 'fold' : 'unFold'}
+						size={32}
+						fill='#c5c5c5' />
 				</button>
 				<h2>
 					{select.join(' / ')}
