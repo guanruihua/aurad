@@ -1,10 +1,10 @@
-import { ComponentBaseProps } from "@/assets"
+import { ComponentProps } from "@/assets"
 import React from "react"
 import { icons, IconType } from './icons'
 import { isArray } from "asura-eye"
 
 
-export interface IconProps extends ComponentBaseProps {
+export interface IconProps extends ComponentProps {
 	type: IconType
 	size?: number
 	width?: number

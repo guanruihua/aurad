@@ -1,13 +1,13 @@
 import React, { CSSProperties } from "react"
 import { isNumber } from "asura-eye"
-import { ComponentBaseProps } from '@/assets'
+import { ComponentProps } from '@/assets'
 import { classNames } from 'harpe'
 import { Item } from './item'
 import { getGridBorder, getGridSpanLayout, initIgnore } from './util'
 import { Merge } from './type'
 import './index.less'
 
-export interface Grid extends ComponentBaseProps {
+export interface Grid extends ComponentProps {
 	/**
 	 * @description 边框, 以及子元素边框
 	 */

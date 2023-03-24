@@ -1,5 +1,5 @@
 import React, { HTMLAttributes, useState } from "react"
-import {  ComponentBaseProps } from "@/assets"
+import {  ComponentProps } from "@/assets"
 import { classNames } from 'harpe'
 import { isNumber } from "asura-eye"
 import { Select } from '../select'
@@ -8,7 +8,7 @@ import { Icon } from '../icon'
 import { getShowPageNumRange } from './util'
 import './index.less'
 
-export interface Paging extends ComponentBaseProps, Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'onChange'> {
+export interface Paging extends ComponentProps, Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'onChange'> {
 	/**
 	 * @description 当前页数
 	 */

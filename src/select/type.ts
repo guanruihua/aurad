@@ -1,6 +1,6 @@
-import { ComponentBaseProps } from '../assets'
+import { ComponentProps } from '../assets'
 
-export interface SelectProps extends ComponentBaseProps {
+export interface SelectProps extends ComponentProps {
 	prefix?: string
 	value?: string | string[]
 	defaultValue?: string | string[]

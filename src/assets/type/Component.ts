@@ -1,6 +1,6 @@
 import { CSSProperties } from 'react'
 import { ObjectType } from 'abandonjs'
-export interface ComponentBaseProps extends ObjectType {
+export interface ComponentProps extends ObjectType {
 	/**
 		* @description 
 		* @default ''

@@ -1,10 +1,10 @@
 import React, { ButtonHTMLAttributes } from "react"
-import { ComponentBaseProps } from '@/assets'
+import { ComponentProps } from '@/assets'
 import { classNames } from 'harpe'
 import './index.less'
 
 
-export interface ButtonProps extends ComponentBaseProps, Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type' | 'children'> {
+export interface ButtonProps extends ComponentProps, Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type' | 'children'> {
 	htmlType?: 'submit' | 'reset' | 'button'
 	/**
 	 * @description 按钮类型
