@@ -1,16 +1,15 @@
-/* eslint-disable*/
 import React, { useState } from "react"
 import { classNames } from "harpe"
-import './index.less'
-import { Icon } from '../icon'
 import { isUndefined } from "asura-eye"
 import { Group } from './group'
-import type { CheckboxGroupContextProps, CheckboxProps } from './type'
-import { CheckboxGroupContext } from './context'
+import type { RadioGroupContextProps, RadioProps } from './type'
+import { RadioGroupContext } from './context'
+import { equal } from 'abandonjs'
+import './index.less'
 
 export * from './type'
 
-export function CheckboxCore<T>(props: CheckboxProps<T>) {
+export function RadioCore<T>(props: RadioProps<T>) {
 
 	const {
 		children,
@@ -39,17 +38,17 @@ export function CheckboxCore<T>(props: CheckboxProps<T>) {
 	}
 
 	return (
-		<span className={classNames('au-checkbox', className)}>
+		<span className={classNames('au-radio', className)}>
 			<input
 				name={name}
 				style={{ visibility: 'hidden' }}
-				type="checkbox"
+				type="radio"
 				onChange={() => { handleClick() }}
 				checked={checkedStatus} />
 			<div
-				className={classNames("au-checkbox-icon", { 'au-checkbox-select': checkedStatus })}
+				className={classNames("au-radio-icon", { 'au-radio-select': checkedStatus })}
 				onClick={() => { handleClick() }}>
-				{checkedStatus && <Icon type='yes' size={12} fill='#fff' />}
+				{checkedStatus && <div className="au-radio-icon-render" />}
 			</div>
 			<label onClick={() => handleClick()}>{children || label}</label>
 		</span>
@@ -57,9 +56,9 @@ export function CheckboxCore<T>(props: CheckboxProps<T>) {
 
 }
 
-export function Checkbox<T>(props: CheckboxProps<T>) {
-	return <CheckboxGroupContext.Consumer>
-		{(handler: CheckboxGroupContextProps) => {
+export function Radio<T>(props: RadioProps<T>) {
+	return <RadioGroupContext.Consumer>
+		{(handler: RadioGroupContextProps) => {
 			if (handler.name) {
 				const {
 					groupValue, setGroupValue,
@@ -67,12 +66,12 @@ export function Checkbox<T>(props: CheckboxProps<T>) {
 				} = handler
 				const { value } = props
 				const newProps = { ...props, setGroupValue, groupProps }
-				newProps.checked = groupValue.includes(value)
-				return (<CheckboxCore {...newProps} />)
+				newProps.checked = equal(groupValue, value)
+				return (<RadioCore key={JSON.stringify(groupValue)} {...newProps} />)
 			}
-			return (<CheckboxCore {...props} />)
+			return (<RadioCore {...props} />)
 		}}
-	</CheckboxGroupContext.Consumer>
+	</RadioGroupContext.Consumer>
 }
 
-Checkbox.Group = Group
+Radio.Group = Group

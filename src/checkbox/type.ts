@@ -20,29 +20,21 @@ export interface CheckboxProps<T = never> extends ComponentProps {
 	 */
 	checked?: boolean
 	/**
-	 * @description 当前控制值, 若不指定则为name的值, name若不指定就为checked状态
+	 * @description 选中当前复选框值, 结合Checkbox.Group使用
 	 */
 	value?: CheckboxValue<T>
 	/**
 	 * @description 
 	 */
-	label?: string
+	label?: string | number
 	disabled?: boolean
-	/**
-	 * @description onChange 前触发
-	 * @param checked 
-	 * @param value 
-	 * @returns 
-	 * 废弃掉
-	 */
-	onChangeBefore?: (checked: boolean, value: CheckboxValue<T>) => { checked: boolean, value: boolean | T } | boolean | void
 	/**
 	 * @description 值发生改变而触发
 	 * @param checked 
 	 * @param value 
 	 * @returns 
 	 */
-	onChange?: (checked: boolean, value: CheckboxValue<T>) => void | { checked: boolean, value: boolean | T } | boolean
+	onChange?: (checked: boolean, value?: CheckboxValue<T>) => void | { checked: boolean, value: boolean | T } | boolean
 
 	[key: string]: any
 }
@@ -55,7 +47,7 @@ export interface CheckboxGroupProps<T = any> extends ComponentProps {
 	value?: CheckboxValue<T>[]
 	onChange?: (value: CheckboxValue<T>[]) => void
 	defaultValue?: CheckboxValue<T>[]
-	options?: string[] | number[] | CheckboxProps<T>[]
+	options?: (string | number | { value: T, label: string | number } | CheckboxProps<T>)[]
 	children?: ReactNode
 }
 
@@ -63,8 +55,7 @@ export interface CheckboxGroupProps<T = any> extends ComponentProps {
 export interface CheckboxGroupContextProps<T = any> {
 	name: string
 	groupProps?: CheckboxGroupProps<T>
-	groupValue: (string | boolean | any)[]
-	setGroupValue: (value: (string | boolean | T)[]) => void
-	registerCheckbox: (itemProps: CheckboxProps<T>) => void
+	groupValue: CheckboxValue<T>[]
+	setGroupValue: (value: CheckboxValue<T>, itemProps: CheckboxProps<T>) => void
 	[key: string]: any
 }
