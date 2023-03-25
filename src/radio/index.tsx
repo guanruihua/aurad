@@ -4,7 +4,7 @@ import { isUndefined } from "asura-eye"
 import { Group } from './group'
 import type { RadioGroupContextProps, RadioProps } from './type'
 import { RadioGroupContext } from './context'
-import { equal } from 'abandonjs'
+import { equal, stringify } from 'abandonjs'
 import './index.less'
 
 export * from './type'
@@ -47,9 +47,7 @@ export function RadioCore<T>(props: RadioProps<T>) {
 				checked={checkedStatus} />
 			<div
 				className={classNames("au-radio-icon", { 'au-radio-select': checkedStatus })}
-				onClick={() => { handleClick() }}>
-				{checkedStatus && <div className="au-radio-icon-render" />}
-			</div>
+				onClick={() => { handleClick() }} />
 			<label onClick={() => handleClick()}>{children || label}</label>
 		</span>
 	)
@@ -67,7 +65,7 @@ export function Radio<T>(props: RadioProps<T>) {
 				const { value } = props
 				const newProps = { ...props, setGroupValue, groupProps }
 				newProps.checked = equal(groupValue, value)
-				return (<RadioCore key={JSON.stringify(groupValue)} {...newProps} />)
+				return (<RadioCore key={stringify(groupValue)} {...newProps} />)
 			}
 			return (<RadioCore {...props} />)
 		}}
