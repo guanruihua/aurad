@@ -33,6 +33,7 @@ export interface CheckboxProps<T = never> extends ComponentProps {
 	 * @param checked 
 	 * @param value 
 	 * @returns 
+	 * 废弃掉
 	 */
 	onChangeBefore?: (checked: boolean, value: CheckboxValue<T>) => { checked: boolean, value: boolean | T } | boolean | void
 	/**
@@ -41,7 +42,7 @@ export interface CheckboxProps<T = never> extends ComponentProps {
 	 * @param value 
 	 * @returns 
 	 */
-	onChange?: (checked: boolean, value: CheckboxValue<T>) => void
+	onChange?: (checked: boolean, value: CheckboxValue<T>) => void | { checked: boolean, value: boolean | T } | boolean
 
 	[key: string]: any
 }
