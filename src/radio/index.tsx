@@ -6,6 +6,7 @@ import type { RadioGroupContextProps, RadioProps } from './type'
 import { RadioGroupContext } from './context'
 import { equal, stringify } from 'abandonjs'
 import './index.less'
+import { Icon } from "@/icon"
 
 export * from './type'
 
@@ -47,7 +48,9 @@ export function RadioCore<T>(props: RadioProps<T>) {
 				checked={checkedStatus} />
 			<div
 				className={classNames("au-radio-icon", { 'au-radio-select': checkedStatus })}
-				onClick={() => { handleClick() }} />
+				onClick={() => { handleClick() }} >
+					{checkedStatus && <Icon type="radio" fill="#1890ff"/>}
+				</div>
 			<label onClick={() => handleClick()}>{children || label}</label>
 		</span>
 	)

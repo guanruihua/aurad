@@ -22,7 +22,7 @@ import React from "react"
 import { Input } from '..'
 
 export default function InputTestCmp() {
-	return <>
+	return <div className="unit">
 		<div>
 			<Input />
 		</div>
@@ -31,5 +31,5 @@ export default function InputTestCmp() {
 				console.log(e.target.value)
 			}} />
 		</div>
-	</>
+	</div>
 }

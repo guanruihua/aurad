@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import { ComponentProps } from '../assets'
 
 export interface SelectProps extends ComponentProps {
@@ -7,9 +8,10 @@ export interface SelectProps extends ComponentProps {
 	disabled?: boolean
 	options?: { value: string, label: string }[]
 	mode?: "multiple" | "simple"
-	children?: any
+	children?: ReactNode
 	open?: boolean
 	placeholder?: string
+	onChange?: () => void
 	/**
 	 * @description 结合Form组件使用
 	 */

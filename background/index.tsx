@@ -8,15 +8,14 @@ createRoot(document.getElementById('root')!).render(
 	<BrowserContainer
 		menu={[
 			getMenuRoute({
-				// fold: true,
 				fold: false,
 				path: '/',
 				modules: [
+					'icon',
 					'radio',
 					'checkbox',
 					'button',
 					'input',
-					'select',
 					'textarea',
 					'table',
 					'pagination',
@@ -28,6 +27,27 @@ createRoot(document.getElementById('root')!).render(
 					}
 				}).concat(
 					[
+						{
+							name: 'select',
+							path: '/select',
+							children: [
+								{
+									name: 'simple',
+									path: '/select/simple',
+									element: Lazy(import('../src/select/demo/simple')),
+								},
+								{
+									name: 'multiple',
+									path: '/select/multiple',
+									element: Lazy(import('../src/select/demo/mult')),
+								},
+								{
+									name: 'form',
+									path: '/select/form',
+									element: Lazy(import('../src/select/demo/form')),
+								},
+							],
+						},
 						{
 							name: 'form',
 							path: '/form',

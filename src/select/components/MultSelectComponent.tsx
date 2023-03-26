@@ -38,7 +38,7 @@ export function MultSelectComponent(props: SelectProps) {
 							onClick={() => {
 								console.log(item)
 							}}>
-							<Icon type="close" size={9} fill={'#8a8a94'} />
+							<Icon type="no" size={9} fill={'#8a8a94'} />
 						</span>
 					</span>
 			})}

@@ -13,6 +13,7 @@ export function SelectComponent(props: SelectProps) {
 		open = false,
 		defaultValue,
 		disabled = false,
+		onChange,
 	} = props
 	const ref: RefObject<HTMLInputElement> = useRef<HTMLInputElement>(null)
 
@@ -36,7 +37,6 @@ export function SelectComponent(props: SelectProps) {
 			<input
 				key={selectValue}
 				placeholder={placeholder}
-				// value={selectValue}
 				value={getSelectValue(options, selectValue)}
 				onFocus={() => setHover(true)}
 				onClick={() => setHover(true)}
@@ -61,7 +61,9 @@ export function SelectComponent(props: SelectProps) {
 				const { value, label } = item
 				return <div
 					key={index.toString()}
+					title={label}
 					onClick={() => {
+						onChange && onChange()
 						setSelectValue(value)
 						setHover(false)
 					}}

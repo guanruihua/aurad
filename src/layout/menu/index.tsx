@@ -46,7 +46,7 @@ export function Menu(props: Menu) {
 						fill='#c5c5c5' />
 				</button>
 				<h2>
-					{select.join(' / ')}
+					{select.map(str => str.charAt(0).toUpperCase() + str.slice(1)).join(' / ')}
 				</h2>
 			</div>
 			<Outlet />

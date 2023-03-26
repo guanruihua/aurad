@@ -1,4 +1,6 @@
 @select-prefix: ~'select';
+@import url(@/style/scrollbar.less);
+
 @select-border-radius: 4px;
 
 .@{select-prefix} {
@@ -96,6 +98,8 @@
     width: 100%;
     transition: all 1s ease-in-out;
     background-color: #fff;
+
+    .scrollbar(rgb(158, 158, 158));
 
     &-hover {
       display: block;

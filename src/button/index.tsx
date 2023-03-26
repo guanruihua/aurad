@@ -10,7 +10,7 @@ export interface ButtonProps extends ComponentProps, Omit<ButtonHTMLAttributes<H
 	 * @description 按钮类型
 	 * @default: 'default'
 	 */
-	type?: 'primary' | 'dashed' | 'link' | 'text' | 'default'
+	type?: 'primary' | 'text' | 'default'
 }
 
 export function Button(props: ButtonProps) {
