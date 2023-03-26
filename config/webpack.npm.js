@@ -130,7 +130,7 @@ module.exports = {
 	},
 	output: {
 		filename: "index.umd.js",
-		library: ['0design'],
+		library: ['aurad'],
 		// libraryTarget: "esm"
 		libraryTarget: "umd"
 	},
@@ -144,7 +144,7 @@ module.exports = {
 	},
 	externals: {
 		react: 'react',
-		'react-dom': 'react-dom'
+		'react-dom': 'ReactDOM'
 	},
 	plugins: [
 		new CleanWebpackPlugin(),

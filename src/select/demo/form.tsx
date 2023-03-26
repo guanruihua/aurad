@@ -4,12 +4,13 @@ import { Form, useForm } from "@/form"
 import { FormRecord } from "@/form/type"
 import { Select } from '..'
 import { options } from './data'
+import { Container, Unit } from "unit-testing-react"
 
 export default function () {
 	const form = useForm()
 
-	return <div>
-		<div className="unit">
+	return <Container columns={1}>
+		<Unit>
 			<h3>结合Form</h3>
 			<Form
 				form={form}
@@ -26,14 +27,14 @@ export default function () {
 					onClick={() => {
 						form.setFieldValue('select-name', 'lucy2')
 					}}>
-						setFieldValue('select-name', 'lucy2')
+					setFieldValue('select-name', 'lucy2')
 				</Button>
 				<div>
 					<Button htmlType="submit">Submit</Button>
 					<Button htmlType="reset">Reset</Button>
 				</div>
 			</Form>
-			
-		</div>
-	</div>
+
+		</Unit>
+	</Container>
 }

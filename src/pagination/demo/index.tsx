@@ -1,8 +1,9 @@
 import React from "react"
 import { Paging } from '..'
+import { Unit } from "unit-testing-react"
 
 export default function () {
-	return <div style={{ background: '#fff', padding: '20px 10px' }}>
+	return <Unit style={{ background: '#fff', padding: '20px 10px' }}>
 		<Paging
 			total={151}
 			pageSize={10}
@@ -39,5 +40,5 @@ export default function () {
 			defaultCurrent={16}
 			pageSizeOptions={[10, 20, 100]}
 		/>
-	</div>
+	</Unit>
 }

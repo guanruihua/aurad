@@ -7,6 +7,7 @@ import { getSelectValue } from '../util'
 export function SelectComponent(props: SelectProps) {
 
 	const {
+		className,
 		name, formName,
 		options = [],
 		placeholder = '',
@@ -32,8 +33,8 @@ export function SelectComponent(props: SelectProps) {
 		}
 	}, [ref.current])
 
-	return <div className={classNames("select", { hidden: disabled })}>
-		<div className={classNames("select-input", { isHover: isHover && !disabled })}>
+	return <div className={classNames(className, { hidden: disabled })}>
+		<div className={classNames("au-select-input", { isHover: isHover && !disabled })}>
 			<input
 				key={selectValue}
 				placeholder={placeholder}
@@ -53,7 +54,7 @@ export function SelectComponent(props: SelectProps) {
 				}} />}
 		</div>
 		{!disabled && <div
-			className={classNames('select-options', { 'select-options-hover': open || isHover })}
+			className={classNames('au-select-options', { 'au-select-options-hover': open || isHover })}
 			onMouseEnter={() => setLeave(false)}
 			onMouseLeave={() => setLeave(true)}
 		>
@@ -67,7 +68,7 @@ export function SelectComponent(props: SelectProps) {
 						setSelectValue(value)
 						setHover(false)
 					}}
-					className={classNames('select-options-item', { 'selected': selectValue === value })}>
+					className={classNames('au-select-options-item', { 'selected': selectValue === value })}>
 					{label}
 				</div>
 			})}

@@ -6,7 +6,7 @@ import { Icon } from '../../icon'
 import { isArray } from "asura-eye"
 
 export function MultSelectComponent(props: SelectProps) {
-	const { options = [], placeholder = '', open = false, defaultValue = [], disabled = false } = props
+	const { className, options = [], placeholder = '', open = false, defaultValue = [], disabled = false } = props
 	const [isHover, setHover] = useState<boolean>(open)
 
 	const [isLeave, setLeave] = useSetState<Record<string, boolean>>({ input: false, options: false })
@@ -15,11 +15,11 @@ export function MultSelectComponent(props: SelectProps) {
 
 	const [value, setValue] = useState<string>('')
 
-	return <div className={classNames("select", { hidden: disabled })}>
+	return <div className={classNames(className, { hidden: disabled })}>
 		<div
 			tabIndex={999}
 			className={classNames(
-				'select-mult-input', 'select-input',
+				'au-select-mult-input', 'au-select-input',
 				{ isHover: isHover && !disabled }
 			)}
 			onMouseLeave={() => setLeave({ inputBox: true })}
@@ -29,7 +29,7 @@ export function MultSelectComponent(props: SelectProps) {
 			{selectValues.map((item: string, index: number) => {
 				if (item!)
 					return <span
-						className="select-item"
+						className="au-select-item"
 						key={index.toString()}>
 						<span>{item}</span>
 						<span
@@ -64,7 +64,7 @@ export function MultSelectComponent(props: SelectProps) {
 		</div>
 		{
 			!disabled && <div
-				className={classNames('select-options', { 'select-options-hover': isHover })}
+				className={classNames('au-select-options', { 'au-select-options-hover': isHover })}
 				onMouseLeave={() => setLeave({ options: true })}
 				onMouseEnter={() => setLeave({ options: false })} >
 				{options?.map((item, index) => {
@@ -74,7 +74,7 @@ export function MultSelectComponent(props: SelectProps) {
 						key={index.toString()}
 						onBlur={() => { !Object.values(isLeave).includes(false) && setHover(false) }}
 						onClick={() => { setSelectValues(selectValues.concat(value)) }}
-						className={classNames('select-options-item', { 'selected': selectValues.includes(value) })}>
+						className={classNames('au-select-options-item', { 'selected': selectValues.includes(value) })}>
 						{label}
 					</div>
 				})}

@@ -1,4 +1,4 @@
-@select-prefix: ~'select';
+@select-prefix: ~'au-select';
 @import url(@/style/scrollbar.less);
 
 @select-border-radius: 4px;
@@ -15,6 +15,7 @@
   &-input {
     width: 100%;
     padding: 4px 6px;
+    // line-height: 32px;
     border-radius: @select-border-radius;
     border: 1px solid #424242;
 
@@ -70,7 +71,6 @@
 
     &>input {
       display: none;
-      // padding: 3px 3px;
       min-width: 100%;
       max-width: 100%;
     }
@@ -83,7 +83,7 @@
   &-options {
     box-sizing: border-box;
     position: absolute;
-    z-index: 9999999;
+    z-index: 99;
     border: none;
     overflow-y: auto;
     max-height: 300px;

@@ -10,12 +10,12 @@ export function Select(props: Select) {
 	const { mode, className, ...rest } = props
 	if (mode == 'multiple') {
 		return <MultSelectComponent
-			className={classNames('zero-select', className)}
+			className={classNames('au-select', className)}
 			{...rest}
 		/>
 	}
 	return <SelectComponent
-		className={classNames('zero-select', className)}
+		className={classNames('au-select', className)}
 		{...rest}
 	/>
 }
