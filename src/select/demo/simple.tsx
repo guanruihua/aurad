@@ -8,7 +8,7 @@ export default function () {
 
 	const [unit, log] = useUnitMsg()
 
-	return <Container columns={3} gap={10}>
+	return <Container columns={3} gap={10} grid>
 		<Unit className="unit" title="基础使用">
 			<Select
 				options={options}

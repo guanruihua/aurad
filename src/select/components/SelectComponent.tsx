@@ -48,13 +48,10 @@ export function SelectComponent(props: SelectProps) {
 			{name && <input
 				ref={ref}
 				name={name}
-				style={{ display: 'none' }}
-				onChange={(e) => {
-					console.log(name, e.target.value)
-				}} />}
+				style={{ display: 'none' }} />}
 		</div>
 		{!disabled && <div
-			className={classNames('au-select-options', { 'au-select-options-hover': open || isHover })}
+			className={classNames('au-select-options', { 'au-select-options-hover': isHover })}
 			onMouseEnter={() => setLeave(false)}
 			onMouseLeave={() => setLeave(true)}
 		>
@@ -64,9 +61,11 @@ export function SelectComponent(props: SelectProps) {
 					key={index.toString()}
 					title={label}
 					onClick={() => {
-						onChange && onChange()
+						console.log(ref)
+						onChange && onChange(ref)
 						setSelectValue(value)
 						setHover(false)
+						
 					}}
 					className={classNames('au-select-options-item', { 'selected': selectValue === value })}>
 					{label}

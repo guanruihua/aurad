@@ -37,7 +37,7 @@ specifiers:
   terser-webpack-plugin: ^5.3.6
   ts-loader: ^9.4.1
   typescript: ^4.8.4
-  unit-testing-react: ^0.3.1
+  unit-testing-react: ^0.3.2
   webpack: ^5.74.0
   webpack-cli: ^4.10.0
   webpack-dev-server: ^4.11.1
@@ -81,7 +81,7 @@ devDependencies:
   terser-webpack-plugin: 5.3.6_webpack@5.74.0
   ts-loader: 9.4.1_qqxisngxjbp7lstdk7boexbu3e
   typescript: 4.8.4
-  unit-testing-react: 0.3.1_biqbaboplfbrettd7655fr4n2y
+  unit-testing-react: 0.3.2_biqbaboplfbrettd7655fr4n2y
   webpack: 5.74.0_webpack-cli@4.10.0
   webpack-cli: 4.10.0_vnmgq7jx5zjkzolvtfp7mdf5ri
   webpack-dev-server: 4.11.1_5v66e2inugklgvlh4huuavolfq
@@ -4698,8 +4698,8 @@ packages:
     hasBin: true
     dev: true
 
-  /unit-testing-react/0.3.1_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-HnSKzmRhOx+Sh5UgMcxkMe/C48b5xaPExkSmwhFGIdtmRF4V4chYFcA2HgY5QvTbwp2I62UgXEtvvjGzgG+gnA==}
+  /unit-testing-react/0.3.2_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-gZ971RS3E4DxgQp+1ck40Jao/rA8cXQIWn/nLl34k1XBS4vv0adgy+79iSRClnIu5o/0t98RUcOmAGAxBz8GAw==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'

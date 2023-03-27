@@ -4,7 +4,7 @@ import { options } from './data'
 import { Container, Unit } from "unit-testing-react"
 
 export default function () {
-	return <Container columns={3} >
+	return <Container columns={3} grid>
 		<Unit title="基础使用">
 			<Select
 				mode="multiple"

@@ -11,7 +11,7 @@ export interface SelectProps extends ComponentProps {
 	children?: ReactNode
 	open?: boolean
 	placeholder?: string
-	onChange?: () => void
+	onChange?: (e: any) => void
 	/**
 	 * @description 结合Form组件使用
 	 */

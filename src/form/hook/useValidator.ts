@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react"
-// import { ObjectType } from 'abandonjs'
 
-export function useValidator(rules: any[] = [] ) {
+export function useValidator(rules: any[] = []) {
 	const [errorStatus, setErrorStatus] = useState<boolean>(false)
 	const [errorMsg, setErrorMsg] = useState<any>('')
-	
+
 	useEffect(() => {
 		// rules.forEach((rule: ObjectType, index: number) => {
 		// 	const { required = false, message = '', trigger = 'onChange' } = rule
@@ -15,6 +14,8 @@ export function useValidator(rules: any[] = [] ) {
 
 	const expandProps = {
 		onChange: (e: any) => {
+			console.log(e)
+			if (!e || !e.target) return;
 			const value: string = e.target.value || ''
 			if (value.trim() === '') {
 				setErrorStatus(true)
