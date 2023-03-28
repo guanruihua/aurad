@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react'
+import { CSSProperties, ReactNode } from 'react'
 import { ObjectType } from 'abandonjs'
 export interface ComponentProps extends ObjectType {
 	/**
@@ -8,5 +8,5 @@ export interface ComponentProps extends ObjectType {
 	prefixCls?: string
 	className?: string
 	style?: CSSProperties
-	children?: any
+	children?: ReactNode | string
 }

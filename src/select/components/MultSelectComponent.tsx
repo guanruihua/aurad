@@ -1,11 +1,11 @@
 /* eslint-disable*/
-import React, { LegacyRef, Ref, useEffect, useRef, useState } from "react"
+import React, { RefObject, useEffect, useRef, useState } from "react"
 import { useSetState } from "@/assets"
 import { classNames } from 'harpe'
 import { SelectProps } from '../type'
-import { Icon } from '../../icon'
 import { isArray } from "asura-eye"
 import { unique } from "abandonjs"
+import { Icon } from '@/icon'
 
 export function MultSelectComponent(props: SelectProps) {
 	const { className, options = [], placeholder = '', open = false, defaultValue = [], disabled = false } = props
@@ -18,8 +18,8 @@ export function MultSelectComponent(props: SelectProps) {
 	const [inputWidth, setInputWidth] = useState<number | string>(100)
 	const [inputTextWidth, setInputTextWidth] = useState<number>(0)
 	const [inputWrap, setInputWrap] = useState<boolean>(false)
-	const ref: any = useRef(null)
-	const inputRef: any = useRef(null)
+	const ref: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null)
+	const inputRef: RefObject<HTMLInputElement> = useRef<HTMLInputElement>(null)
 
 	const handleInputWidth = () => {
 		if (!ref.current) return;
@@ -41,7 +41,6 @@ export function MultSelectComponent(props: SelectProps) {
 		let targetWidth = width - (childWidth % width) - 18
 		setChildWidth(childWidth % width)
 		if (targetWidth < 0) targetWidth = 120
-		// console.log(width, childWidth, targetWidth)
 		setInputWidth(targetWidth)
 		setInputWrap(false)
 	}
@@ -95,16 +94,18 @@ export function MultSelectComponent(props: SelectProps) {
 				onChange={(e) => {
 					const value = e.target.value
 					const valueLength = value.length || 0
-					const newWrapStatus = inputRef.current.getBoundingClientRect().width < (inputRef.current.scrollWidth + childWidth)
+					if (inputRef.current) {
+						const newWrapStatus = inputRef.current.getBoundingClientRect().width < (inputRef.current.scrollWidth + childWidth)
 
-					if (newWrapStatus !== inputWrap) {
-						if (valueLength > inputTextWidth && newWrapStatus === true) {
-							setInputWrap(true)
-							setInputWidth('100%')
-						}
+						if (newWrapStatus !== inputWrap) {
+							if (valueLength > inputTextWidth && newWrapStatus === true) {
+								setInputWrap(true)
+								setInputWidth('100%')
+							}
 
-						if (valueLength < inputTextWidth && newWrapStatus === false) {
-							handleInputWidth()
+							if (valueLength < inputTextWidth && newWrapStatus === false) {
+								handleInputWidth()
+							}
 						}
 					}
 					setInputTextWidth(valueLength)

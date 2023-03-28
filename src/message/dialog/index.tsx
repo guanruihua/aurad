@@ -1,35 +1,53 @@
-import React, { useState } from "react"
+import React, { ReactNode } from "react"
+import { classNames } from "harpe"
+import { ComponentProps } from "@/assets"
+import { Icon } from '@/icon'
+import { Button } from '@/button'
+import './index.less'
+import { isNoEmpty } from "asura-eye"
 
-interface DialogProps {
-	[key: string]: any
+export interface DialogProps extends ComponentProps {
+	title?: string | ReactNode
+	open?: boolean
+	onCancel?: () => void
+	onOk?: () => void
 }
 
 export function Dialog(props: DialogProps) {
-	const { } = props
-	const [open, setOpen] = useState<boolean>(false)
-	return <div>
-		<button onClick={() => { setOpen(true) }}>open</button>
-		<dialog open={open}>
-			<button onClick={() => { setOpen(false) }}>close</button>
-			<ul>
-				<li>
-					<h4>WHERE IN THE WORLD</h4>
-					<p>Mount Greylock, Massachusetts, North America</p>
-				</li>
-				<li>
-					<h4>TYPE</h4>
-					<p>School of witchcraft and wizardry</p>
-				</li>
-				<li>
-					<h4>RESIDENTS OR OWNERS</h4>
-					<p>Founded by Isolt Sayre, James Steward, Chadwick Boot and Webster Boot
-					</p>
-				</li>
-				<li>
-					<h4>MAGICAL PROPERTIES</h4>
-					<p>Enchanted carvings of the four house beasts that react in the presence of new students</p>
-				</li>
-			</ul>
-		</dialog>
-	</div>
+	const { open = false, children, className, title, onCancel, onOk } = props
+	if (open === false) return <div />
+	return <dialog className={classNames('au-dialog', className)} open={open}>
+		<div className="au-dialog-layout">
+			{isNoEmpty(title) && <div className="au-dialog-header">
+				<div className="au-dialog-header-label">{title}</div>
+				<div className="au-dialog-header-logo-close"
+					onClick={() => {
+						onCancel && onCancel()
+					}}
+				>
+					<Icon type="no" size={16} fill="currentColor" />
+				</div>
+			</div>}
+			<div className="au-dialog-body">
+				{children}
+			</div>
+			<div className="au-dialog-footer">
+				<div className="au-dialog-footer-controls">
+					<Button
+						onClick={() => {
+							onCancel && onCancel()
+						}}
+					>Cancel</Button>
+					<Button
+						type="primary"
+						onClick={() => {
+							onCancel && onCancel()
+							onOk && onOk()
+						}}
+					>OK</Button>
+				</div>
+			</div>
+		</div>
+	</dialog>
+
 }

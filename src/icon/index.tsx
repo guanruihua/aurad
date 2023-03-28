@@ -16,7 +16,7 @@ export interface IconProps extends ComponentProps {
 export function Icon(props: IconProps) {
 	const {
 		type, size = 32,
-		width, height, fill = '#000',
+		width, height, fill = 'currentColor',
 		...rest
 	} = props
 

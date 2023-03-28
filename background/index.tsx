@@ -83,10 +83,11 @@ const menu = [
 							element: Lazy(import('../src/layout/card/demo')),
 						},
 						{
-							name: 'detail',
-							path: '/layout/detail',
-							element: Lazy(import('../src/layout/detail/demo')),
+							name: 'space',
+							path: '/layout/space',
+							element: Lazy(import('../src/layout/space/demo')),
 						},
+						
 					]
 				}
 			] as any
