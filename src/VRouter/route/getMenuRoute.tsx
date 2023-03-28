@@ -1,5 +1,5 @@
 import React from 'react'
-import { MenuObject } from '../type'
+import { MenuObject } from '@/layout/type'
 import { Menu } from "../../layout"
 
 export interface MenuRouteProps {

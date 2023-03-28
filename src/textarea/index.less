@@ -1,0 +1,35 @@
+.au-textarea {
+  display: grid;
+  border-radius: 8px;
+
+  &::after {
+    content: attr(data-replicated-value) " ";
+    white-space: pre-wrap;
+    visibility: hidden;
+  }
+
+  &>textarea {
+    outline: none;
+    resize: none;
+    overflow: hidden;
+    border: none;
+    border: 1px solid #d9d9d9;
+
+    &.isHover,
+    &:focus,
+    &:hover,
+    &:active {
+      border-radius: 8px;
+      border-color: #4989e7;
+      box-shadow: #4989e7 0 0 3px;
+    }
+  }
+
+  &>textarea,
+  &::after {
+    border-radius: 9px;
+    padding: 0.5rem;
+    font: inherit;
+    grid-area: 1 / 1 / 2 / 2;
+  }
+}

@@ -1,6 +1,6 @@
 import React from "react"
 import { BrowserRouter, useRoutes, RouteObject } from 'react-router-dom'
-import type { MenuObject } from '../type'
+import type { MenuObject } from '@/layout/type'
 import type { ComponentProps } from '@/assets'
 
 export interface BrowserContainer extends ComponentProps {

@@ -44,6 +44,11 @@ export interface RadioProps<T = never> extends ComponentProps {
  * @description 复选框组属性
  */
 export interface RadioGroupProps<T = any> extends ComponentProps {
+	/**
+	 * @description 单选框类型
+	 * @default 'radio'
+	 */
+	type?: 'radio' | 'button'
 	value?: RadioValue<T>
 	onChange?: (value: RadioValue<T>) => void
 	defaultValue?: RadioValue<T>

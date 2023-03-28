@@ -19,11 +19,15 @@ export function RadioCore<T>(props: RadioProps<T>) {
 		name,
 		checked, defaultChecked = false,
 		value, onChange, setGroupValue,
+		groupProps = {}
 	} = props
 
 	const [checkedStatus, setCheckedStatus] = useState<boolean>(
 		isUndefined(checked) ? defaultChecked : checked
 	)
+
+	const isButton = (groupProps.type) && groupProps.type === 'button'
+
 
 	const handleClick = () => {
 		const newCheckedStatus = !checkedStatus
@@ -39,19 +43,28 @@ export function RadioCore<T>(props: RadioProps<T>) {
 	}
 
 	return (
-		<span className={classNames('au-radio', className)}>
-			<input
-				name={name}
-				style={{ visibility: 'hidden' }}
-				type="radio"
-				onChange={() => { handleClick() }}
-				checked={checkedStatus} />
-			<div
-				className={classNames("au-radio-icon", { 'au-radio-select': checkedStatus })}
-				onClick={() => { handleClick() }} >
-					{checkedStatus && <Icon type="radio" fill="#1890ff"/>}
-				</div>
-			<label onClick={() => handleClick()}>{children || label}</label>
+		<span
+			className={classNames('au-radio', { 'au-radio-button': isButton }, className)}
+		>
+			{isButton
+				? <label
+					className={classNames("au-radio-label", { 'au-radio-select': checkedStatus })}
+					onClick={() => handleClick()}>{children || label}</label>
+				: <React.Fragment>
+					<input
+						name={name}
+						style={{ visibility: 'hidden' }}
+						type="radio"
+						onChange={() => { handleClick() }}
+						checked={checkedStatus} />
+					<div
+						className={classNames("au-radio-icon", { 'au-radio-select': checkedStatus })}
+						onClick={() => { handleClick() }} >
+						{checkedStatus && <Icon type="radio" fill="#1890ff" />}
+					</div>
+					<label onClick={() => handleClick()}>{children || label}</label>
+				</React.Fragment>
+			}
 		</span>
 	)
 

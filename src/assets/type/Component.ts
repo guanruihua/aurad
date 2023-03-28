@@ -1,5 +1,5 @@
-import { CSSProperties, ReactNode } from 'react'
-import { ObjectType } from 'abandonjs'
+import type { CSSProperties, ReactNode } from 'react'
+import type { ObjectType } from 'abandonjs'
 export interface ComponentProps extends ObjectType {
 	/**
 		* @description 

@@ -20,16 +20,36 @@ function setColor() {
  */
 import React from "react"
 import { Input } from '..'
+import { Container, Unit } from "unit-testing-react"
+import { Space } from "@/layout"
 
 export default function InputTestCmp() {
-	return <div className="unit">
-		<div>
-			<Input />
-		</div>
-		<div>
-			<Input onChange={(e: any) => {
-				console.log(e.target.value)
-			}} />
-		</div>
-	</div>
+	return <Container>
+		<Unit title="Input">
+			<Space direction="vertical">
+				<Input />
+				<Input onChange={(e: any) => {
+					console.log(e.target.value)
+				}} />
+			</Space>
+		</Unit>
+
+		<Unit title="Input(inline)">
+			<Space>
+				<Input style={{ width: 250 }} />
+				<Input style={{ width: 250 }} onChange={(e: any) => {
+					console.log(e.target.value)
+				}} />
+			</Space>
+		</Unit>
+
+		<Unit title="Input ( Label) ">
+			<Space direction="vertical">
+				<Input label='name' />
+				<Input label='name' onChange={(e: any) => {
+					console.log(e.target.value)
+				}} />
+			</Space>
+		</Unit>
+	</Container>
 }

@@ -9,6 +9,11 @@ export type SpaceAlign = 'start' | 'end' | 'center' | 'between'
 export interface SpaceProps extends ComponentProps {
 
 	/**
+	 * @description 间距方向
+	 * @default 'horizontal'
+	 */
+	direction?: 'vertical' | 'horizontal'
+	/**
 	 * @description 水平对齐方式
 	 */
 	align?: SpaceAlign
@@ -36,6 +41,7 @@ const FlexAlign: Record<SpaceAlign, CSSProperties['justifyContent']> = {
 export function Space(props: SpaceProps) {
 
 	const {
+		direction = 'horizontal',
 		className, style, children,
 		align = 'start',
 		wrap = true,
@@ -43,14 +49,22 @@ export function Space(props: SpaceProps) {
 		...rest
 	} = props
 
+
+	const newStyles: CSSProperties = {
+		gap,
+		flexDirection: direction === 'horizontal' ? 'row' : 'column',
+		justifyContent: FlexAlign[align],
+		flexWrap: wrap ? 'wrap' : 'nowrap',
+		...style
+	}
+
+	if (direction === 'vertical') {
+		newStyles['alignItems'] = FlexAlign[align]
+	} 
+
 	return <div
 		className={classNames("au-space", className)}
-		style={{
-			gap,
-			justifyContent: FlexAlign[align],
-			flexWrap: wrap ? 'wrap' : 'nowrap',
-			...style
-		}}
+		style={newStyles}
 		{...rest}>
 		{children}
 	</div>
