@@ -5,9 +5,7 @@ import { InputNumber } from '..'
 export default function () {
 	return (<Container>
 		<Unit title="InputNumber">
-			<InputNumber />
+			<InputNumber min={0} max={99} step={13} />
 		</Unit>
 	</Container>)
-
-
 }
