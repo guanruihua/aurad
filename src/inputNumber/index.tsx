@@ -1,11 +1,13 @@
-import React from "react";
-import { InputProps } from '@/input/type'
+import React from "react"
+import { classNames } from 'harpe'
+import { InputProps } from '../input/type'
+import './index.less'
 
 export interface InputNumberProps extends InputProps {
 	[key: string]: any
 }
 
 export function InputNumber(props: InputNumberProps) {
-	console.log(props)
-	return <div></div>
+	const { className, ...rest } = props
+	return (<input className={classNames("au-input-number", className)} {...rest as any} />)
 }
