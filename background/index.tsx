@@ -6,6 +6,8 @@ import './index.less'
 import { MenuObject } from "../src/layout/type"
 
 const modules = [
+	'flow',
+	'step',
 	'icon',
 	'radio',
 	'checkbox',
@@ -15,6 +17,7 @@ const modules = [
 	'textarea',
 	'table',
 	'paging',
+	'echart'
 ].map(name => {
 	return {
 		name,
