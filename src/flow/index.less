@@ -2,42 +2,144 @@
   display: grid;
   width: 100%;
   height: 100%;
+  gap: 0 0;
+  overflow: hidden;
+
+  svg {
+    display: block;
+    color: #878787;
+    // background: red;
+    width: 100%;
+    height: 100%;
+  }
+
+  .au-flow-item-label {
+    background-color: #1677ff;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+  }
 
   .right-arrow {
-    // display: inline-block;
-    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    // height: 32px;
-    line-height: 40px;
     color: rgb(135, 135, 135);
   }
 
-  .au-flow-item {
+  .bottom-arrow {
     display: flex;
-    position: relative;
     align-items: center;
     justify-content: center;
-    margin-bottom: 30px;
-
-
-    .bottom-arrow {
-      position: absolute;
-      left: 0;
-      right: 0;
-      display: block;
-      margin: auto;
-      text-align: center;
-      color: rgb(135, 135, 135);
-    }
+    margin: auto;
+    text-align: center;
+    color: rgb(135, 135, 135);
   }
 
-  .au-flow-item {
-    display: inline-block;
-    width: auto;
-    padding: 10px;
-    border: 1px solid #000;
-    border-radius: 12px;
+  .bottom-right-arrow{
+
   }
+
+  // .au-flow-item {
+  //   display: flex;
+  //   position: relative;
+  //   align-items: center;
+  //   justify-content: center;
+  //   border-radius: 12px;
+  //   border: none;
+  //   // border: 1px solid #000;
+  //   width: auto;
+
+  //   svg {
+  //     color: #878787;
+  //   }
+
+  //   & {
+  //     word-break: break-all;
+  //     white-space: pre-wrap;
+  //   }
+
+
+  //   &-process {
+  //     background: #1677ff;
+  //   }
+
+  //   &-operable {
+  //     color: rgba(0, 0, 0, .88);
+  //     background: #f0f0f0;
+  //   }
+
+  //   &>label {
+  //     display: block;
+  //     width: 100%;
+  //     padding: 10px;
+  //     text-align: center;
+  //   }
+  // }
 }
+
+// :where(.au-flow) {
+//   display: grid;
+//   width: 100%;
+//   height: 100%;
+//   gap: 30px 0;
+//   overflow: hidden;
+
+
+//   .right-arrow {
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     color: rgb(135, 135, 135);
+//   }
+
+//   .au-flow-item {
+//     display: flex;
+//     position: relative;
+//     align-items: center;
+//     justify-content: center;
+//     border-radius: 12px;
+//     border: none;
+//     // border: 1px solid #000;
+//     width: auto;
+
+//     svg {
+//       color: #878787;
+//     }
+
+//     & {
+//       word-break: break-all;
+//       white-space: pre-wrap;
+//     }
+
+
+//     &-process {
+//       background: #1677ff;
+//     }
+
+//     &-operable {
+//       color: rgba(0, 0, 0, .88);
+//       background: #f0f0f0;
+//     }
+
+//     &>label {
+//       display: block;
+//       width: 100%;
+//       padding: 10px;
+//       text-align: center;
+//     }
+
+
+//     .bottom-arrow {
+//       position: absolute;
+//       left: 0;
+//       right: 0;
+//       display: block;
+//       margin: auto;
+//       text-align: center;
+//       color: rgb(135, 135, 135);
+//     }
+//   }
+
+
+// }

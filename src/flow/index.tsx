@@ -1,85 +1,98 @@
 /* eslint-disable*/
 import React, { CSSProperties } from 'react'
-import { RightArrow, BottomArrow } from './arrow'
-import { isEffectArray, isUndefined } from 'asura-eye';
+import { RightArrow, BottomArrow, BottomRightArrow } from './arrow'
+import { isEffectArray } from 'asura-eye'
+import { ComponentProps } from '@/assets'
+import { classNames } from 'harpe'
 import './index.less'
 
-type Node = {
+/**
+ 主色：#862633
+ 成功：#2FC22F
+ 失败：#EB2323
+ 置灰：#DADADA
+ */
+export type FlowChartNodeStatus = 'operable' | 'finish' | 'error' | 'prohibit'
+
+export type FlowChartNode = {
+  status?: FlowChartNodeStatus
   id?: string
   label?: string
   style?: CSSProperties
   link?: string
+  series?: {
+    // 右箭头
+    rightArrow?: boolean
+    // 下箭头
+    bottomArrow?: boolean
+    // 右下箭头
+    bottomRightArrow?: boolean
+
+    noArrowDiv?: boolean
+    noBiasDiv?: boolean
+  }
 }
 
-type FlowChartProps = {
-  nodes: Node[][];
+export interface FlowChartProps extends ComponentProps {
+  nodes: FlowChartNode[][];
   [key: string]: any
 };
 
 export function FlowChart(props: FlowChartProps) {
 
-  const { nodes = [] } = props
-
+  const { nodes = [], className, ...rest } = props
 
   const newStyle = {
     gridTemplateColumns: `${nodes[0].map((item, index) => {
-      if (index + 1 === nodes[0].length) return '1fr';
-      return '1fr 80px'
+      if (index + 1 === nodes[0].length) return 'auto';
+      return 'auto 80px'
     }).filter(Boolean).join(' ')
       }`
   }
 
-
   return (
-    <div className='au-flow'
+    <div className={classNames('au-flow', className)}
       key={JSON.stringify(nodes)}
       style={newStyle}>
 
       {nodes.map((row, rowIndex: number) => {
         if (isEffectArray(row))
           return <React.Fragment key={rowIndex}>
-            {row.map((item: Node, index: number) => {
-              const { id, label, style, link } = item
+            {row.map((item: FlowChartNode, index: number) => {
+              const { id, label, style, link, status = 'operable', series = {} } = item
+              const { rightArrow = false } = series
 
               const nid = row[index + 1]?.id
-              const showRight = nid && link === nid
+              const showRight = nid && link === nid || rightArrow
 
-              const nRowId = nodes[rowIndex + 1] && nodes[rowIndex + 1][index]?.id
-              const showBottom = nRowId && nRowId === link
-
-              const newStyle = { ...style }
-              if (showRight === false) {
-                newStyle['marginRight'] = 80
-              }
-              if (isUndefined(id)) {
-                newStyle['border'] = 'none'
-              }
+              const labelStyle: CSSProperties = { ...style }
 
               return (<React.Fragment key={index}>
-                <div
-                  className='au-flow-item'
-                  style={newStyle}
-                >
-                  {label}
-                  <div
-                    className='bottom-arrow'
-                    style={{
-                      height: 30,
-                      bottom: -30,
-                    }}  >
-                    {showBottom && <BottomArrow height={30} />}
-                  </div>
-                </div>
-                <div className='right-arrow' style={{
-                  display: index + 1 === row.length ? 'none' : 'block'
-                }}  >
-                  {showRight && <RightArrow width={80} />}
-                </div>
-
+                <div className={classNames({ 'au-flow-item-label': label })} style={labelStyle}>{label}</div>
+                <RightArrow style={{
+                  display: index + 1 === row.length ? 'none' : 'flex'
+                }} size={100} render={showRight} />
               </React.Fragment>)
+            })}
+            {row.map((item: FlowChartNode, index: number) => {
+              const { link, status = 'operable', series = {} } = item
+              const { bottomArrow = false, noArrowDiv, noBiasDiv } = series
+
+              const nRowId = nodes[rowIndex + 1] && nodes[rowIndex + 1][index]?.id
+              const showBottom = nRowId && nRowId === link || bottomArrow
+
+              return (<React.Fragment key={index}>
+                <BottomArrow
+                  style={{ height: 30 }}
+                  render={showBottom}
+                  size={30} />
+                <BottomRightArrow style={{ display: index + 1 === row.length ? 'none' : 'flex', height: 30 }} />
+              </React.Fragment>)
+
             })}
           </React.Fragment>
       })}
+
     </div >
   );
 }
