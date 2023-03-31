@@ -3,6 +3,7 @@ import React from "react"
 import { icons, IconType } from './icons'
 import { isArray } from "asura-eye"
 
+export * from './arrow'
 
 export interface IconProps extends ComponentProps {
 	type: IconType

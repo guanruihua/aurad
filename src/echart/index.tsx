@@ -61,8 +61,7 @@ export function Chart(props: ChartProps) {
 
 	useEffect(() => {
 		try {
-
-			console.log(echarts, chartDom, options)
+			// console.log(echarts, chartDom, options)
 			if (chartDom) {
 				//判断是否已存在实例
 				myChart = echarts.getInstanceByDom(chartDom);
