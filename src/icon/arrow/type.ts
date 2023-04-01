@@ -1,6 +1,7 @@
 import { ComponentProps } from "@/assets"
 
 export interface ArrowProps extends ComponentProps {
+	hidden?: boolean
 	size?: number
 	/**
 	 * @description 虚线
