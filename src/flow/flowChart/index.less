@@ -1,0 +1,38 @@
+:where(.au-flow) {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  gap: 0 0;
+  overflow: hidden;
+
+  .au-flow-item-label {
+    background-color: #1677ff;
+    padding: 12px;
+    // border-radius: 8px;
+    text-align: center;
+    color: #fff;
+    word-break: break-all;
+    white-space: pre-wrap;
+  }
+
+  svg {
+    display: block;
+    color: #878787;
+  }
+
+  .au-flow-status-operable {
+    background: #862633;
+  }
+
+  .au-flow-status-finish {
+    background: #2FC22F;
+  }
+
+  .au-flow-status-error {
+    background: #EB2323;
+  }
+
+  .au-flow-status-prohibit {
+    background: #DADADA;
+  }
+}
