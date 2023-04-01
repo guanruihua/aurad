@@ -1,11 +1,15 @@
-:where(.au-flow) {
+:where(.au-flow-chart) {
+  position: relative;
   display: grid;
-  width: 100%;
-  height: 100%;
+  // width: 100%;
+  // height: 100%;
   gap: 0 0;
   overflow: hidden;
 
-  .au-flow-item-label {
+
+  .au-flow-chart-item-label {
+    position: relative;
+    z-index: 99;
     background-color: #1677ff;
     padding: 12px;
     // border-radius: 8px;
@@ -13,6 +17,9 @@
     color: #fff;
     word-break: break-all;
     white-space: pre-wrap;
+    // &:hover{
+    //   background: #1677ff;
+    // }
   }
 
   svg {
@@ -20,19 +27,19 @@
     color: #878787;
   }
 
-  .au-flow-status-operable {
+  .au-flow-chart-status-operable {
     background: #862633;
   }
 
-  .au-flow-status-finish {
+  .au-flow-chart-status-finish {
     background: #2FC22F;
   }
 
-  .au-flow-status-error {
+  .au-flow-chart-status-error {
     background: #EB2323;
   }
 
-  .au-flow-status-prohibit {
+  .au-flow-chart-status-prohibit {
     background: #DADADA;
   }
 }

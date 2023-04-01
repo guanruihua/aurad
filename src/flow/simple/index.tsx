@@ -1,33 +1,14 @@
 /* eslint-disable*/
-import React, { CSSProperties } from 'react'
-import { RightArrow, BottomArrow, BottomRightArrow, ArrowProps } from '@/icon'
+import React from 'react'
+import { RightArrow, BottomArrow, BottomRightArrow } from '@/icon'
 import { isEffectArray, isUndefined } from 'asura-eye'
 import { ComponentProps } from '@/assets'
 import { classNames } from 'harpe'
+import { FlowChartNode } from '../type'
+import { flowAdapter } from './adapter'
 import './index.less'
 
-export type FlowChartNodeStatus = 'operable' | 'finish' | 'error' | 'prohibit'
-export type FlowFloatCover = ArrowProps
-
-export type FlowChartNode = {
-  status?: FlowChartNodeStatus
-  id?: string
-  label?: string
-  style?: CSSProperties
-  link?: string | string[]
-  width?: number
-  // 右箭头
-  rightArrow?: boolean
-  rightArrowCover?: FlowFloatCover
-  // 下箭头
-  bottomArrow?: boolean
-  bottomArrowCover?: FlowFloatCover
-  // 右下箭头
-  bottomRightArrow?: boolean
-  bottomRightArrowCover?: FlowFloatCover
-}
-
-export interface FlowChartProps extends ComponentProps {
+export interface SimpleFlowChartProps extends ComponentProps {
   nodeWidth?: number
   columnGap?: number
   rowGap?: number
@@ -35,7 +16,7 @@ export interface FlowChartProps extends ComponentProps {
   [key: string]: any
 };
 
-export function FlowChart(props: FlowChartProps) {
+export function SimpleFlowChart(props: SimpleFlowChartProps) {
 
   const { nodeWidth, nodes = [], className, columnGap = 100, rowGap = 30, style, ...rest } = props
   const getGridTemplateColumns = () => {
@@ -64,7 +45,7 @@ export function FlowChart(props: FlowChartProps) {
       style={newStyle}
       {...rest}>
 
-      {nodes.map((row, rowIndex: number) => {
+      {flowAdapter(nodes).map((row, rowIndex: number) => {
         if (isEffectArray(row))
           return <React.Fragment key={rowIndex}>
 
@@ -96,7 +77,7 @@ export function FlowChart(props: FlowChartProps) {
                 bottomArrow = false, bottomArrowCover = {},
                 bottomRightArrow = false, bottomRightArrowCover = {}
               } = item
-              if(id === '5'){
+              if (id === '5') {
                 // console.log(item)
               }
 

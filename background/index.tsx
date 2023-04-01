@@ -6,7 +6,6 @@ import './index.less'
 import { MenuObject } from "../src/layout/type"
 
 const modules = [
-	'flow',
 	'step',
 	'icon',
 	'radio',
@@ -27,6 +26,22 @@ const modules = [
 })
 
 const reModules: MenuObject[] = [
+	{
+		name: 'flow',
+		path: '/flow',
+		children: [
+			{
+				name: 'simple',
+				path: '/flow/simple',
+				element: Lazy(import('../src/flow/demo/simple')),
+			},
+			{
+				name: 'fix',
+				path: '/flow/fix',
+				element: Lazy(import('../src/flow/demo/fix')),
+			},
+		],
+	},
 	{
 		name: 'select',
 		path: '/select',
