@@ -24,7 +24,7 @@ export function FlowChart(props: FlowChartProps) {
   const { name, nodeWidth, nodes = [], count = 5, className, columnGap = 80, rowGap = 30, style, ...rest } = props
 
   const newStyle = {
-    gridTemplateColumns: new Array(count).fill('auto').join(' '),
+    gridTemplateColumns: new Array(count).fill('1fr').join(' '),
     gap: `${rowGap}px ${columnGap}px`,
     ...style
   }
@@ -32,10 +32,18 @@ export function FlowChart(props: FlowChartProps) {
 
   useEffect(() => {
 
+    draw(props)
+
     window.addEventListener('resize', debounce(() => {
       draw(props)
     }, 100))
-    draw(props)
+
+    return () => {
+      window.removeEventListener('resize', debounce(() => {
+        draw(props)
+      }, 100))
+    }
+
   }, [nodes.length])
 
 
@@ -71,7 +79,7 @@ export function FlowChart(props: FlowChartProps) {
               className={`arrow-${form}-${to}`}
               key={`${form}-${to}` + index}
             >
-              <svg style={{ width: '100%' }} >
+              <svg style={{ width: '100%', overflow: 'visible' }} >
                 <defs>
                   <marker id={"arrow"} markerWidth="10" markerHeight="6" refX="8" refY="3" orient="auto">
                     <path d="M0,0 L0,6 L9,3 z" fill="currentColor" />
