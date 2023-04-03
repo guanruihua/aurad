@@ -20,7 +20,6 @@ export interface FlowChartProps extends ComponentProps {
 
 export function FlowChart(props: FlowChartProps) {
 
-
   const { name, nodeWidth, nodes = [], count = 5, className, columnGap = 80, rowGap = 30, style, ...rest } = props
 
   const newStyle = {
