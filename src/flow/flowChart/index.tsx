@@ -34,14 +34,18 @@ export function FlowChart(props: FlowChartProps) {
 
     draw(props)
 
-    window.addEventListener('resize', debounce(() => {
-      draw(props)
-    }, 100))
+    const content = document.querySelector(`.${id}`)
 
+    const observer = new ResizeObserver(debounce(() => {
+      draw(props)
+    }, 50));
+    if (!content) {
+      return;
+    }
+
+    observer.observe(content);
     return () => {
-      window.removeEventListener('resize', debounce(() => {
-        draw(props)
-      }, 100))
+      observer.unobserve(content)
     }
 
   }, [nodes.length])
@@ -72,10 +76,7 @@ export function FlowChart(props: FlowChartProps) {
           {links.map((item, index: number) => {
             const { form, to } = item
             return <div
-              style={{
-                position: 'absolute',
-                width: 0,
-              }}
+              style={{ position: 'absolute', width: 0 }}
               className={`arrow-${form}-${to}`}
               key={`${form}-${to}` + index}
             >

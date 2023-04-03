@@ -15,11 +15,13 @@ export interface FlowChartProps extends ComponentProps {
 };
 
 export function draw(props: FlowChartProps) {
-	const { name, nodeWidth, nodes = [], count = 5, className, columnGap = 80, rowGap = 30, style, ...rest } = props
+	const { name, nodes = [] } = props
+
 	const id = 'au-flow-chart-' + name
 
 	const content = document.querySelector(`.${id}`)
-	if (isEmpty(content)) return;
+	if (isEmpty(content) || !isEffectArray(nodes)) return;
+
 
 	const contentRecord = content.getBoundingClientRect()
 	const db: Record<string, any> = {}
@@ -146,7 +148,7 @@ export function draw(props: FlowChartProps) {
 
 		// 左下
 		if (fx > tx && fy < ty) {
-			const x = fx - cx 
+			const x = fx - cx
 			const y = fy - cy + fh - 6
 			const newHeight = 12
 			const newStyle = `position: absolute;transform-origin: 0 0;`
@@ -157,7 +159,7 @@ export function draw(props: FlowChartProps) {
 
 			unit.setAttribute('style', newStyle)
 			svg.removeAttribute('viewBox')
-			path.setAttribute('d', `M0,6 ${tr - fl },${ty - fy - fh + 6}`)
+			path.setAttribute('d', `M0,6 ${tr - fl},${ty - fy - fh + 6}`)
 			return;
 		}
 

@@ -4,7 +4,7 @@ import { RightArrow, BottomArrow, BottomRightArrow } from '@/icon'
 import { isEffectArray, isUndefined } from 'asura-eye'
 import { ComponentProps } from '@/assets'
 import { classNames } from 'harpe'
-import { FlowChartNode } from '../type'
+import { SimpleFlowChartNode } from '../type'
 import { flowAdapter } from './adapter'
 import './index.less'
 
@@ -12,7 +12,7 @@ export interface SimpleFlowChartProps extends ComponentProps {
   nodeWidth?: number
   columnGap?: number
   rowGap?: number
-  nodes: FlowChartNode[][];
+  nodes: SimpleFlowChartNode[][];
   [key: string]: any
 };
 
@@ -49,7 +49,7 @@ export function SimpleFlowChart(props: SimpleFlowChartProps) {
         if (isEffectArray(row))
           return <React.Fragment key={rowIndex}>
 
-            {row.map((item: FlowChartNode, index: number) => {
+            {row.map((item: SimpleFlowChartNode, index: number) => {
               const {
                 id, label, style, status = 'prohibit',
                 rightArrow = false, rightArrowCover = {}
@@ -71,15 +71,12 @@ export function SimpleFlowChart(props: SimpleFlowChartProps) {
               </React.Fragment>)
             })}
 
-            {row.map((item: FlowChartNode, index: number) => {
+            {row.map((item: SimpleFlowChartNode, index: number) => {
               const {
                 id,
                 bottomArrow = false, bottomArrowCover = {},
                 bottomRightArrow = false, bottomRightArrowCover = {}
               } = item
-              if (id === '5') {
-                // console.log(item)
-              }
 
               if (rowIndex + 1 === nodes.length) return;
 

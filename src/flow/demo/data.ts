@@ -1,6 +1,6 @@
-import { FlowChartNode } from '..'
+import { SimpleFlowChartNode } from '..'
 
-export const nodes: FlowChartNode[][] = [
+export const nodes: SimpleFlowChartNode[][] = [
 	[
 		{
 			id: '1', label: 'Node 1', link: ['2', '8'], status: 'operable',
