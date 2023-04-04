@@ -1,6 +1,5 @@
-/* eslint-disable*/
 import React, { useEffect } from 'react'
-import { isEffectArray, isEmpty, isString } from 'asura-eye'
+import { isEffectArray, isEmpty, isNumber, isString } from 'asura-eye'
 import { ComponentProps } from '@/assets'
 import { classNames } from 'harpe'
 import { FlowChartNode } from '../type'
@@ -9,22 +8,58 @@ import { debounce } from 'abandonjs'
 import './index.less'
 
 export interface FlowChartProps extends ComponentProps {
+  /**
+   * @description 当前 流程图唯一标识
+   */
   name: string
-  nodeWidth?: number
+  /**
+   * @description 列等宽
+   * @default true
+   */
+  nodeWidth?: number | string | 'equal' | 'auto'
+  /**
+   * @description 每行节点数量
+   * @default 4
+   */
+  count?: number
   columnGap?: number
   rowGap?: number
+  /**
+   * @description 虚线的样式 (连线的线体部分)
+   * @default { strokeDasharray: "5 5", strokeDashoffset: "5" }
+   */
+  dottedProps?: {
+    strokeDasharray?: string,
+    strokeDashoffset?: string
+  }
   nodes: FlowChartNode[];
   [key: string]: any
-};
+}
 
 
 export function FlowChart(props: FlowChartProps) {
 
-  const { name, nodeWidth, nodes = [], count = 5, className, columnGap = 80, rowGap = 30, style, ...rest } = props
+  const {
+    name, nodeWidth,
+    dottedProps = { strokeDasharray: "5 5", strokeDashoffset: "5" },
+    nodes = [], count = 4, className, columnGap = 80, rowGap = 30,
+    style, ...rest
+  } = props
+
+  const getGridTemplateColumns = () => {
+    let flag = 'auto'
+    if (isString(nodeWidth)) {
+      flag = nodeWidth
+      if (nodeWidth === 'auto') flag = 'auto'
+      if (nodeWidth === 'equal') flag = '1fr'
+    }
+    if (isNumber(nodeWidth)) flag = nodeWidth + 'px'
+    return new Array(count).fill(flag).join(' ')
+  }
 
   const newStyle = {
-    gridTemplateColumns: new Array(count).fill('1fr').join(' '),
-    gap: `${rowGap}px ${columnGap}px`,
+    gridTemplateColumns: getGridTemplateColumns(),
+    gap: `0 ${columnGap}px`,
     ...style
   }
   const id = 'au-flow-chart-' + name
@@ -38,16 +73,13 @@ export function FlowChart(props: FlowChartProps) {
     const observer = new ResizeObserver(debounce(() => {
       draw(props)
     }, 50));
-    if (!content) {
-      return;
-    }
-
+    if (!content) return;
     observer.observe(content);
     return () => {
       observer.unobserve(content)
     }
 
-  }, [nodes.length])
+  }, [nodes.length, props])
 
 
   return (
@@ -57,10 +89,19 @@ export function FlowChart(props: FlowChartProps) {
       {...rest}>
 
       {nodes.map((node, index: number) => {
+
         const {
-          id, label, style, status = 'prohibit', link,
+          span = 1, label, align = 'center', style = {}, status = 'prohibit',
+          id, link, dottedLine = false, series = {}
         } = node
+
+        if (span === 0) style['display'] = 'none'
+        if (span > 1) style['gridColumn'] = `auto / ${span} span`
+        if (align === 'start') style['justifyContent'] = 'start'
+        if (align === 'end') style['justifyContent'] = 'end'
+
         const links: { form: string, to: string }[] = []
+
         if (!isEmpty(id)) {
           if (isString(link)) links.push({ form: id, to: link })
           if (isEffectArray(link)) link.forEach(li => links.push({ form: id, to: li }))
@@ -68,26 +109,45 @@ export function FlowChart(props: FlowChartProps) {
         const labelShow = label && id
 
         return (<React.Fragment key={index}>
-          <div className={classNames(`au-flow-chart-item-${id}`, {
+          <div className={classNames({
+            [`au-flow-chart-item-${id}`]: id,
             'au-flow-chart-item-label': labelShow,
             [`au-flow-chart-status-${status}`]: labelShow,
-          })} style={style}>{label}</div>
+          })} style={{ marginBottom: rowGap, ...style }}>{label}</div>
+
           {links.map((item, index: number) => {
             const { form, to } = item
+
+            const { dottedLine: showDottedLine = dottedLine, lineStyle = {} } = series[to] || {}
+            const markerId = `${name}-${form}-${to}`
+            let pathProps = {
+              d: `M0,6 88,6`,
+              stroke: "currentColor",
+              strokeWidth: "2",
+              fill: "none",
+              markerEnd: `url(#arrow${markerId})`,
+            }
+
+            if (showDottedLine) {
+              pathProps = { ...pathProps, ...dottedProps }
+            }
+
             return <div
               style={{ position: 'absolute', width: 0 }}
-              className={`arrow-${form}-${to}`}
+              className={classNames(
+                `arrow-${name}-${form}-${to}`,
+                { [`au-flow-link-status-${status}`]: labelShow, }
+              )}
               key={`${form}-${to}` + index}
             >
-              <svg style={{ width: '100%', overflow: 'visible' }} >
+              <svg
+                style={{ width: '100%', overflow: 'visible', ...lineStyle }} >
                 <defs>
-                  <marker id={"arrow"} markerWidth="10" markerHeight="6" refX="8" refY="3" orient="auto">
+                  <marker id={`arrow${markerId}`} markerWidth="10" markerHeight="6" refX="8" refY="3" orient="auto">
                     <path d="M0,0 L0,6 L9,3 z" fill="currentColor" />
                   </marker>
                 </defs>
-                <path d={`M0,6 88,6`} stroke="currentColor" strokeWidth="2" fill="none"
-                  markerEnd={`url(#arrow)`}
-                />
+                <path {...pathProps} />
               </svg>
             </div>
           })}

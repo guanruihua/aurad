@@ -14,16 +14,13 @@
     align-items: center;
     padding: 12px;
     background-color: #1677ff;
-    // border-radius: 8px;
-    text-align: center;
     color: #fff;
+    width: 100%;
 
     word-break: break-all;
     white-space: pre-wrap;
     z-index: 99;
-    // &:hover{
-    //   background: #1677ff;
-    // }
+
   }
 
   svg {
@@ -31,19 +28,46 @@
     color: #878787;
   }
 
+  .au-flow-chart-status-empty {
+    color: #000;
+    text-align: left;
+    justify-self: start;
+    background: transparent;
+  }
+
   .au-flow-chart-status-operable {
     background: #862633;
+  }
+
+  .au-flow-link-status-operable svg {
+    color: #862633;
+    background: transparent;
   }
 
   .au-flow-chart-status-finish {
     background: #2FC22F;
   }
 
+  .au-flow-link-status-finish svg{
+    color: #2FC22F;
+    background: transparent;
+  }
+
   .au-flow-chart-status-error {
     background: #EB2323;
   }
 
+  .au-flow-link-status-error svg{
+    color: #EB2323;
+    background: transparent;
+  }
+
   .au-flow-chart-status-prohibit {
     background: #DADADA;
+  }
+
+  .au-flow-link-status-prohibit svg{
+    color: #DADADA;
+    background: transparent;
   }
 }
