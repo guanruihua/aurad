@@ -1,5 +1,10 @@
+import { InputHTMLAttributes, ChangeEvent } from 'react'
 import { ComponentProps } from "@/assets"
 
-export interface InputProps extends Omit<Partial<HTMLInputElement>, 'children' | 'style'>, ComponentProps {
+type excludeInputType = 'children' | 'style' | 'defaultChecked'
+export interface InputProps extends Omit<Partial<InputHTMLAttributes<HTMLInputElement>>, excludeInputType>, ComponentProps {
 	[key: string]: any
 }
+
+
+export type InputChangeEvent = ChangeEvent<HTMLInputElement>

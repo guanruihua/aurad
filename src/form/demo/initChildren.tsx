@@ -1,5 +1,5 @@
 import React, { Fragment } from "react"
-import { Form, UseForm } from '..'
+import { FormItem, UseForm } from '..'
 import { Input, Button, Card } from '../..'
 
 export const initChildren = (form: UseForm) => {
