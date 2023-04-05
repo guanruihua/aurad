@@ -1,4 +1,3 @@
-/* eslint-disable*/
 import { isEffectArray, isEmpty, isString, isUndefined } from 'asura-eye'
 import { FlowChartProps } from '.'
 

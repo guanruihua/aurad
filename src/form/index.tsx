@@ -1,13 +1,15 @@
-import React, { forwardRef, Ref, useId } from "react"
+import React, { FC, forwardRef, Ref, useId } from "react"
 import { FormContext } from './context'
 import { useSetState } from '../assets'
-import { Item } from './item'
 import type { FormRecord } from './type'
 import { getFormValues } from './util'
 import './index.less'
 import { UseForm } from "./hook"
 
 export * from './hook'
+export { Item as FormItem } from './item'
+export type { ItemProps as FormItemProps } from './item'
+
 export interface FormProps {
 	form?: UseForm
 	layout?: 'horizontal' | 'vertical' | 'inline'
@@ -17,8 +19,8 @@ export interface FormProps {
 }
 
 // 没有编辑过的控件无法辨别''和undefined
-export const Form: any = forwardRef((props: FormProps, ref: Ref<HTMLFormElement>) => {
-
+export const Form: FC<FormProps> = forwardRef((props: FormProps, ref: Ref<HTMLFormElement>) => {
+	
 	const { name = useId(), children, onSubmit, onReset, form, ...rest } = props
 	const [values, setValues] = useSetState<FormRecord>({})
 
@@ -40,5 +42,3 @@ export const Form: any = forwardRef((props: FormProps, ref: Ref<HTMLFormElement>
 		</form>
 	</FormContext.Provider>
 })
-
-Form.Item = Item

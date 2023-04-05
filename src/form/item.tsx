@@ -4,7 +4,7 @@ import { FormContext } from './context'
 import type { FormAction } from './type'
 import { useValidator } from './hook'
 export interface ItemProps {
-	name: string
+	name?: string
 	label?: any
 	rules?: any[]
 	[key: string]: any
@@ -18,10 +18,7 @@ function childPropsHoc(oldProps: ObjectType, expandProps: ObjectType) {
 }
 
 function ItemContent(props: ItemProps & FormAction) {
-	// console.log(props)
 	const {
-		// values = {},
-		// setValues = (newValues: FormRecord) => { },
 		fname, name, 
 		label, rules = [],
 		children

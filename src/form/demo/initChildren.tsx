@@ -5,7 +5,7 @@ import { Input, Button, Card } from '../..'
 export const initChildren = (form: UseForm) => {
 	return <Fragment>
 		<Card>
-			<Form.Item
+			<FormItem
 				name="validate"
 				label={'Label(validate)'}
 				rules={[
@@ -17,11 +17,11 @@ export const initChildren = (form: UseForm) => {
 					onChange={(e: any) => {
 						console.log(e.target.value)
 					}} />
-			</Form.Item>
+			</FormItem>
 		</Card>
 
 		<Card>
-			<Form.Item
+			<FormItem
 				name="array"
 				label={'Label(array)'}>
 				<Input
@@ -31,25 +31,25 @@ export const initChildren = (form: UseForm) => {
 					onChange={(e: any) => {
 						console.log(e.target.value)
 					}} />
-			</Form.Item>
+			</FormItem>
 
-			<Form.Item name="array" label={'Label(array)'}>
+			<FormItem name="array" label={'Label(array)'}>
 				<Input
 					defaultValue='2'
 					index={'1'}
 					type='text' onChange={(e: any) => {
 						console.log(e.target.value)
 					}} />
-			</Form.Item>
+			</FormItem>
 
-			<Form.Item name="array" label={'Label(array)'}>
+			<FormItem name="array" label={'Label(array)'}>
 				<Input
 					defaultValue='2'
 					index={'2'}
 					type='text' onChange={(e: any) => {
 						console.log(e.target.value)
 					}} />
-			</Form.Item>
+			</FormItem>
 			<Button
 				onClick={() => {
 					form.setFieldValue('array', '1122', '1')
@@ -75,19 +75,19 @@ export const initChildren = (form: UseForm) => {
 		</Card>
 
 		<Card>
-			<Form.Item name="myName1" label={'Label(myName1)'}>
+			<FormItem name="myName1" label={'Label(myName1)'}>
 				<Input type='text'
 					defaultValue="3"
 					onChange={(e: any) => {
 						console.log(e.target.value)
 					}} />
-			</Form.Item>
-			<Form.Item name="myName2" label={'Label(myName2)'}>
+			</FormItem>
+			<FormItem name="myName2" label={'Label(myName2)'}>
 				<Input defaultValue='4' type='text' />
-			</Form.Item>
-			<Form.Item name="myName3" label={'Label(myName3)'}>
+			</FormItem>
+			<FormItem name="myName3" label={'Label(myName3)'}>
 				<Input type='text' defaultValue='5' />
-			</Form.Item>
+			</FormItem>
 		</Card>
 
 		<div>

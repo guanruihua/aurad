@@ -32,7 +32,6 @@ specifiers:
   postcss-loader: ^7.0.1
   react: ^18.2.0
   react-dom: ^18.2.0
-  react-echarts: ^0.1.1
   react-router: ^6.4.2
   react-router-dom: ^6.4.2
   reactflow: ^11.7.0
@@ -40,7 +39,7 @@ specifiers:
   terser-webpack-plugin: ^5.3.6
   ts-loader: ^9.4.1
   typescript: ^4.8.4
-  unit-testing-react: ^0.3.2
+  unit-testing-react: ^0.3.4
   webpack: ^5.74.0
   webpack-cli: ^4.10.0
   webpack-dev-server: ^4.11.1
@@ -81,13 +80,12 @@ devDependencies:
   mini-css-extract-plugin: 2.7.2_webpack@5.74.0
   postcss: 8.4.18
   postcss-loader: 7.0.1_igyeriywjd4lwzfk4socqbj2qi
-  react-echarts: 0.1.1_react@18.2.0
   reactflow: 11.7.0_biqbaboplfbrettd7655fr4n2y
   style-loader: 3.3.1_webpack@5.74.0
   terser-webpack-plugin: 5.3.6_webpack@5.74.0
   ts-loader: 9.4.1_qqxisngxjbp7lstdk7boexbu3e
   typescript: 4.8.4
-  unit-testing-react: 0.3.2_biqbaboplfbrettd7655fr4n2y
+  unit-testing-react: 0.3.4_biqbaboplfbrettd7655fr4n2y
   webpack: 5.74.0_webpack-cli@4.10.0
   webpack-cli: 4.10.0_vnmgq7jx5zjkzolvtfp7mdf5ri
   webpack-dev-server: 4.11.1_5v66e2inugklgvlh4huuavolfq
@@ -2314,12 +2312,6 @@ packages:
       is-obj: 2.0.0
     dev: true
 
-  /echarts/3.8.5:
-    resolution: {integrity: sha512-E+nnROMfCeiLeoT/fZyX8SE8mKzwkTjyemyoBF543oqjRtjTSKQAVDEihMXy4oC6pJS0tYGdMqCA2ATk8onyRg==}
-    dependencies:
-      zrender: 3.7.4
-    dev: true
-
   /echarts/5.4.2:
     resolution: {integrity: sha512-2W3vw3oI2tWJdyAz+b8DuWS0nfXtSDqlDmqgin/lfzbkB01cuMEN66KWBlmur3YMp5nEDEEt5s23pllnAzB4EA==}
     dependencies:
@@ -4336,15 +4328,6 @@ packages:
       react: 18.2.0
       scheduler: 0.23.0
 
-  /react-echarts/0.1.1_react@18.2.0:
-    resolution: {integrity: sha512-xt0bZUyJQLmiQgHE54NaoEUJf1LNhSTlyOrw9XMxVFUD+xMcVJPkO+fRZlLKC4wnvo4+hBaR6pEyFXwBTCnBbA==}
-    peerDependencies:
-      react: '>=0.14.0 || ^15.0.0-rc.2'
-    dependencies:
-      echarts: 3.8.5
-      react: 18.2.0
-    dev: true
-
   /react-router-dom/6.4.2_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-yM1kjoTkpfjgczPrcyWrp+OuQMyB1WleICiiGfstnQYo/S8hPEEnVjr/RdmlH6yKK4Tnj1UGXFSa7uwAtmDoLQ==}
     engines: {node: '>=14'}
@@ -5101,8 +5084,8 @@ packages:
     hasBin: true
     dev: true
 
-  /unit-testing-react/0.3.2_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-gZ971RS3E4DxgQp+1ck40Jao/rA8cXQIWn/nLl34k1XBS4vv0adgy+79iSRClnIu5o/0t98RUcOmAGAxBz8GAw==}
+  /unit-testing-react/0.3.4_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-1gYm1PUit5dUBJDkY6mQFC5E/NL4re4Js48UALTXdSpVT/Opg1jCmoNAwcE61u9k+4gISaktD4zi2IIt39SRlA==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
@@ -5459,10 +5442,6 @@ packages:
   /yocto-queue/0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
-    dev: true
-
-  /zrender/3.7.4:
-    resolution: {integrity: sha512-5Nz7+L1wIoL0+Pp/iOP56jD6eD017qC9VRSgUBheXBiAHgOBJZ4uh4/g6e83acIwa8RKSyZf/FlceKu5ntUuxQ==}
     dev: true
 
   /zrender/5.4.3:

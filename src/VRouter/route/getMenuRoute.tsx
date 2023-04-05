@@ -1,9 +1,11 @@
 import React from 'react'
 import { MenuObject } from '@/layout/type'
 import { Menu } from "../../layout"
+import { ObjectType } from 'abandonjs'
 
 export interface MenuRouteProps {
 	modules: MenuObject[]
+	group?: ObjectType<string[]>
 	path?: string,
 	/**
  * @default true
@@ -12,7 +14,7 @@ export interface MenuRouteProps {
 }
 
 export function getMenuRoute(props: MenuRouteProps): MenuObject {
-	const { modules, path = '/', fold = true, ...rest } = props
+	const { modules, group, path = '/', fold = true, ...rest } = props
 
 	const children = modules.map(module => {
 		const { name, element, ...mRest } = module
@@ -26,7 +28,7 @@ export function getMenuRoute(props: MenuRouteProps): MenuObject {
 
 	return {
 		path,
-		element: <Menu fold={fold} menu={children} />,
+		element: <Menu fold={fold} menu={children} group={group} />,
 		children,
 		...rest,
 	}

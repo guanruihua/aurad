@@ -8,10 +8,8 @@ import { MenuObject } from "../src/layout/type"
 const modules = [
 	'step',
 	'icon',
-	'radio',
 	'checkbox',
 	'button',
-	'input',
 	'inputNumber',
 	'textarea',
 	'table',
@@ -27,14 +25,51 @@ const modules = [
 
 const reModules: MenuObject[] = [
 	{
+		name: 'input',
+		path: '/input',
+		children: [
+			{
+				name: 'base',
+				path: '/input/base',
+				element: Lazy(import('../src/input/demo'))
+			},
+			{
+				name: 'FC',
+				path: '/input/fc',
+				element: Lazy(import('../src/input/demo/fc'))
+			},
+			{
+				name: 'class',
+				path: '/input/class',
+				element: Lazy(import('../src/input/demo/class'))
+			}
+		]
+	},
+	{
+		name: 'radio',
+		path: '/radio',
+		children: [
+			{
+				name: 'base',
+				path: '/radio/base',
+				element: Lazy(import('../src/radio/demo'))
+			},
+			{
+				name: 'FC',
+				path: '/radio/fc',
+				element: Lazy(import('../src/radio/demo/fc'))
+			},
+			{
+				name: 'class',
+				path: '/radio/class',
+				element: Lazy(import('../src/radio/demo/class'))
+			}
+		]
+	},
+	{
 		name: 'flow',
 		path: '/flow',
 		children: [
-			{
-				name: 'simple',
-				path: '/flow/simple',
-				element: Lazy(import('../src/flow/demo/simple')),
-			},
 			{
 				name: 'fix',
 				path: '/flow/fix',
@@ -112,6 +147,18 @@ const reModules: MenuObject[] = [
 const menu = [
 	getMenuRoute({
 		fold: false,
+		group: {
+			Form: [
+				'radio',
+				'input',
+				'inputNumber',
+				'checkbox',
+				'select',
+			],
+			Chart:[
+				'flow'
+			],
+		},
 		path: '/',
 		modules: [...modules, ...reModules],
 	})

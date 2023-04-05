@@ -18,11 +18,11 @@ export default function () {
 					console.log(values)
 				}}
 			>
-				<Form.Item name="select-name">
+				<FormItem name="select-name">
 					<Select
 						options={options}
 					/>
-				</Form.Item>
+				</FormItem>
 				<Button
 					onClick={() => {
 						form.setFieldValue('select-name', 'lucy2')
