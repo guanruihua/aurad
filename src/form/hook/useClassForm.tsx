@@ -1,9 +1,15 @@
-import { createRef, RefObject } from 'react'
+/* eslint-disable*/
+import { createRef, RefObject, useContext, createContext } from 'react'
 import { setFieldValueHoc, setFieldsValueHoc, getFieldValueHoc, getFieldsValueHoc } from './util'
 import { UseForm } from './type'
+import React from 'react';
 
-export function useClassForm(): UseForm {
+
+// export const useClassForm = () => {
+export function useClassForm(_this?: any) {
 	const ref: RefObject<HTMLFormElement> = createRef()
+
+	// console.log(this, _this)
 
 	const setFieldValue = setFieldValueHoc(ref)
 

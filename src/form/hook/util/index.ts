@@ -1,5 +1,6 @@
+/* eslint-disable*/
 import { RefObject } from 'react'
-import { isObject } from 'asura-eye'
+import { isEffectArray, isObject } from 'asura-eye'
 // import { FormElementValue } from '../../type'
 
 export const getFieldValueHoc = (ref: RefObject<HTMLFormElement>) => (fieldName: string, fieldIndex?: string) => {
@@ -29,6 +30,7 @@ export const getFieldValueHoc = (ref: RefObject<HTMLFormElement>) => (fieldName:
 
 export const getFieldsValueHoc = (ref: RefObject<HTMLFormElement>) => (fieldNames?: string[]) => {
 	const result: Record<string, any> = {}
+
 	const elements: HTMLFormControlsCollection | undefined = ref.current?.elements
 	if (!elements) return {};
 	for (const item of elements) {
@@ -51,6 +53,8 @@ export const getFieldsValueHoc = (ref: RefObject<HTMLFormElement>) => (fieldName
 
 export const setFieldValueHoc = (ref: RefObject<HTMLFormElement>) =>
 	(fieldName: string, value: any, fieldIndex?: string): boolean => {
+		// const [values, setValues] = useValues
+
 		if (ref === null) return false
 		const elements: HTMLFormControlsCollection | undefined = ref.current?.elements
 		const fname = ref.current?.name

@@ -1,7 +1,9 @@
 import { useState } from 'react'
 
+export type UseSetState<T extends Record<string, any>> = [T, (patch: Partial<T> | ((prevState: T) => Partial<T>)) => void]
+
 export function useSetState<T extends Record<string, any>>(initialState: T = {} as T)
-	: [T, (patch: Partial<T> | ((prevState: T) => Partial<T>)) => void] {
+	: UseSetState<T> {
 
 	const [state, setState] = useState<T>(initialState)
 	return [

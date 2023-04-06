@@ -11,6 +11,7 @@ export * from './hook'
 export { Item as FormItem } from './item'
 import type { ItemProps as FormItemProps } from './item'
 import { ObjectType } from "abandonjs"
+import { isUndefined } from "asura-eye"
 
 export type { FormItemProps }
 
@@ -35,10 +36,6 @@ function useFormValidator(values: any, fields: ObjectType<Partial<FormItemProps>
 	for (let name in values) {
 		const { onFormItemChange } = fields[name]
 		const result = onFormItemChange && onFormItemChange(values[name])
-		console.log(result)
-		// if (result !== true) { 
-		// 	console.warn(name)
-		//  }
 	}
 	return values
 }
@@ -47,17 +44,22 @@ function useFormValidator(values: any, fields: ObjectType<Partial<FormItemProps>
 export const Form: FC<FormProps> = forwardRef((props: FormProps, ref: Ref<HTMLFormElement>) => {
 
 	const { name = useId(), children, onSubmit, onReset, form, ...rest } = props
-	const [values, setValues] = useSetState<FormRecord>({})
+	const [values, setValues] = (!form || isUndefined(form.useValue)) ? useSetState<FormRecord>({}) : form.useValue
 	const [fields, register] = useSetState<ObjectType<Partial<FormItemProps>>>({})
 
 	return <FormContext.Provider
-		value={{ fname: name, setValues, register }}>
+		value={{ values, setValues, register }}>
 		<form
 			name={name}
 			ref={ref || form?.ref}
 			onReset={(e: any) => {
 				// console.log(nameList)
 				handleResetForm(Object.keys(fields), fields)
+				const newRecord: FormRecord = {}
+				Object.keys(fields).forEach(name => {
+					newRecord[name] = undefined
+				})
+				setValues(newRecord)
 				onReset && onReset(e)
 			}}
 			onSubmit={(e: any) => {
