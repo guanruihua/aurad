@@ -1,3 +1,18 @@
-.form-item{
-	margin-bottom: 12px;
+.form-item {
+  margin-bottom: 12px;
+
+  &-error-status {
+    &>input {
+      border-color: #EB2323;
+
+      &:hover {
+        border-color: #EB2323;
+        box-shadow: #EB2323 0 0 3px;
+      }
+    }
+
+    &-message {
+      color: #EB2323;
+    }
+  }
 }
