@@ -1,11 +1,11 @@
-/* eslint-disable*/
+import React, { ComponentType } from 'react';
 import { useForm } from './useForm'
-import React from 'react';
 
-export function injectForm(CMM: any): any {
-	function Dom(props: any): any {
+// export function injectForm<T = any>(WrappedComponent: ComponentType<T>): ComponentType<T> {
+export function injectForm<T = any>(WrappedComponent: ComponentType<T>): any {
+
+	return function (props: any) {
 		const form = useForm()
-		return <CMM form={form} />
+		return <WrappedComponent {...props} form={form} />
 	}
-	return Dom
 }

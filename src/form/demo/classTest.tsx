@@ -3,6 +3,7 @@ import { Form, injectForm } from '..'
 import { FormRecord } from '../type'
 import { initChildren } from './initChildren'
 import { Container, Unit } from 'unit-testing-react'
+
 @injectForm
 export default class TestFormClass extends React.Component {
 

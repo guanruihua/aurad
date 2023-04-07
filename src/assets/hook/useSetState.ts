@@ -1,6 +1,10 @@
 import { useState } from 'react'
 
-export type UseSetState<T extends Record<string, any>> = [T, (patch: Partial<T> | ((prevState: T) => Partial<T>)) => void]
+export type UseSetState<T extends Record<string, any>> = [
+	T,
+	(patch: Partial<T> | ((prevState: T) => Partial<T>)) => void,
+	() => void,
+]
 
 export function useSetState<T extends Record<string, any>>(initialState: T = {} as T)
 	: UseSetState<T> {
@@ -14,6 +18,9 @@ export function useSetState<T extends Record<string, any>>(initialState: T = {} 
 			} else {
 				setState({ ...state, ...patch })
 			}
+		},
+		(): void => {
+			setState(initialState)
 		}
 	]
 
