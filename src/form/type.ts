@@ -1,16 +1,31 @@
-import { RefObject } from "react"
-import { FormElementValue } from '../type'
+
 import { ObjectType } from 'abandonjs'
 import type { UseSetState } from '@/assets'
-import type { FormRecord } from '../type'
+import { FormItemProps } from ".."
+
+export type FormRecord = Record<string, any>
+
+export interface FormAction {
+	values: FormRecord
+	setValues: (newValues: FormRecord) => void
+}
+
+export interface FormRule {
+	required?: boolean
+}
+
+/**
+ * @description Form 单元 值
+ */
+export type FormElementValue = undefined | string | number
+
+
 /**
  * @description useForm 和 useClassForm 类型
  */
 export interface UseForm extends ObjectType {
-	/**
-	 * Form Ref
-	 */
-	ref: RefObject<HTMLFormElement>
+
+	fields: ObjectType<Partial<FormItemProps>>
 
 	useValue: UseSetState<FormRecord>
 	/**
@@ -36,4 +51,8 @@ export interface UseForm extends ObjectType {
 	 * @param record {Record<string, any | Record<string, any>}  字段名和值的集合
 	 */
 	setFieldsValue: (record: FormRecord) => void
+
+	validateFieldsValue: (fieldNames?: string[]) => FormRecord
+	
+	resetErrorStatus: (fieldNames?: string[]) => void
 }

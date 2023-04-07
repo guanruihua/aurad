@@ -1,3 +1,4 @@
+import { isEffectArray, isEmpty } from 'asura-eye'
 import { useState } from 'react'
 
 export type UseSetState<T extends Record<string, any>> = [
@@ -19,7 +20,16 @@ export function useSetState<T extends Record<string, any>>(initialState: T = {} 
 				setState({ ...state, ...patch })
 			}
 		},
-		(): void => {
+		(names?: string[]): void => {
+			if (isEffectArray(names)) {
+				const newState: T = { ...state }
+				names.forEach((name) => {
+					if (isEmpty(name)) return;
+					(newState as Record<string, any>)[name] = undefined
+				})
+				setState(newState)
+				return
+			}
 			setState(initialState)
 		}
 	]
