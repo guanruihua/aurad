@@ -36,5 +36,4 @@ export interface UseForm extends ObjectType {
 	 * @param record {Record<string, any | Record<string, any>}  字段名和值的集合
 	 */
 	setFieldsValue: (record: FormRecord) => void
-	// setFieldsValue: (record: Record<string, any | Record<string, any>>) => boolean
 }

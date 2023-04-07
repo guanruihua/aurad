@@ -1,5 +1,5 @@
 export * from './useForm'
-export * from './useClassForm'
+export * from './injectForm'
 export * from './useValidator'
 
 export * from './type'

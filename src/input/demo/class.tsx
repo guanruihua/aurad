@@ -1,22 +1,12 @@
 /* eslint-disable*/
-import React, { createContext, useState, useContext } from "react"
+import React from "react"
 import { Input, InputChangeEvent } from '@/input'
 import { Container, Unit } from "unit-testing-react"
 import { Button } from "@/button"
-import { Form, FormItem, useClassForm, useForm } from "@/form"
+import { Form, FormItem, injectForm } from "@/form"
 import { Space } from "@/layout"
 
-
-function inject(CMM: any): any {
-	function Dom(props: any): any {
-		const form = useForm()
-		return <CMM form={form} />
-	}
-	// console.log(this)
-	return Dom
-}
-
-@inject
+@injectForm
 class App extends React.Component {
 	state = {
 		value: 'value1'
@@ -28,10 +18,6 @@ class App extends React.Component {
 	render() {
 		const { state, setValue, props }: any = this
 		const { form } = props
-		console.log(this)
-		// const [value, setValue] = useState<string>('value1')
-
-		// const form = useForm()
 
 		return <Container>
 			<Unit title="Input & Form & class">

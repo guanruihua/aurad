@@ -1,22 +1,22 @@
 import React from 'react'
-import { Form, useClassForm } from '..'
+import { Form, injectForm } from '..'
 import { FormRecord } from '../type'
 import { initChildren } from './initChildren'
 import { Container, Unit } from 'unit-testing-react'
-
+@injectForm
 export default class TestFormClass extends React.Component {
 
-	form = useClassForm()
-
 	render(): React.ReactNode {
+		const { props }: any = this
+		const { form } = props
 		return <Container columns={1}>
 			<Unit>
 				<Form
-					form={this.form}
+					form={form}
 					onSubmit={(values: FormRecord) => {
 						console.log(values)
 					}}>
-					{initChildren(this.form)}
+					{initChildren(form)}
 				</Form>
 			</Unit>
 		</Container>
