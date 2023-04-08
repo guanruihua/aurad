@@ -17,9 +17,7 @@ function ItemContent(props: ItemProps & FormAction) {
 		label,
 		name,
 		register,
-		rules = [],
 		validateField,
-		// onFormItemChange,
 		children,
 		values = {},
 		setValues,
@@ -48,11 +46,9 @@ function ItemContent(props: ItemProps & FormAction) {
 		...rest,
 		value: name && values[name] || '',
 		onChange: (e: any) => {
-			// onFormItemChange && onFormItemChange(e)
 			onChange && onChange(e)
 			if (e.target && isString(name)) {
 				const v = e.target.value
-				// console.log(validateField)
 				validateField && validateField(name, v)
 				setValues({ [name]: v })
 			}
@@ -72,22 +68,7 @@ function ItemContent(props: ItemProps & FormAction) {
 }
 
 export function Item(props: ItemProps) {
-	// const { name, label, rules = [], children } = props
-	// const { errorStatus, errorMsg, expandProps, resetErrorStatus } = useValidator(rules)
-	// const { onValidatorChange } = expandProps || {}
-
-	// const onFormItemChange = (e: any, flag?: string) => {
-	// 	if (flag === 'reset') return resetErrorStatus()
-	// 	return onValidatorChange(e)
-	// }
-
-	// const newProps = {
-	// ...props,
-	// onFormItemChange,
-	// }
-
 	return <FormContext.Consumer>
 		{(target: FormAction) => <ItemContent {...target} {...props} />}
 	</FormContext.Consumer >
-
 }
