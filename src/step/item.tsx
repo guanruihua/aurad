@@ -5,7 +5,7 @@ import { classNames } from 'harpe'
 
 
 export interface StepItemProps extends ComponentProps {
-	first: boolean
+	first?: boolean
 	status?: StepStatus
 }
 

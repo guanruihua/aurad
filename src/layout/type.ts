@@ -1,1 +1,1 @@
-export type * from './menu/type'
+export * from './menu/type'

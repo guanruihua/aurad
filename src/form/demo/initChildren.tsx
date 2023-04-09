@@ -1,6 +1,7 @@
 import React, { Fragment } from "react"
-import { FormItem, UseForm } from '..'
+import { FormItem } from '..'
 import { Input, Button, Card } from '../..'
+import type { UseForm } from "../type"
 
 export const initChildren = (form: UseForm) => {
 	return <Fragment>
@@ -52,7 +53,8 @@ export const initChildren = (form: UseForm) => {
 			</FormItem>
 			<Button
 				onClick={() => {
-					form.setFieldValue('array', '1122', '1')
+					form.setFieldValue('array', '1122')
+					// form.setFieldValue('array', '1122', '1')
 				}}>
 				set  Array Value
 			</Button>
@@ -62,7 +64,8 @@ export const initChildren = (form: UseForm) => {
 				get all Array Field value
 			</Button>
 			<Button onClick={() => {
-				console.log(form.getFieldValue('array', '1'));
+				console.log(form.getFieldValue('array'));
+				// console.log(form.getFieldValue('array', '1'));
 			}}>
 				get Array Field('1') value
 			</Button>

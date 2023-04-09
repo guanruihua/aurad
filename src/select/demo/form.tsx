@@ -1,6 +1,6 @@
 import React from "react"
 import { Button } from "@/button"
-import { Form, useForm } from "@/form"
+import { Form, useForm, FormItem } from "@/form"
 import { FormRecord } from "@/form/type"
 import { Select } from '..'
 import { options } from './data'

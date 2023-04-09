@@ -1,1 +1,1 @@
-export type * from './Component'
+export * from './Component'
