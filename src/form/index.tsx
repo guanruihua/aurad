@@ -1,5 +1,5 @@
 /* eslint-disable*/
-import React, { FC, forwardRef, Ref } from "react"
+import React from "react"
 import { FormContext } from './context'
 import type { FormRecord, UseForm } from './type'
 import './index.less'
@@ -7,6 +7,7 @@ import { useForm } from "./hook"
 
 export * from './hook'
 export { Item as FormItem } from './item'
+import { Item as FormItem } from './item'
 import type { ItemProps as FormItemProps } from './item'
 
 export type { FormItemProps }
@@ -20,11 +21,11 @@ export interface FormProps {
 }
 
 // 没有编辑过的控件无法辨别''和undefined
-export const Form: FC<FormProps> = forwardRef((props: FormProps, ref: Ref<HTMLFormElement>) => {
+export function Form(props: FormProps) {
 
 	const { children, onSubmit, onReset, form, ...rest } = props
 	const {
-		register, useValue,  resetErrorStatus,
+		register, useValue, resetErrorStatus,
 		validateField, validStatus, validateFieldsValue,
 	} = form || useForm()
 	const [values, setValues, reset] = useValue
@@ -46,4 +47,6 @@ export const Form: FC<FormProps> = forwardRef((props: FormProps, ref: Ref<HTMLFo
 			{children}
 		</form>
 	</FormContext.Provider>
-})
+}
+
+Form.Item = FormItem

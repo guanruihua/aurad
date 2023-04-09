@@ -62,7 +62,7 @@ function ItemContent(props: ItemProps & FormAction) {
 	return <div className={newClassName}>
 		{label && <label className="form-item-label" >{label}:</label>}
 		{children && React.cloneElement(children, newProps)}
-		{errorStatus && <div className="form-item-error-status-message" >{errorMsg}</div>}
+		<div className="form-item-error-status-message" >{errorStatus && errorMsg}</div>
 	</div>
 
 }
