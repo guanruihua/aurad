@@ -1,6 +1,6 @@
 import React from 'react'
 import { MenuObject } from '@/layout/type'
-import { Menu } from "../../layout"
+import { Menu } from "../layout"
 import { ObjectType } from 'abandonjs'
 
 export interface MenuRouteProps {

@@ -4,7 +4,9 @@
   display: grid;
   gap: 0;
   width: 100%;
+  overflow: hidden;
   grid-template-columns: 10vw 1fr;
+  z-index: 1;
   transition: all .3s ease-in-out;
   .scrollbar();
 
@@ -13,9 +15,20 @@
   }
 }
 
+.content-move-border {
+  position: absolute;
+  overflow: auto;
+  left: 0;
+  top: 10px;
+  cursor: col-resize;
+  width: 19px;
+  background: #111111;
+  height: 100%;
+  z-index: 99999;
+}
+
 aside.menu {
   display: block;
-  box-sizing: border-box;
   width: 100%;
   height: 100vh;
   padding: 5px;
@@ -23,8 +36,11 @@ aside.menu {
   padding-right: 7px;
   color: #c5c5c5;
   height: 100vh;
-  overflow-y: auto;
   background: #111111;
+  overflow-y: auto;
+  box-sizing: border-box;
+  z-index: 1;
+
 
   .scrollbar();
 
@@ -42,7 +58,6 @@ aside.menu {
     cursor: pointer;
     border-radius: 8px;
     margin-bottom: 5px;
-    overflow: hidden;
     text-overflow: ellipsis;
     font-weight: bold;
     font-size: small;
@@ -61,22 +76,24 @@ aside.menu {
 }
 
 .content {
+  position: relative;
   height: 100vh;
   overflow-y: auto;
   width: 100%;
   padding: 10px;
+  padding-left: 30px;
   padding-top: 70px;
   padding-bottom: 40px;
   .scrollbar();
 
   .header {
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
     left: 0;
     height: 60px;
     color: #c5c5c5;
-    margin-left: 10vw;
+    width: 100%;
     padding-right: 20px;
     transition: all .3s ease-in-out;
     background: transparent;

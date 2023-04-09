@@ -1,8 +1,10 @@
+/* eslint-disable*/
 import React, { useState, useEffect } from "react"
 import { Outlet } from 'react-router-dom'
 import { isEffectArray, isUndefined } from "asura-eye"
 import { classNames } from 'harpe'
 import type { MenuObject } from './type'
+import { move } from './handle'
 import { Icon } from '../../icon'
 import { SubMenu } from './submenu'
 import './index.less'
@@ -35,12 +37,13 @@ export function Menu(props: Menu) {
 		}
 		setShowMenu(menu)
 	}
-	
+
 	useEffect(() => {
 		const names = location.pathname.split('/').filter(Boolean)
 		if (names && names.length) setSelect(names)
-		const groupName =  localStorage.getItem('show-menu-group-name') || ''
+		const groupName = localStorage.getItem('show-menu-group-name') || ''
 		handleGroup(groupName)
+		move()
 	}, [])
 
 
@@ -82,7 +85,9 @@ export function Menu(props: Menu) {
 					{select.map(str => str.charAt(0).toUpperCase() + str.slice(1)).join(' / ')}
 				</h2>
 			</div>
+			<div className="content-move-border" ></div>
 			<Outlet />
+
 		</div>
 	</div>
 }
