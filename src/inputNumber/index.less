@@ -1,0 +1,39 @@
+input:where(.au-input-number) {
+  display: inline-block;
+
+  width: 100%;
+  min-width: 0;
+  height: 32px;
+  line-height: 32px;
+
+  margin: 0;
+  margin-bottom: 5px;
+  padding: 4px 0 4px 8px;
+  font-size: 14px;
+
+  border-radius: 6px;
+  border: 1px solid #d9d9d9;
+  text-overflow: ellipsis;
+
+  background-image: none;
+
+  outline: none;
+  box-sizing: border-box;
+  list-style: none;
+  transition: all 0.2s;
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &.isHover,
+  &:focus,
+  &:hover,
+  &:active {
+    border-radius: 8px;
+    border-color: #4989e7;
+    box-shadow: #4989e7 0 0 3px;
+  }
+}

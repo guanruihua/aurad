@@ -1,5 +1,5 @@
 import React from "react"
-import { classNames } from '@/assets'
+import { classNames } from 'harpe'
 import { SelectComponent, MultSelectComponent } from './components'
 import { SelectProps } from './type'
 import './style/index.less'
@@ -10,12 +10,12 @@ export function Select(props: Select) {
 	const { mode, className, ...rest } = props
 	if (mode == 'multiple') {
 		return <MultSelectComponent
-			className={classNames('zero-select', className)}
+			className={classNames('au-select', className)}
 			{...rest}
 		/>
 	}
 	return <SelectComponent
-		className={classNames('zero-select', className)}
+		className={classNames('au-select', className)}
 		{...rest}
 	/>
 }

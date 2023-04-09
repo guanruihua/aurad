@@ -1,18 +1,20 @@
 import React, { RefObject, useEffect, useRef, useState } from "react"
-import { classNames } from "@/assets"
+import { classNames } from 'harpe'
 import { SelectProps } from '../type'
-import { isArray } from "check-it-type"
+import { isArray } from "asura-eye"
 import { getSelectValue } from '../util'
 
 export function SelectComponent(props: SelectProps) {
 
 	const {
+		className,
 		name, formName,
 		options = [],
 		placeholder = '',
 		open = false,
 		defaultValue,
 		disabled = false,
+		onChange,
 	} = props
 	const ref: RefObject<HTMLInputElement> = useRef<HTMLInputElement>(null)
 
@@ -31,12 +33,11 @@ export function SelectComponent(props: SelectProps) {
 		}
 	}, [ref.current])
 
-	return <div className={classNames("select", { hidden: disabled })}>
-		<div className={classNames("select-input", { isHover: isHover && !disabled })}>
+	return <div className={classNames(className, { hidden: disabled })}>
+		<div className={classNames("au-select-input", { isHover: isHover && !disabled })}>
 			<input
 				key={selectValue}
 				placeholder={placeholder}
-				// value={selectValue}
 				value={getSelectValue(options, selectValue)}
 				onFocus={() => setHover(true)}
 				onClick={() => setHover(true)}
@@ -47,13 +48,10 @@ export function SelectComponent(props: SelectProps) {
 			{name && <input
 				ref={ref}
 				name={name}
-				style={{ display: 'none' }}
-				onChange={(e) => {
-					console.log(name, e.target.value)
-				}} />}
+				style={{ display: 'none' }} />}
 		</div>
 		{!disabled && <div
-			className={classNames('select-options', { 'select-options-hover': open || isHover })}
+			className={classNames('au-select-options', { 'au-select-options-hover': isHover })}
 			onMouseEnter={() => setLeave(false)}
 			onMouseLeave={() => setLeave(true)}
 		>
@@ -61,11 +59,15 @@ export function SelectComponent(props: SelectProps) {
 				const { value, label } = item
 				return <div
 					key={index.toString()}
+					title={label}
 					onClick={() => {
+						console.log(ref)
+						onChange && onChange(ref)
 						setSelectValue(value)
 						setHover(false)
+						
 					}}
-					className={classNames('select-options-item', { 'selected': selectValue === value })}>
+					className={classNames('au-select-options-item', { 'selected': selectValue === value })}>
 					{label}
 				</div>
 			})}

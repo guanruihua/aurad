@@ -1,13 +1,17 @@
-import React, { forwardRef, Ref, useId } from "react"
+/* eslint-disable*/
+import React from "react"
 import { FormContext } from './context'
-import { useSetState } from '../assets'
-import { Item } from './item'
-import type { FormRecord } from './type'
-import { getFormValues } from './util'
+import type { FormRecord, UseForm } from './type'
 import './index.less'
-import { UseForm } from "./hook"
+import { useForm } from "./hook"
 
 export * from './hook'
+export { Item as FormItem } from './item'
+import { Item as FormItem } from './item'
+import type { ItemProps as FormItemProps } from './item'
+
+export type { FormItemProps }
+
 export interface FormProps {
 	form?: UseForm
 	layout?: 'horizontal' | 'vertical' | 'inline'
@@ -17,28 +21,32 @@ export interface FormProps {
 }
 
 // 没有编辑过的控件无法辨别''和undefined
-export const Form: any = forwardRef((props: FormProps, ref: Ref<HTMLFormElement>) => {
+export function Form(props: FormProps) {
 
-	const { name = useId(), children, onSubmit, onReset, form, ...rest } = props
-	const [values, setValues] = useSetState<FormRecord>({})
+	const { children, onSubmit, onReset, form, ...rest } = props
+	const {
+		register, useValue, resetErrorStatus,
+		validateField, validStatus, validateFieldsValue,
+	} = form || useForm()
+	const [values, setValues, reset] = useValue
 
 	return <FormContext.Provider
-		value={{ formName: name, values, setValues }}>
+		value={{ values, setValues, register, validateField, validStatus }}>
 		<form
-			name={name}
-			ref={ref || form?.ref}
 			onReset={(e: any) => {
+				reset()
+				resetErrorStatus()
 				onReset && onReset(e)
 			}}
 			onSubmit={(e: any) => {
 				e.preventDefault()
-				onSubmit && onSubmit(getFormValues(e))
+				onSubmit && onSubmit(validateFieldsValue())
 			}}
 			{...rest}
 		>
 			{children}
 		</form>
 	</FormContext.Provider>
-})
+}
 
-Form.Item = Item
+Form.Item = FormItem

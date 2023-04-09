@@ -1,5 +1,6 @@
-import { ObjectType } from "abandonjs";
 import React from "react"
+import { ObjectType } from "abandonjs"
+import { Unit } from 'unit-testing-react'
 import { Table } from '..'
 import './index.less'
 
@@ -37,12 +38,11 @@ const rowSelection = {
 };
 
 export default function () {
-	return <div>
-		<h2>Table</h2>
+	return <Unit title="Table">
 		<Table
 			serialNumber
 			rowSelection={rowSelection}
 			columns={columns}
 			dataSource={dataSource} />
-	</div>
+	</Unit>
 }

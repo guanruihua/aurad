@@ -1,0 +1,32 @@
+@import url(../style/flex.less);
+
+.au-step {
+  display: grid;
+
+
+  padding: 10px;
+
+  background: gray;
+
+  &-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    padding: 10px;
+    background-color: ghostwhite;
+    border-radius: 12px;
+
+    &-line {
+      .inlineFlexCenter(center);
+
+      &::after {
+        content: '';
+        display: inline-block;
+        width: 100%;
+        height: 0;
+        border: 1px solid;
+        border-color: #000;
+        // border-color: #f0f0f0;
+      }
+    }
+  }
+}

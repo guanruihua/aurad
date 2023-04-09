@@ -1,45 +1,74 @@
-import React from "react"
-import { ObjectType } from "abandonjs"
+/* eslint-disable*/
+import React, { ReactNode, useEffect } from "react"
 import { FormContext } from './context'
 import type { FormAction } from './type'
-import { useValidator } from './hook'
+import { classNames } from "harpe"
+import { isString, isUndefined } from "asura-eye"
+
 export interface ItemProps {
-	name: string
-	label?: any
+	name?: string
+	label?: string | ReactNode
 	rules?: any[]
 	[key: string]: any
 }
 
-function childPropsHoc(oldProps: ObjectType, expandProps: ObjectType) {
-	return {
-		...oldProps,
-		...expandProps
-	}
-}
-
 function ItemContent(props: ItemProps & FormAction) {
-	// console.log(props)
 	const {
-		// values = {},
-		// setValues = (newValues: FormRecord) => { },
-		formName, name, 
-		label, rules = [],
-		children
+		label,
+		name,
+		register,
+		validateField,
+		children,
+		values = {},
+		setValues,
+		validStatus = {},
 	} = props
 
-	const { errorStatus, errorMsg, expandProps } = useValidator(rules)
+	if (!name) {
+		return <div className="form-item">
+			{label && <label style={{ display: 'block', marginRight: 4, marginBottom: 8 }}>{label}:</label>}
+			{children}
+		</div>
+	}
 
-	const newProps = childPropsHoc(children.props, { name, formName, ...expandProps })
+	const {
+		value: orValue = undefined, defaultValue = undefined,
+		onChange, ...rest
+	} = children.props
 
-	return <div className="form-item">
-		{label && <label style={{ display: 'block', marginRight: 4, marginBottom: 8 }}>{label}:</label>}
+	useEffect(() => {
+		if (!name) return;
+		register(name, props)
+		setValues({ [name]: isUndefined(orValue) ? defaultValue : orValue })
+	}, [name])
+
+	const newProps = {
+		...rest,
+		value: name && values[name] || '',
+		onChange: (e: any) => {
+			onChange && onChange(e)
+			if (e.target && isString(name)) {
+				const v = e.target.value
+				validateField && validateField(name, v)
+				setValues({ [name]: v })
+			}
+		},
+	}
+
+	const { errorStatus = false, errorMsg = '' } = validStatus[name] || {}
+	const newClassName = classNames("form-item", {
+		['form-item-error-status']: errorStatus
+	})
+	return <div className={newClassName}>
+		{label && <label className="form-item-label" >{label}:</label>}
 		{children && React.cloneElement(children, newProps)}
-		{errorStatus && <div>{errorMsg}</div>}
+		<div className="form-item-error-status-message" >{errorStatus && errorMsg}</div>
 	</div>
+
 }
 
 export function Item(props: ItemProps) {
 	return <FormContext.Consumer>
-		{(target: FormAction) => <ItemContent {...target}{...props} />}
+		{(target: FormAction) => <ItemContent {...target} {...props} />}
 	</FormContext.Consumer >
 }

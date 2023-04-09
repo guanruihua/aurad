@@ -1,12 +1,13 @@
 import React, { CSSProperties } from "react"
-import { isNumber } from "check-it-type"
-import { classNames, ComponentBaseProps } from '@/assets'
+import { isNumber } from "asura-eye"
+import { ComponentProps } from '@/assets'
+import { classNames } from 'harpe'
 import { Item } from './item'
 import { getGridBorder, getGridSpanLayout, initIgnore } from './util'
 import { Merge } from './type'
 import './index.less'
 
-export interface Grid extends ComponentBaseProps {
+export interface Grid extends ComponentProps {
 	/**
 	 * @description 边框, 以及子元素边框
 	 */
@@ -79,18 +80,25 @@ export function Grid(props: Grid) {
 		} as CSSProperties}
 		{...rest}>
 		{React.Children.map(children, (child, index: number) => {
-			const { className: unitClassName, style: unitStyle, ...unitRest } = child?.props || {}
-			if ((index + 1) > total || (ignore as number[]).includes(index)) return;
-			return React.cloneElement(child, {
-				className: classNames(childClassName, unitClassName),
-				style: {
-					...getBorder(index),
-					...getSpanLayout(index),
-					...childStyle,
-					...unitStyle
-				},
-				...unitRest
-			})
+
+			if ((index + 1) > total || (ignore as number[]).includes(index)) return
+
+			if (React.isValidElement<ComponentProps>(child)) {
+				const { className: unitClassName, style: unitStyle, ...unitRest } = child.props
+
+				return React.cloneElement(child, {
+					className: classNames(childClassName, unitClassName),
+					style: {
+						...getBorder(index),
+						...getSpanLayout(index),
+						...childStyle,
+						...unitStyle
+					},
+					...unitRest
+				})
+			}
+
+			return <div className={childClassName}>{child}</div>
 		})}
 		{fill && isNumber(extra) && extra > 0 && new Array(extra).fill(null).map((child, i: number) => {
 			const index = i + count

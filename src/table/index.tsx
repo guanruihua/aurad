@@ -1,9 +1,11 @@
 import React, { DetailedHTMLProps, TdHTMLAttributes } from "react"
-import { isNumber, ObjectType } from "abandonjs"
-import { classNames, ComponentBaseProps } from "@/assets"
+import { ObjectType } from "abandonjs"
+import { isNumber } from 'asura-eye'
+import { ComponentProps } from "@/assets"
+import { classNames } from "harpe"
 import './index.less'
 
-export interface Table extends ComponentBaseProps {
+export interface Table extends ComponentProps {
 	/**
 	 * @description 序号
 	 * @default false

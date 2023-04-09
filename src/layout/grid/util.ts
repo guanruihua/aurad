@@ -1,4 +1,4 @@
-import { isNumber } from 'check-it-type';
+import { isNumber } from 'asura-eye';
 import { CSSProperties } from 'react'
 import { Merge } from './type'
 

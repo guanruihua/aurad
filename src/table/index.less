@@ -20,6 +20,7 @@
     border: 1px solid #e9e9e9;
     padding: 16px 8px;
     text-align: center;
+    background: none;
 
     &:first-child {
       border-left: none;
@@ -31,25 +32,39 @@
   }
 
   thead {
+    background: #fafafa;
+
     th {
       border-top: none;
+    }
+
+    tr th:first-child {
+      border-top-left-radius: 12px;
+    }
+
+    tr th:last-child {
+      border-top-right-radius: 12px;
     }
   }
 
   tbody {
-    tr:last-child>td {
+    tr:last-child td {
       border-bottom: none;
+    }
+
+    tr:last-child tr:first-child {
+      border-bottom-left-radius: 12px;
+    }
+
+    tr:last-child tr:last-child {
+      border-bottom-right-radius: 12px;
     }
   }
 
-  .order {
-    width: 30px;
-    width: auto;
-    padding: 5px;
-  }
+}
 
-  // caption {
-  //   padding: 8px;
-  //   // caption-side: bottom;
-  // }
+.order {
+  width: 30px;
+  width: auto;
+  padding: 5px;
 }

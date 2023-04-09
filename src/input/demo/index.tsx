@@ -19,17 +19,61 @@ function setColor() {
 </script>
  */
 import React from "react"
-import { Input } from '..'
+import { Container, Unit } from "unit-testing-react"
+import { Input, InputChangeEvent } from '@/input'
+import { Button } from "@/button"
+import { Space } from "@/layout"
 
 export default function InputTestCmp() {
-	return <>
-		<div>
-			<Input />
-		</div>
-		<div>
-			<Input onChange={(e: any) => {
-				console.log(e.target.value)
-			}} />
-		</div>
-	</>
+
+	const [value, setValue] = React.useState<string>('value1')
+
+	return <Container>
+		<Unit>
+			<Container>
+				<Unit title="Input">
+					<Space direction="vertical">
+						<Input />
+						<Input onChange={(e: any) => {
+							console.log(e.target.value)
+						}} />
+					</Space>
+				</Unit>
+
+				<Unit title="Input(inline)">
+					<Space>
+						<Input style={{ width: 250 }} />
+						<Input style={{ width: 250 }} onChange={(e: any) => {
+							console.log(e.target.value)
+						}} />
+					</Space>
+				</Unit>
+
+				<Unit title="Input ( Label) ">
+					<Space direction="vertical">
+						<Input label='name' />
+						<Input label='name' onChange={(e: any) => {
+							console.log(e.target.value)
+						}} />
+					</Space>
+				</Unit>
+			</Container>
+		</Unit>
+		<Unit>
+			<Container>
+				<Unit title="Input set value">
+					<Input
+						value={value}
+						onChange={(e: InputChangeEvent) => {
+							setValue(e.target.value)
+						}}
+					/>
+					<Button type="primary" onClick={() => setValue('new Value')}>set value(new Value)</Button>
+				</Unit>
+				<Unit title="Input set defaultValue">
+					<Input defaultValue="value2" />
+				</Unit>
+			</Container>
+		</Unit>
+	</Container>
 }

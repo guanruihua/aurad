@@ -1,17 +1,16 @@
 import React from "react"
-import { TestFormFunc } from './FCTest'
-import { TestFormClass } from './classTest'
+import TestFormFunc from './FCTest'
+import TestFormClass from './classTest'
+import { Container, Unit } from "unit-testing-react"
 
 export default function FormTestPage() {
 
-	return <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
-		<div>
-			<h2>Class Component</h2>
+	return <Container columns={3}>
+		<Unit title="Class Component">
 			<TestFormClass />
-		</div>
-		<div>
-			<h2>Function Component</h2>
+		</Unit>
+		<Unit title="Function Component">
 			<TestFormFunc />
-		</div>
-	</div>
+		</Unit>
+	</Container>
 }

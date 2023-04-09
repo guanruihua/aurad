@@ -1,13 +1,14 @@
 import React, { HTMLAttributes, useState } from "react"
-import { classNames, ComponentBaseProps } from "@/assets"
-import { isNumber } from "check-it-type"
+import {  ComponentProps } from "@/assets"
+import { classNames } from 'harpe'
+import { isNumber } from "asura-eye"
 import { Select } from '../select'
 import { Input } from "../input"
 import { Icon } from '../icon'
 import { getShowPageNumRange } from './util'
 import './index.less'
 
-export interface Paging extends ComponentBaseProps, Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'onChange'> {
+export interface Paging extends ComponentProps, Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'onChange'> {
 	/**
 	 * @description 当前页数
 	 */

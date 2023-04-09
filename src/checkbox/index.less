@@ -1,0 +1,43 @@
+@import url(../style/flex.less);
+
+:where(.au-checkbox) {
+  display: inline-block;
+  min-height: 32px;
+  height: 32px;
+  width: auto;
+  .inlineFlexCenter();
+  cursor: pointer;
+
+  .au-checkbox-icon {
+    .inlineFlexCenter(center);
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    margin-left: 8px;
+    margin-inline-start: 8px;
+    cursor: pointer;
+    border: none;
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    transition: all .2s ease-in-out;
+
+    &.au-checkbox-select {
+      background: #1890ff;
+      border: none;
+    }
+  }
+
+
+  input[type=checkbox] {
+    width: 0;
+    height: 0;
+    inset: 0;
+    z-index: -1;
+  }
+
+  label {
+    margin: 0 8px;
+    color: rgba(0, 0, 0, .88);
+    cursor: pointer;
+  }
+}

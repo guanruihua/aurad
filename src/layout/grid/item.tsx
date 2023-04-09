@@ -1,7 +1,8 @@
 import React from "react"
-import { classNames, ComponentBaseProps } from '@/assets'
+import { ComponentProps } from '@/assets'
+import { classNames } from 'harpe'
 
-export interface GridItem extends ComponentBaseProps {
+export interface GridItem extends ComponentProps {
 	/**
 	 * @description 水平对齐方式
 	 * @default 'center'

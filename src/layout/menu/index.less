@@ -1,0 +1,120 @@
+@import url('../../style/scrollbar.less');
+
+.main {
+  display: grid;
+  gap: 0;
+  width: 100%;
+  grid-template-columns: 10vw 1fr;
+  transition: all .3s ease-in-out;
+  .scrollbar();
+
+  &.fold {
+    grid-template-columns: 60px 1fr;
+  }
+}
+
+aside.menu {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100vh;
+  padding: 5px;
+  padding-top: 10px;
+  padding-right: 7px;
+  color: #c5c5c5;
+  height: 100vh;
+  overflow-y: auto;
+  background: #111111;
+
+  .scrollbar();
+
+  a {
+    display: block;
+    color: #eee;
+    text-decoration: none;
+    text-transform: capitalize;
+    padding: 10px;
+  }
+
+  & a {
+    display: block;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: bold;
+    font-size: small;
+    transition: all .3s ease-in-out;
+
+    &.fold {
+      text-align: center;
+    }
+
+    &.isSelect,
+    &:hover {
+      color: #9afc8d;
+      background: #1f1f1f;
+    }
+  }
+}
+
+.content {
+  height: 100vh;
+  overflow-y: auto;
+  width: 100%;
+  padding: 10px;
+  padding-top: 70px;
+  padding-bottom: 40px;
+  .scrollbar();
+
+  .header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 60px;
+    color: #c5c5c5;
+    margin-left: 10vw;
+    padding-right: 20px;
+    transition: all .3s ease-in-out;
+    background: transparent;
+    background: #111111;
+    border-radius: 0;
+    z-index: 999;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &.fold {
+      margin-left: 60px;
+    }
+
+    h2 {
+      padding-right: 10px;
+    }
+
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 48px;
+      height: 48px;
+      padding: 6px;
+      margin: 0;
+      border-radius: 12px;
+      border-width: 0;
+      color: #c5c5c5;
+      background-color: transparent;
+      margin-left: 10px;
+      font-size: 18px;
+      font-weight: bold;
+
+      &:hover {
+        background-color: #1f1f1f;
+      }
+    }
+  }
+}
