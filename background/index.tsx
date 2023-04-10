@@ -34,6 +34,11 @@ const reModules: MenuObject[] = [
 				element: Lazy(import('../src/input/demo'))
 			},
 			{
+				name: 'Object',
+				path: '/input/object',
+				element: Lazy(import('../src/input/demo/object'))
+			},
+			{
 				name: 'FC',
 				path: '/input/fc',
 				element: Lazy(import('../src/input/demo/fc'))

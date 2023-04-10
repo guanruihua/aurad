@@ -54,8 +54,14 @@ export function Menu(props: Menu) {
 		fold, setFold,
 	}
 
+	const asideWidth = localStorage.getItem('aside-menu-width')
+	const newStyle = fold
+		? { gridTemplateColumns: `60px 1fr` }
+		: { gridTemplateColumns: `${asideWidth ? asideWidth + 'px' : '10vw'} 1fr` }
 	return <div
-		className={classNames("main", { fold })}>
+		className={classNames("main", { fold })}
+		style={newStyle}
+	>
 		<SubMenu {...newProps} />
 		<div className="content">
 			<div className={classNames("header", { fold })}>
@@ -85,7 +91,7 @@ export function Menu(props: Menu) {
 					{select.map(str => str.charAt(0).toUpperCase() + str.slice(1)).join(' / ')}
 				</h2>
 			</div>
-			<div className="content-move-border" ></div>
+			<div className="content-move-border" draggable={!fold} ></div>
 			<Outlet />
 
 		</div>

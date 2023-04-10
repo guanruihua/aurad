@@ -4,6 +4,7 @@ import { classNames } from 'harpe'
 import { InputProps, InputChangeEvent } from './type'
 import './index.less'
 
+export * from './object'
 export * from './type'
 
 export function Input(props: InputProps) {
