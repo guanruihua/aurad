@@ -1,4 +1,4 @@
-import React, { RefObject, useEffect, useRef, useState } from "react"
+import React, { useState } from "react"
 import { classNames } from 'harpe'
 import { SelectProps } from '../type'
 import { isArray } from "asura-eye"
@@ -8,7 +8,7 @@ export function SelectComponent(props: SelectProps) {
 
 	const {
 		className,
-		name, formName,
+		name, 
 		options = [],
 		placeholder = '',
 		open = false,
@@ -16,22 +16,11 @@ export function SelectComponent(props: SelectProps) {
 		disabled = false,
 		onChange,
 	} = props
-	const ref: RefObject<HTMLInputElement> = useRef<HTMLInputElement>(null)
 
 	const [isHover, setHover] = useState<boolean>(open)
 	const [isLeave, setLeave] = useState<boolean>(false)
 
 	const [selectValue, setSelectValue] = useState<string | undefined>(isArray(defaultValue) ? defaultValue[0] : defaultValue)
-
-	useEffect(() => {
-		if (formName === undefined || name == undefined) return;
-		(window as any)[`${formName}__${name}`] = (value: any) => {
-			console.log('aaa', formName, name, value, ref)
-		}
-		return () => {
-			delete (window as any)[`${formName}__${name}`]
-		}
-	}, [ref.current])
 
 	return <div className={classNames(className, { hidden: disabled })}>
 		<div className={classNames("au-select-input", { isHover: isHover && !disabled })}>
@@ -46,7 +35,6 @@ export function SelectComponent(props: SelectProps) {
 				readOnly
 				unselectable="on" />
 			{name && <input
-				ref={ref}
 				name={name}
 				style={{ display: 'none' }} />}
 		</div>
@@ -60,9 +48,8 @@ export function SelectComponent(props: SelectProps) {
 				return <div
 					key={index.toString()}
 					title={label}
-					onClick={() => {
-						console.log(ref)
-						onChange && onChange(ref)
+					onClick={(e) => {
+						onChange && onChange(e)
 						setSelectValue(value)
 						setHover(false)
 						

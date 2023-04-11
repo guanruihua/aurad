@@ -1,21 +1,17 @@
-@select-prefix: ~'au-select';
 @import url(@/style/scrollbar.less);
 
 @select-border-radius: 4px;
 
-.@{select-prefix} {
-  & {
-    position: relative;
-  }
-
-  box-sizing: border-box;
+.au-select {
   width: 100%;
+  position: relative;
+  box-sizing: border-box;
 
   &-input {
     width: 100%;
     padding: 4px 6px;
     border-radius: @select-border-radius;
-    border: 1px solid #424242;
+    border: 1px solid #d9d9d9;
 
     & input {
       background: transparent;
@@ -69,12 +65,7 @@
     }
 
     &>input {
-      // margin-top: 6px;
-      // margin: 4px;
-      // display: none;
       width: auto;
-      // background-color: red;
-      // min-width: 100%;
       max-width: 100%;
       padding: 4px 0 4px 4.5px;
     }
@@ -120,7 +111,7 @@
 
       &:hover,
       &.selected {
-        background-color: #e9f3fe;
+        background-color: #c8e0fa;
       }
     }
   }

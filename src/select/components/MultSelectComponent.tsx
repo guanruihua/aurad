@@ -1,5 +1,5 @@
 /* eslint-disable*/
-import React, { RefObject, useEffect, useRef, useState } from "react"
+import React, { useState } from "react"
 import { useSetState } from "@/assets"
 import { classNames } from 'harpe'
 import { SelectProps } from '../type'
@@ -9,51 +9,15 @@ import { Icon } from '@/icon'
 
 export function MultSelectComponent(props: SelectProps) {
 	const { className, options = [], placeholder = '', open = false, defaultValue = [], disabled = false } = props
-	const [isHover, setHover] = useState<boolean>(open)
 
+	const [isHover, setHover] = useState<boolean>(open)
 	const [isLeave, setLeave] = useSetState<Record<string, boolean>>({ input: false, options: false })
 
 	const [selectValues, setSelectValues] = useState<string[]>(isArray(defaultValue) ? unique(defaultValue) : [defaultValue])
-	const [childWidth, setChildWidth] = useState<number>(0)
-	const [inputWidth, setInputWidth] = useState<number | string>(100)
-	const [inputTextWidth, setInputTextWidth] = useState<number>(0)
-	const [inputWrap, setInputWrap] = useState<boolean>(false)
-	const ref: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null)
-	const inputRef: RefObject<HTMLInputElement> = useRef<HTMLInputElement>(null)
-
-	const handleInputWidth = () => {
-		if (!ref.current) return;
-		const { width = 0 } = ref.current.getBoundingClientRect()
-		const { childNodes = [], childElementCount = 1 } = ref.current
-		if (childElementCount === 1) {
-			setInputWrap(false)
-			setInputWidth('100%')
-		}
-		let childWidth = 0
-		childNodes.forEach((item: any) => {
-			const { localName } = item
-			if (localName !== 'span') {
-				return
-			}
-			const { width = 0 } = item.getBoundingClientRect()
-			childWidth += width + 10
-		})
-		let targetWidth = width - (childWidth % width) - 18
-		setChildWidth(childWidth % width)
-		if (targetWidth < 0) targetWidth = 120
-		setInputWidth(targetWidth)
-		setInputWrap(false)
-	}
-
-	useEffect(() => {
-		handleInputWidth()
-	}, [ref.current])
-
 	const [value, setValue] = useState<string>('')
 
 	return <div className={classNames(className, { hidden: disabled })}>
 		<div
-			ref={ref}
 			tabIndex={999}
 			className={classNames(
 				'au-select-mult-input', 'au-select-input',
@@ -73,18 +37,17 @@ export function MultSelectComponent(props: SelectProps) {
 							className="icon-close"
 							style={{ cursor: 'pointer', paddingRight: 5 }}
 							onClick={() => {
-								handleInputWidth()
+								const newSelectValues: string[] = selectValues.filter(v => v !== item)
+								setSelectValues(newSelectValues)
 							}}>
 							<Icon type="no" size={9} fill={'#8a8a94'} />
 						</span>
 					</span>
 			})}
 			<input
-				ref={inputRef}
 				style={{
-					minWidth: inputWidth,
-					display: inputWrap ? 'block' : 'inline-block',
-					marginTop: inputWrap ? 6 : 0,
+					width: '100%',
+					display: isHover ? 'inline-block' : 'none',
 				}}
 				onMouseLeave={() => setLeave({ input: true })}
 				onMouseEnter={() => setLeave({ input: false })}
@@ -93,22 +56,6 @@ export function MultSelectComponent(props: SelectProps) {
 				value={value}
 				onChange={(e) => {
 					const value = e.target.value
-					const valueLength = value.length || 0
-					if (inputRef.current) {
-						const newWrapStatus = inputRef.current.getBoundingClientRect().width < (inputRef.current.scrollWidth + childWidth)
-
-						if (newWrapStatus !== inputWrap) {
-							if (valueLength > inputTextWidth && newWrapStatus === true) {
-								setInputWrap(true)
-								setInputWidth('100%')
-							}
-
-							if (valueLength < inputTextWidth && newWrapStatus === false) {
-								handleInputWidth()
-							}
-						}
-					}
-					setInputTextWidth(valueLength)
 					setValue(value)
 				}}
 				onClick={() => {
@@ -120,6 +67,7 @@ export function MultSelectComponent(props: SelectProps) {
 				}}
 			/>
 		</div>
+		{/* 下拉框 */}
 		{
 			!disabled && <div
 				className={classNames('au-select-options', { 'au-select-options-hover': isHover })}
@@ -132,7 +80,6 @@ export function MultSelectComponent(props: SelectProps) {
 						key={index.toString()}
 						onBlur={() => { !Object.values(isLeave).includes(false) && setHover(false) }}
 						onClick={() => {
-							handleInputWidth()
 							const newSelectValues: string[] = selectValues.includes(value)
 								? selectValues.filter(v => v !== value)
 								: selectValues.concat(value)
