@@ -3,7 +3,8 @@
 .main {
   display: grid;
   gap: 0;
-  width: 100%;
+  width: 100vw;
+  max-height: 100vh;
   overflow: hidden;
   grid-template-columns: 10vw 1fr;
   z-index: 1;
@@ -77,14 +78,18 @@ aside.menu {
 
 .content {
   position: relative;
-  height: 100vh;
-  overflow-y: auto;
   width: 100%;
-  padding: 10px;
-  padding-left: 30px;
-  padding-top: 70px;
-  padding-bottom: 40px;
-  .scrollbar();
+  height: 100vh;
+  overflow: hidden;
+
+  &-container {
+    height: 100vh;
+    max-height: 100vh;
+    padding: 70px 15px 30px 20px;
+
+    overflow-y: auto;
+    .scrollbar();
+  }
 
   .header {
     position: absolute;
@@ -113,7 +118,7 @@ aside.menu {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 48px;
+      min-width: 48px;
       height: 48px;
       padding: 6px;
       margin: 0;

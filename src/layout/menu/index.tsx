@@ -92,7 +92,9 @@ export function Menu(props: Menu) {
 				</h2>
 			</div>
 			<div className="content-move-border" draggable={!fold} ></div>
-			<Outlet />
+			<div className="content-container">
+				<Outlet />
+			</div>
 
 		</div>
 	</div>
