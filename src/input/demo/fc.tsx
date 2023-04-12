@@ -19,9 +19,11 @@ export default function () {
 					console.log(values)
 				}}>
 				<FormItem name="fi-1" rules={[{ required: true }]}>
-					<Input onChange={(e: InputChangeEvent) => {
-						console.log(e.target.value)
-					}} />
+					<Input
+						placeholder="name"
+						onChange={(e: InputChangeEvent) => {
+							console.log(e.target.value)
+						}} />
 				</FormItem>
 				<FormItem>
 					<Space>
