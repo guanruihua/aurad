@@ -11,10 +11,9 @@ export function MultSelectComponent(props: SelectProps) {
 	const { className, options = [], placeholder = '', open = false, defaultValue = [], disabled = false } = props
 
 	const [isHover, setHover] = useState<boolean>(open)
-	const [isLeave, setLeave] = useSetState<Record<string, boolean>>({ input: false, options: false })
+	const [isLeave, setLeave] = useSetState<Record<string, boolean>>({ options: true })
 
 	const [selectValues, setSelectValues] = useState<string[]>(isArray(defaultValue) ? unique(defaultValue) : [defaultValue])
-	const [value, setValue] = useState<string>('')
 
 	return <div className={classNames(className, { hidden: disabled })}>
 		<div
@@ -25,7 +24,10 @@ export function MultSelectComponent(props: SelectProps) {
 			)}
 			onMouseLeave={() => setLeave({ inputBox: true })}
 			onClick={() => { setLeave({ inputBox: false }); setHover(true) }}
-			onBlur={() => { !Object.values(isLeave).includes(false) && setHover(false); }}
+			onBlur={() => { 
+				console.log(isLeave)
+				!Object.values(isLeave).includes(false) && setHover(false); 
+			}}
 		>
 			{selectValues.map((item: string, index: number) => {
 				if (item!)
@@ -44,28 +46,6 @@ export function MultSelectComponent(props: SelectProps) {
 						</span>
 					</span>
 			})}
-			<input
-				style={{
-					width: '100%',
-					display: isHover ? 'inline-block' : 'none',
-				}}
-				onMouseLeave={() => setLeave({ input: true })}
-				onMouseEnter={() => setLeave({ input: false })}
-				key={selectValues.join(',')}
-				placeholder={placeholder}
-				value={value}
-				onChange={(e) => {
-					const value = e.target.value
-					setValue(value)
-				}}
-				onClick={() => {
-					setLeave({ input: true })
-					setHover(true)
-				}}
-				onBlur={() => {
-					!Object.values(isLeave).includes(false) && setHover(false)
-				}}
-			/>
 		</div>
 		{/* 下拉框 */}
 		{
