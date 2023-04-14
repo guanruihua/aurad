@@ -1,0 +1,85 @@
+@import '@/theme/variable.css';
+@import '@/style/throttle.less';
+
+@border-radius: var(--au-border-radius);
+
+.au-btn {
+  position: relative;
+  display: inline-block;
+
+  height: 32px;
+  line-height: 32px;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  color: #000000d9;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+
+  border-radius: 2px;
+  border: 1px solid transparent;
+  border-color: #d9d9d9;
+  border-radius: @border-radius;
+
+  background-image: none;
+  background: #fff;
+
+  cursor: pointer;
+  transition: all .3s cubic-bezier(.645, .045, .355, 1);
+  user-select: none;
+  touch-action: manipulation;
+  animation: throttle .3s step-end forwards;
+
+  &:active {
+    animation: none;
+  }
+}
+
+.au-btn:disabled {
+  cursor: not-allowed;
+  color: #d9d9d9;
+  background: #f5f5f5;
+  border-color: #d9d9d9;
+}
+
+@disabled-color: var(--au-disabled-color);
+@primary-color: var(--au-primary-color);
+@primary-bg-color: var(--au-primary-bg-color);
+@primary-bg-color-hover: var(--au-primary-bg-color-hover);
+@primary-bg-color-active: var(--au-primary-bg-color-active);
+
+.au-btn-primary {
+  color: @primary-color;
+  background: @primary-bg-color;
+
+  &:hover {
+    background-color: @primary-bg-color-hover;
+  }
+
+  &:active {
+    background-color: @primary-bg-color-active;
+  }
+}
+
+.au-btn-text {
+  border: none;
+  background: none;
+
+  &:disabled,
+  &:hover,
+  &:active {
+    background: transparent;
+  }
+}
+
+.au-btn-default {
+
+  &:hover,
+  &:active {
+    color: var(--au-default-color);
+    border-color: @primary-bg-color-hover;
+  }
+
+}

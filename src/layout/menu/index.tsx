@@ -1,8 +1,10 @@
+/* eslint-disable*/
 import React, { useState, useEffect } from "react"
 import { Outlet } from 'react-router-dom'
 import { isEffectArray, isUndefined } from "asura-eye"
 import { classNames } from 'harpe'
 import type { MenuObject } from './type'
+import { move } from './handle'
 import { Icon } from '../../icon'
 import { SubMenu } from './submenu'
 import './index.less'
@@ -35,12 +37,13 @@ export function Menu(props: Menu) {
 		}
 		setShowMenu(menu)
 	}
-	
+
 	useEffect(() => {
 		const names = location.pathname.split('/').filter(Boolean)
 		if (names && names.length) setSelect(names)
-		const groupName =  localStorage.getItem('show-menu-group-name') || ''
+		const groupName = localStorage.getItem('show-menu-group-name') || ''
 		handleGroup(groupName)
+		move()
 	}, [])
 
 
@@ -51,8 +54,14 @@ export function Menu(props: Menu) {
 		fold, setFold,
 	}
 
+	const asideWidth = localStorage.getItem('aside-menu-width')
+	const newStyle = fold
+		? { gridTemplateColumns: `60px 1fr` }
+		: { gridTemplateColumns: `${asideWidth ? asideWidth + 'px' : '10vw'} 1fr` }
 	return <div
-		className={classNames("main", { fold })}>
+		className={classNames("main", { fold })}
+		style={newStyle}
+	>
 		<SubMenu {...newProps} />
 		<div className="content">
 			<div className={classNames("header", { fold })}>
@@ -82,7 +91,11 @@ export function Menu(props: Menu) {
 					{select.map(str => str.charAt(0).toUpperCase() + str.slice(1)).join(' / ')}
 				</h2>
 			</div>
-			<Outlet />
+			<div className="content-move-border" draggable={!fold} ></div>
+			<div className="content-container">
+				<Outlet />
+			</div>
+
 		</div>
 	</div>
 }
