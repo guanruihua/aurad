@@ -5,33 +5,34 @@ import { BrowserContainer, Lazy, getMenuRoute } from '../src'
 import './index.less'
 import { MenuObject } from "../src/layout/type"
 
-const modules = [
-	'step',
-	'icon',
-	'table',
-	'paging',
-	'echart'
-].map(name => {
-	return {
-		name,
-		path: '/' + name,
-		element: Lazy(import(`../src/${name}/demo`))
-	}
-})
-
-const reModules: MenuObject[] = [
+const modules: MenuObject[] = [
 	{
-		name: 'flow',
-		path: '/flow',
+		name: 'Icon',
+		path: '/icon',
+		element: Lazy(import(`../src/icon/demo`))
+	},
+	{
+		name: 'Chart',
+		path: '/chart',
 		children: [
 			{
-				name: 'fix',
-				path: '/flow/fix',
-				element: Lazy(import('../src/flow/demo/fix')),
+				name: 'flow',
+				path: '/chart/flow',
+				children: [
+					{
+						name: 'fix',
+						path: '/chart/flow/fix',
+						element: Lazy(import('../src/chart/flow/demo/fix')),
+					},
+				],
 			},
-		],
+			{
+				name: 'echart',
+				path: '/chart/echart',
+				element: Lazy(import('../src/chart/echart/demo')),
+			},
+		]
 	},
-
 	{
 		name: 'form',
 		path: '/form',
@@ -143,6 +144,27 @@ const reModules: MenuObject[] = [
 		],
 	},
 	{
+		name: 'DataGraph',
+		path: '/graph',
+		children: [
+			{
+				name: 'step',
+				path: '/graph/step',
+				element: Lazy(import('../src/dataGraph/step/demo')),
+			},
+			{
+				name: 'table',
+				path: '/graph/table',
+				element: Lazy(import('../src/dataGraph/table/demo')),
+			},
+			{
+				name: 'paging',
+				path: '/graph/paging',
+				element: Lazy(import('../src/dataGraph/paging/demo')),
+			},
+		]
+	},
+	{
 		name: 'Layout',
 		path: '/layout',
 		children: [
@@ -173,7 +195,7 @@ const menu = [
 			],
 		},
 		path: '/',
-		modules: [...modules, ...reModules],
+		modules,
 	})
 ]
 function App() {

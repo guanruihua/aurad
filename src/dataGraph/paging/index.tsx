@@ -2,8 +2,8 @@ import React, { HTMLAttributes, useState } from "react"
 import {  ComponentProps } from "@/assets"
 import { classNames } from 'harpe'
 import { isNumber } from "asura-eye"
-import { Select, Input } from '../form'
-import { Icon } from '../icon'
+import { Select, Input } from '@/form'
+import { Icon } from '@/icon'
 import { getShowPageNumRange } from './util'
 import './index.less'
 

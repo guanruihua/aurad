@@ -1,11 +1,9 @@
 /* eslint-disable*/
-import React, { FC } from "react"
+import React from "react"
 import { ComponentProps } from "@/assets"
-import { Item, StepItemProps } from './item'
+import { Item } from './item'
 import { classNames } from "harpe"
 import './index.less'
-import { isEffectFunction } from "asura-eye"
-import { ObjectType } from "abandonjs"
 
 export type { StepItemProps } from './item'
 export interface StepProps extends ComponentProps {
