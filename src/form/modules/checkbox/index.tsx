@@ -1,12 +1,12 @@
 /* eslint-disable*/
 import React, { useState } from "react"
 import { classNames } from "harpe"
-import './index.less'
-import { Icon } from '../icon'
+import { Icon } from '@/icon'
 import { isUndefined } from "asura-eye"
 import { Group } from './group'
 import type { CheckboxGroupContextProps, CheckboxProps } from './type'
 import { CheckboxGroupContext } from './context'
+import './index.less'
 
 export * from './type'
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Button } from '@/button'
+import { Button } from '@/form'
 import { Dialog } from '..'
 import { Container, Unit } from "unit-testing-react"
 

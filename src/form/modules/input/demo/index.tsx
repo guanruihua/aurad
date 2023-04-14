@@ -20,8 +20,8 @@ function setColor() {
  */
 import React from "react"
 import { Container, Unit } from "unit-testing-react"
-import { Input, InputChangeEvent } from '@/input'
-import { Button } from "@/button"
+import { Input, InputChangeEvent } from '../../input'
+import { Button } from "../../button"
 import { Space } from "@/layout"
 
 export default function InputTestCmp() {

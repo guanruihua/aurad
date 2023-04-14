@@ -1,8 +1,8 @@
 import React from "react"
 import { Container, Unit } from "unit-testing-react"
 import { Form, useForm, FormItem } from '@/form'
-import { Radio } from '@/radio'
-import { Button } from "@/button"
+import { Radio } from '..'
+import { Button } from "../../button"
 
 export default function () {
 	const form = useForm()

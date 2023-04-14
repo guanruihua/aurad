@@ -2,7 +2,7 @@ import React, { ReactNode } from "react"
 import { classNames } from "harpe"
 import { ComponentProps } from "@/assets"
 import { Icon } from '@/icon'
-import { Button } from '@/button'
+import { Button } from '@/form'
 import './index.less'
 import { isNoEmpty } from "asura-eye"
 

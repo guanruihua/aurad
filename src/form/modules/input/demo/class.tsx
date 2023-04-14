@@ -1,9 +1,7 @@
 /* eslint-disable*/
 import React from "react"
-import { Input, InputChangeEvent } from '@/input'
+import { Input, InputChangeEvent, Button, Form, FormItem, injectForm } from '@/form'
 import { Container, Unit } from "unit-testing-react"
-import { Button } from "@/button"
-import { Form, FormItem, injectForm } from "@/form"
 import { Space } from "@/layout"
 
 @injectForm

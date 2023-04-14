@@ -5,6 +5,8 @@ import type { FormRecord, UseForm } from './type'
 import './index.less'
 import { useForm } from "./hook"
 
+export * from './modules'
+
 export * from './hook'
 export { Item as FormItem } from './item'
 import { Item as FormItem } from './item'

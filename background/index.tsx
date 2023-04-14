@@ -8,10 +8,6 @@ import { MenuObject } from "../src/layout/type"
 const modules = [
 	'step',
 	'icon',
-	'checkbox',
-	'button',
-	'inputNumber',
-	'textarea',
 	'table',
 	'paging',
 	'echart'
@@ -25,53 +21,6 @@ const modules = [
 
 const reModules: MenuObject[] = [
 	{
-		name: 'input',
-		path: '/input',
-		children: [
-			{
-				name: 'base',
-				path: '/input/base',
-				element: Lazy(import('../src/input/demo'))
-			},
-			{
-				name: 'Object',
-				path: '/input/object',
-				element: Lazy(import('../src/input/demo/object'))
-			},
-			{
-				name: 'FC',
-				path: '/input/fc',
-				element: Lazy(import('../src/input/demo/fc'))
-			},
-			{
-				name: 'class',
-				path: '/input/class',
-				element: Lazy(import('../src/input/demo/class'))
-			}
-		]
-	},
-	{
-		name: 'radio',
-		path: '/radio',
-		children: [
-			{
-				name: 'base',
-				path: '/radio/base',
-				element: Lazy(import('../src/radio/demo'))
-			},
-			{
-				name: 'FC',
-				path: '/radio/fc',
-				element: Lazy(import('../src/radio/demo/fc'))
-			},
-			{
-				name: 'class',
-				path: '/radio/class',
-				element: Lazy(import('../src/radio/demo/class'))
-			}
-		]
-	},
-	{
 		name: 'flow',
 		path: '/flow',
 		children: [
@@ -82,27 +31,7 @@ const reModules: MenuObject[] = [
 			},
 		],
 	},
-	{
-		name: 'select',
-		path: '/select',
-		children: [
-			{
-				name: 'simple',
-				path: '/select/simple',
-				element: Lazy(import('../src/select/demo/simple')),
-			},
-			{
-				name: 'multiple',
-				path: '/select/multiple',
-				element: Lazy(import('../src/select/demo/mult')),
-			},
-			{
-				name: 'form',
-				path: '/select/form',
-				element: Lazy(import('../src/select/demo/form')),
-			},
-		],
-	},
+
 	{
 		name: 'form',
 		path: '/form',
@@ -116,6 +45,89 @@ const reModules: MenuObject[] = [
 				name: 'fc',
 				path: '/form/fc',
 				element: Lazy(import('../src/form/demo/FCTest')),
+			},
+			{
+				name: 'input',
+				path: '/form/input',
+				children: [
+					{
+						name: 'base',
+						path: '/form/input/base',
+						element: Lazy(import('../src/form/modules/input/demo'))
+					},
+					{
+						name: 'Object',
+						path: '/form/input/object',
+						element: Lazy(import('../src/form/modules/input/demo/object'))
+					},
+					{
+						name: 'FC',
+						path: '/form/input/fc',
+						element: Lazy(import('../src/form/modules/input/demo/fc'))
+					},
+					{
+						name: 'class',
+						path: '/form/input/class',
+						element: Lazy(import('../src/form/modules/input/demo/class'))
+					}
+				]
+			},
+			{
+				name: 'select',
+				path: '/form/select',
+				children: [
+					{
+						name: 'simple',
+						path: '/form/select/simple',
+						element: Lazy(import('../src/form/modules/select/demo/simple')),
+					},
+					{
+						name: 'multiple',
+						path: '/form/select/multiple',
+						element: Lazy(import('../src/form/modules/select/demo/mult')),
+					},
+					{
+						name: 'form',
+						path: '/form/select/form',
+						element: Lazy(import('../src/form/modules/select/demo/form')),
+					},
+				],
+			},
+			{
+				name: 'inputNumber',
+				path: '/form/inputNumber',
+				element: Lazy(import(`../src/form/modules/inputNumber/demo`))
+			},
+			{
+				name: 'textarea',
+				path: '/form/textarea',
+				element: Lazy(import(`../src/form/modules/textarea/demo`))
+			},
+			{
+				name: 'checkbox',
+				path: '/form/checkbox',
+				element: Lazy(import(`../src/form/modules/checkbox/demo`))
+			},
+			{
+				name: 'radio',
+				path: '/form/radio',
+				children: [
+					{
+						name: 'base',
+						path: '/form/radio/base',
+						element: Lazy(import('../src/form/modules/radio/demo'))
+					},
+					{
+						name: 'FC',
+						path: '/form/radio/fc',
+						element: Lazy(import('../src/form/modules/radio/demo/fc'))
+					},
+					{
+						name: 'class',
+						path: '/form/radio/class',
+						element: Lazy(import('../src/form/modules/radio/demo/class'))
+					}
+				]
 			},
 		],
 	},
@@ -154,13 +166,9 @@ const menu = [
 		fold: false,
 		group: {
 			Form: [
-				'radio',
-				'input',
-				'inputNumber',
-				'checkbox',
-				'select',
+				'form'
 			],
-			Chart:[
+			Chart: [
 				'flow'
 			],
 		},

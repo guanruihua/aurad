@@ -1,9 +1,7 @@
 import React from "react"
 import { Space, SpaceAlign } from '..'
-import { Button } from '@/button'
+import { Button, Radio } from '@/form'
 import { Container, Unit } from "unit-testing-react"
-import { Checkbox } from "@/checkbox"
-import { Radio } from "@/radio"
 
 export default function () {
 

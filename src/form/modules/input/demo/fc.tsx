@@ -1,7 +1,7 @@
 import React, { useState } from "react"
-import { Input, InputChangeEvent } from '@/input'
+import { Input, InputChangeEvent } from '../../input'
 import { Container, Unit } from "unit-testing-react"
-import { Button } from "@/button"
+import { Button } from "../../button"
 import { Form, FormItem, useForm } from "@/form"
 import { Space } from "@/layout"
 
