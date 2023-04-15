@@ -5,7 +5,6 @@ export * from './layout'
 export * from './message'
 export * from './theme'
 export * from './utils'
-export * from './VRouter'
 export * from './chart'
 export * from './dataGraph'
 

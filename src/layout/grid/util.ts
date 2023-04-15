@@ -34,7 +34,7 @@ export function getGridSpanLayout(layout: Merge, columns: number) {
 
 export function initIgnore(layout: Merge, columns: number): number[] {
 	const ignore: number[] = []
-	for (let key in layout) {
+	for (const key in layout) {
 		if (!isNumber(Number(key))) continue
 		const { row = 1, column = 1 } = layout[key]
 		if (row === 1 && column === 1) continue

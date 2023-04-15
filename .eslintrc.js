@@ -26,7 +26,7 @@ module.exports = {
 		// '@typescript-eslint/no-unused-vars':'off',
 		// '@typescript-eslint/no-inferrable-types': 'off',
 		'no-empty-pattern': 'off',
-		'prefer-const': 'off',
+		// 'prefer-const': 'off',
 		'prefer-rest-params': 'off',
 		// '@typescript-eslint/no- inferable -types': 'off',
 		'@typescript-eslint/no-explicit-any': 'off',
