@@ -37,6 +37,7 @@
     "background/**/*",
     "**/*/__test__/*",
     "**/*/__demo__/*",
+    "**/*/demo/*",
     "config/*.ts"
   ],
   "include": [
