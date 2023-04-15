@@ -1,4 +1,3 @@
-/* eslint-disable*/
 import React, { ReactNode, useState } from "react"
 import { classNames } from 'harpe'
 import { InputProps, InputChangeEvent } from '../type'

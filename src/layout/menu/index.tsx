@@ -1,4 +1,3 @@
-/* eslint-disable*/
 import React, { useState, useEffect } from "react"
 import { Outlet } from 'react-router-dom'
 import { isEffectArray, isUndefined } from "asura-eye"

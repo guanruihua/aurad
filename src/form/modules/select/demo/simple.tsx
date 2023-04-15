@@ -1,4 +1,3 @@
-/* eslint-disable*/
 import React from "react"
 import { Select } from '..'
 import { options } from './data'

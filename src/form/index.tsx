@@ -1,4 +1,3 @@
-/* eslint-disable*/
 import React from "react"
 import { FormContext } from './context'
 import type { FormRecord, UseForm } from './type'

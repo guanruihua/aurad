@@ -1,4 +1,3 @@
-/* eslint-disable*/
 import React, { CSSProperties } from 'react'
 import { Chart } from '..'
 import { Container, Unit } from 'unit-testing-react';

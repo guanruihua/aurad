@@ -1,4 +1,3 @@
-/* eslint-disable*/
 import React from "react"
 import { ComponentProps } from "@/assets"
 import { Item } from './item'
