@@ -2,10 +2,9 @@ require('./env/tsconfig/index')('npm')
 
 const path = require("path")
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-// const miniCSS = require('mini-css-extract-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const formatTS = require('@formatjs/ts-transformer')
-const exclude = /node_modules|example/
+const exclude = /node_modules|example|demo/
 
 module.exports = {
 	mode: "none",
@@ -14,7 +13,7 @@ module.exports = {
 		outputModule: true
 	},
 	resolve: {
-		jalias: {
+		alias: {
 			'@': path.resolve(__dirname, '../src'),
 		},
 		mainFiles: ['index'],
@@ -134,9 +133,8 @@ module.exports = {
 	output: {
 		filename: "index.umd.js",
 		library: ['aurad'],
-		// libraryTarget: "esm"
+		path: path.resolve(__dirname, '../dist'),
 		libraryTarget: "umd",
-		module: true
 	},
 	optimization: {
 		minimize: true,
@@ -151,9 +149,11 @@ module.exports = {
 		'react-dom': 'ReactDOM'
 	},
 	plugins: [
-		new CleanWebpackPlugin(),
-		// new miniCSS({
-		// 	filename: 'css/index.css'
-		// })
+		new CleanWebpackPlugin({
+			path: '../dist',
+			cleanOnceBeforeBuildPatterns: ['../dist'],
+			verbose: true,
+		}),
+
 	]
 };

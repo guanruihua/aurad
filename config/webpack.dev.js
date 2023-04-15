@@ -1,7 +1,7 @@
 const Webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const webpackConfig = require('./webpack.base.js');
-const ESLintPlugin = require('eslint-webpack-plugin');
+// const ESLintPlugin = require('eslint-webpack-plugin');
 const path = require('path')
 
 require('./env/tsconfig/index')('dev')
@@ -25,13 +25,13 @@ const devConfig = {
 		filename: 'bundle.[fullhash].js',
 		publicPath: '/' //通常是CDN地址
 	},
-	plugins: [].concat(webpackConfig.plugins, [
-		new ESLintPlugin({
-			context: path.resolve(__dirname, '../src'),
-			files: ['**/*.ts', '**/*.js', '**/*.tsx'],
-		}
-		),
-	]),
+	// plugins: [].concat(webpackConfig.plugins, [
+	// 	new ESLintPlugin({
+	// 		context: path.resolve(__dirname, '../src'),
+	// 		files: ['**/*.ts', '**/*.js', '**/*.tsx'],
+	// 	}
+	// 	),
+	// ]),
 }
 
 const compiler = Webpack({ ...webpackConfig, ...devConfig });
