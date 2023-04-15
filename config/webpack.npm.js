@@ -10,8 +10,11 @@ const exclude = /node_modules|example/
 module.exports = {
 	mode: "none",
 	entry: path.resolve(__dirname, '../src/index.tsx'),
+	experiments: {
+		outputModule: true
+	},
 	resolve: {
-		alias: {
+		jalias: {
 			'@': path.resolve(__dirname, '../src'),
 		},
 		mainFiles: ['index'],
@@ -132,7 +135,8 @@ module.exports = {
 		filename: "index.umd.js",
 		library: ['aurad'],
 		// libraryTarget: "esm"
-		libraryTarget: "umd"
+		libraryTarget: "umd",
+		module: true
 	},
 	optimization: {
 		minimize: true,
