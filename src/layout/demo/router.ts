@@ -15,5 +15,10 @@ export default {
 			path: '/layout/space',
 			element: Lazy(import('../space/demo')),
 		},
+		{
+			name: 'waterfall',
+			path: '/layout/waterfall',
+			element: Lazy(import('../waterfall/demo')),
+		},
 	]
 } as MenuObject

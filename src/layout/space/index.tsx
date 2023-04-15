@@ -1,22 +1,20 @@
 import React, { CSSProperties } from "react"
+import type { Direction, Align } from '../type'
+import { FlexAlign } from '../constant'
 import { ComponentProps } from "@/assets"
 import './index.less'
 import { classNames } from "harpe"
 
-
-export type SpaceAlign = 'start' | 'end' | 'center' | 'between'
-
 export interface SpaceProps extends ComponentProps {
-
 	/**
 	 * @description 间距方向
 	 * @default 'horizontal'
 	 */
-	direction?: 'vertical' | 'horizontal'
+	direction?: Direction
 	/**
 	 * @description 水平对齐方式
 	 */
-	align?: SpaceAlign
+	align?: Align
 	/**
 	 * @description 换行
 	 * @default true
@@ -28,14 +26,6 @@ export interface SpaceProps extends ComponentProps {
 	 * @example '10px 5px': 垂直间隔10px, 水平间隔5px
 	 */
 	gap?: number | string
-}
-
-
-const FlexAlign: Record<SpaceAlign, CSSProperties['justifyContent']> = {
-	start: 'flex-start',
-	end: 'flex-end',
-	center: 'center',
-	between: 'space-between'
 }
 
 export function Space(props: SpaceProps) {
@@ -60,7 +50,7 @@ export function Space(props: SpaceProps) {
 
 	if (direction === 'vertical') {
 		newStyles['alignItems'] = FlexAlign[align]
-	} 
+	}
 
 	return <div
 		className={classNames("au-space", className)}

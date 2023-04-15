@@ -29,7 +29,7 @@ specifiers:
   husky: ^8.0.1
   less: ^4.1.3
   less-loader: ^11.1.0
-  mini-css-extract-plugin: ^2.7.2
+  mock-record: ^0.4.1
   postcss: ^8.4.18
   postcss-loader: ^7.0.1
   react: ^18.2.0
@@ -80,7 +80,7 @@ devDependencies:
   husky: 8.0.1
   less: 4.1.3
   less-loader: 11.1.0_less@4.1.3+webpack@5.74.0
-  mini-css-extract-plugin: 2.7.2_webpack@5.74.0
+  mock-record: 0.4.1
   postcss: 8.4.18
   postcss-loader: 7.0.1_igyeriywjd4lwzfk4socqbj2qi
   style-loader: 3.3.1_webpack@5.74.0
@@ -3304,7 +3304,7 @@ packages:
     dependencies:
       universalify: 2.0.0
     optionalDependencies:
-      graceful-fs: 4.2.11
+      graceful-fs: 4.2.10
     dev: true
 
   /jsonify/0.0.1:
@@ -3539,16 +3539,6 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /mini-css-extract-plugin/2.7.2_webpack@5.74.0:
-    resolution: {integrity: sha512-EdlUizq13o0Pd+uCp+WO/JpkLvHRVGt97RqfeGhXqAcorYo1ypJSpkV+WDT0vY/kmh/p7wRdJNJtuyK540PXDw==}
-    engines: {node: '>= 12.13.0'}
-    peerDependencies:
-      webpack: ^5.0.0
-    dependencies:
-      schema-utils: 4.0.0
-      webpack: 5.74.0_webpack-cli@4.10.0
-    dev: true
-
   /minimalistic-assert/1.0.1:
     resolution: {integrity: sha512-UtJcAD4yEaGtjPezWuO9wC4nwUnVH/8/Im3yEHQP4b67cXlD/Qr9hdITCU1xDbSEXg2XKNaP8jsReV7vQd00/A==}
     dev: true
@@ -3570,6 +3560,10 @@ packages:
 
   /minimist/1.2.7:
     resolution: {integrity: sha512-bzfL1YUZsP41gmu/qjrEk0Q6i2ix/cVeAhbCbqH9u3zYutS1cLg00qhrD0M2MVdCcx4Sc0UpP2eBWo9rotpq6g==}
+    dev: true
+
+  /mock-record/0.4.1:
+    resolution: {integrity: sha512-peGQXCA4nYWnW2QvTJJo5FmDawyl3A4CufoJ0pZdUu0j9JZYX4udt9blwqCFUebPDeCllTDM9sxNhhnUpm5XDQ==}
     dev: true
 
   /ms/2.0.0:

@@ -1,84 +1,49 @@
 import React from "react"
-import { Space, SpaceAlign } from '..'
-import { Button, Radio } from '@/form'
+import { Space } from '..'
+import { Direction, type Align } from '../../type'
+import { Radio } from '@/form'
 import { Container, Unit } from "unit-testing-react"
+import { RDS } from '@/demo'
 
 export default function () {
 
-	const [align, setAlign] = React.useState<SpaceAlign>('start')
+	const [align, setAlign] = React.useState<Align>('start')
+	const [layout, setLayout] = React.useState<Direction>('vertical')
 
 	return <Container>
-		<Unit title="Space">
+		<Unit title="Space(default)">
 			<Space gap={10}>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
+				<RDS count={20} />
 			</Space>
 		</Unit>
-		<Unit title="Space(align)">
+		<Unit title="Space(custom align)">
 			<Space style={{ marginBottom: 10 }}>
 				<Radio.Group
 					type="button"
 					defaultValue={'start'}
-					options={['start', 'end', 'center', 'between']}
-					onChange={(value: SpaceAlign) => {
+					options={['start', 'end', 'center', 'between', 'around']}
+					onChange={(value: Align) => {
 						setAlign(value)
 					}}
 				/>
 			</Space>
 			<Space align={align}>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
+				<RDS count={20} />
 			</Space>
 		</Unit>
-		<Unit title="Space(vertical center)">
-			<Space gap={10} direction="vertical" align="center">
-				<Button>Button</Button>
-				<Button>Button</Button>
-				<Button>Button</Button>
+		<Unit title="Space(custom layout)">
+			<Space style={{ marginBottom: 10 }}>
+				<Radio.Group
+					type="button"
+					defaultValue={'vertical'}
+					options={['vertical', 'horizontal']}
+					onChange={(value: Direction) => {
+						setLayout(value)
+					}}
+				/>
+			</Space>
+			<Space gap={10} direction={layout}>
+				<RDS count={5} />
 			</Space>
 		</Unit>
 	</Container >

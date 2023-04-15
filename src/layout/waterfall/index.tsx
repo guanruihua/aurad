@@ -1,18 +1,36 @@
 import { ComponentProps } from '@/assets'
-import { isString } from 'asura-eye'
-import React from 'react'
+import { debounce } from 'abandonjs'
+import { isEmpty } from 'asura-eye'
+import React, { useEffect } from 'react'
 
 export interface WaterfallProps extends ComponentProps {
+	name?: string
 	count?: number
 	gap?: number | string
 }
 
 export function Waterfall(props: WaterfallProps) {
-	const { count = 2, gap = 10, children, style = {}, ...rest } = props
+	const { name, count = 2, gap = 10, children, style = {}, ...rest } = props
+
+	useEffect(() => {
+		if (isEmpty(name)) return;
+		const content = document.querySelector(`.${name}`)
+
+		const observer = new ResizeObserver(debounce(() => {
+			// 监听 宽度修改 count (代开发)
+		}, 50));
+		if (!content) return;
+		observer.observe(content);
+		return () => {
+			observer.unobserve(content)
+		}
+
+	}, [])
+
 	return (
 		<div style={{
 			columnCount: count,
-			gap: isString(gap) ? gap : `0 ${gap}px`,
+			gap,
 			...style
 		}} {...rest}>
 			{children}
