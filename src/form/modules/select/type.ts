@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { ComponentProps } from '../assets'
+import { ComponentProps } from '@/assets'
 
 export interface SelectProps extends ComponentProps {
 	prefix?: string

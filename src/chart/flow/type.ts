@@ -1,5 +1,5 @@
 import { CSSProperties, ReactNode } from 'react'
-import { ArrowProps } from '@/icon'
+import { ArrowProps } from './arrow'
 
 export type FlowChartNodeStatus = 'operable' | 'finish' | 'error' | 'prohibit' | 'empty'
 export type FlowFloatCover = ArrowProps
