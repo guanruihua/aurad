@@ -1,5 +1,8 @@
 import type { CSSProperties } from 'react'
 import type { Align } from './type'
+
+// ResponsiveIndex
+
 /**
  * @description 小于576px
  */

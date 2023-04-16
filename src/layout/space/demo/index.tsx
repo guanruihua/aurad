@@ -2,7 +2,8 @@ import React from "react"
 import { Space } from '..'
 import { Direction, type Align } from '../../type'
 import { Radio } from '@/form'
-import { Container, Unit } from "unit-testing-react"
+import { Waterfall } from '../../waterfall'
+import { Unit } from "unit-testing-react"
 import { RDS } from '@/demo'
 
 export default function () {
@@ -10,7 +11,10 @@ export default function () {
 	const [align, setAlign] = React.useState<Align>('start')
 	const [layout, setLayout] = React.useState<Direction>('vertical')
 
-	return <Container>
+	return <Waterfall count={1}
+		sm={2} 
+		// md={1}
+	>
 		<Unit title="Space(default)">
 			<Space gap={10}>
 				<RDS count={20} />
@@ -46,5 +50,5 @@ export default function () {
 				<RDS count={5} />
 			</Space>
 		</Unit>
-	</Container >
+	</Waterfall >
 }
