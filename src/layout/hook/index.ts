@@ -35,7 +35,6 @@ export function useLayout<
 	const newProps: Props = exclude<Props>(props, ['xxl', 'xl', 'lg', 'md', 'sm', 'xs'])
 
 	function handleWidth(width: number) {
-		console.log(width)
 		if (!isEmpty(props.xxl) && width > xxl) return callback(props.xxl as Value, 'xxl')
 		if (!isEmpty(props.xl) && width > xl) return callback(props.xl as Value, 'xl')
 		if (!isEmpty(props.lg) && width > lg) return callback(props.lg as Value, 'lg')

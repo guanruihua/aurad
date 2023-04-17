@@ -11,10 +11,7 @@ export default function () {
 	const [align, setAlign] = React.useState<Align>('start')
 	const [layout, setLayout] = React.useState<Direction>('vertical')
 
-	return <Waterfall count={1}
-		sm={2} 
-		// md={1}
-	>
+	return <Waterfall count={1} sm={2} >
 		<Unit title="Space(default)">
 			<Space gap={10}>
 				<RDS count={20} />

@@ -5,22 +5,20 @@ import { useLayout } from '../hook'
 
 export interface WaterfallProps extends ComponentProps {
 	count?: number
-	gap?: number | string
+	xGap?: number | string
 	yGap?: number | string
 }
 
 export function Waterfall(props: WaterfallProps) {
 	const {
-		count = 2, gap = 10, yGap, children,
-		lg: _lg,
+		count = 2, xGap = 10, yGap, children,
 		style = {}, ...rest
 	} = props
 
 	const [newCount, setCount] = useState<number>(count)
 
 	const { ref, props: newProps } = useLayout<HTMLDivElement, number>({
-		callback: (value: number, effectKey: string) => {
-			console.log(value, effectKey)
+		callback: (value: number) => {
 			setCount(value)
 		},
 		defaultValue: count,
@@ -33,16 +31,18 @@ export function Waterfall(props: WaterfallProps) {
 			ref={ref}
 			style={{
 				columnCount: newCount,
-				gap,
+				gap: xGap,
 				...style
 			}} {...newProps}>
 			{React.Children.map(children, (item) => {
 
-				const itemYGap = isUndefined(yGap) ? gap : yGap
 				const exStyle: CSSProperties = {
 					overflow: 'hidden',
 					breakInside: 'avoid',
-					marginBottom: itemYGap
+				}
+
+				if (!isUndefined(yGap)) {
+					exStyle['marginBottom'] = yGap
 				}
 
 				if (React.isValidElement(item)) {
