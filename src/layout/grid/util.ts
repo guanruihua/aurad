@@ -1,36 +1,22 @@
-import { isNumber } from 'asura-eye';
+import { isEmpty, isNumber } from 'asura-eye';
 import { CSSProperties } from 'react'
 import { Merge } from './type'
-
-export function getGridBorder(columns: number, total: number, border: CSSProperties['border']): (index: number) => CSSProperties {
-	return function (index: number,
-	) {
-		if (border === undefined) return {}
-		return {
-			borderRight: (index + 1) % columns !== 0 ? border : 'none',
-			borderBottom: index >= (total - columns) ? 'none' : border,
-		}
-	}
-}
 
 export function getGridSpanLayout(layout: Merge, columns: number) {
 	return function (index: number) {
 
 		const unit = layout[index]
-		if (!unit) return {}
+		if (isEmpty(unit)) return {}
 		const { row = 1, column = 1 } = unit
 		const y = Math.ceil((index + 1) / columns)
 		const x = ((index + 1) % columns)
 		const newStyle = {
 			gridArea: `${y}/${x}/ span ${row} / span ${column}`
 		} as CSSProperties
-		if (x + (column as number) - 1 === columns) {
-			newStyle['borderRight'] = 'none'
-		}
+
 		return newStyle
 	}
 }
-
 
 export function initIgnore(layout: Merge, columns: number): number[] {
 	const ignore: number[] = []
