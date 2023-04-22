@@ -30,6 +30,7 @@ const menu = [
 			Layout: ['layout'],
 			DataGraph: ['dataGraph'],
 			Chart: ['chart'],
+			Other: ['msg'],
 		},
 		path: '/',
 		modules,

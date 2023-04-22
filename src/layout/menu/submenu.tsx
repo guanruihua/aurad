@@ -72,7 +72,7 @@ export interface SubMenu {
 export function SubMenu(props: SubMenu) {
 	const { menu = [], select, setSelect, fold } = props
 
-	return <aside className="menu" >
+	return <aside className="au-menu" >
 		<NextSubMenu {...{ menu, fold, select, setSelect }} />
 	</aside>
 }

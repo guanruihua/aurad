@@ -27,7 +27,7 @@ export function Menu(props: Menu) {
 	const [showMenu, setShowMenu] = useState<MenuObject[]>(menu)
 
 	const handleGroup = (groupName: string) => {
-		localStorage.setItem('show-menu-group-name', groupName)
+		localStorage.setItem('au-show-menu-group-name', groupName)
 		if (groupName === '') setShowMenu(menu)
 		const showMenuNameList = group[groupName] || []
 		if (isEffectArray<string>(showMenuNameList)) {
@@ -40,7 +40,7 @@ export function Menu(props: Menu) {
 	useEffect(() => {
 		const names = location.pathname.split('/').filter(Boolean)
 		if (names && names.length) setSelect(names)
-		const groupName = localStorage.getItem('show-menu-group-name') || ''
+		const groupName = localStorage.getItem('au-show-menu-group-name') || ''
 		handleGroup(groupName)
 		move()
 	}, [])
@@ -53,17 +53,17 @@ export function Menu(props: Menu) {
 		fold, setFold,
 	}
 
-	const asideWidth = localStorage.getItem('aside-menu-width')
+	const asideWidth = localStorage.getItem('au-aside-menu-width')
 	const newStyle = fold
 		? { gridTemplateColumns: `60px 1fr` }
 		: { gridTemplateColumns: `${asideWidth ? asideWidth + 'px' : '10vw'} 1fr` }
 	return <div
-		className={classNames("main", { fold })}
+		className={classNames("au-main", { fold })}
 		style={newStyle}
 	>
 		<SubMenu {...newProps} />
-		<div className="content">
-			<div className={classNames("header", { fold })}>
+		<div className="au-content">
+			<div className={classNames("au-header", { fold })}>
 				<div style={{ display: 'flex' }}>
 					<button
 						onClick={() => {
@@ -90,8 +90,8 @@ export function Menu(props: Menu) {
 					{select.map(str => str.charAt(0).toUpperCase() + str.slice(1)).join(' / ')}
 				</h2>
 			</div>
-			<div className="content-move-border" draggable={!fold} ></div>
-			<div className="content-container">
+			<div className="au-content-move-border" draggable={!fold} ></div>
+			<div className="au-content-container">
 				<Outlet />
 			</div>
 
