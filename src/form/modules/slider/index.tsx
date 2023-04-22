@@ -44,36 +44,20 @@ export function SliderDev(props: SliderProps) {
 			<div className="au-slider-handle" >
 				<span className="start"></span>
 				<span className="end"
-					style={{
-						cursor: 'grab'
-					}}
 					draggable
-					onDragStart={(e) => {
-						// const target: any = e.target
-						// e.dataTransfer.effectAllowed = 'none';
-						// e.dataTransfer.effectAllowed = 'all';
-						// target.classList.add('dragging');
-						console.log('start', e)
+					onDragStart={(e: any) => {
+						console.log('start', e.target.getBoundingClientRect())
 					}}
 					onDragOver={(e: any) => {
-						// e.dataTransfer.effectAllowed = 'all';
-						// e.target.classList.add('dragging');
-						// console.log('over', e)
-						e.preventDefault();
+						console.log('over', e.target.getBoundingClientRect())
 					}}
-					// onDragLeave={(e: any) => {
-					// 	e.dataTransfer.effectAllowed = 'all';
-					// 	e.target.classList.add('dragging');
-					// }}
-					onDrop={(e) => {
-						e.preventDefault()
-
+					onDrag={(e: any) => {
+						console.log('ing', e.target.getBoundingClientRect())
 					}}
 					onDragEnd={(e: any) => {
-						console.log('end', e)
-						// e.target.classList.remove("dragging");
-					}}>
-				</span>
+						console.log('end', e.target.getBoundingClientRect())
+					}}
+				></span>
 			</div>
 		</div>
 	);
