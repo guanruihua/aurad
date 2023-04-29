@@ -21,7 +21,6 @@ export interface FormProps {
 	[key: string]: any
 }
 
-// 没有编辑过的控件无法辨别''和undefined
 export function Form(props: FormProps) {
 
 	const { children, onSubmit, onReset, form, ...rest } = props
@@ -31,7 +30,7 @@ export function Form(props: FormProps) {
 	} = form || useForm()
 	const [values, setValues, reset] = useValue
 
-	return <FormContext.Provider
+	return (<FormContext.Provider
 		value={{ values, setValues, register, validateField, validStatus }}>
 		<form
 			onReset={(e: any) => {
@@ -47,7 +46,7 @@ export function Form(props: FormProps) {
 		>
 			{children}
 		</form>
-	</FormContext.Provider>
+	</FormContext.Provider>)
 }
 
 Form.Item = FormItem

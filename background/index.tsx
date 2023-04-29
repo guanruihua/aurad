@@ -8,6 +8,7 @@ import formRoute from '../src/form/demo/router'
 import dataGraphRoute from '../src/dataGraph/demo/router'
 import msgRoute from '../src/message/demo/router'
 import layoutRoute from '../src/layout/demo/router'
+import codeRoute from '../src/code/demo/router'
 
 const modules: MenuObject[] = [
 	{
@@ -20,6 +21,7 @@ const modules: MenuObject[] = [
 	dataGraphRoute,
 	msgRoute,
 	layoutRoute,
+	codeRoute,
 ]
 
 const menu = [
@@ -30,6 +32,7 @@ const menu = [
 			Layout: ['layout'],
 			DataGraph: ['dataGraph'],
 			Chart: ['chart'],
+			Code: ['code'],
 			Other: ['msg'],
 		},
 		path: '/',
