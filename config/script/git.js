@@ -53,7 +53,7 @@ async function run() {
 			if(branchName!=='') command += ' ' + branchName
 			if(tagName!=='') command += ' ' + tagName
 
-			execSync(cm)
+			execSync(command)
 		}
 	}
 	console.log(res, commitMsg);
