@@ -1,7 +1,12 @@
-const { execSync } = require('child_process')
+const __execSync = require('child_process').execSync
 const { MultiSelect, Input } = require('enquirer')
 const pkg = require('../../package.json')
 const version = pkg.version || '0.0.1'
+
+const execSync = (command) => {
+	console.log('Command: ', command)
+	__execSync(command)
+}
 
 async function run() {
 	const prompt = await new MultiSelect({
@@ -50,13 +55,12 @@ async function run() {
 		if (!res.includes('notPush')) {
 			let command = 'git push -u origin'
 
-			if(branchName!=='') command += ' ' + branchName
-			if(tagName!=='') command += ' ' + tagName
+			if (branchName !== '') command += ' ' + branchName
+			if (tagName !== '') command += ' ' + tagName
 
 			execSync(command)
 		}
 	}
-	console.log(res, commitMsg);
 }
 
 run().catch(console.error)
