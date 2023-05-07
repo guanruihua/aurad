@@ -20,5 +20,3 @@ declare module '*.txt' {
 	const md: string
 	export = md
 }
-
-// declare module 'reactflow';

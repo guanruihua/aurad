@@ -1,6 +1,6 @@
 import React from "react"
 import RowTest from './row'
-import GridTest from "./grid"
+import GridTest from "../grid/demo"
 
 export default function () {
 

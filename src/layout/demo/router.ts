@@ -11,9 +11,19 @@ export default {
 			element: Lazy(import('../card/demo')),
 		},
 		{
+			name: 'grid',
+			path: '/layout/grid',
+			element: Lazy(import('../grid/demo')),
+		},
+		{
 			name: 'space',
 			path: '/layout/space',
 			element: Lazy(import('../space/demo')),
+		},
+		{
+			name: 'waterfall',
+			path: '/layout/waterfall',
+			element: Lazy(import('../waterfall/demo')),
 		},
 	]
 } as MenuObject

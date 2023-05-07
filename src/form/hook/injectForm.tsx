@@ -1,4 +1,3 @@
-/* eslint-disable*/
 import React, { ComponentType } from 'react';
 import { useForm } from './useForm'
 

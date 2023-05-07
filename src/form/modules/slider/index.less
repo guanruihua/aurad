@@ -1,0 +1,102 @@
+.au-slider {
+  position: relative;
+  // height: 30px;
+  // padding: 10px;
+  // background-color: gray;
+
+  &-rail {
+    // height: 10px;
+    // border-radius: 8px;
+    // background: red;
+  }
+
+  &-step {
+    display: flex;
+    align-items: center;
+    // justify-content: space-around;
+    justify-content: space-between;
+
+    height: 10px;
+    width: 100%;
+    border-radius: 8px;
+    background: red;
+
+    margin: auto;
+
+    span {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      background: blue;
+      border-radius: 50%;
+      z-index: 10;
+      cursor: pointer;
+    }
+
+  }
+
+  &-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    // justify-content: space-around;
+    justify-content: space-between;
+    width: 50%;
+    height: 8px;
+    margin: auto;
+    z-index: 5;
+    background: yellow;
+
+    span {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      background: yellowgreen;
+      border-radius: 50%;
+      z-index: 10;
+      cursor: pointer;
+
+      &.end {
+				position: absolute;
+				z-index: 99999;
+				background-color: royalblue;
+				left: 300px;
+        // transform: translateX(100px);
+      }
+    }
+  }
+}
+
+/* 更改禁用状态图标 */
+.dragging {
+  // opacity: 0.5;
+  /* 更改透明度 */
+  // cursor: not-allowed;
+  // cursor: pointer;
+	// width: 100% !important;
+	// height: 100% !important;
+  cursor: grab !important;
+  /* 更改鼠标指针 */
+  /* 添加其他样式，以更改图标外观 */
+}
+
+
+body {
+  /* Prevent the user selecting text in the example */
+  user-select: none;
+}
+
+#draggable {
+  text-align: center;
+  background: white;
+}
+
+.dropzone {
+  width: 200px;
+  height: 60px;
+  background: blueviolet;
+  margin: 10px;
+  padding: 10px;
+}

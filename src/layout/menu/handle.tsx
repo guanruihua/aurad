@@ -1,8 +1,8 @@
 import { isEmpty } from "asura-eye"
 
 export function move() {
-	const mainDom = document.querySelector('.main')
-	const contentDom = document.querySelector('.content-move-border')
+	const mainDom = document.querySelector('.au-main')
+	const contentDom = document.querySelector('.au-content-move-border')
 
 	if (isEmpty(contentDom) || isEmpty(mainDom)) return;
 
@@ -10,7 +10,7 @@ export function move() {
 		if (isEmpty(mainDom)) return;
 		const asideWidth = e.clientX > 100 ? e.clientX : 100
 		mainDom.setAttribute('style', `grid-tempLate-columns:${asideWidth}px 1fr;`)
-		localStorage.setItem('aside-menu-width', asideWidth)
+		localStorage.setItem('au-aside-menu-width', asideWidth)
 	}
 	contentDom.addEventListener('dragend', onMouseMove)
 }

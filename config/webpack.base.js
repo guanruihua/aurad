@@ -1,23 +1,25 @@
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require("path")
-const { ESBuildPlugin } = require('esbuild-loader')
+// const { ESBuildPlugin } = require('esbuild-loader')
 
 module.exports = {
 	entry: './background/index.tsx',
 	mode: 'development',
 	// stats: 'errors-only',
+	experiments: {
+		outputModule: true
+	},
 	resolve: {
 		alias: {
 			'@': path.resolve(__dirname, '../src'),
 		},
-		extensions: ['.tsx', '.js', '.ts', '.less', '.css', '.module.less', '.d.ts']
+		extensions: ['.tsx', '.js', '.ts', '.less', '.css', '.module.less', '.d.ts'],
 	},
 	module: {
 		rules: [
 			{
 				test: /\.tsx?$/,
-
 				use: [
 					{
 						loader: 'esbuild-loader',
@@ -111,7 +113,7 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new ESBuildPlugin(),
+		// new ESBuildPlugin(),
 		//数组 放着所有的webpack插件
 		new HtmlWebpackPlugin({
 			title: '0Design',

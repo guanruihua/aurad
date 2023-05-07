@@ -2,7 +2,7 @@ import { Lazy } from "@/utils"
 import type { MenuObject } from "@/layout"
 
 export default {
-		name: 'DataGraph',
+		name: 'dataGraph',
 		path: '/graph',
 		children: [
 			{

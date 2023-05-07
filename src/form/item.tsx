@@ -1,4 +1,3 @@
-/* eslint-disable*/
 import React, { ReactNode, useEffect } from "react"
 import { FormContext } from './context'
 import type { FormAction } from './type'

@@ -60,6 +60,9 @@
     padding-right: 15px;
     z-index: 9;
     .inlineFlexCenter(center);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 
     &:hover,
     &:active {
@@ -73,9 +76,6 @@
     }
   }
 
-
-
-
   &:first-child .au-radio-label {
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
@@ -85,4 +85,11 @@
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
   }
+}
+
+div:where(.au-radio-group) {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 0 2.5px;
 }
