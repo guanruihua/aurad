@@ -1,66 +1,72 @@
-const __execSync = require('child_process').execSync
-const { MultiSelect, Input } = require('enquirer')
-const pkg = require('../../package.json')
-const version = pkg.version || '0.0.1'
+const { GitCommand } = require('command-go')
+// const pkg = require('../../package.json')
+// console.log(pkg)
+// GitCommand(pkg.version)
+GitCommand()
 
-const execSync = (command) => {
-	console.log('Command: ', command)
-	__execSync(command)
-}
+// const __execSync = require('child_process').execSync
+// const { MultiSelect, Input } = require('enquirer')
+// const pkg = require('../../package.json')
+// const version = pkg.version || '0.0.1'
 
-async function run() {
-	const prompt = await new MultiSelect({
-		name: 'Command',
-		message: 'Select Commands',
-		choices: [
-			{ name: 'New Branch', value: 'branch' },
-			{ name: 'Add Tag', value: 'tag' },
-			{ name: 'Not Commit', value: 'notCommit' },
-			{ name: 'Not Add', value: 'notAdd' },
-			{ name: 'Not Push', value: 'notPush' },
-		],
-	})
-	// prompt.clear()
-	const res = await prompt.run()
-	let branchName = ''
-	let tagName = ''
+// const execSync = (command) => {
+// 	console.log('Command: ', command)
+// 	__execSync(command)
+// }
 
-	if (Array.isArray(res)) {
+// async function run() {
+// 	const prompt = await new MultiSelect({
+// 		name: 'Command',
+// 		message: 'Select Commands',
+// 		choices: [
+// 			{ name: 'New Branch', value: 'branch' },
+// 			{ name: 'Add Tag', value: 'tag' },
+// 			{ name: 'Not Commit', value: 'notCommit' },
+// 			{ name: 'Not Add', value: 'notAdd' },
+// 			{ name: 'Not Push', value: 'notPush' },
+// 		],
+// 	})
+// 	// prompt.clear()
+// 	const res = await prompt.run()
+// 	let branchName = ''
+// 	let tagName = ''
 
-		if (!res.includes('notAdd')) execSync('git add .')
+// 	if (Array.isArray(res)) {
 
-		if (!res.includes('notCommit')) {
-			const commitMsg = await new Input({
-				message: 'Input Commit Message',
-			}).run();
-			execSync(`git commit -m "${commitMsg}"`)
-		}
+// 		if (!res.includes('notAdd')) execSync('git add .')
 
-		if (res.includes('branch')) {
-			branchName = await new Input({
-				message: 'Input Branch Name',
-				default: version
-			}).run();
-			execSync('git branch -b ' + branchName)
-		}
+// 		if (!res.includes('notCommit')) {
+// 			const commitMsg = await new Input({
+// 				message: 'Input Commit Message',
+// 			}).run();
+// 			execSync(`git commit -m "${commitMsg}"`)
+// 		}
 
-		if (res.includes('tag')) {
-			tagName = await new Input({
-				message: 'Input Tag Name',
-				default: 'v' + version
-			}).run();
-			execSync('git tag ' + commitMsg)
-		}
+// 		if (res.includes('branch')) {
+// 			branchName = await new Input({
+// 				message: 'Input Branch Name',
+// 				default: version
+// 			}).run();
+// 			execSync('git branch -b ' + branchName)
+// 		}
 
-		if (!res.includes('notPush')) {
-			let command = 'git push -u origin'
+// 		if (res.includes('tag')) {
+// 			tagName = await new Input({
+// 				message: 'Input Tag Name',
+// 				default: 'v' + version
+// 			}).run();
+// 			execSync('git tag ' + commitMsg)
+// 		}
 
-			if (branchName !== '') command += ' ' + branchName
-			if (tagName !== '') command += ' ' + tagName
+// 		if (!res.includes('notPush')) {
+// 			let command = 'git push -u origin'
 
-			execSync(command)
-		}
-	}
-}
+// 			if (branchName !== '') command += ' ' + branchName
+// 			if (tagName !== '') command += ' ' + tagName
 
-run().catch(console.error)
+// 			execSync(command)
+// 		}
+// 	}
+// }
+
+// run().catch(console.error)

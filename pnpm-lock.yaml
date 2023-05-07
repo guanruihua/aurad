@@ -66,6 +66,9 @@ devDependencies:
   clean-webpack-plugin:
     specifier: ^4.0.0
     version: 4.0.0(webpack@5.74.0)
+  command-go:
+    specifier: ^0.1.1
+    version: 0.1.1(enquirer@2.3.6)
   commitlint:
     specifier: ^17.1.2
     version: 17.1.2
@@ -1331,7 +1334,6 @@ packages:
   /ansi-colors@4.1.3:
     resolution: {integrity: sha512-/6w/C21Pm1A7aZitlI5Ni/2J6FFQN8i1Cvz3kHABAAbw93v/NlvKdVOqz7CCWz/3iv/JplRSEEZ83XION15ovw==}
     engines: {node: '>=6'}
-    dev: false
 
   /ansi-html-community@0.0.8:
     resolution: {integrity: sha512-1APHAyr3+PCamwNw3bXCPp4HFLONZt/yIH0sZp0/469KWNTEy+qN5jQ3GVX6DMZ1UXAi34yVwtTeaG/HpBuuzw==}
@@ -1670,6 +1672,14 @@ packages:
     engines: {node: '>= 0.8'}
     dependencies:
       delayed-stream: 1.0.0
+    dev: true
+
+  /command-go@0.1.1(enquirer@2.3.6):
+    resolution: {integrity: sha512-7NEziCUx/M0j1uoUmuhvA6KUz0f4+vDrXs6/NcMx6a0aKj7+i51SqNjMRwsj9uRpkpiIJz0GK45XZsXvAXnr6g==}
+    peerDependencies:
+      enquirer: ^2.3.6
+    dependencies:
+      enquirer: 2.3.6
     dev: true
 
   /commander@2.20.3:
@@ -2119,7 +2129,6 @@ packages:
     engines: {node: '>=8.6'}
     dependencies:
       ansi-colors: 4.1.3
-    dev: false
 
   /entities@2.2.0:
     resolution: {integrity: sha512-p92if5Nz619I0w+akJrLZH0MX0Pb5DX39XOwQTtXSdQQOaYH03S1uIQp4mhOZtAXrxq4ViO67YTiLBo2638o9A==}
@@ -3363,7 +3372,7 @@ packages:
     dependencies:
       universalify: 2.0.0
     optionalDependencies:
-      graceful-fs: 4.2.11
+      graceful-fs: 4.2.10
     dev: true
 
   /jsonify@0.0.1:
