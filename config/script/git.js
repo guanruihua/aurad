@@ -39,7 +39,7 @@ async function run() {
 			execSync('git branch -b ' + branchName)
 		}
 
-		if (!res.includes('tag')) {
+		if (res.includes('tag')) {
 			tagName = await new Input({
 				message: 'Input Tag Name',
 				default: 'v' + version
@@ -47,7 +47,7 @@ async function run() {
 			execSync('git tag ' + commitMsg)
 		}
 
-		if (!res.includes('tag')) {
+		if (!res.includes('notPush')) {
 			let command = 'git push -u origin'
 
 			if(branchName!=='') command += ' ' + branchName
