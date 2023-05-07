@@ -11,6 +11,7 @@
     "release": "npm version prerelease",
     "start": "cross-env NODE_ENV=development node config/webpack.dev.js",
     "build": "rimraf dist && cross-env webpack --config config/webpack.npm.js",
+    "git": "node config/script/git.js",
     "pub": "npm publish"
   },
   "keywords": [],
@@ -63,6 +64,7 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
+    "enquirer": "^2.3.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^6.4.2",
