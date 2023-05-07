@@ -3,8 +3,6 @@ const { MultiSelect, Input } = require('enquirer')
 const pkg = require('../../package.json')
 const version = pkg.version || '0.0.1'
 
-// console.log(execSync, version, Select)
-
 async function run() {
 	const prompt = await new MultiSelect({
 		name: 'Command',
@@ -19,10 +17,45 @@ async function run() {
 	})
 	// prompt.clear()
 	const res = await prompt.run()
-	const commitMsg = await new Input({
-		message: 'Input Command Message'
-	}).run();
+	let branchName = ''
+	let tagName = ''
 
+	if (Array.isArray(res)) {
+
+		if (!res.includes('notAdd')) execSync('git add .')
+
+		if (!res.includes('notCommit')) {
+			const commitMsg = await new Input({
+				message: 'Input Commit Message',
+			}).run();
+			execSync(`git commit -m "${commitMsg}"`)
+		}
+
+		if (res.includes('branch')) {
+			branchName = await new Input({
+				message: 'Input Branch Name',
+				default: version
+			}).run();
+			execSync('git branch -b ' + branchName)
+		}
+
+		if (!res.includes('tag')) {
+			tagName = await new Input({
+				message: 'Input Tag Name',
+				default: 'v' + version
+			}).run();
+			execSync('git tag ' + commitMsg)
+		}
+
+		if (!res.includes('tag')) {
+			let command = 'git push -u origin'
+
+			if(branchName!=='') command += ' ' + branchName
+			if(tagName!=='') command += ' ' + tagName
+
+			execSync(cm)
+		}
+	}
 	console.log(res, commitMsg);
 }
 
