@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect } from "react"
 import { FormContext } from './context'
-import type { FormAction } from './type'
+import type { FormAction } from './hook/type'
 import { classNames } from "harpe"
 import { isString, isUndefined } from "asura-eye"
 

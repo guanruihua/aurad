@@ -1,19 +1,18 @@
 import React from "react"
 import { FormContext } from './context'
-import type { FormRecord, UseForm } from './type'
-import './index.less'
+import type { FormRecord, UseForm } from './hook/type'
 import { useForm } from "./hook"
-
-export * from './modules'
-
-export * from './hook'
-export { Item as FormItem } from './item'
+import { ComponentProps } from '@/assets'
 import { Item as FormItem } from './item'
 import type { ItemProps as FormItemProps } from './item'
+import './index.less'
 
 export type { FormItemProps }
+export * from './modules'
+export * from './hook'
+export { Item as FormItem } from './item'
 
-export interface FormProps {
+export interface FormProps extends ComponentProps {
 	form?: UseForm
 	layout?: 'horizontal' | 'vertical' | 'inline'
 	onReset?: (e?: any) => void

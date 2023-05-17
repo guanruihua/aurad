@@ -1,7 +1,7 @@
 import { useSetState } from '@/assets'
 import type { UseSetState } from '@/assets'
 import type { ItemProps as FormItemProps } from '../item'
-import type { FormRecord, UseForm } from '../type'
+import type { FormRecord, UseForm } from './type'
 import { isEffectArray, isEmpty, isString, isUndefined } from 'asura-eye'
 import { ObjectType } from "abandonjs"
 
@@ -11,7 +11,12 @@ type FieldStatusRecord = Record<string, {
 }>
 
 
-export function useForm(): UseForm {
+
+export interface UseFormProps{
+	// fields?: FormField[]
+}
+
+export function useForm(props: UseFormProps = {}): UseForm {
 
 	const rulesRecord: Record<string, any[]> = {}
 
