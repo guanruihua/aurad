@@ -30,12 +30,18 @@ import { Page, Layout, Position } from './Page';
 import type { Props as PageProps } from './Page';
 import styles from './Pages.module.less';
 import pageStyles from './Page.module.less';
+import { isFunction } from 'asura-eye';
 
-export interface DragProps {
-  layout: Layout;
-  list: UniqueIdentifier[]
-  dataList: any[]
+
+type OriginDataType = {
+  id: UniqueIdentifier
+  [key: string]: any
+}
+export interface DragProps<DataType extends OriginDataType = OriginDataType> {
+  layout?: Layout;
+  dataSource: DataType[]
   render?(record: Record<string, any>): React.ReactNode
+  callback?(dataSource: DataType[]): void
 }
 
 const measuring: MeasuringConfiguration = {
@@ -65,20 +71,38 @@ const dropAnimation: DropAnimation = {
   }),
 };
 
-export function Drag(props: DragProps) {
+export function Drag<DataType extends OriginDataType = OriginDataType>(
+  props: DragProps<DataType>
+) {
 
-  const { list, layout, dataList, render } = props
+  const { callback, layout = Layout.Grid, dataSource = [], render } = props
 
-  const getDataById = (id: UniqueIdentifier) => {
-    for (let i = 0; i < dataList.length; i++)
-      if (dataList[i].id === id) return dataList[i]
+  const getDataById = (id: UniqueIdentifier): DataType => {
+    for (let i = 0; i < dataSource.length; i++)
+      if (dataSource[i].id === id) return dataSource[i]
+    throw new Error(`id: ${id} not Corresponding data`)
   }
 
+  const getIds = () => {
+    return dataSource.map(item => item.id)
+  }
 
-  const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
-  const [items, setItems] = useState(list);
+  const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null)
+  const [items, _setItems] = useState(getIds())
 
-  const activeIndex = activeId ? items.indexOf(activeId) : -1;
+  const setItems = (ids:
+    UniqueIdentifier[]
+    | ((prevState: UniqueIdentifier[]) => UniqueIdentifier[])
+  ) => {
+    const newIds = isFunction(ids) ? ids(items) : ids
+    callback && callback(newIds.map(id => {
+      return getDataById(id)
+    }))
+    _setItems(newIds)
+  }
+
+  const activeIndex = activeId ? items.indexOf(activeId) : -1
+
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })

@@ -74,10 +74,13 @@ const dropAnimation: DropAnimation = {
 
 export function Pages({ layout }: Props) {
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
+
   const [items, setItems] = useState(() =>
     createRange<UniqueIdentifier>(20, (index) => `${index + 1}`)
   );
+  
   const activeIndex = activeId ? items.indexOf(activeId) : -1;
+
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })

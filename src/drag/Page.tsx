@@ -45,9 +45,6 @@ export const Page = forwardRef<HTMLLIElement, Props>(function (
       style={style}
       ref={ref}
     >
-      {/* <button
-        className={styles.Page}
-        {...props} /> */}
       <button
         className={styles.Page}
         data-id={id.toString()}
