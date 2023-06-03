@@ -1,6 +1,6 @@
-import React from "react"
+import React, { FormEventHandler } from "react"
 import { FormContext } from './context'
-import type { FormRecord, UseForm } from './hook/type'
+import type { FormRecord, Rule, UseForm } from './hook/type'
 import { useForm } from "./hook"
 import { ComponentProps } from '@/assets'
 import { Item as FormItem } from './item'
@@ -8,8 +8,8 @@ import type { ItemProps as FormItemProps } from './item'
 import './index.less'
 
 export type { FormItemProps }
-export * from './modules'
 export * from './hook'
+export * from './context'
 export { Item as FormItem } from './item'
 
 export interface FormProps extends ComponentProps {
@@ -17,6 +17,7 @@ export interface FormProps extends ComponentProps {
 	layout?: 'horizontal' | 'vertical' | 'inline'
 	onReset?: (e?: any) => void
 	onSubmit?: (values: FormRecord) => void
+	rules?: Record<string, Rule>
 	[key: string]: any
 }
 
@@ -27,17 +28,18 @@ export function Form(props: FormProps) {
 		register, useValue, resetErrorStatus,
 		validateField, validStatus, validateFieldsValue,
 	} = form || useForm()
+
 	const [values, setValues, reset] = useValue
 
 	return (<FormContext.Provider
 		value={{ values, setValues, register, validateField, validStatus }}>
 		<form
-			onReset={(e: any) => {
+			onReset={(e) => {
 				reset()
 				resetErrorStatus()
 				onReset && onReset(e)
 			}}
-			onSubmit={(e: any) => {
+			onSubmit={(e) => {
 				e.preventDefault()
 				onSubmit && onSubmit(validateFieldsValue())
 			}}

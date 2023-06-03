@@ -1,19 +1,13 @@
 import React from "react"
-import { Input, InputChangeEvent, Button, Form, FormItem, injectForm } from '@/form'
+import { Input, Button, Form, FormItem, injectForm } from '@/form'
 import { Container, Unit } from "unit-testing-react"
 import { Space } from "@/layout"
 
 @injectForm
-class App extends React.Component {
-	state = {
-		value: 'value1'
-	}
+export default class extends React.Component {
 
-	setValue = (value: string) => {
-		this.setState({ value })
-	}
 	render() {
-		const { state, setValue, props }: any = this
+		const { props }: any = this
 		const { form } = props
 
 		return <Container>
@@ -23,10 +17,8 @@ class App extends React.Component {
 					onSubmit={(values) => {
 						console.log(values)
 					}}>
-					<FormItem name="fi-1" rules={[{ required: true }]}>
-						<Input onChange={(e: InputChangeEvent) => {
-							console.log(e.target.value)
-						}} />
+					<FormItem name="name" rules={[{ required: true }]}>
+						<Input placeholder="name" />
 					</FormItem>
 					<FormItem>
 						<Space>
@@ -36,30 +28,14 @@ class App extends React.Component {
 							<Button htmlType="reset">
 								Reset
 							</Button>
+							<Button
+								onClick={() => form.setFieldValue('name', 'new Value')
+								}>From Set Value</Button>
 						</Space>
 					</FormItem>
 				</Form>
-				<Button type="primary" onClick={() => {
-					form.setFieldValue('fi-1', 'new Value')
-				}
-				}>set value(new Value)</Button>
 
-			</Unit>
-			<Unit title="Input set value">
-				<Input
-					value={state.value}
-					onChange={(e: InputChangeEvent) => {
-						setValue(e.target.value)
-					}}
-				/>
-				<Button type="primary" onClick={() => setValue('new Value')}>set value(new Value)</Button>
-			</Unit>
-			<Unit title="Input set defaultValue">
-				<Input defaultValue="value2" />
 			</Unit>
 		</Container>
 	}
 }
-
-
-export default App

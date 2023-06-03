@@ -7,11 +7,15 @@ import { isString, isUndefined } from "asura-eye"
 export interface ItemProps {
 	name?: string
 	label?: string | ReactNode
+	/**
+	 * @deprecated
+	 */
 	rules?: any[]
 	[key: string]: any
 }
 
 function ItemContent(props: ItemProps & FormAction) {
+
 	const {
 		label,
 		name,
@@ -24,7 +28,7 @@ function ItemContent(props: ItemProps & FormAction) {
 	} = props
 
 	if (!name) {
-		return <div className="form-item">
+		return <div className="au-form-item">
 			{label && <label style={{ display: 'block', marginRight: 4, marginBottom: 8 }}>{label}:</label>}
 			{children}
 		</div>
@@ -55,15 +59,18 @@ function ItemContent(props: ItemProps & FormAction) {
 	}
 
 	const { errorStatus = false, errorMsg = '' } = validStatus[name] || {}
-	const newClassName = classNames("form-item", {
-		['form-item-error-status']: errorStatus
+	
+	const newClassName = classNames("au-form-item", {
+		['au-form-item-error-status']: errorStatus
 	})
-	return <div className={newClassName}>
-		{label && <label className="form-item-label" >{label}:</label>}
-		{children && React.cloneElement(children, newProps)}
-		<div className="form-item-error-status-message" >{errorStatus && errorMsg}</div>
-	</div>
 
+	return (
+		<div className={newClassName}>
+			{label && <label className="au-form-item-label" >{label}:</label>}
+			{children && React.cloneElement(children, newProps)}
+			<div className="au-form-item-error-status-message" >{errorStatus && errorMsg}</div>
+		</div>
+	)
 }
 
 export function Item(props: ItemProps) {

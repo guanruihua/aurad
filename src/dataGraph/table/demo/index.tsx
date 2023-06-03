@@ -1,32 +1,9 @@
 import React from "react"
 import { ObjectType } from "abandonjs"
-import { Unit } from 'unit-testing-react'
+import { Container, Unit } from 'unit-testing-react'
 import { Table } from '..'
 import './index.less'
-
-const dataSource = [
-	{ key: '1', name: '胡彦斌', age: 32, address: '西湖区湖底公园1号' },
-	{ key: '2', name: '胡彦祖', age: 42, address: '西湖区湖底公园1号' },
-	{ key: '3', name: '胡彦祖', age: 42, address: '西湖区湖底公园1号' },
-	{ key: '4', name: '胡彦祖', age: 42, address: '西湖区湖底公园1号' },
-];
-
-const columns = [{
-	title: '姓名',
-	dataIndex: 'name',
-	key: 'name',
-	render: (text: any) => {
-		return text + '(name)'
-	}
-}, {
-	title: '年龄',
-	dataIndex: 'age',
-	key: 'age',
-}, {
-	title: '住址',
-	dataIndex: 'address',
-	key: 'address',
-}];
+import { columns, dataSource } from './data'
 
 const rowSelection = {
 	onChange: (selectedRowKeys: string[], selectedRows: ObjectType<any>[]) => {
@@ -38,11 +15,26 @@ const rowSelection = {
 };
 
 export default function () {
-	return <Unit title="Table">
-		<Table
-			serialNumber
-			rowSelection={rowSelection}
-			columns={columns}
-			dataSource={dataSource} />
-	</Unit>
+	return (
+		<Container>
+			<Unit title="Table(default)">
+				<Table
+					columns={columns}
+					dataSource={dataSource} />
+			</Unit>
+			<Unit title="Table(noBorder)">
+				<Table
+					noBorder
+					columns={columns}
+					dataSource={dataSource} />
+			</Unit>
+			<Unit title="Table">
+				<Table
+					serialNumber
+					rowSelection={rowSelection}
+					columns={columns}
+					dataSource={dataSource} />
+			</Unit>
+		</Container>
+	)
 }

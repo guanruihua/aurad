@@ -42,7 +42,6 @@ export function useForm(props: UseFormProps = {}): UseForm {
 	}
 
 	const setFieldsValue = (record: FormRecord) => {
-
 		setValues(record)
 	}
 

@@ -18,10 +18,21 @@ export default {
 			name: 'input',
 			path: '/form/input',
 			element: <Container columns={1}>
-				<Unit>{Lazy(import('../modules/input/demo'))}</Unit>
-				<Unit>{Lazy(import('../modules/input/demo/object'))}</Unit>
-				<Unit>{Lazy(import('../modules/input/demo/fc'))}</Unit>
 				<Unit>{Lazy(import('../modules/input/demo/class'))}</Unit>
+				<Unit>{Lazy(import('../modules/input/demo/fc'))}</Unit>
+				<Unit>{Lazy(import('../modules/input/demo'))}</Unit>
+			</Container>
+		},
+		{
+			name: 'inputNumber',
+			path: '/form/inputNumber',
+			element: Lazy(import(`../modules/inputNumber/demo`))
+		},
+		{
+			name: 'inputObject',
+			path: '/form/inputObject',
+			element: <Container columns={1}>
+				<Unit>{Lazy(import('../modules/input/demo/object'))}</Unit>
 			</Container>
 		},
 		{
@@ -33,11 +44,7 @@ export default {
 				<Unit>{Lazy(import('../modules/select/demo/form'))}</Unit>
 			</Container>
 		},
-		{
-			name: 'inputNumber',
-			path: '/form/inputNumber',
-			element: Lazy(import(`../modules/inputNumber/demo`))
-		},
+
 		{
 			name: 'textarea',
 			path: '/form/textarea',
