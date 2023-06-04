@@ -7,9 +7,6 @@ import { isString, isUndefined } from "asura-eye"
 export interface ItemProps {
 	name?: string
 	label?: string | ReactNode
-	/**
-	 * @deprecated
-	 */
 	rules?: any[]
 	[key: string]: any
 }
@@ -50,16 +47,16 @@ function ItemContent(props: ItemProps & FormAction) {
 		value: name && values[name] || '',
 		onChange: (e: any) => {
 			onChange && onChange(e)
-			if (e.target && isString(name)) {
-				const v = e.target.value
-				validateField && validateField(name, v)
-				setValues({ [name]: v })
-			}
+			if (!isString(name)) return;
+			let v = undefined
+			if (e.target) v = e.target.value
+			validateField && validateField(name, v)
+			setValues({ [name]: v })
 		},
 	}
 
 	const { errorStatus = false, errorMsg = '' } = validStatus[name] || {}
-	
+
 	const newClassName = classNames("au-form-item", {
 		['au-form-item-error-status']: errorStatus
 	})

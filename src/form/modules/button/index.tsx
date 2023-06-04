@@ -2,6 +2,7 @@ import React, { ButtonHTMLAttributes } from "react"
 import { ComponentProps } from '@/assets'
 import { classNames } from 'harpe'
 import './index.less'
+import { isUndefined } from "asura-eye"
 
 
 export interface ButtonProps extends ComponentProps, Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type' | 'children'> {
@@ -16,11 +17,27 @@ export interface ButtonProps extends ComponentProps, Omit<ButtonHTMLAttributes<H
 
 export function Button(props: ButtonProps) {
 
-	const { htmlType = 'button', children = '', className, type = 'default', ...rest } = props
+	const { htmlType = 'button', children = '', className, type, ...rest } = props
+
+	const getType = (): ButtonProps['type'] => {
+		
+		if (htmlType === 'submit' && isUndefined(type)) return 'primary'
+		if (isUndefined(type)) return 'default'
+
+		return type
+	}
+
+	const newClassNames = classNames(
+		`au-btn`,
+		`au-btn-${getType()}`,
+		className
+	)
+
+
 
 	return <button
 		type={htmlType}
-		className={classNames(`au-btn`, `au-btn-${type}`, className)}
+		className={newClassNames}
 		{...rest as ButtonHTMLAttributes<unknown>}
 	>
 		{children}

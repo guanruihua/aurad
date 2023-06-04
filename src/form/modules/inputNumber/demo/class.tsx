@@ -1,5 +1,5 @@
 import React from "react"
-import { Input, Button, Form, FormItem, injectForm } from '@/form'
+import { Button, Form, FormItem, injectForm, InputNumber } from '@/form'
 import { Space } from "@/layout"
 
 @injectForm
@@ -17,7 +17,7 @@ export default class extends React.Component {
 					console.log(form.getValues())
 				}}>
 				<FormItem name="name" rules={[{ required: true }]}>
-					<Input placeholder="name" />
+					<InputNumber placeholder="num" min={0} max={99} step={13} />
 				</FormItem>
 				<FormItem>
 					<Space>
@@ -28,8 +28,10 @@ export default class extends React.Component {
 							Reset
 						</Button>
 						<Button
-							onClick={() => form.setValue('name', 'new Value')
-							}>From Set Value</Button>
+							onClick={() => form.setValue('name', 3)
+							}>
+							From Set Value(3)
+						</Button>
 					</Space>
 				</FormItem>
 			</Form>

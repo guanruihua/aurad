@@ -1,11 +1,12 @@
 import React, { useState } from "react"
 import { classNames } from "harpe"
 import { Icon } from '@/icon'
-import { isUndefined } from "asura-eye"
+import { isEmpty, isObject, isUndefined } from "asura-eye"
 import { Group } from './group'
 import type { CheckboxGroupContextProps, CheckboxProps } from './type'
 import { CheckboxGroupContext } from './context'
 import './index.less'
+import { stringify } from "abandonjs"
 
 export * from './type'
 
@@ -57,21 +58,29 @@ export function CheckboxCore<T>(props: CheckboxProps<T>) {
 }
 
 export function Checkbox<T>(props: CheckboxProps<T>) {
-	return <CheckboxGroupContext.Consumer>
-		{(handler: CheckboxGroupContextProps) => {
-			if (handler.name) {
-				const {
-					groupValue, setGroupValue,
-					groupProps = {}
-				} = handler
-				const { value } = props
-				const newProps = { ...props, setGroupValue, groupProps }
-				newProps.checked = groupValue.includes(value)
-				return (<CheckboxCore {...newProps} />)
-			}
-			return (<CheckboxCore {...props} />)
-		}}
-	</CheckboxGroupContext.Consumer>
+	return (
+		<CheckboxGroupContext.Consumer>
+			{(handler: CheckboxGroupContextProps) => {
+				if (handler.name) {
+					const {
+						groupValue,
+						setGroupValue,
+						groupProps = {}
+					} = handler
+					const { value } = props
+					const newProps = { ...props, setGroupValue, groupProps }
+					if (!isEmpty(value))
+						if (isObject(value)) {
+							newProps.checked = groupValue.map((_) => stringify(_)).includes(stringify(value))
+						} else {
+							newProps.checked = groupValue.includes(value)
+						}
+					return (<CheckboxCore {...newProps} />)
+				}
+				return (<CheckboxCore {...props} />)
+			}}
+		</CheckboxGroupContext.Consumer>
+	)
 }
 
 Checkbox.Group = Group

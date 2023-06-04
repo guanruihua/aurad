@@ -105,9 +105,9 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new MyPlugin({
-			name: 'myPlugin',
-		}),
+		// new MyPlugin({
+		// 	name: 'myPlugin',
+		// }),
 		// new ESBuildPlugin(),
 		//数组 放着所有的webpack插件
 		new HtmlWebpackPlugin({

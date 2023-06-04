@@ -1,6 +1,5 @@
 import React from "react"
 import { Form, useForm } from '..'
-import { FormRecord } from "../type"
 import { initChildren } from './initChildren'
 import { Container, Unit } from "unit-testing-react"
 
@@ -12,9 +11,9 @@ export default function TestFormFunc() {
 		<Unit>
 			<Form
 				form={form}
-				onSubmit={(values: FormRecord) => {
-					console.log(values)
-					setResult(JSON.stringify(values, null, 4))
+				onSubmit={() => {
+					// console.log(values)
+					// setResult(JSON.stringify(values, null, 4))
 				}}>
 				{initChildren(form)}
 			</Form>

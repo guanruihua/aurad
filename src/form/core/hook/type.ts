@@ -5,6 +5,11 @@ import { ReactNode } from 'react'
 
 export type FormRecord = Record<string, any>
 
+export type FieldStatusRecord = Record<string, {
+	errorStatus: boolean
+	errorMsg: any
+}>
+
 export interface FormAction {
 	values: FormRecord
 	setValues: (newValues: FormRecord) => void
@@ -33,26 +38,26 @@ export interface UseForm extends ObjectType {
 	 * @param fieldName {name} 字段名
 	 * @returns {FormFieldValue | FormFieldValue[]} 字段值
 	 */
-	getFieldValue: (fieldName: string) => FormFieldValue | FormFieldValue[]
+	getValue: (fieldName: string) => FormFieldValue
 	/**
 	 * @description 获取多个字段值, 不填获取全部
 	 * @param fieldNames {?string[]} 字段名
 	 * @returns {Record<string, FormFieldValue | FormFieldValue[]} 字段值
 	 */
-	getFieldsValue: (fieldNames?: string[]) => Record<string, FormFieldValue | FormFieldValue[]>
+	getValues: (fieldNames?: string[]) => Record<string, FormFieldValue | FormFieldValue[]>
 	/**
 	 * @description 设单个值
 	 * @param fieldName {string} 字段名
 	 * @param value {any} 值
 	 */
-	setFieldValue: (fieldName: string, value: any) => void
+	setValue: (fieldName: string, value: any) => void
 	/**
 	 * @description 设多个值
 	 * @param record {Record<string, any | Record<string, any>}  字段名和值的集合
 	 */
-	setFieldsValue: (record: FormRecord) => void
+	setValues: (record: FormRecord) => void
 
-	validateFieldsValue: (fieldNames?: string[]) => FormRecord
+	validateFields: (fieldNames?: string[]) => FormRecord
 
 	resetErrorStatus: (fieldNames?: string[]) => void
 }

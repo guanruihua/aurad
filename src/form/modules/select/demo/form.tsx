@@ -25,9 +25,9 @@ export default function () {
 				</FormItem>
 				<Button
 					onClick={() => {
-						form.setFieldValue('select-name', 'lucy2')
+						form.setValue('select-name', 'lucy2')
 					}}>
-					setFieldValue('select-name', 'lucy2')
+					setValue('select-name', 'lucy2')
 				</Button>
 				<div>
 					<Button htmlType="submit">Submit</Button>

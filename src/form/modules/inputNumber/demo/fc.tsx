@@ -1,5 +1,5 @@
 import React from "react"
-import { Input } from '../..'
+import { InputNumber } from '../..'
 import { Button } from "../../button"
 import { Form, FormItem, useForm } from "@/form"
 import { Space } from "@/layout"
@@ -15,8 +15,8 @@ export default function () {
 				form.validateFields()
 				console.log(form.getValues())
 			}}>
-			<FormItem name="name" rules={[{ required: true }]}>
-				<Input placeholder="name" />
+			<FormItem name="num" rules={[{ required: true }]}>
+				<InputNumber placeholder="num" min={0} max={99} step={13} />
 			</FormItem>
 			<FormItem>
 				<Space>
@@ -28,8 +28,10 @@ export default function () {
 					</Button>
 					<Button
 						onClick={() =>
-							form.setValue('name', 'new Value')
-						}>Form Set value</Button>
+							form.setValue('num', 3)
+						}>
+						Form Set value(3)
+					</Button>
 				</Space>
 			</FormItem>
 		</Form>
