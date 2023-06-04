@@ -5,8 +5,12 @@ import { Button } from "../../button"
 import { Form, FormItem, useForm } from "@/form"
 import { Space } from "@/layout"
 
+function Test() {
+	return <div>test</div>
+}
+
 export default function () {
-	
+
 	const form = useForm()
 
 	return <Container>
