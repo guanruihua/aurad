@@ -54,7 +54,7 @@ export default {
 			name: 'inputObject',
 			path: '/form/inputObject',
 			element: <Container columns={1}>
-				<Unit>{Lazy(import('../modules/input/demo/object'))}</Unit>
+				<Unit>{Lazy(import('../modules/inputObject/demo'))}</Unit>
 			</Container>
 		},
 		{
