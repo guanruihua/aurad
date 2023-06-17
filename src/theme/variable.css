@@ -23,6 +23,15 @@
   --au-primary-bg-color-hover: #40a9ff;
   --au-primary-color-active: #096dd9;
   --au-disabled-color: #f5f5f5;
+
+  /* 尺寸 */
+  --size-s: 100px;
+  --size-m: 150px;
+  --size-l: 200px;
+  --size-xl: 400px;
+  --size-xxl: 800px;
+  --size-xxxl: 1200px;
+
   /* --au-primary-color-outline: rgba(24, 144, 255, .2); */
 
   --au-primary-1: #e6f7ff;

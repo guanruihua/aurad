@@ -15,6 +15,16 @@ export default {
 			</Container>,
 		},
 		{
+			name: 'button',
+			path: '/form/button',
+			element: (
+				<Container columns={1}>
+					<Unit>{Lazy(import('../modules/button/demo'))}</Unit>
+					{/* <Unit>{Lazy(import('./FCTest'))}</Unit> */}
+				</Container>
+			),
+		},
+		{
 			name: 'input',
 			path: '/form/input',
 			element: <Container columns={1}>

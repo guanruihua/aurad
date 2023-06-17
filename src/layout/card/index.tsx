@@ -10,7 +10,9 @@ export interface CardProps extends ComponentProps {
 }
 
 export function Card(props: CardProps) {
+
 	const { footer, header, className, children, ...rest } = props
+
 	return <div
 		className={classNames("au-card", className)}
 		{...rest}>
