@@ -20,6 +20,16 @@ export default function ButtonPage() {
 					<Button type='default' onClick={() => { console.log('default') }}>Default</Button>
 					<Button type='default' disabled onClick={() => { console.log('default disabled') }}>Default(disabled)</Button>
 				</Space>
+
+				<Space
+					style={{
+						background: '#000',
+						borderRadius: 10,
+						padding: 10
+					}}>
+					<Button type='gradient' onClick={() => { console.log('gradient') }}>Gradient</Button>
+					<Button type='gradient' disabled onClick={() => { console.log('gradient disabled') }}>Gradient(disabled)</Button>
+				</Space>
 			</Space>
 		</Unit>
 	</Container>

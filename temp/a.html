@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<style>
+	.slider-box {
+		margin: 50px;
+		width: 500px;
+		height: 4px;
+		background-color: #eee;
+		border-radius: 4px;
+		position: relative;
+	}
+
+	.slider {
+		position: absolute;
+		display: inline-block;
+		width: 12px;
+		height: 12px;
+		border-radius: 6px;
+		background-color: blue;
+		top: -4px;
+		left: -6px;
+	}
+</style>
+
+<body>
+	<div id="sliderBox" class="slider-box"></div>
+	<script>
+		class Slider {
+			constructor(option) {
+				if (!option || !option.boxId) {
+					throw new Error('Slider needed boxId');
+				}
+				this.boxId = option.boxId;
+				this.onValueChange = option.onValueChange;
+				this.stepEnable = !option.stepEnable ? false : true;
+				this.flag = false;
+				this.min = option.min || 0;
+				this.max = option.max || 10;
+				this.step = option.step || 1;
+				this.leftOff = option.leftOff || 0;
+				this.value = option.value || 0;
+				this.init();
+			}
+
+			init() {
+				this.render();
+				this.addListener();
+			}
+
+			render() {
+				// get sliderBox
+				this.sliderBox = document.getElementById(this.boxId);
+
+				// create slider
+				const slider = document.createElement('span');
+				slider.classList.add('slider');
+
+				this.slider = slider;
+				this.sliderBox.appendChild(this.slider);
+
+				// get slider-box width
+				this.boxWidth = this.sliderBox.offsetWidth;
+				// get slider-box left
+				this.boxLeft = this.sliderBox.getBoundingClientRect().left;
+				this.setLeftByValue();
+			}
+
+			// set slider default position with default value when init render
+			setLeftByValue() {
+				const left = ((this.value / this.max) * this.boxWidth).toFixed(2);
+				this.slider.style.left = (left - this.leftOff) + 'px';
+			}
+
+			// get current value and slider left position
+			getCurrentValue(left) {
+				let current = (left / this.boxWidth) * this.max;
+				current = Math.round(current / this.step);
+				current = current * this.step;
+				return {
+					current,
+					left: this.stepEnable ? (current / this.max) * this.boxWidth.toFixed(2) : left,
+				}
+			}
+
+			// add listener when page or component loaded
+			addListener() {
+				this.slider.addEventListener('mousedown', this.onMouseDown);
+				document.addEventListener('mousemove', this.onMouseMove);
+				document.addEventListener('mouseup', this.onMouseUp);
+			}
+
+			// remove listener when page or component destroy
+			removeListener() {
+				this.slider.removeEventListener('mousedown', this.onMouseDown);
+				document.removeEventListener('mousemove', this.onMouseMove);
+				document.removeEventListener('mouseup', this.onMouseUp);
+			}
+
+			// mousedown event of slider
+			onMouseDown = () => {
+				this.flag = true;
+			}
+
+			// mousemove event of document
+			onMouseMove = (event) => {
+				if (this.flag) {
+					// get mouse offsetX for box
+					const offsetX = event.clientX - this.boxLeft;
+
+					// get left offset
+					let left = 0;
+					if (offsetX > this.boxWidth) {
+						left = this.boxWidth;
+					} else if (offsetX >= 0) {
+						left = offsetX;
+					} else {
+						left = 0;
+					}
+
+					const result = this.getCurrentValue(left);
+					if (this.onValueChange) {
+						// send to onValueChange function when it exist
+						if (result.current !== this.value) {
+							// emit change event when value is different
+							this.value = result.current;
+							this.onValueChange(result.current);
+						}
+					}
+
+					// set left position of slider
+					this.slider.style.left = (result.left - this.leftOff) + 'px';
+				}
+			}
+
+			// mouseup event of document
+			onMouseUp = () => {
+				this.flag = false;
+			}
+
+			destroy() {
+				this.removeListener();
+			}
+		}
+		(function () {
+			new Slider({
+				boxId: 'sliderBox',// slider box id
+				stepEnable: true,// enable step
+				min: 0,
+				max: 30,
+				step: 1,
+				leftOff: 6,// slider left offset
+				value: 10,// default value
+				onValueChange: function (current) {
+					// do something when value is changed
+					console.log('current', current);
+				}
+			});
+		})()
+
+	</script>
+</body>
+
+</html>
