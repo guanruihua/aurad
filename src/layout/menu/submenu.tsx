@@ -59,7 +59,7 @@ export function NextSubMenu(props: NextSubMenu) {
 }
 
 
-export interface SubMenu {
+export interface SubMenu extends React.HTMLAttributes<HTMLElement> {
 	/**
  * @default true
  */
@@ -70,9 +70,9 @@ export interface SubMenu {
 }
 
 export function SubMenu(props: SubMenu) {
-	const { menu = [], select, setSelect, fold } = props
+	const { menu = [], select, setSelect, fold, ...rest } = props
 
-	return <aside className="au-menu" >
+	return <aside className="au-menu" {...rest}>
 		<NextSubMenu {...{ menu, fold, select, setSelect }} />
 	</aside>
 }

@@ -14,17 +14,17 @@ export interface BrowserContainer extends ComponentProps {
 }
 
 const GetRoute = (props: { routes: MenuObject[] }) => {
-	return useRoutes(props.routes as RouteObject[])
+	return useRoutes(props. routes as RouteObject[])
 }
 
 export function BrowserContainer(props: BrowserContainer) {
-	const { basename = '/', window, menu } = props
+	const { basename = '/', window: w = window, menu } = props
 
 	return (
 		<React.StrictMode>
 			<BrowserRouter
 				basename={basename}
-				window={window} >
+				window={w} >
 				<GetRoute routes={menu} />
 			</BrowserRouter>
 		</React.StrictMode>
