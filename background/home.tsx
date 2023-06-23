@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react"
 import { Outlet, useNavigate } from 'react-router-dom'
-import { isUndefined } from "asura-eye"
+import { isUndefined, isEmpty } from "asura-eye"
 import { classNames } from 'harpe'
+import { stringify } from "abandonjs"
 import { SubMenu, type MenuObject, Icon } from '../src'
 import './index2.less'
-import { isEmpty } from "asura-eye"
-import { stringify } from "abandonjs"
 
 export function move() {
 	const mainDom = document.querySelector('.au-main')
@@ -44,7 +43,7 @@ export function Menu(props: MenuProps) {
 	const [select, setSelect] = useState<string[]>([])
 	const [fold, setFold] = useState<boolean>(isUndefined(props.fold) ? true : props.fold)
 	const [showMenu, setShowMenu] = useState<MenuObject[]>(menu)
-	const [selectGroupName, setSelectGroupName] = useState<string>('')
+	const [selectGroupName, setSelectGroupName] = useState<string>(localStorage.getItem('au-show-menu-group-name') || '')
 
 	const handleGroup = (groupName: string) => {
 
@@ -67,7 +66,8 @@ export function Menu(props: MenuProps) {
 		const names = location.pathname.split('/').filter(Boolean)
 		if (names && names.length) setSelect(names)
 		const groupName = localStorage.getItem('au-show-menu-group-name') || ''
-		handleGroup(groupName)
+		if (groupName !== selectGroupName)
+			handleGroup(groupName)
 	}, [])
 
 
