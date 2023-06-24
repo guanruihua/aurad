@@ -4,7 +4,7 @@ import { isUndefined, isEmpty } from "asura-eye"
 import { classNames } from 'harpe'
 import { stringify } from "abandonjs"
 import { SubMenu, type MenuObject, Icon } from '../src'
-import './index2.less'
+import './home.less'
 
 export function move() {
 	const mainDom = document.querySelector('.au-main')
@@ -45,17 +45,19 @@ export function Menu(props: MenuProps) {
 	const [showMenu, setShowMenu] = useState<MenuObject[]>(menu)
 	const [selectGroupName, setSelectGroupName] = useState<string>(localStorage.getItem('au-show-menu-group-name') || '')
 
-	const handleGroup = (groupName: string) => {
+	const handleGroup = (groupName: string, redirect = true) => {
 
 		localStorage.setItem('au-show-menu-group-name', groupName)
 		setSelectGroupName(groupName)
+		setSelect([groupName])
 		if (groupName === '') setShowMenu(menu)
 		for (let i = 0; i < menu.length; i++) {
 			const { name, children = [], path: rootPath = '/' } = menu[i]
 			if (groupName === name) {
 				setShowMenu(children)
 				const { path = rootPath } = children[0] || {}
-				path && nav(path)
+
+				redirect && path && nav(path)
 				return;
 			}
 		}
@@ -63,11 +65,7 @@ export function Menu(props: MenuProps) {
 	}
 
 	useEffect(() => {
-		const names = location.pathname.split('/').filter(Boolean)
-		if (names && names.length) setSelect(names)
-		const groupName = localStorage.getItem('au-show-menu-group-name') || ''
-		if (groupName !== selectGroupName)
-			handleGroup(groupName)
+		handleGroup(localStorage.getItem('au-show-menu-group-name') || '', false)
 	}, [])
 
 
@@ -148,14 +146,16 @@ export function Menu(props: MenuProps) {
 			>
 				{selectGroupName === '' ? (
 					<div style={{
-						display: 'flex',
+						display: 'grid',
 						gap: 8,
+						gridTemplateColumns: 'repeat(auto-fill, 220px)'
 					}}>
 						{groupNames.map(name => {
 							if (name)
 								return (
 									<button
 										style={{
+											display: 'inline-block',
 											padding: '20px 30px',
 											fontSize: 20,
 											fontWeight: 'bold',
