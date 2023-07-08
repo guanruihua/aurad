@@ -10,13 +10,13 @@ export interface StepItemProps extends ComponentProps {
 }
 
 export function Item(props: StepItemProps) {
-	const { status, children } = props
-	return <div className={classNames(status, 'au-step-item')}>
-		<span className='au-step-item-line' />
-		<label>
-			{children}
-		</label>
-	</div>
+	const { first = false, status, children } = props
+	return (
+		<>
+			{!first && <span className='au-step-item-line' />}
+			<label className={classNames(status, 'au-step-item')}>
+				{children}
+			</label>
+		</>
+	)
 }
-
-// Item.displayName = 'au-step-item'

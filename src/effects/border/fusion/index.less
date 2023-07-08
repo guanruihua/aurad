@@ -1,0 +1,41 @@
+.au-effect-border-fusion {
+  position: relative;
+  background: #000;
+  filter: contrast(50);
+
+  &-layout {
+    padding: 100px;
+    width: 100%;
+
+    &>div {
+      display: inline-block;
+      width: 200px;
+      height: 200px;
+      background: #fff;
+      text-align: center;
+      line-height: 200px;
+      border-radius: 50%;
+    }
+  }
+
+  &-background {
+
+    &>div {
+      filter: blur(15px);
+      z-index: 1;
+    }
+  }
+
+  &-content {
+    position: absolute;
+    background: transparent;
+    top: 0;
+    left: 0;
+    z-index: 10;
+
+    &>div {
+      filter: none;
+      background: transparent;
+    }
+  }
+}

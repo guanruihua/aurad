@@ -11,6 +11,7 @@ import layoutRoute from '../src/layout/demo/router'
 import codeRoute from '../src/code/demo/router'
 import dragRoute from '../src/drag/demo/router'
 import feedbackRoute from '../src/feedback/demo/router'
+import effectRoute from '../src/effects/demo/router'
 import { Menu } from "./home"
 
 const modules: MenuObject[] = [
@@ -27,6 +28,7 @@ const modules: MenuObject[] = [
 	codeRoute,
 	dragRoute,
 	feedbackRoute,
+	effectRoute,
 ]
 
 const menu: MenuObject[] = [
