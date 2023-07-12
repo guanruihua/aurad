@@ -1,7 +1,9 @@
-import { ComponentProps } from "@/assets"
 import React from "react"
-import { icons, IconType } from './icons'
+import { type ComponentProps } from "@/assets"
+import { icons, type IconType } from './icons'
 import { isArray } from "asura-eye"
+import './index.less'
+import { classNames } from "harpe"
 export interface IconProps extends ComponentProps {
 	type: IconType
 	size?: number
@@ -19,6 +21,10 @@ export function Icon(props: IconProps) {
 	} = props
 
 	const { viewBox = "0 0 1024 1024", path = '' } = icons[type]
+
+	if(type === 'loading'){
+		rest.className = classNames(rest.className, 'au-rotate')
+	}
 
 	return <svg
 		viewBox={viewBox}

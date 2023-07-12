@@ -1,6 +1,7 @@
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require("path")
+const MyPlugin  = require('./plugin')
 // const { ESBuildPlugin } = require('esbuild-loader')
 
 module.exports = {
@@ -27,18 +28,9 @@ module.exports = {
 							loader: 'tsx'
 						},
 					},
+
 				],
 				exclude: /node_modules/,
-			},
-			{
-				test: /\.jsx?$/,
-				use: {
-					loader: 'babel-loader',
-					options: {
-						cacheDirectory: false
-					}
-				},
-				exclude: /node_modules/
 			},
 			{
 				test: /\.css$/,
@@ -113,6 +105,9 @@ module.exports = {
 		]
 	},
 	plugins: [
+		// new MyPlugin({
+		// 	name: 'myPlugin',
+		// }),
 		// new ESBuildPlugin(),
 		//数组 放着所有的webpack插件
 		new HtmlWebpackPlugin({

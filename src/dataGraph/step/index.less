@@ -2,31 +2,29 @@
 
 .au-step {
   display: grid;
-
-
   padding: 10px;
-
-  background: gray;
+  gap: 0;
 
   &-item {
-    display: grid;
-    grid-template-columns: 1fr auto;
+    .inlineFlexCenter(center);
     padding: 10px;
-    background-color: ghostwhite;
-    border-radius: 12px;
+    &-icon {
+      color: var(--color);
+      margin-right: 8px;
+    }
+  }
 
-    &-line {
-      .inlineFlexCenter(center);
 
-      &::after {
-        content: '';
-        display: inline-block;
-        width: 100%;
-        height: 0;
-        border: 1px solid;
-        border-color: #000;
-        // border-color: #f0f0f0;
-      }
+  &-item-line {
+    .inlineFlexCenter(center);
+
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 100%;
+      height: 0;
+      border: 1px solid;
+      border-color: gray;
     }
   }
 }

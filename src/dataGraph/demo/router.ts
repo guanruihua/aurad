@@ -20,5 +20,10 @@ export default {
 				path: '/graph/paging',
 				element: Lazy(import('../paging/demo')),
 			},
+			{
+				name: 'numberScroll',
+				path: '/graph/numberScroll',
+				element: Lazy(import('../numberScroll/demo')),
+			},
 		]
 } as MenuObject

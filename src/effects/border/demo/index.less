@@ -1,0 +1,36 @@
+
+.box1,
+.box2 {
+  width: 100%;
+  text-align: center;
+  z-index: 10;
+}
+
+.box1 {
+  animation: r1 0.8s ease-in-out infinite alternate;
+}
+
+.box2 {
+  animation: r2 0.8s ease-in-out infinite alternate;
+}
+
+
+@keyframes r1 {
+  from {
+    transform: translateX(-30px);
+  }
+
+  to {
+    transform: translateX(25px);
+  }
+}
+
+@keyframes r2 {
+  from {
+    transform: translateX(30px);
+  }
+
+  to {
+    transform: translateX(-25px);
+  }
+}

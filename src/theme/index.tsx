@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './variable.css'
 
 export interface ThemeProps {
 	[key: string]: any

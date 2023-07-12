@@ -17,7 +17,8 @@ export default function () {
 			</div>
 			<div>
 				<div>
-					<Checkbox.Group value={['a1', 'a2']}>
+					<Checkbox.Group value={[1, 'a1', 'a2']}>
+						<Checkbox value={1}>1</Checkbox>
 						<Checkbox value='a1'>a1</Checkbox>
 						<Checkbox value='a2'>a2</Checkbox>
 						<Checkbox value='a3'>a3</Checkbox>
@@ -25,7 +26,7 @@ export default function () {
 				</div>
 				<div>
 					<Checkbox.Group
-						value={['a1', 'a3']}
+						value={['a1', { a: 123 }]}
 						onChange={(v) => {
 							console.log(v)
 						}}

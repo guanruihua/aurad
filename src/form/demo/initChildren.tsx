@@ -53,25 +53,25 @@ export const initChildren = (form: UseForm) => {
 			</FormItem>
 			<Button
 				onClick={() => {
-					form.setFieldValue('array', '1122')
-					// form.setFieldValue('array', '1122', '1')
+					form.setValue('array', '1122')
+					// form.setValue('array', '1122', '1')
 				}}>
 				set  Array Value
 			</Button>
 			<Button onClick={() => {
-				console.log(form.getFieldValue('array'));
+				console.log(form.getValue('array'));
 			}}>
 				get all Array Field value
 			</Button>
 			<Button onClick={() => {
-				console.log(form.getFieldValue('array'));
-				// console.log(form.getFieldValue('array', '1'));
+				console.log(form.getValue('array'));
+				// console.log(form.getValue('array', '1'));
 			}}>
 				get Array Field('1') value
 			</Button>
 			<Button
 				onClick={() => {
-					form.setFieldValue('array', '1111')
+					form.setValue('array', '1111')
 				}}>
 				set all Array Values
 			</Button>
@@ -105,12 +105,12 @@ export const initChildren = (form: UseForm) => {
 				<h4>Set Value</h4>
 				<Button
 					onClick={() => {
-						form.setFieldValue('myName1', '456')
+						form.setValue('myName1', '456')
 					}}>
 					set Value
 				</Button>
 				<Button onClick={() => {
-					form.setFieldsValue({
+					form.setValues({
 						array: {
 							'1': '1111',
 							'2': '2222'
@@ -127,9 +127,9 @@ export const initChildren = (form: UseForm) => {
 
 				<Button onClick={() => {
 					console.log(
-						form.getFieldsValue([]),
-						form.getFieldsValue(['array']),
-						form.getFieldValue('array'),
+						form.getValues([]),
+						form.getValues(['array']),
+						form.getValue('array'),
 					)
 				}}>btn submit</Button>
 			</div>

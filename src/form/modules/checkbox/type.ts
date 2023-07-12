@@ -1,12 +1,13 @@
 import { ReactNode } from 'react'
 import { ComponentProps } from "@/assets"
+import { ObjectType } from 'abandonjs'
 
-export type CheckboxValue<T = never> = boolean | string | T
+export type CheckboxValue = boolean | string | number | ObjectType
 
 /**
  * @description 复选框属性
  */
-export interface CheckboxProps<T = never> extends ComponentProps {
+export interface CheckboxProps extends ComponentProps {
 	/**
 	 * @description input[type="checkbox"] 的 name 属性, 也作为非单一组件时候的 value
 	 */
@@ -22,7 +23,7 @@ export interface CheckboxProps<T = never> extends ComponentProps {
 	/**
 	 * @description 选中当前复选框值, 结合Checkbox.Group使用
 	 */
-	value?: CheckboxValue<T>
+	value?: CheckboxValue
 	/**
 	 * @description 
 	 */
@@ -34,28 +35,33 @@ export interface CheckboxProps<T = never> extends ComponentProps {
 	 * @param value 
 	 * @returns 
 	 */
-	onChange?: (checked: boolean, value?: CheckboxValue<T>) => void | { checked: boolean, value: boolean | T } | boolean
+	onChange?: (checked: boolean, value?: CheckboxValue) => void | { checked: boolean, value: boolean | CheckboxValue } | boolean
 
 	[key: string]: any
 }
 
+export type CheckboxChangeEvent = {
+	target: {
+		value: CheckboxValue | CheckboxValue[]
+	}
+}
 
 /**
  * @description 复选框组属性
  */
-export interface CheckboxGroupProps<T = any> extends ComponentProps {
-	value?: CheckboxValue<T>[]
-	onChange?: (value: CheckboxValue<T>[]) => void
-	defaultValue?: CheckboxValue<T>[]
-	options?: (string | number | { value: T, label: string | number } | CheckboxProps<T>)[]
+export interface CheckboxGroupProps extends ComponentProps {
+	value?: CheckboxValue[]
+	onChange?: (event: CheckboxChangeEvent) => void
+	defaultValue?: CheckboxValue[]
+	options?: (string | number | { value: CheckboxValue, label: string | number } | CheckboxProps)[]
 	children?: ReactNode
 }
 
 
-export interface CheckboxGroupContextProps<T = any> {
+export interface CheckboxGroupContextProps{
 	name: string
-	groupProps?: CheckboxGroupProps<T>
-	groupValue: CheckboxValue<T>[]
-	setGroupValue: (value: CheckboxValue<T>, itemProps: CheckboxProps<T>) => void
+	groupProps?: CheckboxGroupProps
+	groupValue: CheckboxValue[]
+	setGroupValue: (value: CheckboxValue, itemProps: CheckboxProps) => void
 	[key: string]: any
 }

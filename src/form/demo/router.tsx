@@ -15,13 +15,56 @@ export default {
 			</Container>,
 		},
 		{
+			name: 'button',
+			path: '/form/button',
+			element: (
+				<Container columns={1}>
+					<Unit>{Lazy(import('../modules/button/demo'))}</Unit>
+					{/* <Unit>{Lazy(import('./FCTest'))}</Unit> */}
+				</Container>
+			),
+		},
+		{
 			name: 'input',
 			path: '/form/input',
 			element: <Container columns={1}>
+				<Unit>
+					<Container>
+						<Unit title="Class(Form)">
+							{Lazy(import('../modules/input/demo/class'))}
+						</Unit>
+						<Unit title="FC(Form)">
+							{Lazy(import('../modules/input/demo/fc'))}
+						</Unit>
+					</Container>
+				</Unit>
 				<Unit>{Lazy(import('../modules/input/demo'))}</Unit>
-				<Unit>{Lazy(import('../modules/input/demo/object'))}</Unit>
-				<Unit>{Lazy(import('../modules/input/demo/fc'))}</Unit>
-				<Unit>{Lazy(import('../modules/input/demo/class'))}</Unit>
+			</Container>
+		},
+		{
+			name: 'inputNumber',
+			path: '/form/inputNumber',
+			element: <Container columns={1}>
+				<Unit>
+					<Container>
+						<Unit title="FC(Form)">
+							{Lazy(import('../modules/inputNumber/demo/fc'))}
+						</Unit>
+						<Unit title="Class(Form)">
+							{Lazy(import('../modules/inputNumber/demo/class'))}
+						</Unit>
+					</Container>
+				</Unit>
+				<Unit>
+					{Lazy(import(`../modules/inputNumber/demo`))}
+				</Unit>
+			</Container>
+		},
+		{
+			name: 'inputObject',
+			path: '/form/inputObject',
+			element: <Container columns={1}>
+				<Unit>{Lazy(import('../modules/inputObject/demo'))}</Unit>
 			</Container>
 		},
 		{
@@ -33,11 +76,7 @@ export default {
 				<Unit>{Lazy(import('../modules/select/demo/form'))}</Unit>
 			</Container>
 		},
-		{
-			name: 'inputNumber',
-			path: '/form/inputNumber',
-			element: Lazy(import(`../modules/inputNumber/demo`))
-		},
+
 		{
 			name: 'textarea',
 			path: '/form/textarea',

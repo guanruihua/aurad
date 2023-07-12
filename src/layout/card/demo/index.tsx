@@ -3,7 +3,7 @@ import { Card } from '..'
 import { Container, Unit } from "unit-testing-react"
 
 export default function () {
-	return <Container>
+	return <Container columns={1}>
 		<Unit title="Card">
 			<Card
 				header={'title'}
@@ -31,5 +31,7 @@ export default function () {
 				卡片内容
 			</Card>
 		</Unit>
+
+
 	</Container>
 }

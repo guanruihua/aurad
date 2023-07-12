@@ -1,6 +1,6 @@
 import React from "react"
 import { createRoot } from 'react-dom/client'
-import { BrowserContainer, Lazy, getMenuRoute, type MenuObject } from '../src'
+import { BrowserContainer, Lazy, type MenuObject } from '../src'
 import './index.less'
 
 import chartRoute from '../src/chart/demo/router'
@@ -9,6 +9,10 @@ import dataGraphRoute from '../src/dataGraph/demo/router'
 import msgRoute from '../src/message/demo/router'
 import layoutRoute from '../src/layout/demo/router'
 import codeRoute from '../src/code/demo/router'
+import dragRoute from '../src/drag/demo/router'
+import feedbackRoute from '../src/feedback/demo/router'
+import effectRoute from '../src/effects/demo/router'
+import { Menu } from "./home"
 
 const modules: MenuObject[] = [
 	{
@@ -22,23 +26,24 @@ const modules: MenuObject[] = [
 	msgRoute,
 	layoutRoute,
 	codeRoute,
+	dragRoute,
+	feedbackRoute,
+	effectRoute,
 ]
 
-const menu = [
-	getMenuRoute({
-		fold: false,
-		group: {
-			Form: ['form'],
-			Layout: ['layout'],
-			DataGraph: ['dataGraph'],
-			Chart: ['chart'],
-			Code: ['code'],
-			Other: ['msg'],
-		},
+const menu: MenuObject[] = [
+	{
 		path: '/',
-		modules,
-	})
+		name: 'home',
+		element: <Menu menu={[{
+			path: '/',
+			name: 'home',
+			children: modules,
+		}]} />,
+		children: modules,
+	}
 ]
+
 function App() {
 	return <BrowserContainer
 		menu={menu}

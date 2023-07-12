@@ -1,4 +1,23 @@
 :root {
+
+  /* 主色调 */
+  --color: #108ee9;
+  --before-color: #91d5ff;
+  --error-color: #ff4d4f;
+  --disabled-color: rgba(0, 0, 0, 0.08);;
+  /* 主边框 */
+  --border: 1px solid #e9e9e9;
+  /* 主圆角 */
+  --border-radius: 12px;
+  /* 控件圆角 */
+  --control-border-radius: 8px;
+  /* 主背景色 */
+  --background: rgb(250, 250, 250);
+  /* 主背景色(半透明度) */
+  --half-background: rgba(250, 250, 250, .5);
+  /* hover背景色 */
+  --hover-background: rgba(250, 250, 250, .7);
+
   --au-border-radius: 8px;
 
   --au-primary-color: #ffffff;
@@ -6,7 +25,21 @@
   --au-default-color: #1890ff;
   --au-primary-bg-color-hover: #40a9ff;
   --au-primary-color-active: #096dd9;
-	--au-disabled-color: #f5f5f5;
+  --au-disabled-color: #f5f5f5;
+
+  /* 控件尺寸 */
+  --size-small: 24px;
+  --size-default: 32px;
+  --size-large: 40px;
+
+  /* 尺寸 */
+  --size-s: 100px;
+  --size-m: 150px;
+  --size-l: 200px;
+  --size-xl: 400px;
+  --size-xxl: 800px;
+  --size-xxxl: 1200px;
+
   /* --au-primary-color-outline: rgba(24, 144, 255, .2); */
 
   --au-primary-1: #e6f7ff;

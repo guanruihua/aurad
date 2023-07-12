@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from "react"
 import { classNames } from 'harpe'
-import { InputProps, InputChangeEvent } from '../type'
+import { InputProps, InputChangeEvent } from '../input/type'
 import { Icon } from '@/icon'
 import './index.less'
 

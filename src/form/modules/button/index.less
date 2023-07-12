@@ -9,18 +9,18 @@
 
   height: 32px;
   line-height: 32px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding: 0 15px;
+  margin: 0;
 
   color: #000000d9;
   font-size: 14px;
   font-weight: 400;
   text-align: center;
   white-space: nowrap;
+  overflow: hidden;
 
   border-radius: 2px;
-  border: 1px solid transparent;
-  border-color: #d9d9d9;
+  border: 1px solid #d9d9d9;
   border-radius: @border-radius;
 
   background-image: none;
@@ -52,6 +52,7 @@
 
 .au-btn-primary {
   color: @primary-color;
+  border-color: @primary-bg-color;
   background: @primary-bg-color;
 
   &:hover {
@@ -82,4 +83,64 @@
     border-color: @primary-bg-color-hover;
   }
 
+}
+
+.au-btn-gradient {
+  --background-spread: 200px;
+
+  position: relative;
+  height: 32px;
+  border: none;
+  background: transparent;
+  padding: 2px;
+  z-index: 0;
+  border: none;
+  margin: 0;
+
+
+  &:disabled {
+    & span {
+      color: rgba(255, 255, 255, .5);
+      background: rgba(0, 0, 0, .5);
+    }
+  }
+
+  &:disabled:after {
+    background: rgba(0, 0, 0, .5);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    background: conic-gradient(from 180deg at 50% 50%, #00D1FF 0deg, #EE27FF 106.88deg, #205EFF 206.25deg, #00F0FF 286.87deg, #00D1FF 360deg);
+    // background: conic-gradient(from 180deg at 50% 50%, rgba(0, 209, 255, 0) 0deg, rgba(0, 209, 255, 0) 153.75deg, #00D1FF 345deg, rgba(0, 209, 255, 0) 360deg);
+    top: calc(var(--background-spread) * -1);
+    right: calc(var(--background-spread) * -1);
+    bottom: calc(var(--background-spread) * -1);
+    left: calc(var(--background-spread) * -1);
+    z-index: -1;
+    animation: 3s rotate linear infinite;
+  }
+
+  &>span {
+    display: block;
+    height: 28px;
+    line-height: 28px;
+    padding: 0 15px;
+    margin: 0;
+    color: #fff;
+    background: #000;
+    border-radius: @border-radius;
+    border: none;
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
 }

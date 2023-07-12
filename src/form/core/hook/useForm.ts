@@ -1,26 +1,30 @@
 import { useSetState } from '@/assets'
 import type { UseSetState } from '@/assets'
 import type { ItemProps as FormItemProps } from '../item'
-import type { FormRecord, UseForm } from '../type'
+import type { FormRecord, UseForm, FieldStatusRecord } from './type'
 import { isEffectArray, isEmpty, isString, isUndefined } from 'asura-eye'
-import { ObjectType } from "abandonjs"
+import type { ObjectType } from "abandonjs"
+import { handleRule } from './handleRule'
 
-type FieldStatusRecord = Record<string, {
-	errorStatus: boolean
-	errorMsg: any
-}>
 
 
 export function useForm(): UseForm {
 
 	const rulesRecord: Record<string, any[]> = {}
 
+	// 值集合
 	const useValue = useSetState<FormRecord>({})
+	const [values, _setValues]: UseSetState<FormRecord> = useValue
+
+	// 字段属性
 	const [fields, setFields] = useSetState<ObjectType<Partial<FormItemProps>>>({})
 
+	// 错误校验
 	const [validStatus, setValidStatus, resetErrorStatus] = useSetState<FieldStatusRecord>({})
 
+	// 注册组件
 	const register = (name: string, props: Partial<FormItemProps>) => {
+		if (!isString(name)) return;
 		const { rules = [] } = props
 		setFields({ [name]: props })
 
@@ -29,24 +33,29 @@ export function useForm(): UseForm {
 		}
 	}
 
-	const [values, setValues]: UseSetState<FormRecord> = useValue
-
-	const setFieldValue = (fieldName: string, value: any) => {
-		validateField(fieldName, value)
+	// 设置值
+	const setValue = (fieldName: string, value: any) => {
 		setValues({ [fieldName]: value })
+		validateField(fieldName, value)
 	}
 
-	const setFieldsValue = (record: FormRecord) => {
-
-		setValues(record)
+	// 设置多个值
+	const setValues = (record: FormRecord) => {
+		_setValues(record)
+		for (const name in record) {
+			validateField(name, record[name])
+		}
 	}
 
-	const getFieldValue = (fieldName: string) => {
+	// 获取值
+	const getValue = (fieldName: string) => {
 		return values[fieldName]
 	}
 
-	const getFieldsValue = (fieldNames?: string[]) => {
+	// 获取多个值
+	const getValues = (fieldNames?: string[]) => {
 		const record: FormRecord = {}
+
 		if (isEffectArray(fieldNames)) {
 			fieldNames.forEach(name => {
 				record[name] = values[name]
@@ -57,50 +66,36 @@ export function useForm(): UseForm {
 		return values
 	}
 
-	const validateField = (fieldName: string, value: any) => {
+	// 校验单个值
+	const validateField = (fieldName: string, value?: any) => {
+		let errorRecord: FieldStatusRecord = {}
 
-		if (isEmpty(value) || (isString(value) && value.trim() === '')) {
-			setValidStatus({
-				[fieldName]: {
-					errorStatus: true,
-					errorMsg: '不可以为空'
-				}
-			})
-			return
-		}
+		if (isEmpty(value)) value = values[fieldName]
 
-		setValidStatus({
-			[fieldName]: {
-				errorStatus: false,
-				errorMsg: ''
-			}
-		})
+		errorRecord[fieldName] = handleRule({ value })
+		setValidStatus(errorRecord)
+		
+		return
 	}
 
-	const validateFieldValue = (fieldName: string) => {
-		validateField(fieldName, values[fieldName])
-		return values[fieldName]
-	}
-
-	const validateFieldsValue = (fieldNames?: string[]) => {
+	// 校验多个值
+	const validateFields = (fieldNames?: string[]) => {
 		const record: FormRecord = {}
 		if (isEffectArray(fieldNames)) {
 			fieldNames.forEach(name => {
 				record[name] = values[name]
+				validateField(name)
 			})
 			return record
 		}
 
 		if (isUndefined(fieldNames)) {
-			Object.keys(fields).forEach(name => {
-				validateField(name, values[name])
-			})
+			Object.keys(fields).forEach(name => validateField(name))
 		}
 		return values
 	}
 
 	return {
-
 		fields,
 		register,
 
@@ -110,14 +105,13 @@ export function useForm(): UseForm {
 
 		useValue,
 
-		getFieldsValue,
-		getFieldValue,
+		getValues,
+		getValue,
 
-		setFieldValue,
-		setFieldsValue,
+		setValue,
+		setValues,
 
 		validateField,
-		validateFieldValue,
-		validateFieldsValue,
+		validateFields,
 	}
 }

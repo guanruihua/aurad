@@ -12,17 +12,22 @@ export interface StepProps extends ComponentProps {
 
 export function Step(props: StepProps) {
 	const { className, children, style, ...rest } = props
+
+	const count = React.Children.count(children)
+	const newStyles: React.CSSProperties = {
+		gridTemplateColumns: `auto ${new Array(count - 1).fill('1fr auto').join(' ')}`,
+		...style,
+	}
+
+
 	return <div
 		className={classNames(className, 'au-step')}
-		style={{
-			gridTemplateColumns: `repeat(${React.Children.count(children)},1fr)`,
-			...style,
-		}}
+		style={newStyles}
 		{...rest}>
 		{React.Children.map(children, (item: any, index: number) => {
 			const { className, children, ...rest } = item.props || {}
 			return <Item
-				first={index === 0}
+				__first__={index === 0}
 				className={classNames(className)}
 				key={index}
 				{...rest}>

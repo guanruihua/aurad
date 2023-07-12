@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect } from "react"
 import { FormContext } from './context'
-import type { FormAction } from './type'
+import type { FormAction } from './hook/type'
 import { classNames } from "harpe"
 import { isString, isUndefined } from "asura-eye"
 
@@ -12,6 +12,7 @@ export interface ItemProps {
 }
 
 function ItemContent(props: ItemProps & FormAction) {
+
 	const {
 		label,
 		name,
@@ -24,7 +25,7 @@ function ItemContent(props: ItemProps & FormAction) {
 	} = props
 
 	if (!name) {
-		return <div className="form-item">
+		return <div className="au-form-item">
 			{label && <label style={{ display: 'block', marginRight: 4, marginBottom: 8 }}>{label}:</label>}
 			{children}
 		</div>
@@ -46,24 +47,27 @@ function ItemContent(props: ItemProps & FormAction) {
 		value: name && values[name] || '',
 		onChange: (e: any) => {
 			onChange && onChange(e)
-			if (e.target && isString(name)) {
-				const v = e.target.value
-				validateField && validateField(name, v)
-				setValues({ [name]: v })
-			}
+			if (!isString(name)) return;
+			let v = undefined
+			if (e.target) v = e.target.value
+			validateField && validateField(name, v)
+			setValues({ [name]: v })
 		},
 	}
 
 	const { errorStatus = false, errorMsg = '' } = validStatus[name] || {}
-	const newClassName = classNames("form-item", {
-		['form-item-error-status']: errorStatus
-	})
-	return <div className={newClassName}>
-		{label && <label className="form-item-label" >{label}:</label>}
-		{children && React.cloneElement(children, newProps)}
-		<div className="form-item-error-status-message" >{errorStatus && errorMsg}</div>
-	</div>
 
+	const newClassName = classNames("au-form-item", {
+		['au-form-item-error-status']: errorStatus
+	})
+
+	return (
+		<div className={newClassName}>
+			{label && <label className="au-form-item-label" >{label}:</label>}
+			{children && React.cloneElement(children, newProps)}
+			<div className="au-form-item-error-status-message" >{errorStatus && errorMsg}</div>
+		</div>
+	)
 }
 
 export function Item(props: ItemProps) {

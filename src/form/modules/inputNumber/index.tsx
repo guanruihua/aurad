@@ -1,21 +1,30 @@
 import React from "react"
-import { isNumber } from "asura-eye"
 import { classNames } from 'harpe'
 import { InputProps } from '../input/type'
 import './index.less'
 
-export interface InputNumberProps extends Omit<InputProps, 'min' | 'max'> {
-	min?: number
-	max?: number
-	step?: number
+export interface InputNumberProps extends InputProps {
+	/**
+	 * @default 'number'
+	 */
+	formValueType?: 'number' | 'string' | string
 	[key: string]: any
 }
 
 export function InputNumber(props: InputNumberProps) {
-	const { className, min, max, ...rest } = props
+	const {
+		className,
+		valueType = 'number',
+		onChange = () => { },
+		...rest
+	} = props
 
-	if (isNumber(min)) rest.min = min.toString()
-	if (isNumber(max)) rest.max = max.toString()
-
-	return (<input type="number" className={classNames("au-input-number", className)} {...rest as any} />)
+	return (
+		<input
+			type="number"
+			inputMode="decimal"
+			className={classNames("au-input-number", className)}
+			onChange={onChange}
+			{...rest as React.InputHTMLAttributes<HTMLInputElement>} />
+	)
 }

@@ -1,102 +1,69 @@
+.au-slider-dev {
+
+  height: 7px;
+  width: 210px;
+  overflow-y: hidden;
+  overflow-x: auto;
+
+
+  border: 1px solid var(--before-color);
+
+  div {
+    background: red;
+    height: 7px;
+    width: 900px;
+  }
+}
+
 .au-slider {
+
+  --moved: -7.5px;
+  // --moved: 0;
+  --rail-right: -7.5px;
+
   position: relative;
-  // height: 30px;
-  // padding: 10px;
-  // background-color: gray;
+  display: flex;
+  align-items: center;
+  height: 7px;
+  border: none;
+  box-shadow: inset 0 0 0 1px var(--before-color);
+  border-radius: 4px;
+  z-index: 0;
+  padding: 0;
+  margin: 0;
+  // overflow: hidden;
 
   &-rail {
-    // height: 10px;
-    // border-radius: 8px;
-    // background: red;
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    width: var(--rail-right);
+    background-color: var(--before-color);
+    border: none;
+    border-radius: 4px;
+    overflow: hidden;
+    padding: 0;
   }
 
   &-step {
-    display: flex;
-    align-items: center;
-    // justify-content: space-around;
-    justify-content: space-between;
-
-    height: 10px;
-    width: 100%;
-    border-radius: 8px;
-    background: red;
-
-    margin: auto;
-
-    span {
-      display: inline-block;
-      width: 15px;
-      height: 15px;
-      background: blue;
-      border-radius: 50%;
-      z-index: 10;
-      cursor: pointer;
-    }
-
-  }
-
-  &-handle {
     position: absolute;
-    top: 0;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    // justify-content: space-around;
-    justify-content: space-between;
-    width: 50%;
-    height: 8px;
-    margin: auto;
-    z-index: 5;
-    background: yellow;
+    z-index: 2;
+    height: 15px;
+    width: 15px;
+    left: var(--moved);
+    border-radius: 50%;
+    background-color: #fff;
+    cursor: pointer;
+    border: none;
+    box-shadow: inset 0 0 0 1px var(--before-color);
+    transition: box-shadow ease-in-out .3s;
+    padding: 0;
+    margin: 0;
 
-    span {
-      display: inline-block;
-      width: 15px;
-      height: 15px;
-      background: yellowgreen;
-      border-radius: 50%;
-      z-index: 10;
-      cursor: pointer;
-
-      &.end {
-				position: absolute;
-				z-index: 99999;
-				background-color: royalblue;
-				left: 300px;
-        // transform: translateX(100px);
-      }
+    &:active,
+    &:focus,
+    &:hover {
+      box-shadow: inset 0 0 0 1px var(--color), 0 0 0 1px var(--color);
     }
   }
-}
-
-/* 更改禁用状态图标 */
-.dragging {
-  // opacity: 0.5;
-  /* 更改透明度 */
-  // cursor: not-allowed;
-  // cursor: pointer;
-	// width: 100% !important;
-	// height: 100% !important;
-  cursor: grab !important;
-  /* 更改鼠标指针 */
-  /* 添加其他样式，以更改图标外观 */
-}
-
-
-body {
-  /* Prevent the user selecting text in the example */
-  user-select: none;
-}
-
-#draggable {
-  text-align: center;
-  background: white;
-}
-
-.dropzone {
-  width: 200px;
-  height: 60px;
-  background: blueviolet;
-  margin: 10px;
-  padding: 10px;
 }
