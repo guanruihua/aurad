@@ -28,7 +28,10 @@ export default {
 			name: 'input',
 			path: '/form/input',
 			element: <Container columns={1}>
-				<Unit>
+				<Unit title="FC(demo)">
+					{Lazy(import('../modules/input/demo/fc-test'))}
+				</Unit>
+				{/* <Unit>
 					<Container>
 						<Unit title="Class(Form)">
 							{Lazy(import('../modules/input/demo/class'))}
@@ -38,7 +41,7 @@ export default {
 						</Unit>
 					</Container>
 				</Unit>
-				<Unit>{Lazy(import('../modules/input/demo'))}</Unit>
+				<Unit>{Lazy(import('../modules/input/demo'))}</Unit> */}
 			</Container>
 		},
 		{

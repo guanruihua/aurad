@@ -1,7 +1,9 @@
 import { ObjectType } from 'abandonjs'
+import type { UseSetState } from '@/assets'
+import { FormItemProps } from ".."
 import { ReactNode } from 'react'
 
-export type FormRecord = ObjectType<any>
+export type FormRecord = Record<string, any>
 
 export type FieldStatusRecord = Record<string, {
 	errorStatus: boolean
@@ -23,33 +25,14 @@ export interface FormRule {
 // export type FormFieldValue = undefined | null | string | number 
 export type FormFieldValue = any
 
-
-export interface MapAction<Key, Value> {
-	set: (key: Key, value: Value, force?: boolean) => void;
-	setAll: (newMap: Iterable<readonly [Key, Value]>, force?: boolean) => void;
-	remove: (key: Key) => void;
-	reset: (force?: boolean) => void;
-	get: (key: Key) => Value | undefined;
-}
-
 /**
  * @description useForm 和 useClassForm 类型
  */
 export interface UseForm extends ObjectType {
 
-	values: ObjectType
-	initialValues: ObjectType
-	fields: Map<string | number, ObjectType>
-	fieldAction: MapAction<string, ObjectType>
-	// fields: ObjectType
-	// setFields(params: ObjectType): void
-	setInitialValues(params: ObjectType<any>): void
-	errorState: ObjectType
-	setErrorState(params: ObjectType<any>): void
-	rules: Map<string | number, any[]>
-	ruleAction: MapAction<string, any[]>
-	// setRules(params: ObjectType<any>): void
+	fields: ObjectType<Partial<FormItemProps>>
 
+	useValue: UseSetState<FormRecord>
 	/**
 	 * @description 获取字段值
 	 * @param fieldName {name} 字段名
@@ -75,8 +58,6 @@ export interface UseForm extends ObjectType {
 	setValues: (record: FormRecord) => void
 
 	validateFields: (fieldNames?: string[]) => FormRecord
-	validateField(fieldName: string, value: any): FormRecord
-	resetFields: (fieldNames?: string[]) => void
 
 	resetErrorStatus: (fieldNames?: string[]) => void
 }

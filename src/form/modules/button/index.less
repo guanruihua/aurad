@@ -45,23 +45,19 @@
 }
 
 @disabled-color: var(--au-disabled-color);
-@primary-color: var(--au-primary-color);
 @primary-bg-color: var(--au-primary-bg-color);
 @primary-bg-color-hover: var(--au-primary-bg-color-hover);
-@primary-bg-color-active: var(--au-primary-bg-color-active);
 
 .au-btn-primary {
-  color: @primary-color;
+  color: var(--au-primary-color);
   border-color: @primary-bg-color;
   background: @primary-bg-color;
-
+&:active,
   &:hover {
+    border-color: @primary-bg-color-hover;
     background-color: @primary-bg-color-hover;
   }
 
-  &:active {
-    background-color: @primary-bg-color-active;
-  }
 }
 
 .au-btn-text {

@@ -1,77 +1,100 @@
-import React, { ReactNode, useEffect } from "react"
+import React, { ReactNode } from "react"
 import { FormContext } from './context'
-import type { FormAction } from './hook/type'
+import type { FormAction, UseForm } from './hook/type'
 import { classNames } from "harpe"
-import { isString, isUndefined } from "asura-eye"
+import { ComponentProps } from "@/assets"
+import { isEffectArray } from "asura-eye"
+import { toString } from "abandonjs"
 
-export interface ItemProps {
+export interface FormItemProps extends ComponentProps {
 	name?: string
-	label?: string | ReactNode
+	label?: ReactNode
 	rules?: any[]
 	[key: string]: any
 }
 
-function ItemContent(props: ItemProps & FormAction) {
 
-	const {
-		label,
-		name,
-		register,
-		validateField,
-		children,
-		values = {},
-		setValues,
-		validStatus = {},
-	} = props
+export interface ItemCoreProps extends FormItemProps {
+	__form__: UseForm
+}
 
-	if (!name) {
-		return <div className="au-form-item">
-			{label && <label style={{ display: 'block', marginRight: 4, marginBottom: 8 }}>{label}:</label>}
-			{children}
-		</div>
+
+function FormItemCore(props: FormItemProps) {
+	const { className, label, name, rules, __form__, children, ...rest } = props
+
+	React.useEffect(() => {
+		if (name && __form__) {
+			__form__.fieldAction.set(name, {
+				name,
+				rules,
+			});
+			isEffectArray(rules) && __form__.ruleAction.set(name, rules);
+		}
+	}, [toString(rules), name])
+
+
+	if (__form__ && name && React.isValidElement(children)) {
+		const { values, errorState = {} } = __form__
+		const { onChange, ...childRest } = children.props
+
+		const newProps = {
+			...childRest,
+			value: values[name] || '',
+			onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+				onChange && onChange(e)
+				const value = e.target.value || ''
+				__form__.validateField(name, value)
+				__form__.setValues({ [name]: value })
+			}
+		}
+
+		const hasError = errorState[name] && errorState[name].error && errorState[name].error.length > 0
+
+		const newClassName = classNames("au-form-item", className, {
+			['au-form-item-error-status']: hasError
+		})
+
+		const renderError = () => {
+			const { error = [] } = errorState[name] || {}
+			if (error.length > 0) {
+				return error.join(', ')
+			}
+			return ''
+		}
+
+
+		return (
+			<div className={newClassName} {...rest}>
+				{label && <label className="au-form-item-label">{label}</label>}
+				<div className="au-form-item-control">
+					{React.cloneElement(children, newProps)}
+				</div>
+				<div className="au-form-item-error-status-message" >
+					{renderError()}
+				</div>
+			</div>
+		)
 	}
-
-	const {
-		value: orValue = undefined, defaultValue = undefined,
-		onChange, ...rest
-	} = children.props
-
-	useEffect(() => {
-		if (!name) return;
-		register(name, props)
-		setValues({ [name]: isUndefined(orValue) ? defaultValue : orValue })
-	}, [name])
-
-	const newProps = {
-		...rest,
-		value: name && values[name] || '',
-		onChange: (e: any) => {
-			onChange && onChange(e)
-			if (!isString(name)) return;
-			let v = undefined
-			if (e.target) v = e.target.value
-			validateField && validateField(name, v)
-			setValues({ [name]: v })
-		},
-	}
-
-	const { errorStatus = false, errorMsg = '' } = validStatus[name] || {}
-
-	const newClassName = classNames("au-form-item", {
-		['au-form-item-error-status']: errorStatus
-	})
 
 	return (
-		<div className={newClassName}>
-			{label && <label className="au-form-item-label" >{label}:</label>}
-			{children && React.cloneElement(children, newProps)}
-			<div className="au-form-item-error-status-message" >{errorStatus && errorMsg}</div>
+		<div
+			className={classNames("au-form-item", className)}
+			{...rest}>
+			{label && <label>{label}</label>}
+			{children}
 		</div>
 	)
 }
 
-export function Item(props: ItemProps) {
+
+/**
+ * @title  FormItem
+ * @description 受控子组件必须拥有value, 若值发生改变, 需要受控onChange
+ * @param props {FormItemProps}
+ * @returns 
+ */
+export function FormItem(props: FormItemProps) {
 	return <FormContext.Consumer>
-		{(target: FormAction) => <ItemContent {...target} {...props} />}
+		{(target: FormAction) => <FormItemCore {...target} {...props} />}
 	</FormContext.Consumer >
 }

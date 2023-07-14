@@ -1,117 +1,71 @@
-import { useSetState } from '@/assets'
-import type { UseSetState } from '@/assets'
-import type { ItemProps as FormItemProps } from '../item'
-import type { FormRecord, UseForm, FieldStatusRecord } from './type'
-import { isEffectArray, isEmpty, isString, isUndefined } from 'asura-eye'
-import type { ObjectType } from "abandonjs"
-import { handleRule } from './handleRule'
-
-
+import { useMap, useSetState } from '@/assets'
+import { type ObjectType } from "abandonjs"
+import { type UseForm } from './type'
+import { useState } from 'react'
+import { validateField } from './handleRule'
 
 export function useForm(): UseForm {
 
-	const rulesRecord: Record<string, any[]> = {}
+	const [fields, fieldAction] = useMap<ObjectType>([])
+	const [rules, ruleAction] = useMap<any[]>([])
 
-	// 值集合
-	const useValue = useSetState<FormRecord>({})
-	const [values, _setValues]: UseSetState<FormRecord> = useValue
+	const [initialValues, setInitialValues] = useState<ObjectType>({})
+	const [values, setValues] = useSetState<ObjectType>({})
+	const [errorState, setErrorState, resetErrorState] = useSetState<ObjectType>({})
 
-	// 字段属性
-	const [fields, setFields] = useSetState<ObjectType<Partial<FormItemProps>>>({})
-
-	// 错误校验
-	const [validStatus, setValidStatus, resetErrorStatus] = useSetState<FieldStatusRecord>({})
-
-	// 注册组件
-	const register = (name: string, props: Partial<FormItemProps>) => {
-		if (!isString(name)) return;
-		const { rules = [] } = props
-		setFields({ [name]: props })
-
-		if (isString(name) && isEffectArray(rules)) {
-			rulesRecord[name] = rules
-		}
-	}
-
-	// 设置值
-	const setValue = (fieldName: string, value: any) => {
-		setValues({ [fieldName]: value })
-		validateField(fieldName, value)
-	}
-
-	// 设置多个值
-	const setValues = (record: FormRecord) => {
-		_setValues(record)
-		for (const name in record) {
-			validateField(name, record[name])
-		}
-	}
-
-	// 获取值
-	const getValue = (fieldName: string) => {
-		return values[fieldName]
-	}
-
-	// 获取多个值
-	const getValues = (fieldNames?: string[]) => {
-		const record: FormRecord = {}
-
-		if (isEffectArray(fieldNames)) {
-			fieldNames.forEach(name => {
-				record[name] = values[name]
-			})
-			return record
-		}
-
-		return values
-	}
-
-	// 校验单个值
-	const validateField = (fieldName: string, value?: any) => {
-		let errorRecord: FieldStatusRecord = {}
-
-		if (isEmpty(value)) value = values[fieldName]
-
-		errorRecord[fieldName] = handleRule({ value })
-		setValidStatus(errorRecord)
-		
-		return
-	}
-
-	// 校验多个值
-	const validateFields = (fieldNames?: string[]) => {
-		const record: FormRecord = {}
-		if (isEffectArray(fieldNames)) {
-			fieldNames.forEach(name => {
-				record[name] = values[name]
-				validateField(name)
-			})
-			return record
-		}
-
-		if (isUndefined(fieldNames)) {
-			Object.keys(fields).forEach(name => validateField(name))
-		}
-		return values
-	}
+	const allFieldNames: (string | number)[] = Array.from(fields.keys())
 
 	return {
-		fields,
-		register,
-
-		validStatus,
-		setValidStatus,
-		resetErrorStatus,
-
-		useValue,
-
-		getValues,
-		getValue,
-
-		setValue,
-		setValues,
-
-		validateField,
-		validateFields,
+		fields, fieldAction,
+		rules, ruleAction,
+		initialValues, setInitialValues,
+		values, setValues,
+		errorState, setErrorState,
+		setValue: (fieldName: string, value: any) => setValues({ [fieldName]: value }),
+		getValue: (fieldName: string) => {
+			return values[fieldName]
+		},
+		getValues: (fieldNames?: string[]) => {
+			if (fieldNames) {
+				const result: ObjectType = {}
+				fieldNames.forEach(name => {
+					result[name] = values[name]
+				})
+				return result
+			} else {
+				return values
+			}
+		},
+		validateField: (fieldName: string, value: any) => {
+			if (!allFieldNames.includes(fieldName)) return {}
+			setErrorState({ [fieldName]: validateField(fieldName, value, ruleAction.get(fieldName)) })
+			return {}
+		},
+		validateFields: (fieldNames?: string[]) => {
+			const newErrorState: ObjectType = {}
+			if (fieldNames) {
+				fieldNames.forEach(name => {
+					if (allFieldNames.includes(name)) {
+						newErrorState[name] = validateField(name, values[name], ruleAction.get(name))
+					}
+				})
+			} else {
+				allFieldNames.forEach(name => {
+					newErrorState[name] = validateField(name as string, values[name], ruleAction.get(name))
+				})
+			}
+			setErrorState(newErrorState)
+			return {}
+		},
+		resetFields: (fieldNames?: string[]) => {
+			if (fieldNames) {
+				setValues(this.getValues(fieldNames))
+			} else {
+				setValues(initialValues)
+			}
+		},
+		resetErrorStatus: (fieldNames?: string[]) => {
+			resetErrorState(fieldNames)
+		}
 	}
 }
