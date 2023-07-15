@@ -70,8 +70,8 @@ devDependencies:
     specifier: ^2.7.0
     version: 2.7.0
   asura-eye:
-    specifier: ^0.5.1
-    version: 0.5.1
+    specifier: ^0.6.0
+    version: 0.6.0
   axios:
     specifier: ^1.2.2
     version: 1.2.3
@@ -1506,8 +1506,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /asura-eye@0.5.1:
-    resolution: {integrity: sha512-KdZg2smIYQ17iBsvBfYYHxjzwvgUTjkF419iqptKPukTus8y1HZpyJNDGqm1kPv6lNuIw2BIt5cCMDi28jctBw==}
+  /asura-eye@0.6.0:
+    resolution: {integrity: sha512-kRWcSPQdFZ/KgIMgvbgzFAOKmfVMN9zfkUT5Dzp5dsgRvRp2sJ4pYXiCoYXhdkGG/JsWl7YyJzqUOEGcXBa3Dg==}
     engines: {node: '>=16'}
     dev: true
 

@@ -22,7 +22,7 @@ export default function () {
 			<FormItem
 				label="name"
 				name="name"
-				rules={[{ required: true }]}>
+				rules={[{ required: true, message: '不可以为空' }]}>
 				<Input placeholder="name" />
 			</FormItem>
 			<FormItem

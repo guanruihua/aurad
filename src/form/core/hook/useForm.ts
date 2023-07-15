@@ -2,7 +2,7 @@ import { useMap, useSetState } from '@/assets'
 import { type ObjectType } from "abandonjs"
 import { type UseForm } from './type'
 import { useState } from 'react'
-import { validateField } from './handleRule'
+import { validateField } from '../validate'
 
 export function useForm(): UseForm {
 

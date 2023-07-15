@@ -1,7 +1,7 @@
 import React, { Fragment } from "react"
 import { FormItem } from '..'
 import { Input, Button, Card } from '../..'
-import type { UseForm } from "../type"
+import type { UseForm } from ".."
 
 export const initChildren = (form: UseForm) => {
 	return <Fragment>

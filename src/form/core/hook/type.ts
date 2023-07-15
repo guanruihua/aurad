@@ -135,6 +135,7 @@ export type Rule = {
 	min?: number | string | unknown[],
 	/**
 	 * @description 正则表达式匹配	RegExp	
+	 * @pre type = 'string'
 	 */
 	pattern?: RegExp
 	/**
@@ -146,11 +147,11 @@ export type Rule = {
 	 */
 	transform?: (value: any) => any,
 	/**
-	 * @description 类型，有 string | number | boolean | url | email | regexp |  integer | float | array | object | enum | date | url | hex | any
-	 * @default string
-	 * @type: 'string' | 'number' | 'boolean' | 'url' | 'email' | 'regexp' | 'integer' | 'float' | 'array' | 'object' | 'enum' | 'date' | 'url' | 'hex' | any
+	 * @description 类型限制
+	 * @default 'string'
+	 * @type: 'string' | 'number' | 'boolean' | 'url' | 'email' | 'regexp' | 'integer' | 'float' | 'array' | 'object' 'date'
 	 */
-	type?: 'string' | 'number' | 'boolean' | 'url' | 'email' | 'regexp' | 'integer' | 'float' | 'array' | 'object' | 'enum' | 'date' | 'url' | 'hex' | any
+	type?: 'string' | 'number' | 'boolean' | 'url' | 'email' | 'regexp' | 'integer' | 'float' | 'array' | 'object' | 'date'
 	/**
 	 * @description 设置触发验证时机，必须是 Form.Item 的 validateTrigger 的子集	
 	 * @type ValidateTrigger | ValidateTrigger[]	

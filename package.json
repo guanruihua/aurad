@@ -39,7 +39,7 @@
     "@typescript-eslint/parser": "^5.40.1",
     "@typescript-eslint/typescript-estree": "^5.58.0",
     "abandonjs": "^2.7.0",
-    "asura-eye": "^0.5.1",
+    "asura-eye": "^0.6.0",
     "axios": "^1.2.2",
     "babel-loader": "^8.2.5",
     "clean-webpack-plugin": "^4.0.0",

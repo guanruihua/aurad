@@ -1,6 +1,7 @@
 import { isEmpty, isString } from 'asura-eye'
-import type { FieldStatusRecord } from './type'
+import type { FieldStatusRecord, Rule } from './type'
 import { ObjectType } from 'abandonjs'
+import { checkValueByRule } from '../validate/check'
 
 export type HandleRuleProps = {
 	fieldName: string
@@ -29,6 +30,7 @@ export function handleRule(props: HandleRuleProps): FieldStatusRecord[string] {
 }
 
 
+
 // mode = 'all' | number // 指定找到数量错误就停止
 export const validateField = (fieldName: string, value: any, rules: any[] = [], config: ObjectType = {}) => {
 	const { mode = 'all' } = config
@@ -40,14 +42,10 @@ export const validateField = (fieldName: string, value: any, rules: any[] = [], 
 	} = { name: fieldName, value, error: [] }
 	for (let i = 0; i < rules.length; i++) {
 		const rule = rules[i]
-		const { required = false } = rule
-		if (required) {
-			if (isEmpty(value) || (isString(value) && value.length === 0)) {
-				result.error.push('不可以为空')
-				return result
-			}
+		const { transform, message, warningOnly = false } = rule
+		if (checkValueByRule(value, rule as Rule) === false) {
+			result.error.push(message)
 		}
-		console.log(rule)
 	}
 	return result
 }
