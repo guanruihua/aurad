@@ -41,14 +41,11 @@ export interface UseForm extends ObjectType {
 	initialValues: ObjectType
 	fields: Map<string | number, ObjectType>
 	fieldAction: MapAction<string, ObjectType>
-	// fields: ObjectType
-	// setFields(params: ObjectType): void
 	setInitialValues(params: ObjectType<any>): void
 	errorState: ObjectType
 	setErrorState(params: ObjectType<any>): void
 	rules: Map<string | number, any[]>
 	ruleAction: MapAction<string, any[]>
-	// setRules(params: ObjectType<any>): void
 
 	/**
 	 * @description 获取字段值
@@ -149,7 +146,7 @@ export type Rule = {
 	/**
 	 * @description 类型限制
 	 * @default 'string'
-	 * @type: 'string' | 'number' | 'boolean' | 'url' | 'email' | 'regexp' | 'integer' | 'float' | 'array' | 'object' 'date'
+	 * @type: 'string' | 'number' | 'boolean' | 'url' | 'email' | 'regexp' | 'integer' | 'float' | 'array' | 'object' | 'date'
 	 */
 	type?: 'string' | 'number' | 'boolean' | 'url' | 'email' | 'regexp' | 'integer' | 'float' | 'array' | 'object' | 'date'
 	/**
