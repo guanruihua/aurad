@@ -1,15 +1,19 @@
 import React from "react"
 import { Checkbox } from '..'
 import { Container, Unit } from 'unit-testing-react'
+import CheckboxFCPage from './fc'
 
 export default function () {
 	return <Container>
-		<Unit title='Checkbox'>
+		<Unit>
+			<CheckboxFCPage />
+		</Unit>
+		{/* <Unit title='Checkbox'>
 			<div>
 				<Checkbox>Default</Checkbox>
 				<Checkbox checked>Value</Checkbox>
 				<Checkbox label="Label"></Checkbox>
-				<Checkbox<number>
+				<Checkbox
 					value={123}
 					onChange={(checked: boolean, value: number) => {
 						console.log({ checked, value })
@@ -37,6 +41,6 @@ export default function () {
 					</Checkbox.Group>
 				</div>
 			</div>
-		</Unit>
+		</Unit> */}
 	</Container>
 }

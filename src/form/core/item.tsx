@@ -3,13 +3,18 @@ import { FormContext } from './context'
 import type { FormAction, UseForm } from './hook/type'
 import { classNames } from "harpe"
 import { ComponentProps } from "@/assets"
-import { isEffectArray } from "asura-eye"
+import { isEffectArray, isEmpty } from "asura-eye"
 import { toString } from "abandonjs"
 
 export interface FormItemProps extends ComponentProps {
 	name?: string
 	label?: ReactNode
 	rules?: any[]
+	/**
+	 * @description 直接控件的值的索引
+	 * @default 'value'
+	 */
+	valueIndex?: 'value' | 'checked' | string
 	[key: string]: any
 }
 
@@ -20,15 +25,12 @@ export interface ItemCoreProps extends FormItemProps {
 
 
 function FormItemCore(props: FormItemProps) {
-	const { className, label, name, rules, __form__, children, ...rest } = props
+	const { className, label, name, valueIndex = 'value', rules, __form__, children, ...rest } = props
 
 	React.useEffect(() => {
 		if (name && __form__) {
-			__form__.fieldAction.set(name, {
-				name,
-				rules,
-			});
-			isEffectArray(rules) && __form__.ruleAction.set(name, rules);
+			__form__.fieldAction.set(name, { name, rules })
+			isEffectArray(rules) && __form__.ruleAction.set(name, rules)
 		}
 	}, [toString(rules), name])
 
@@ -36,17 +38,21 @@ function FormItemCore(props: FormItemProps) {
 	if (__form__ && name && React.isValidElement(children)) {
 		const { values, errorState = {} } = __form__
 		const { onChange, ...childRest } = children.props
-
+		
+		// console.log(childRest, values)
+		
 		const newProps = {
 			...childRest,
-			value: values[name] || '',
-			onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+			[valueIndex]: values[name],
+			onChange: (e: React.ChangeEvent<any>) => {
 				onChange && onChange(e)
-				const value = e.target.value || ''
+				const value = e.target[valueIndex]
 				__form__.validateField(name, value)
 				__form__.setValues({ [name]: value })
 			}
 		}
+
+		if (isEmpty(values[name])) delete newProps[valueIndex]
 
 		const hasError = errorState[name] && errorState[name].error && errorState[name].error.length > 0
 

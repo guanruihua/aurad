@@ -64,13 +64,6 @@ export default {
 			</Container>
 		},
 		{
-			name: 'inputObject',
-			path: '/form/inputObject',
-			element: <Container columns={1}>
-				<Unit>{Lazy(import('../modules/inputObject/demo'))}</Unit>
-			</Container>
-		},
-		{
 			name: 'select',
 			path: '/form/select',
 			element: <Container columns={3} grid>

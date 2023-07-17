@@ -8,7 +8,6 @@ export const checkValueByRule = (value: any, rule: Rule) => {
 
 	if (required && checkRequired(newValue) === false) return false
 
-
 	const valueLen = getNum(newValue)
 
 	if (!isEmpty(min)) {

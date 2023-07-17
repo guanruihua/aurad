@@ -6,14 +6,16 @@ import { validateField } from '../validate'
 
 export function useForm(): UseForm {
 
-	const [fields, fieldAction] = useMap<ObjectType>([])
-	const [rules, ruleAction] = useMap<any[]>([])
+	const [fields, fieldAction] = useMap<string, ObjectType>([])
+	const [rules, ruleAction] = useMap<string, any[]>([])
 
 	const [initialValues, setInitialValues] = useState<ObjectType>({})
 	const [values, setValues] = useSetState<ObjectType>({})
 	const [errorState, setErrorState, resetErrorState] = useSetState<ObjectType>({})
 
-	const allFieldNames: (string | number)[] = Array.from(fields.keys())
+	const allFieldNames: string[] = Array.from(fields.keys())
+
+	// console.log(initialValues, values)
 
 	return {
 		fields, fieldAction,
@@ -58,10 +60,12 @@ export function useForm(): UseForm {
 			return {}
 		},
 		resetFields: (fieldNames?: string[]) => {
+			resetErrorState(fieldNames)
 			if (fieldNames) {
-				setValues(this.getValues(fieldNames))
+				setValues(this.getValues(fieldNames), true)
 			} else {
-				setValues(initialValues)
+				// console.log({ initialValues })
+				setValues(initialValues, true)
 			}
 		},
 		resetErrorStatus: (fieldNames?: string[]) => {

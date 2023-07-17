@@ -16,7 +16,7 @@ export default class extends React.Component {
 					form.validateFields()
 					console.log(form.getValues())
 				}}>
-				<FormItem name="name" rules={[{ required: true }]}>
+				<FormItem name="name" rules={[{ required: true, message: '不可以为空' }]}>
 					<InputNumber placeholder="num" min={0} max={99} step={13} />
 				</FormItem>
 				<FormItem>

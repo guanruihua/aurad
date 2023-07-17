@@ -1,26 +1,29 @@
-import { isEmpty, isString } from 'asura-eye'
-import type { FieldStatusRecord } from '../hook/type'
-import { ObjectType } from 'abandonjs'
+import { ObjectType, isNumber } from 'abandonjs'
+import { checkValueByRule } from './check'
 
 // mode = 'all' | number // 指定找到数量错误就停止
 export const validateField = (fieldName: string, value: any, rules: any[] = [], config: ObjectType = {}) => {
+
 	const { mode = 'all' } = config
-	// console.log(rules)
+
 	const result: {
 		name: string,
 		value: any,
-		error: any[]
+		error: any[],
 	} = { name: fieldName, value, error: [] }
+	let maxLen = isNumber(mode) ? mode : -1
 	for (let i = 0; i < rules.length; i++) {
 		const rule = rules[i]
-		const { required = false, min=0, max, pattern, len, transform, message, type, warningOnly=false, whitespace=false } = rule
-		if (required) {
-			if (isEmpty(value) || (isString(value) && value.length === 0)) {
-				result.error.push('不可以为空')
-				return result
+		if (checkValueByRule(value, rule)) {
+			if (maxLen === -1) {
+				continue;
+			} else {
+				if (maxLen === 0) return result;
+				--maxLen;
 			}
+		} else {
+			result.error.push(rule.message)
 		}
-		console.log(rule)
 	}
 	return result
 }

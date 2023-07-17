@@ -15,7 +15,7 @@ export default function () {
 				form.validateFields()
 				console.log(form.getValues())
 			}}>
-			<FormItem name="name" rules={[{ required: true }]}>
+			<FormItem name="name" rules={[{ required: true, message: '不可以为空' }]}>
 				<Input placeholder="name" />
 			</FormItem>
 			<FormItem name="name2" >
