@@ -2,6 +2,8 @@ import { ReactNode } from 'react'
 import { ComponentProps } from "@/assets"
 import { ObjectType } from 'abandonjs'
 
+export type CheckboxValue = boolean | string | number | ObjectType
+
 export type CheckboxChangeEvent = {
 	target: {
 		value: CheckboxValue | CheckboxValue[]
@@ -9,7 +11,6 @@ export type CheckboxChangeEvent = {
 	}
 }
 
-export type CheckboxValue = boolean | string | number | ObjectType
 
 /**
  * @description 复选框属性
@@ -88,6 +89,6 @@ export interface CheckboxGroupContextProps {
 	name: string
 	groupProps?: CheckboxGroupProps
 	groupValue: CheckboxValue[]
-	setGroupValue: (value: CheckboxValue, itemProps: CheckboxProps) => void
+	setGroupValue: (value: CheckboxValue, itemProps: CheckboxItemProps) => void
 	[key: string]: any
 }

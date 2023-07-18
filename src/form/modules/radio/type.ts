@@ -1,12 +1,19 @@
 import { ReactNode } from 'react'
 import { ComponentProps } from "@/assets"
 
-export type RadioValue<T = never> = boolean | string | T
+export type RadioValue = boolean | string | any
+
+export type RadioChangeEvent = {
+	target: {
+		value: RadioValue | RadioValue[]
+		checked?: boolean
+	}
+}
 
 /**
  * @description 复选框属性
  */
-export interface RadioProps<T = never> extends ComponentProps {
+export interface RadioProps extends ComponentProps {
 	/**
 	 * @description input[type="radio"] 的 name 属性, 也作为非单一组件时候的 value
 	 */
@@ -22,7 +29,7 @@ export interface RadioProps<T = never> extends ComponentProps {
 	/**
 	 * @description 选中当前复选框值, 结合Radio.Group使用
 	 */
-	value?: RadioValue<T>
+	value?: RadioValue
 	/**
 	 * @description 
 	 */
@@ -30,12 +37,9 @@ export interface RadioProps<T = never> extends ComponentProps {
 	disabled?: boolean
 	/**
 	 * @description 值发生改变而触发
-	 * @param checked 
-	 * @param value 
 	 * @returns 
 	 */
-	onChange?: (checked: boolean, value?: RadioValue<T>) => void | { checked: boolean, value: boolean | T } | boolean
-
+	onChange?: (event: RadioChangeEvent) => void
 	[key: string]: any
 }
 
@@ -43,24 +47,24 @@ export interface RadioProps<T = never> extends ComponentProps {
 /**
  * @description 复选框组属性
  */
-export interface RadioGroupProps<T = any> extends ComponentProps {
+export interface RadioGroupProps extends ComponentProps {
 	/**
 	 * @description 单选框类型
 	 * @default 'radio'
 	 */
 	type?: 'radio' | 'button'
-	value?: RadioValue<T>
-	onChange?: (value: RadioValue<T>) => void
-	defaultValue?: RadioValue<T>
-	options?: (string | number | { value: T, label: string | number } | RadioProps<T>)[]
+	value?: RadioValue
+	onChange?: (event: RadioChangeEvent) => void
+	defaultValue?: RadioValue
+	options?: (string | number | { value: RadioValue, label: string | number } | RadioProps)[]
 	children?: ReactNode
 }
 
 
-export interface RadioGroupContextProps<T = any> {
+export interface RadioGroupContextProps {
 	name: string
-	groupProps?: RadioGroupProps<T>
-	groupValue: RadioValue<T>
-	setGroupValue: (value: RadioValue<T>, itemProps: RadioProps<T>) => void
+	groupProps?: RadioGroupProps
+	groupValue: RadioValue
+	setGroupValue: (value: RadioValue, itemProps: RadioProps) => void
 	[key: string]: any
 }

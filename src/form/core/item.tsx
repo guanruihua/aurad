@@ -23,7 +23,6 @@ export interface ItemCoreProps extends FormItemProps {
 	__form__: UseForm
 }
 
-
 function FormItemCore(props: FormItemProps) {
 	const { className, label, name, valueIndex = 'value', rules, __form__, children, ...rest } = props
 
@@ -46,6 +45,7 @@ function FormItemCore(props: FormItemProps) {
 			[valueIndex]: values[name],
 			onChange: (e: React.ChangeEvent<any>) => {
 				onChange && onChange(e)
+				// console.log(e)
 				const value = e.target[valueIndex]
 				__form__.validateField(name, value)
 				__form__.setValues({ [name]: value })

@@ -10,11 +10,13 @@ export default function () {
 		<Unit title="Radio with Form(FC)">
 			<Form
 				form={form}
-				onSubmit={(values) => {
-					console.log(values)
+				onSubmit={(form) => {
+					console.log(form.values)
 				}}
 			>
-				<FormItem name="aa">
+				<FormItem
+					valueIndex="checked"
+					name="aa">
 					<Radio value="a">a</Radio>
 				</FormItem>
 				<FormItem name="bb">

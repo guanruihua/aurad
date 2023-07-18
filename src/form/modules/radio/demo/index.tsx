@@ -1,5 +1,5 @@
 import React from "react"
-import { Radio } from '..'
+import { Radio, RadioChangeEvent } from '..'
 import { Container, Unit } from "unit-testing-react"
 import { Space } from "@/layout"
 
@@ -9,10 +9,10 @@ export default function () {
 			<Radio>Default</Radio>
 			<Radio checked>Value</Radio>
 			<Radio label="Label"></Radio>
-			<Radio<number>
+			<Radio
 				value={123}
-				onChange={(checked: boolean, value: number) => {
-					console.log({ checked, value })
+				onChange={(event: RadioChangeEvent) => {
+					console.log(event)
 				}} >onChange</Radio>
 		</Unit>
 		<Unit title="RadioGroup(type=radio)">
@@ -24,7 +24,7 @@ export default function () {
 			<Radio.Group
 				// value={{ a: 12 }}
 				value={{ a: 123 }}
-				onChange={(v) => {
+				onChange={(v: RadioChangeEvent) => {
 					console.log(v)
 				}}
 			>
@@ -38,7 +38,7 @@ export default function () {
 				<Radio.Group
 					type="button"
 					value={{ a: 123 }}
-					onChange={(v) => {
+					onChange={(v: RadioChangeEvent) => {
 						console.log(v)
 					}}
 				>
@@ -47,7 +47,7 @@ export default function () {
 				<Radio.Group
 					type="button"
 					value={{ a: 123 }}
-					onChange={(v) => {
+					onChange={(v: RadioChangeEvent) => {
 						console.log(v)
 					}}
 				>
@@ -57,7 +57,7 @@ export default function () {
 				<Radio.Group
 					type="button"
 					value={{ a: 123 }}
-					onChange={(v) => {
+					onChange={(v: RadioChangeEvent) => {
 						console.log(v)
 					}}
 				>
@@ -69,7 +69,7 @@ export default function () {
 				<Radio.Group
 					type="button"
 					value={{ a: 123 }}
-					onChange={(v) => {
+					onChange={(v: RadioChangeEvent) => {
 						console.log(v)
 					}}
 				>

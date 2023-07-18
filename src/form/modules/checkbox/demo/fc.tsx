@@ -19,6 +19,14 @@ export default function () {
 			name="box1">
 			<Checkbox>box1</Checkbox>
 		</Form.Item>
+		<Form.Item
+			label='box2'
+			name="box2">
+			<Checkbox.Group>
+				<Checkbox.Item value={'aaa'}>aaa</Checkbox.Item>
+				<Checkbox.Item value={'bbb'}>bbb</Checkbox.Item>
+			</Checkbox.Group>
+		</Form.Item>
 		<FormItem>
 			<Space>
 				<Button htmlType="submit">

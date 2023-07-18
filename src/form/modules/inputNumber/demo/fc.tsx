@@ -15,7 +15,9 @@ export default function () {
 				form.validateFields()
 				console.log(form.getValues())
 			}}>
-			<FormItem name="num" rules={[{ required: true, message: '不可以为空' }]}>
+			<FormItem
+				name="num"
+				rules={[{ required: true, message: '不可以为空' }]}>
 				<InputNumber placeholder="num" min={0} max={99} step={13} />
 			</FormItem>
 			<FormItem>

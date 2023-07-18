@@ -3,6 +3,7 @@ import { type ObjectType } from "abandonjs"
 import { type UseForm } from './type'
 import { useState } from 'react'
 import { validateField } from '../validate'
+import { isArray } from 'asura-eye'
 
 export function useForm(): UseForm {
 
@@ -61,10 +62,13 @@ export function useForm(): UseForm {
 		},
 		resetFields: (fieldNames?: string[]) => {
 			resetErrorState(fieldNames)
-			if (fieldNames) {
-				setValues(this.getValues(fieldNames), true)
+			if (fieldNames && isArray(fieldNames)) {
+				const newValues: ObjectType = {}
+				fieldNames.forEach((name: string) => {
+					newValues[name] = initialValues[name]
+				})
+				setValues(newValues, true)
 			} else {
-				// console.log({ initialValues })
 				setValues(initialValues, true)
 			}
 		},
