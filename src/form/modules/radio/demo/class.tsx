@@ -2,6 +2,6 @@ import React from "react"
 
 export default function(){
 	return <div>
-		class
+		class(No developing)
 	</div>
 }

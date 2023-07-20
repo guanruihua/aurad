@@ -2,18 +2,35 @@ import React, { useState } from "react"
 import { useSetState } from "@/assets"
 import { classNames } from 'harpe'
 import { SelectProps } from '../type'
-import { isArray, isEffectObject } from "asura-eye"
-import { unique } from "abandonjs"
+import { isArray, isEmpty, isString } from "asura-eye"
+import { toString, unique } from "abandonjs"
 import { Icon } from '@/icon'
 
 export function MultSelectComponent(props: SelectProps) {
 
-	const { className, options = [], placeholder = '', open = false, defaultValue = [], disabled = false } = props
+	const { value, className, options = [], onChange, placeholder = '', open = false, defaultValue = [], disabled = false } = props
 
 	const [isHover, setHover] = useState<boolean>(open)
 	const [isLeave, setLeave] = useSetState<Record<string, boolean>>({ options: true })
 
 	const [selectValues, setSelectValues] = useState<string[]>(isArray(defaultValue) ? unique(defaultValue) : [defaultValue])
+
+	React.useEffect(() => {
+		if (toString(selectValues) === toString(value)) return
+		if (isEmpty(value)) {
+			setSelectValues([])
+			return;
+		}
+
+		if (isArray(value)) {
+			setSelectValues(unique(value))
+			return
+		}
+		if (isString(value)) {
+			setSelectValues([value])
+		}
+	}, [value])
+
 
 	return <div className={classNames(className, { hidden: disabled })}>
 		<div
@@ -27,8 +44,9 @@ export function MultSelectComponent(props: SelectProps) {
 			onBlur={() => { !Object.values(isLeave).includes(false) && setHover(false); }}
 		>
 			{selectValues.length === 0 && <div style={{ color: 'rgb(117,117,117)' }}>{placeholder}</div>}
+
 			{selectValues.map((item: string, index: number) => {
-				if (isEffectObject(item))
+				if (isString(item))
 					return <span
 						className="au-select-item"
 						key={index.toString()}>
@@ -39,6 +57,12 @@ export function MultSelectComponent(props: SelectProps) {
 							onClick={() => {
 								const newSelectValues: string[] = selectValues.filter(v => v !== item)
 								setSelectValues(newSelectValues)
+								const event = {
+									target: {
+										value: newSelectValues
+									}
+								}
+								onChange && onChange(event)
 							}}>
 							<Icon type="no" size={9} fill={'#8a8a94'} />
 						</span>
@@ -62,6 +86,12 @@ export function MultSelectComponent(props: SelectProps) {
 								? selectValues.filter(v => v !== value)
 								: selectValues.concat(value)
 							setSelectValues(newSelectValues)
+							const event = {
+								target: {
+									value: newSelectValues
+								}
+							}
+							onChange && onChange(event)
 						}}
 						className={classNames('au-select-options-item', { 'selected': selectValues.includes(value) })}>
 						{label}

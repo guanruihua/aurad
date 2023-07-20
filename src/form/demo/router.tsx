@@ -66,10 +66,16 @@ export default {
 		{
 			name: 'select',
 			path: '/form/select',
-			element: <Container columns={3} grid>
-				<Unit>{Lazy(import('../modules/select/demo/simple'))}</Unit>
-				<Unit>{Lazy(import('../modules/select/demo/mult'))}</Unit>
-				<Unit>{Lazy(import('../modules/select/demo/form'))}</Unit>
+			element: <Container columns={1} grid>
+				<Unit title="select(mult)">
+					{Lazy(import('../modules/select/demo/mult'))}
+				</Unit>
+				<Unit title="select(form)">
+					{Lazy(import('../modules/select/demo/form'))}
+				</Unit>
+				<Unit title="select(simple)">
+					{Lazy(import('../modules/select/demo/simple'))}
+				</Unit>
 			</Container>
 		},
 
@@ -91,11 +97,6 @@ export default {
 				<Unit>{Lazy(import('../modules/radio/demo/fc'))}</Unit>
 				<Unit>{Lazy(import('../modules/radio/demo/class'))}</Unit>
 			</Container>
-		},
-		{
-			name: 'slider',
-			path: '/form/slider',
-			element: Lazy(import('../modules/slider/demo'))
 		}
 	],
 } as MenuObject
