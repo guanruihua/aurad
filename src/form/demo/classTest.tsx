@@ -1,6 +1,6 @@
 import React from 'react'
 import { Form, injectForm } from '..'
-import { FormRecord } from '../type'
+import { FormRecord } from '..'
 import { initChildren } from './initChildren'
 import { Container, Unit } from 'unit-testing-react'
 

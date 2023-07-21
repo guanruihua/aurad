@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import type {
 	CheckboxGroupContextProps,
 	CheckboxGroupProps,
+	CheckboxItemProps,
 	CheckboxProps,
 	CheckboxValue
 } from './type'
@@ -28,7 +29,7 @@ export function Group(props: CheckboxGroupProps) {
 
 	const setGroupValue = (
 		checkedStatus: CheckboxValue,
-		itemProps: CheckboxProps
+		itemProps: CheckboxItemProps
 	) => {
 
 		const { setCheckedStatus, value } = itemProps

@@ -1,9 +1,7 @@
 import { ObjectType } from 'abandonjs'
-import type { UseSetState } from '@/assets'
-import { FormItemProps } from ".."
 import { ReactNode } from 'react'
 
-export type FormRecord = Record<string, any>
+export type FormRecord = ObjectType<any>
 
 export type FieldStatusRecord = Record<string, {
 	errorStatus: boolean
@@ -25,14 +23,30 @@ export interface FormRule {
 // export type FormFieldValue = undefined | null | string | number 
 export type FormFieldValue = any
 
+
+export interface MapAction<Key, Value> {
+	set: (key: Key, value: Value, force?: boolean) => void;
+	setAll: (newMap: Iterable<readonly [Key, Value]>, force?: boolean) => void;
+	remove: (key: Key) => void;
+	reset: (force?: boolean) => void;
+	get: (key: Key) => Value | undefined;
+}
+
 /**
  * @description useForm 和 useClassForm 类型
  */
 export interface UseForm extends ObjectType {
 
-	fields: ObjectType<Partial<FormItemProps>>
+	values: ObjectType
+	initialValues: ObjectType
+	fields: Map<string | number, ObjectType>
+	fieldAction: MapAction<string, ObjectType>
+	setInitialValues(params: ObjectType<any>): void
+	errorState: ObjectType
+	setErrorState(params: ObjectType<any>): void
+	rules: Map<string | number, any[]>
+	ruleAction: MapAction<string, any[]>
 
-	useValue: UseSetState<FormRecord>
 	/**
 	 * @description 获取字段值
 	 * @param fieldName {name} 字段名
@@ -58,6 +72,8 @@ export interface UseForm extends ObjectType {
 	setValues: (record: FormRecord) => void
 
 	validateFields: (fieldNames?: string[]) => FormRecord
+	validateField(fieldName: string, value: any): FormRecord
+	resetFields: (fieldNames?: string[]) => void
 
 	resetErrorStatus: (fieldNames?: string[]) => void
 }
@@ -116,6 +132,7 @@ export type Rule = {
 	min?: number | string | unknown[],
 	/**
 	 * @description 正则表达式匹配	RegExp	
+	 * @pre type = 'string'
 	 */
 	pattern?: RegExp
 	/**
@@ -127,11 +144,11 @@ export type Rule = {
 	 */
 	transform?: (value: any) => any,
 	/**
-	 * @description 类型，有 string | number | boolean | url | email | regexp |  integer | float | array | object | enum | date | url | hex | any
-	 * @default string
-	 * @type: 'string' | 'number' | 'boolean' | 'url' | 'email' | 'regexp' | 'integer' | 'float' | 'array' | 'object' | 'enum' | 'date' | 'url' | 'hex' | any
+	 * @description 类型限制
+	 * @default 'string'
+	 * @type: 'string' | 'number' | 'boolean' | 'url' | 'email' | 'regexp' | 'integer' | 'float' | 'array' | 'object' | 'date'
 	 */
-	type?: 'string' | 'number' | 'boolean' | 'url' | 'email' | 'regexp' | 'integer' | 'float' | 'array' | 'object' | 'enum' | 'date' | 'url' | 'hex' | any
+	type?: 'string' | 'number' | 'boolean' | 'url' | 'email' | 'regexp' | 'integer' | 'float' | 'array' | 'object' | 'date'
 	/**
 	 * @description 设置触发验证时机，必须是 Form.Item 的 validateTrigger 的子集	
 	 * @type ValidateTrigger | ValidateTrigger[]	

@@ -4,21 +4,33 @@
   &-label {
     display: block;
     margin-right: 4px;
-    margin-bottom: 8;
+    margin-bottom: 8px;
   }
 
-  &-error-status {
-    &>input {
-      border-color: #EB2323;
+}
 
-      &:hover {
+.au-form-item.au-form-item-error-status {
+
+  .au-form-item-control {
+    border: none;
+    padding: 0;
+    margin: 0;
+
+    &>* {
+      border-color: #EB2323;
+      box-shadow: #EB2323 0 0 3px;
+
+      &:hover,
+      &:active {
         border-color: #EB2323;
         box-shadow: #EB2323 0 0 3px;
       }
     }
-
-    &-message {
-      color: #EB2323;
-    }
   }
+
+  .au-form-item-error-status-message {
+    font-size: smaller;
+    color: #EB2323;
+  }
+
 }

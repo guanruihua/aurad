@@ -4,10 +4,18 @@ import { ObjectType } from 'abandonjs'
 
 export type CheckboxValue = boolean | string | number | ObjectType
 
+export type CheckboxChangeEvent = {
+	target: {
+		value: CheckboxValue | CheckboxValue[]
+		checked?: boolean
+	}
+}
+
+
 /**
  * @description 复选框属性
  */
-export interface CheckboxProps extends ComponentProps {
+export interface CheckboxItemProps extends ComponentProps {
 	/**
 	 * @description input[type="checkbox"] 的 name 属性, 也作为非单一组件时候的 value
 	 */
@@ -40,10 +48,29 @@ export interface CheckboxProps extends ComponentProps {
 	[key: string]: any
 }
 
-export type CheckboxChangeEvent = {
-	target: {
-		value: CheckboxValue | CheckboxValue[]
-	}
+/**
+ * @description 复选框属性
+ */
+export interface CheckboxProps extends ComponentProps {
+	/**
+	 * @description 选中状态(默认)
+	 */
+	defaultChecked?: boolean
+	/**
+	 * @description 选中状态
+	 */
+	checked?: boolean
+	/**
+	 * @description 
+	 */
+	label?: string | number
+	disabled?: boolean
+	/**
+	 * @description 值发生改变而触发
+	 * @param event {?CheckboxChangeEvent}
+	 * @returns 
+	 */
+	onChange?: (event?: CheckboxChangeEvent) => void
 }
 
 /**
@@ -58,10 +85,10 @@ export interface CheckboxGroupProps extends ComponentProps {
 }
 
 
-export interface CheckboxGroupContextProps{
+export interface CheckboxGroupContextProps {
 	name: string
 	groupProps?: CheckboxGroupProps
 	groupValue: CheckboxValue[]
-	setGroupValue: (value: CheckboxValue, itemProps: CheckboxProps) => void
+	setGroupValue: (value: CheckboxValue, itemProps: CheckboxItemProps) => void
 	[key: string]: any
 }

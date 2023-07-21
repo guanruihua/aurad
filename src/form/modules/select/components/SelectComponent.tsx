@@ -1,18 +1,19 @@
 import React, { useState } from "react"
 import { classNames } from 'harpe'
 import { SelectProps } from '../type'
-import { isArray } from "asura-eye"
+import { isArray, isEmpty } from "asura-eye"
 import { getSelectValue } from '../util'
 
 export function SelectComponent(props: SelectProps) {
 
 	const {
 		className,
-		name, 
+		name,
 		options = [],
 		placeholder = '',
 		open = false,
 		defaultValue,
+		value,
 		disabled = false,
 		onChange,
 	} = props
@@ -21,6 +22,12 @@ export function SelectComponent(props: SelectProps) {
 	const [isLeave, setLeave] = useState<boolean>(false)
 
 	const [selectValue, setSelectValue] = useState<string | undefined>(isArray(defaultValue) ? defaultValue[0] : defaultValue)
+
+	React.useEffect(() => {
+		if (value === selectValue) return;
+		setSelectValue(isArray(value) ? value[0] : value)
+	}, [value])
+
 
 	return <div className={classNames(className, { hidden: disabled })}>
 		<div className={classNames("au-select-input", { isHover: isHover && !disabled })}>
@@ -48,11 +55,15 @@ export function SelectComponent(props: SelectProps) {
 				return <div
 					key={index.toString()}
 					title={label}
-					onClick={(e) => {
-						onChange && onChange(e)
+					onClick={() => {
+						const event = {
+							target: {
+								value
+							}
+						}
+						onChange && onChange(event)
 						setSelectValue(value)
 						setHover(false)
-						
 					}}
 					className={classNames('au-select-options-item', { 'selected': selectValue === value })}>
 					{label}

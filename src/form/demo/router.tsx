@@ -28,7 +28,10 @@ export default {
 			name: 'input',
 			path: '/form/input',
 			element: <Container columns={1}>
-				<Unit>
+				<Unit title="FC(demo)">
+					{Lazy(import('../modules/input/demo/fc-test'))}
+				</Unit>
+				{/* <Unit>
 					<Container>
 						<Unit title="Class(Form)">
 							{Lazy(import('../modules/input/demo/class'))}
@@ -38,7 +41,7 @@ export default {
 						</Unit>
 					</Container>
 				</Unit>
-				<Unit>{Lazy(import('../modules/input/demo'))}</Unit>
+				<Unit>{Lazy(import('../modules/input/demo'))}</Unit> */}
 			</Container>
 		},
 		{
@@ -61,19 +64,18 @@ export default {
 			</Container>
 		},
 		{
-			name: 'inputObject',
-			path: '/form/inputObject',
-			element: <Container columns={1}>
-				<Unit>{Lazy(import('../modules/inputObject/demo'))}</Unit>
-			</Container>
-		},
-		{
 			name: 'select',
 			path: '/form/select',
-			element: <Container columns={3} grid>
-				<Unit>{Lazy(import('../modules/select/demo/simple'))}</Unit>
-				<Unit>{Lazy(import('../modules/select/demo/mult'))}</Unit>
-				<Unit>{Lazy(import('../modules/select/demo/form'))}</Unit>
+			element: <Container columns={1} grid>
+				<Unit title="select(mult)">
+					{Lazy(import('../modules/select/demo/mult'))}
+				</Unit>
+				<Unit title="select(form)">
+					{Lazy(import('../modules/select/demo/form'))}
+				</Unit>
+				<Unit title="select(simple)">
+					{Lazy(import('../modules/select/demo/simple'))}
+				</Unit>
 			</Container>
 		},
 
@@ -95,11 +97,6 @@ export default {
 				<Unit>{Lazy(import('../modules/radio/demo/fc'))}</Unit>
 				<Unit>{Lazy(import('../modules/radio/demo/class'))}</Unit>
 			</Container>
-		},
-		{
-			name: 'slider',
-			path: '/form/slider',
-			element: Lazy(import('../modules/slider/demo'))
 		}
 	],
 } as MenuObject

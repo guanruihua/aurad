@@ -1,86 +1,59 @@
-import React, { useState } from "react"
+import React from "react"
 import { classNames } from "harpe"
 import { Icon } from '@/icon'
-import { isEmpty, isObject, isUndefined } from "asura-eye"
 import { Group } from './group'
-import type { CheckboxGroupContextProps, CheckboxProps } from './type'
-import { CheckboxGroupContext } from './context'
+import type { CheckboxProps } from './type'
+import { CheckboxItem } from './item'
 import './index.less'
-import { stringify } from "abandonjs"
+import { isEmpty } from "asura-eye"
 
 export * from './type'
+export * from './item'
 
-export function CheckboxCore<T>(props: CheckboxProps<T>) {
+export function Checkbox(props: CheckboxProps) {
 
-	const {
-		children,
-		className,
-		label,
-		name,
-		checked, defaultChecked = false,
-		value, onChange, setGroupValue,
-	} = props
+	const { checked, defaultChecked, children, className, label = '', onChange, ...rest } = props
 
-	const [checkedStatus, setCheckedStatus] = useState<boolean>(
-		isUndefined(checked) ? defaultChecked : checked
-	)
+	const [status, setStatus] = React.useState<boolean>(defaultChecked || checked || false)
 
-	const handleClick = () => {
-		const newCheckedStatus = !checkedStatus
-		if (setGroupValue) {
-			setGroupValue(newCheckedStatus, { value, setCheckedStatus })
-			onChange && onChange(newCheckedStatus, value)
+	React.useEffect(() => {
+		if(isEmpty(checked) && isEmpty(defaultChecked) && status){
+			setStatus(false)
 			return;
 		}
-		if (!isUndefined(checked)) return
-		setCheckedStatus(newCheckedStatus)
-		onChange && onChange(newCheckedStatus, value)
-		return;
+		if (isEmpty(checked) && checked !== status) return;
+		setStatus(checked)
+	}, [checked, defaultChecked])
+
+	const handleClick = () => {
+		const newValue = !status
+		const newEvent = {
+			target: {
+				value: newValue,
+				checked: newValue
+			}
+		}
+		onChange && onChange(newEvent)
 	}
 
 	return (
 		<span className={classNames('au-checkbox', className)}>
 			<input
-				name={name}
+				checked={status}
 				style={{ visibility: 'hidden' }}
 				type="checkbox"
 				onChange={() => { handleClick() }}
-				checked={checkedStatus} />
+				{...rest}
+			/>
 			<div
-				className={classNames("au-checkbox-icon", { 'au-checkbox-select': checkedStatus })}
+				className={classNames("au-checkbox-icon", { 'au-checkbox-select': status })}
 				onClick={() => { handleClick() }}>
-				{checkedStatus && <Icon type='yes' size={12} fill='#fff' />}
+				{status && <Icon type='yes' size={12} fill='#fff' />}
 			</div>
 			<label onClick={() => handleClick()}>{children || label}</label>
 		</span>
 	)
-
-}
-
-export function Checkbox<T>(props: CheckboxProps<T>) {
-	return (
-		<CheckboxGroupContext.Consumer>
-			{(handler: CheckboxGroupContextProps) => {
-				if (handler.name) {
-					const {
-						groupValue,
-						setGroupValue,
-						groupProps = {}
-					} = handler
-					const { value } = props
-					const newProps = { ...props, setGroupValue, groupProps }
-					if (!isEmpty(value))
-						if (isObject(value)) {
-							newProps.checked = groupValue.map((_) => stringify(_)).includes(stringify(value))
-						} else {
-							newProps.checked = groupValue.includes(value)
-						}
-					return (<CheckboxCore {...newProps} />)
-				}
-				return (<CheckboxCore {...props} />)
-			}}
-		</CheckboxGroupContext.Consumer>
-	)
 }
 
 Checkbox.Group = Group
+Checkbox.Item = CheckboxItem

@@ -5,21 +5,26 @@ import { isEffectArray, isEffectObject, isUndefined } from 'asura-eye'
 import { Radio } from '.'
 import { classNames } from 'harpe'
 
-export function Group<T = any>(props: RadioGroupProps<T>) {
+export function Group(props: RadioGroupProps) {
 
 	const { className, options, children, value, defaultValue = [], onChange } = props
 
-	const [groupValue, updateGroupValue] = useState<RadioValue<T>>((isUndefined(value) ? defaultValue : value) as RadioValue<T>)
+	const [groupValue, updateGroupValue] = useState<RadioValue>((isUndefined(value) ? defaultValue : value) as RadioValue)
 
 	const setGroupValue = (
-		checkedStatus: RadioValue<T>,
-		itemProps: RadioProps<T>
+		checkedStatus: RadioValue,
+		itemProps: RadioProps
 	) => {
 		const { setCheckedStatus, value } = itemProps
 		if (isUndefined(value)) return;
 		setCheckedStatus(checkedStatus)
 		updateGroupValue(value)
-		onChange && onChange(value)
+		const event = {
+			target: {
+				value,
+			}
+		}
+		onChange && onChange(event)
 		return
 	}
 
@@ -27,7 +32,7 @@ export function Group<T = any>(props: RadioGroupProps<T>) {
 		...props,
 		groupValue, setGroupValue,
 	}
-	const contextValue: RadioGroupContextProps<T> = {
+	const contextValue: RadioGroupContextProps = {
 		name: 'RadioGroupContext',
 		groupValue, setGroupValue,
 		groupProps,
@@ -35,7 +40,7 @@ export function Group<T = any>(props: RadioGroupProps<T>) {
 
 	return (<RadioGroupContext.Provider value={contextValue}>
 		<div className={classNames(className, 'au-radio-group')}>
-			{isEffectArray(options) && options.map((item: string | number | RadioProps<T>, index: number) => {
+			{isEffectArray(options) && options.map((item: string | number | RadioProps, index: number) => {
 				const key = 'radio-option-' + index
 
 				if (isEffectObject(item)) {
