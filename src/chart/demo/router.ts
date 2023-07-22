@@ -14,6 +14,11 @@ export default {
 					path: '/chart/flow/fix',
 					element: Lazy(import('../flow/demo/fix')),
 				},
+				{
+					name: 'Circular',
+					path: '/chart/flow/circular',
+					element: Lazy(import('../flow/demo/circular')),
+				},
 			],
 		},
 		{

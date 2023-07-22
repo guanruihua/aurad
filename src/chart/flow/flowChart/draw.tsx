@@ -177,8 +177,6 @@ export function draw(props: FlowChartProps) {
 		}
 
 		/** 下 start **/
-
-
 		if (is(fx, tx) && fy < ty) {
 			let x = fx - cx + 6 + fw / 2
 			const y = fy - cy + fh
