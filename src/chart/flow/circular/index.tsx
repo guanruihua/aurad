@@ -2,8 +2,7 @@ import React from "react"
 import { type ComponentProps } from "@/assets"
 import { ObjectType, debounce } from "abandonjs"
 import { mock } from "mock-record"
-import { draw, handleLayout } from "./core"
-import { classNames } from "harpe"
+import { draw } from "./core"
 
 export interface CircularProps extends ComponentProps {
 	[key: string]: any
@@ -26,6 +25,13 @@ const nodes = [
 ]
 
 const links = [
+	{ form: '1', to: '5' },
+	{ form: '1', to: '9' },
+	{ form: '5', to: '9' },
+	{ form: '3', to: '7' },
+	{ form: '3', to: '11' },
+	{ form: '7', to: '11' },
+
 	{ form: '1', to: '2' },
 	{ form: '2', to: '3' },
 	{ form: '3', to: '4' },
@@ -52,7 +58,6 @@ export function Circular(props: CircularProps) {
 	React.useEffect(() => {
 		const content = document.querySelector(`.${name}`)
 		const observer = new ResizeObserver(debounce(() => {
-			// handleLayout({ name, links: db, nodes })
 			draw({ name, links, nodes })
 		}, 50));
 		if (!content) return;
@@ -69,7 +74,6 @@ export function Circular(props: CircularProps) {
 			style={{
 				position: 'relative',
 				width: '100%',
-				// zoom: '.6',
 				background: 'transparent'
 			}}>
 			{nodes.map((item: ObjectType, index: number) => {
@@ -82,9 +86,10 @@ export function Circular(props: CircularProps) {
 							display: 'inline-block',
 							position: 'absolute',
 							border: '1px solid #000',
-							// padding: '10px 10px',
+							padding: '2px 10px',
+							cursor: 'pointer',
 							zIndex: 10,
-							background: '#fff'
+							background: '#fff',
 						}}
 						onClick={() => {
 							console.log(id)
@@ -94,16 +99,33 @@ export function Circular(props: CircularProps) {
 					</div>
 				)
 			})}
-
-			<canvas
+			<svg
 				className={`${name}-bg`}
 				style={{
-					// width: '100%',
+					width: '100%',
+					height: '100%',
 					zIndex: 1,
-					// zoom: '.6',
-					// background: 'grey'
 				}}
-			/>
+			>
+				{links.map((item, index) => {
+					const { form, to } = item
+					const itemName = `${name}${form}-${to}-arrow`
+					return (
+						<path
+							style={{
+								cursor: 'pointer',
+								zIndex: 1
+							}}
+							stroke="black"
+							strokeWidth="3"
+							onClick={() => {
+								console.log({ form, to })
+							}}
+							key={itemName + index}
+							className={itemName} d='M 0,0 0,0' />
+					)
+				})}
+			</svg>
 		</div>
 	)
 }
