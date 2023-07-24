@@ -50,7 +50,10 @@ export function Menu(props: MenuProps) {
 		localStorage.setItem('au-show-menu-group-name', groupName)
 		setSelectGroupName(groupName)
 		setSelect([groupName])
-		if (groupName === '') setShowMenu(menu)
+		if (groupName === '') {
+			setShowMenu(menu)
+			nav('/')
+		}
 		for (let i = 0; i < menu.length; i++) {
 			const { name, children = [], path: rootPath = '/' } = menu[i]
 			if (groupName === name) {

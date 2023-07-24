@@ -7,8 +7,7 @@ export function handleLayout(props: CircularProps) {
 	const contentDom: HTMLDivElement | null = document.querySelector(`.${name}`)
 	if (!contentDom || nodes.length === 0) return {};
 	const len = nodes.length
-	// const radiusLength = 40 * len
-	const radiusLength = 10 * len
+	const radiusLength = 15 * len
 	const { width: contentWidth } = contentDom.getBoundingClientRect()
 	const contentOriginStyle = contentDom.getAttribute('style') || ''
 

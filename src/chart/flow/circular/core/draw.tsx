@@ -1,8 +1,9 @@
 import { type ObjectType } from 'abandonjs'
 import { isEffectArray } from 'asura-eye'
 import { handleLayout } from './layout'
+import { type CircularProps } from '..'
 
-export function draw(props: ObjectType) {
+export function draw(props: CircularProps) {
 	const { name, links = [] } = props
 	handleLayout(props)
 	const contentDom: HTMLDivElement | null = document.querySelector(`.${name}`)
@@ -22,8 +23,8 @@ export function draw(props: ObjectType) {
 		]
 	}
 
-	links.forEach((link: ObjectType, index: number) => {
-		const { form = '', to = '' } = link as { form: string, to: string }
+	links.forEach((link) => {
+		const { form = '', to = '' } = link
 		const f = getBoundingClientRect(form as string)
 		const t = getBoundingClientRect(to as string)
 		if (!f || !t) return;

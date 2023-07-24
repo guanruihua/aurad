@@ -3,57 +3,33 @@ import { type ComponentProps } from "@/assets"
 import { ObjectType, debounce } from "abandonjs"
 import { mock } from "mock-record"
 import { draw } from "./core"
+import { classNames } from "harpe"
+
+export type FlowNode = (ObjectType & { id: string })
+export type FlowLink = (ObjectType & { form: string, to: string })
 
 export interface CircularProps extends ComponentProps {
-	[key: string]: any
+	name?: string
+	style?: React.CSSProperties
+	nodes: FlowNode[]
+	nodeStyle?: React.CSSProperties
+	nodeClick?(props: FlowNode): void
+	links: FlowLink[]
+	linkStyle?: React.CSSProperties
+	linkClick?(props: FlowLink): void
 }
-
-
-const nodes = [
-	{ id: '1' },
-	{ id: '2' },
-	{ id: '3' },
-	{ id: '4' },
-	{ id: '5' },
-	{ id: '6' },
-	{ id: '7' },
-	{ id: '8' },
-	{ id: '9' },
-	{ id: '10' },
-	{ id: '11' },
-	{ id: '12' },
-]
-
-const links = [
-	{ form: '1', to: '5' },
-	{ form: '1', to: '9' },
-	{ form: '5', to: '9' },
-	{ form: '3', to: '7' },
-	{ form: '3', to: '11' },
-	{ form: '7', to: '11' },
-
-	{ form: '1', to: '2' },
-	{ form: '2', to: '3' },
-	{ form: '3', to: '4' },
-	{ form: '4', to: '5' },
-	{ form: '5', to: '6' },
-	{ form: '6', to: '7' },
-	{ form: '7', to: '8' },
-	{ form: '8', to: '9' },
-	{ form: '9', to: '10' },
-	{ form: '10', to: '11' },
-	{ form: '11', to: '12' },
-	{ form: '12', to: '1' },
-]
-
 
 export function Circular(props: CircularProps) {
 	const {
 		name = 'flow-circular-' + mock('@id'),
-		// links = links
+		style = {},
+		nodeStyle = {},
+		linkStyle = {},
+		links = [],
+		nodes = [],
+		nodeClick,
+		linkClick,
 	} = props
-
-	const newClassName = name
 
 	React.useEffect(() => {
 		const content = document.querySelector(`.${name}`)
@@ -70,29 +46,31 @@ export function Circular(props: CircularProps) {
 
 	return (
 		<div
-			className={newClassName}
+			className={classNames(name)}
 			style={{
 				position: 'relative',
 				width: '100%',
-				background: 'transparent'
+				background: 'transparent',
+				overflow: 'hidden',
+				...style
 			}}>
-			{nodes.map((item: ObjectType, index: number) => {
+			{nodes.map((item, index) => {
 				const { id = '' } = item
 				const itemName = `${name}-${id}`
 				return (
 					<div
 						className={itemName}
 						style={{
-							display: 'inline-block',
+							display: 'inline-flex',
 							position: 'absolute',
-							border: '1px solid #000',
-							padding: '2px 10px',
 							cursor: 'pointer',
 							zIndex: 10,
-							background: '#fff',
+							justifyContent: 'center',
+							alignItems: 'center',
+							...nodeStyle
 						}}
 						onClick={() => {
-							console.log(id)
+							nodeClick && nodeClick(item)
 						}}
 						key={index}>
 						{id as string}
@@ -114,12 +92,13 @@ export function Circular(props: CircularProps) {
 						<path
 							style={{
 								cursor: 'pointer',
-								zIndex: 1
+								zIndex: 1,
+								...linkStyle
 							}}
 							stroke="black"
 							strokeWidth="3"
 							onClick={() => {
-								console.log({ form, to })
+								linkClick && linkClick(item)
 							}}
 							key={itemName + index}
 							className={itemName} d='M 0,0 0,0' />
