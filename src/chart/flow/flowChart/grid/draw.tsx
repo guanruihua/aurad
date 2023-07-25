@@ -1,5 +1,5 @@
 import { isEffectArray, isEmpty, isString, isUndefined } from 'asura-eye'
-import { FlowChartProps } from '.'
+import { type FlowChartProps } from '../type'
 
 const baseStyle = `position: absolute;transform-origin: 0 0; overflow: visible;width: 100%;`
 
