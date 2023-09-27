@@ -1,9 +1,10 @@
+/* eslint-disable*/
 import React, { useState, useEffect } from "react"
 import { Outlet, useNavigate } from 'react-router-dom'
 import { isUndefined, isEmpty } from "asura-eye"
 import { classNames } from 'harpe'
 import { stringify } from "abandonjs"
-import { SubMenu, type MenuObject, Icon } from '../src'
+import { SubMenu, type MenuObject, Icon, MenuSelectRecord } from '../src'
 import './home.less'
 
 export function move() {
@@ -41,44 +42,12 @@ export function Menu(props: MenuProps) {
 	const groupNames = menu.map(i => i.name).filter(Boolean)
 
 	const [select, setSelect] = useState<string[]>([])
+
 	const [fold, setFold] = useState<boolean>(isUndefined(props.fold) ? true : props.fold)
 	const [showMenu, setShowMenu] = useState<MenuObject[]>(menu)
-	const [selectGroupName, setSelectGroupName] = useState<string>(localStorage.getItem('au-show-menu-group-name') || '')
-
-	const handleGroup = (groupName: string, redirect = true) => {
-
-		localStorage.setItem('au-show-menu-group-name', groupName)
-		setSelectGroupName(groupName)
-		setSelect([groupName])
-		if (groupName === '') {
-			setShowMenu(menu)
-			nav('/')
-		}
-		for (let i = 0; i < menu.length; i++) {
-			const { name, children = [], path: rootPath = '/' } = menu[i]
-			if (groupName === name) {
-				setShowMenu(children)
-				const { path = rootPath } = children[0] || {}
-
-				redirect && path && nav(path)
-				return;
-			}
-		}
-		return;
-	}
 
 	useEffect(() => {
-		handleGroup(localStorage.getItem('au-show-menu-group-name') || '', false)
 	}, [])
-
-
-	const newProps = {
-		...rest,
-		menu: showMenu,
-		select,
-		setSelect,
-		fold,
-	}
 
 	const asideWidth = localStorage.getItem('au-aside-menu-width')
 
@@ -110,7 +79,19 @@ export function Menu(props: MenuProps) {
 				<SubMenu
 					onDragEnter={onMouseCur}
 					onDragOver={onMouseCur}
-					{...newProps} />
+					onSelect={(value: MenuSelectRecord) => {
+						const { names, record } = value
+						const { path, } = record
+						setSelect(names)
+						path && nav(path)
+					}}
+					{
+					...{
+						...rest,
+						menu: showMenu,
+						// selectNames: select,
+						fold,
+					}} />
 			)
 		}
 
@@ -126,7 +107,10 @@ export function Menu(props: MenuProps) {
 							size={32}
 							fill='#c5c5c5' />
 					</button>}
-					<button onClick={() => handleGroup('')}>
+					<button onClick={() => {
+						nav('/')
+						setSelect([])
+					}}>
 						<Icon type="home" size={24} />
 					</button>
 				</div>
@@ -147,32 +131,37 @@ export function Menu(props: MenuProps) {
 				onDragEnter={onMouseCur}
 				onDragOver={onMouseCur}
 			>
-				{selectGroupName === '' ? (
-					<div style={{
-						display: 'grid',
-						gap: 8,
-						gridTemplateColumns: 'repeat(auto-fill, 220px)'
-					}}>
-						{groupNames.map(name => {
-							if (name)
-								return (
-									<button
-										style={{
-											display: 'inline-block',
-											padding: '20px 30px',
-											fontSize: 20,
-											fontWeight: 'bold',
-											textTransform: 'capitalize'
-										}}
-										key={name}
-										onClick={() => handleGroup(name)}
-									>
-										{name}
-									</button>
-								)
-						})}
-					</div>
-				) : <Outlet />}
+				{/* {
+					select.length < 1
+						? (
+							<div style={{
+								display: 'grid',
+								gap: 8,
+								gridTemplateColumns: 'repeat(auto-fill, 220px)'
+							}}>
+								{groupNames.map(name => {
+									if (name)
+										return (
+											<button
+												style={{
+													display: 'inline-block',
+													padding: '20px 30px',
+													fontSize: 20,
+													fontWeight: 'bold',
+													textTransform: 'capitalize'
+												}}
+												key={name}
+												onClick={() => handleGroup(name)}
+											>
+												{name}
+											</button>
+										)
+								})}
+							</div>
+						)
+						: <Outlet />
+				} */}
+				<Outlet />
 			</div>
 		</div>
 	</div>

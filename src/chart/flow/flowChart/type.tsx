@@ -39,7 +39,7 @@ export type FlowChartNode = {
 
 export interface FlowChartProps extends ComponentProps {
 
-  type?: 'grid'
+  type?: 'grid' | 'rightWard'
 
   /**
    * @description 当前 流程图唯一标识
@@ -69,5 +69,8 @@ export interface FlowChartProps extends ComponentProps {
 }
 
 export interface FlowGridChartProps extends FlowChartProps{
-	type: never
+	type?: never
+}
+export interface FlowRightWardChartProps extends FlowChartProps{
+	type?: never
 }

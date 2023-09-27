@@ -10,9 +10,9 @@ export default {
 			path: '/chart/flow',
 			children: [
 				{
-					name: 'fix',
-					path: '/chart/flow/fix',
-					element: Lazy(import('../flow/demo/fix')),
+					name: 'grid',
+					path: '/chart/flow/grid',
+					element: Lazy(import('../flow/demo/grid')),
 				},
 				{
 					name: 'Circular',

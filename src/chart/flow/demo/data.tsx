@@ -1,10 +1,7 @@
-import React from "react";
-import { FlowChart } from '..'
-import { Container, Unit } from "unit-testing-react"
-import { FlowChartNode } from '..'
+import React from 'react'
+import { FlowChartNode } from '../flowChart'
 
 export const nodes: FlowChartNode[] = [
-
 	{
 		id: '-1', label: <h2>标题1</h2>, status: 'empty',
 		span: 5, align: 'start'
@@ -68,14 +65,3 @@ export const nodes: FlowChartNode[] = [
 	{ id: '34', label: 'Node 34' },
 	{ id: '35', label: 'Node 35' },
 ]
-
-export default () => {
-	return <Container columns={1}>
-		<Unit title="Flow">
-			<FlowChart nodes={nodes} count={5} name="314" />
-		</Unit>
-		<Unit title="Flow">
-			<FlowChart nodes={nodes} count={5} name="a315" nodeWidth={'equal'} />
-		</Unit>
-	</Container>
-};

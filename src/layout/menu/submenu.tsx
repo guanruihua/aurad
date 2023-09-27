@@ -1,78 +1,84 @@
 import React from "react"
-import { Link } from 'react-router-dom'
 import { isEffectArray } from "asura-eye"
 import { classNames } from 'harpe'
-import type { MenuObject } from './type'
+import type { MenuObject, MenuProps } from './type'
 import { equal } from "abandonjs"
+import { } from './type'
 
-export interface NextSubMenu {
-	lv?: number
-	menu: MenuObject[]
-	fold?: boolean
-	select: string[]
-	selectValue?: string[]
-	setSelect?: (select: string[]) => void
-}
 
-export function NextSubMenu(props: NextSubMenu) {
+export function NextSubMenu(props: MenuProps) {
 
-	const { fold, select, setSelect, menu, selectValue = [], lv = 1 } = props
+	const {
+		fold, select,
+		onSelect, onRecord,
+		menu,
+		selectNames = [], selectRecords = [],
+		lv = 1
+	} = props
 
 	return <React.Fragment>
 		{menu.map((item: MenuObject, index: number) => {
 			const { name, path = '', children } = item
-			if (!path || !name) return;
+
+			if (!name) return;
+			
 			const _name = name || path.replace('/', '')
 			const showName = fold ? (_name[0]) : (_name)
-			const names = selectValue.concat(name)
-			const isSelect = name && select[lv - 1] === (name) && equal(select.slice(0, lv), names.slice(0, lv))
+			const names = [...selectNames, name]
+			const newSelectRecords = [...selectRecords, item]
+			const isSelect = name
+				&& selectNames[lv - 1] === (name)
+				&& equal(select.slice(0, lv), names.slice(0, lv))
 
 			return <div
 				key={name + path + index}
-				className={classNames('lv' + lv, { fold }, '__menu__' + name)}>
-				<Link
-					to={path}
+				className={classNames('lv' + lv, '__menu__' + name)}>
+				<div
 					className={classNames({
 						isSelect,
 						fold,
 					})}
 					style={{
-						paddingLeft: 8,
 						marginLeft: (lv - 1) * 10,
+						textAlign: fold ? 'center' : 'left',
+						cursor: 'pointer',
+						fontSize: 18,
+						fontWeight: 'bold',
+						textTransform: 'capitalize',
+						padding: '10px 8px'
 					}}
 					title={name}
 					onClick={() => {
-						setSelect && name && setSelect(names)
+						onSelect && onSelect({ name, names, record: item })
+						onRecord && onRecord(newSelectRecords)
 					}}>
 					{showName}
-				</Link>
+				</div>
 				{!fold && isEffectArray(children) && <NextSubMenu
 					lv={lv + 1}
-					select={select}
+					selectNames={select}
 					menu={children}
-					selectValue={names}
-					setSelect={setSelect}
+					selectName={names}
+					onSelect={onSelect}
+					onRecord={onRecord}
 				/>}
 			</div>
 		})}
 	</React.Fragment>
 }
 
+export function SubMenu(props: MenuProps) {
+	const {
+		lv,
+		menu = [],
+		selectName, selectNames,
+		onSelect,
+		fold, ...rest
+	} = props
 
-export interface SubMenu extends React.HTMLAttributes<HTMLElement> {
-	/**
- * @default true
- */
-	fold?: boolean
-	menu: MenuObject[]
-	select: string[]
-	[key: string]: any
-}
-
-export function SubMenu(props: SubMenu) {
-	const { menu = [], select, setSelect, fold, ...rest } = props
-
-	return <aside className="au-menu" {...rest}>
-		<NextSubMenu {...{ menu, fold, select, setSelect }} />
+	return <aside
+		className={classNames("au-menu", 'lv' + lv, { 'au-menu-fold': fold })}
+		{...rest}>
+		<NextSubMenu {...{ menu, fold, selectName, selectNames, onSelect }} />
 	</aside>
 }
