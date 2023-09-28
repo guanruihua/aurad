@@ -1,5 +1,5 @@
 import React from "react"
-import { isEffectArray } from "asura-eye"
+import { isEffectArray, isString } from "asura-eye"
 import { classNames } from 'harpe'
 import type { MenuObject, MenuProps } from './type'
 import { equal } from "abandonjs"
@@ -10,7 +10,7 @@ export function NextSubMenu(props: MenuProps) {
 
 	const {
 		fold, select,
-		onSelect, onRecord,
+		onSelect,
 		menu,
 		selectNames = [], selectRecords = [],
 		lv = 1
@@ -18,12 +18,32 @@ export function NextSubMenu(props: MenuProps) {
 
 	return <React.Fragment>
 		{menu.map((item: MenuObject, index: number) => {
-			const { name, path = '', children } = item
+			const { icon, title, name, path = '', children } = item
 
 			if (!name) return;
-			
-			const _name = name || path.replace('/', '')
-			const showName = fold ? (_name[0]) : (_name)
+
+			const getShowName = () => {
+				const showTitle = title || name
+				if (fold) {
+					if (icon) return icon
+					if (isString(showTitle))
+						return (showTitle[0])
+				}
+				if (icon) return (<div
+					style={{
+						display: 'flex',
+						justifyContent: 'flex-start',
+						alignItems: 'center',
+						gap: 10
+					}}
+				>
+					{icon}
+					{showTitle}
+				</div>)
+				return showTitle
+			}
+
+			const showName = getShowName()
 			const names = [...selectNames, name]
 			const newSelectRecords = [...selectRecords, item]
 			const isSelect = name
@@ -40,7 +60,8 @@ export function NextSubMenu(props: MenuProps) {
 					})}
 					style={{
 						marginLeft: (lv - 1) * 10,
-						textAlign: fold ? 'center' : 'left',
+						// textAlign: fold ? 'center' : 'left',
+						textAlign: 'left',
 						cursor: 'pointer',
 						fontSize: 18,
 						fontWeight: 'bold',
@@ -49,8 +70,9 @@ export function NextSubMenu(props: MenuProps) {
 					}}
 					title={name}
 					onClick={() => {
-						onSelect && onSelect({ name, names, record: item })
-						onRecord && onRecord(newSelectRecords)
+						!isEffectArray(children)
+							&& onSelect
+							&& onSelect({ name, names, record: item, selectRecords: newSelectRecords })
 					}}>
 					{showName}
 				</div>
@@ -60,7 +82,6 @@ export function NextSubMenu(props: MenuProps) {
 					menu={children}
 					selectName={names}
 					onSelect={onSelect}
-					onRecord={onRecord}
 				/>}
 			</div>
 		})}
@@ -69,7 +90,7 @@ export function NextSubMenu(props: MenuProps) {
 
 export function SubMenu(props: MenuProps) {
 	const {
-		lv,
+		lv = 0,
 		menu = [],
 		selectName, selectNames,
 		onSelect,

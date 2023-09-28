@@ -26,10 +26,5 @@ export default {
 			path: '/chart/echart',
 			element: Lazy(import('../echart/demo')),
 		},
-		{
-			name: 'XYCoordinate',
-			path: '/chart/xyCoordinate',
-			element: Lazy(import('../coordinate/demo')),
-		}
 	]
 } as MenuObject

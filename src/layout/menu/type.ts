@@ -18,6 +18,7 @@ export interface MenuSelectRecord {
 	name: string
 	names: string[]
 	record: MenuObject
+	selectRecords: MenuObject[]
 }
 
 export interface MenuProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onSelect'> {
@@ -35,6 +36,5 @@ export interface MenuProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onSe
 
 	lv?: number
 	onSelect?(value?: MenuSelectRecord): void
-	onRecord?(selectRecords: MenuObject[]): void
 	[key: string]: any
 }

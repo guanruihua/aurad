@@ -38,20 +38,24 @@ export function Menu(props: MenuProps) {
 
 	const { menu: originMenu = [], ...rest } = props
 	const nav = useNavigate()
-	const menu = originMenu[0].children || []
-	const groupNames = menu.map(i => i.name).filter(Boolean)
+	const getMenu = () => {
+		return (originMenu[0].children || []).map(item => {
+			!item.icon && (item.icon = <Icon type="base-component" size={24} />)
+			return item
+		})
+	}
+	const menu = getMenu()
 
 	const [select, setSelect] = useState<string[]>([])
 
 	const [fold, setFold] = useState<boolean>(isUndefined(props.fold) ? true : props.fold)
-	const [showMenu, setShowMenu] = useState<MenuObject[]>(menu)
 
 	useEffect(() => {
 	}, [])
 
-	const asideWidth = localStorage.getItem('au-aside-menu-width')
+	const asideWidth = localStorage.getItem('au-aside-menu-width') || 45
 
-	const hasASide = showMenu && showMenu.length > 0
+	const hasASide = menu && menu.length > 0
 
 	useEffect(() => {
 		move()
@@ -59,7 +63,7 @@ export function Menu(props: MenuProps) {
 
 	const newStyle = hasASide ? (
 		fold
-			? { gridTemplateColumns: `60px 1fr` }
+			? { gridTemplateColumns: `45px 1fr` }
 			: { gridTemplateColumns: `${asideWidth ? asideWidth + 'px' : '10vw'} 1fr` }
 	) : { gridTemplateColumns: `1fr` }
 
@@ -88,7 +92,7 @@ export function Menu(props: MenuProps) {
 					{
 					...{
 						...rest,
-						menu: showMenu,
+						menu,
 						// selectNames: select,
 						fold,
 					}} />

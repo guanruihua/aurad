@@ -1,6 +1,6 @@
 import React from "react"
 import { createRoot } from 'react-dom/client'
-import { BrowserContainer, Lazy, type MenuObject } from '../src'
+import { BrowserContainer, Icon, Lazy, type MenuObject } from '../src'
 import './index.less'
 
 import chartRoute from '../src/chart/demo/router'
@@ -18,6 +18,7 @@ const modules: MenuObject[] = [
 	{
 		name: 'Icon',
 		path: '/icon',
+		icon: <Icon size={24} type="icon" />,
 		element: Lazy(import(`../src/icon/demo`))
 	},
 	chartRoute,

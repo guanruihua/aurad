@@ -6,25 +6,49 @@ import { Container, Unit } from "unit-testing-react"
 import './index.less'
 
 export default function () {
+	const [color, setColor] = React.useState<string>('#000000')
 	return (
 		<Container>
 			<Unit title="Icon">
-				<input type="color"
-					onChange={(e) => {
-						console.log(e)
-					}} />
-				<Space>
-					{Object.keys(icons).map((item: IconType) => {
-						return <Icon key={item} type={item} />
-					})}
+
+				<div style={{
+					verticalAlign: 'center',
+					margin: '20px 10px',
+				}}>
+					<label
+						style={{
+							marginRight: 10
+						}}
+						htmlFor="color">
+						Select Color
+					</label>
+					<input
+						style={{
+							border: 'none',
+							background: 'transparent'
+						}}
+						value={color}
+						name="color"
+						type="color"
+						onChange={(e) => {
+							const color = e.target.value
+							setColor(color)
+						}} />
+				</div>
+				<Space
+					style={{ color }}
+				>
+					{Object
+						.keys(icons)
+						.map((item: IconType) =>
+						(<Icon
+							key={item}
+							type={item} />)
+						)}
 				</Space>
 			</Unit>
 			<Unit title="test(svg)">
 				<Space>
-					<svg className="demo1">
-						<rect />
-					</svg>
-
 					<svg className="demo2" height="0" width="0">
 						<symbol id="beats" viewBox="0 0 100 100" >
 							<line className="beat" x1="15" y1="40" x2="15" y2="100" stroke="currentColor" strokeWidth="10" strokeLinecap="round"></line>
@@ -44,7 +68,7 @@ export default function () {
 						<svg height="30" width="30">
 							<use href="#beats"></use>
 						</svg>
-						<span>直播中</span>
+						<span>加载中</span>
 					</span>
 
 					<div>

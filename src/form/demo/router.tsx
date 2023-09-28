@@ -1,11 +1,13 @@
+import React from 'react'
 import { Lazy } from "@/utils"
 import type { MenuObject } from "@/layout"
 import { Container, Unit } from "unit-testing-react"
-import React from "react"
+import { Icon } from '@/icon'
 
 export default {
 	name: 'form',
 	path: '/form',
+	icon: <Icon type='form' size={24} />,
 	children: [
 		{
 			index: true,

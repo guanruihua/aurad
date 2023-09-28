@@ -9,8 +9,12 @@
   grid-template-columns: 10vw 1fr;
   z-index: 1;
   .scrollbar();
-
+  // transition: all .8s ease 0s;
+  transition: grid-template-columns .8s ease 0s;
+  
   &.fold {
+    // transition: all .3s ease 0s;
+    transition: grid-template-columns .3s ease 0s;
     grid-template-columns: 60px 1fr;
   }
 }

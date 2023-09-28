@@ -1,7 +1,7 @@
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require("path")
-const MyPlugin  = require('./plugin')
+// const MyPlugin  = require('./plugin')
 // const { ESBuildPlugin } = require('esbuild-loader')
 
 module.exports = {

@@ -1,7 +1,6 @@
 const Webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const webpackConfig = require('./webpack.base.js');
-// const ESLintPlugin = require('eslint-webpack-plugin');
 const path = require('path')
 
 require('./env/tsconfig/index')('dev')
@@ -18,24 +17,15 @@ const devServer = {
 	proxy: {
 		'/vr/': 'http://localhost:13000/'
 	},
-};
-
-const devConfig = {
-	output: {
-		path: path.resolve(__dirname, '../dist'),
-		filename: 'bundle.[fullhash].js',
-		publicPath: '/' //通常是CDN地址
-	},
-	// plugins: [].concat(webpackConfig.plugins, [
-	// 	new ESLintPlugin({
-	// 		context: path.resolve(__dirname, '../src'),
-	// 		files: ['**/*.ts', '**/*.js', '**/*.tsx'],
-	// 	}
-	// 	),
-	// ]),
 }
 
-const compiler = Webpack({ ...webpackConfig, ...devConfig });
+webpackConfig.output = {
+	path: path.resolve(__dirname, '../dist'),
+	filename: 'bundle.[fullhash].js',
+	publicPath: '/' //通常是CDN地址
+}
+
+const compiler = Webpack(webpackConfig);
 const server = new WebpackDevServer(devServer, compiler);
 
 const runServer = async () => {
