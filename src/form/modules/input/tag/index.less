@@ -1,20 +1,21 @@
 .au-input-tags {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 8px;
 
   width: 100%;
   min-width: 0;
-  height: 32px;
-  line-height: 32px;
+  min-height: 32px;
 
   margin: 0;
   margin-bottom: 5px;
   padding: 4px 8px;
   font-size: 14px;
-  
+
   border-radius: 6px;
   border: 1px solid #d9d9d9;
   text-overflow: ellipsis;
-
   background-image: none;
 
   outline: none;
@@ -30,4 +31,40 @@
     border-color: #4989e7;
     box-shadow: #4989e7 0 0 3px;
   }
+
+  &-item {
+    display: flex;
+    align-items: center;
+
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    padding: 0 8px;
+    margin: 0;
+
+    border-radius: 6px;
+    background-color: #eee;
+    svg{
+      cursor: pointer;
+      font-size: 18px;
+      color: rgba(0, 0, 0, 0.45);
+    }
+  }
+
+  input {
+    display: inline-block;
+    flex-grow: 1;
+    
+    height: 20px;
+    width: auto;
+    min-width: 20%;
+    max-width: 100%;
+
+    outline: none;
+    box-sizing: border-box;
+    list-style: none;
+    border: none;
+    background: transparent;
+  }
+
 }

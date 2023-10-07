@@ -1,20 +1,10 @@
 import React from "react"
 import { classNames } from 'harpe'
-import { InputProps } from '../type'
+import type { InputNumberProps } from './type'
 import './index.less'
 import { isEmpty, isNumber } from "asura-eye"
 
-export type InputNumberEvent = {
-	target: {
-		value: number
-	}
-}
-
-export interface InputNumberProps extends Omit<InputProps, 'onChange' | 'value'> {
-	value?: number
-	onChange?(event?: InputNumberEvent): void
-	[key: string]: any
-}
+export * from './type'
 
 export function InputNumber(props: InputNumberProps) {
 	const {

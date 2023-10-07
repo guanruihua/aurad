@@ -5,7 +5,7 @@ import './index.less'
 import { isUndefined } from "asura-eye"
 
 
-export interface ButtonProps extends ComponentProps, Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type' | 'children'> {
+export interface ButtonProps extends ComponentProps, Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type' | 'children'| 'className'> {
 	htmlType?: 'submit' | 'reset' | 'button'
 	/**
 	 * @description 按钮类型

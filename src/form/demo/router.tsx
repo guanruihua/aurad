@@ -70,6 +70,25 @@ export default {
 						</Unit>
 					</Container>
 				},
+				{
+					name: 'tag',
+					path: '/form/input/tag',
+					element: <Container columns={1}>
+						<Unit>
+							<Container>
+								<Unit title="FC(Form)">
+									{Lazy(import('../modules/input/tag/demo/fc'))}
+								</Unit>
+								<Unit title="Class(Form)">
+									{Lazy(import('../modules/input/tag/demo/class'))}
+								</Unit>
+							</Container>
+						</Unit>
+						<Unit>
+							{Lazy(import(`../modules/input/tag/demo`))}
+						</Unit>
+					</Container>
+				},
 			],
 		},
 		{

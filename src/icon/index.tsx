@@ -15,7 +15,7 @@ export interface IconProps extends ComponentProps {
 
 export function Icon(props: IconProps) {
 	const {
-		type, size = 32,
+		type, size,
 		width, height, fill = 'currentColor',
 		...rest
 	} = props
@@ -30,8 +30,8 @@ export function Icon(props: IconProps) {
 		viewBox={viewBox}
 		version="1.1"
 		xmlns="http://www.w3.org/2000/svg"
-		width={width || size}
-		height={height || size}
+		width={width || size || '1em'}
+		height={height || size || '1em'}
 		{...rest} >
 		{isArray(path)
 			? path.map((item: string, index: number) => <path key={index} d={item} fill={fill}></path>)

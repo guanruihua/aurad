@@ -6,7 +6,7 @@ export interface ComponentProps extends ObjectType {
 		* @default ''
 		*/
 	prefixCls?: string
-	className?: string
+	className?: string | Record<string, boolean>
 	style?: CSSProperties
 	children?: ReactNode | string
 }
