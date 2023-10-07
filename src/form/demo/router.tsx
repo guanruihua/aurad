@@ -26,44 +26,51 @@ export default {
 				</Container>
 			),
 		},
+
 		{
 			name: 'input',
 			path: '/form/input',
-			element: <Container columns={1}>
-				<Unit title="FC(demo)">
-					{Lazy(import('../modules/input/demo/fc-test'))}
-				</Unit>
-				{/* <Unit>
-					<Container>
-						<Unit title="Class(Form)">
-							{Lazy(import('../modules/input/demo/class'))}
+			children: [
+				{
+					name: 'text',
+					path: '/form/input/text',
+					element: <Container columns={1}>
+						<Unit title="FC(demo)">
+							{Lazy(import('../modules/input/demo/fc-test'))}
 						</Unit>
-						<Unit title="FC(Form)">
-							{Lazy(import('../modules/input/demo/fc'))}
+						<Unit>
+							<Container>
+								<Unit title="Class(Form)">
+									{Lazy(import('../modules/input/demo/class'))}
+								</Unit>
+								<Unit title="FC(Form)">
+									{Lazy(import('../modules/input/demo/fc'))}
+								</Unit>
+							</Container>
+						</Unit>
+						<Unit>{Lazy(import('../modules/input/demo'))}</Unit>
+					</Container>
+				},
+				{
+					name: 'number',
+					path: '/form/input/number',
+					element: <Container columns={1}>
+						<Unit>
+							<Container>
+								<Unit title="FC(Form)">
+									{Lazy(import('../modules/input/number/demo/fc'))}
+								</Unit>
+								<Unit title="Class(Form)">
+									{Lazy(import('../modules/input/number/demo/class'))}
+								</Unit>
+							</Container>
+						</Unit>
+						<Unit>
+							{Lazy(import(`../modules/input/number/demo`))}
 						</Unit>
 					</Container>
-				</Unit>
-				<Unit>{Lazy(import('../modules/input/demo'))}</Unit> */}
-			</Container>
-		},
-		{
-			name: 'inputNumber',
-			path: '/form/inputNumber',
-			element: <Container columns={1}>
-				<Unit>
-					<Container>
-						<Unit title="FC(Form)">
-							{Lazy(import('../modules/inputNumber/demo/fc'))}
-						</Unit>
-						<Unit title="Class(Form)">
-							{Lazy(import('../modules/inputNumber/demo/class'))}
-						</Unit>
-					</Container>
-				</Unit>
-				<Unit>
-					{Lazy(import(`../modules/inputNumber/demo`))}
-				</Unit>
-			</Container>
+				},
+			],
 		},
 		{
 			name: 'select',

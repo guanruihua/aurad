@@ -37,16 +37,19 @@ function FormItemCore(props: FormItemProps) {
 	if (__form__ && name && React.isValidElement(children)) {
 		const { values, errorState = {} } = __form__
 		const { onChange, ...childRest } = children.props
-		
-		// console.log(childRest, values)
-		
+
 		const newProps = {
 			...childRest,
 			[valueIndex]: values[name],
 			onChange: (e: React.ChangeEvent<any>) => {
 				onChange && onChange(e)
-				// console.log(e)
-				const value = e.target[valueIndex]
+				const getValue = () => {
+					const newValue = e.target[valueIndex]
+					if (isEmpty(newValue)) return ''
+					return newValue
+				}
+
+				const value = getValue()
 				__form__.validateField(name, value)
 				__form__.setValues({ [name]: value })
 			}
@@ -54,11 +57,17 @@ function FormItemCore(props: FormItemProps) {
 
 		if (isEmpty(values[name])) delete newProps[valueIndex]
 
-		const hasError = errorState[name] && errorState[name].error && errorState[name].error.length > 0
+		const hasError = errorState[name]
+			&& errorState[name].error
+			&& errorState[name].error.length > 0
 
-		const newClassName = classNames("au-form-item", className, {
-			['au-form-item-error-status']: hasError
-		})
+		const newClassName = classNames(
+			"au-form-item",
+			className,
+			{
+				['au-form-item-error-status']: hasError
+			}
+		)
 
 		const renderError = () => {
 			const { error = [] } = errorState[name] || {}

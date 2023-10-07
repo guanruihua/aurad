@@ -1,22 +1,24 @@
-import React from "react"
-import { classNames } from 'harpe'
-import { InputProps, InputChangeEvent } from './type'
-import './index.less'
 
+import React from "react"
+import type { InputProps } from './type'
+
+import { InputText } from "./text"
+import { InputTag } from "./tag"
+import { InputNumber, InputNumberProps } from "./number"
+
+export * from './number'
 export * from './type'
 
 export function Input(props: InputProps) {
 
-	const { className, onChange, ...rest } = props
+	const { mode = 'text', ...rest } = props
 
-	return (
-		<input
-			inputMode="text"
-			className={classNames("au-input", className)}
-			onChange={(e: InputChangeEvent) => {
-				onChange && onChange(e)
-			}}
-			{...rest}
-		/>
-	)
+	switch (mode) {
+		case 'number':
+			return <InputNumber {...rest as InputNumberProps} />
+		case 'tags':
+			return <InputTag {...rest} />
+		default:
+			return <InputText {...rest} />
+	}
 }

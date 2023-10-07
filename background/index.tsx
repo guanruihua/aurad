@@ -36,11 +36,13 @@ const menu: MenuObject[] = [
 	{
 		path: '/',
 		name: 'home',
-		element: <Menu menu={[{
-			path: '/',
-			name: 'home',
-			children: modules,
-		}]} />,
+		element: <Menu
+			fold={localStorage.fold === 'true'}
+			menu={[{
+				path: '/',
+				name: 'home',
+				children: modules,
+			}]} />,
 		children: modules,
 	}
 ]

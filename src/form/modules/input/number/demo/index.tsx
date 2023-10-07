@@ -22,9 +22,9 @@ export default function () {
 					},
 					{
 						component: <InputNumber
-							value={value}
+							value={Number(value)}
 							onChange={(e) => {
-								setValue(e.target.value)
+								e && setValue(e.target.value)
 							}}
 						/>,
 						prop: 'value, onChange',

@@ -48,10 +48,11 @@ export function Menu(props: MenuProps) {
 
 	const [select, setSelect] = useState<string[]>([])
 
-	const [fold, setFold] = useState<boolean>(isUndefined(props.fold) ? true : props.fold)
-
-	useEffect(() => {
-	}, [])
+	const [fold, _setFold] = useState<boolean>(isUndefined(props.fold) ? true : props.fold)
+	const setFold = (status: boolean)=>{
+		_setFold(status)
+		localStorage.setItem('fold', String(status))
+	}
 
 	const asideWidth = localStorage.getItem('au-aside-menu-width') || 45
 

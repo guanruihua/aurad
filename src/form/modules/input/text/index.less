@@ -1,4 +1,4 @@
-input:where(.au-input-number) {
+.au-input {
   display: inline-block;
 
   width: 100%;
@@ -8,9 +8,9 @@ input:where(.au-input-number) {
 
   margin: 0;
   margin-bottom: 5px;
-  padding: 4px 0 4px 8px;
+  padding: 4px 8px;
   font-size: 14px;
-
+  
   border-radius: 6px;
   border: 1px solid #d9d9d9;
   text-overflow: ellipsis;
@@ -21,12 +21,6 @@ input:where(.au-input-number) {
   box-sizing: border-box;
   list-style: none;
   transition: all 0.2s;
-
-  &::-webkit-inner-spin-button,
-  &::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
 
   &.isHover,
   &:focus,

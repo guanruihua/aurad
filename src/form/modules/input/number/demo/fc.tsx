@@ -1,7 +1,6 @@
 import React from "react"
-import { InputNumber } from '../..'
-import { Button } from "../../button"
-import { Form, FormItem, useForm } from "@/form"
+import { InputNumber } from '..'
+import { Form, FormItem, useForm, Button } from "@/form"
 import { Space } from "@/layout"
 
 export default function () {

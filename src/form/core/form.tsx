@@ -38,7 +38,6 @@ export function Form(props: FormProps) {
 		<form
 			noValidate
 			onReset={() => {
-				// console.log('---onReset----')
 				if (onReset) {
 					onReset(form)
 				} else {

@@ -3,8 +3,7 @@ import { isEffectArray, isString } from "asura-eye"
 import { classNames } from 'harpe'
 import type { MenuObject, MenuProps } from './type'
 import { equal } from "abandonjs"
-import { } from './type'
-
+import './index.less'
 
 export function NextSubMenu(props: MenuProps) {
 
@@ -29,17 +28,10 @@ export function NextSubMenu(props: MenuProps) {
 					if (isString(showTitle))
 						return (showTitle[0])
 				}
-				if (icon) return (<div
-					style={{
-						display: 'flex',
-						justifyContent: 'flex-start',
-						alignItems: 'center',
-						gap: 10
-					}}
-				>
+				if (icon) return (<>
 					{icon}
 					{showTitle}
-				</div>)
+				</>)
 				return showTitle
 			}
 
@@ -52,21 +44,16 @@ export function NextSubMenu(props: MenuProps) {
 
 			return <div
 				key={name + path + index}
-				className={classNames('lv' + lv, '__menu__' + name)}>
+				className={classNames('au-next-menu', 'lv' + lv, '__menu__' + name)}>
 				<div
-					className={classNames({
-						isSelect,
-						fold,
-					})}
+					className={classNames(
+						'au-next-menu-content',
+						{
+							isSelect,
+							fold,
+						})}
 					style={{
 						marginLeft: (lv - 1) * 10,
-						// textAlign: fold ? 'center' : 'left',
-						textAlign: 'left',
-						cursor: 'pointer',
-						fontSize: 18,
-						fontWeight: 'bold',
-						textTransform: 'capitalize',
-						padding: '10px 8px'
 					}}
 					title={name}
 					onClick={() => {

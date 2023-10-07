@@ -22,7 +22,7 @@ export default function InputTestCmp() {
 				dataSource={[
 					{ component: <Input />, prop: 'Empty', desc: '默认', },
 					{ component: <Input defaultValue={'defaultValue'} />, prop: 'defaultValue ', desc: '设置默认值', },
-					{ component: <Input value={'value'} />, prop: 'value', desc: '设置值, 可以通过onChange回调设置该值', },
+					{ component: <Input value={'value'} />, prop: 'value', desc: '设置值, 没有设置onChange修改该值, 无法修改值', },
 					{
 						component: <Input
 							value={value}

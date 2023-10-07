@@ -1,6 +1,6 @@
-import React, { EventHandler } from "react"
+import React from "react"
 import { classNames } from 'harpe'
-import { InputProps } from '../input/type'
+import { InputProps } from '../type'
 import './index.less'
 import { isEmpty, isNumber } from "asura-eye"
 
@@ -21,11 +21,12 @@ export function InputNumber(props: InputNumberProps) {
 		value: originValue = '',
 		defaultValue,
 		className,
+		onBlur,
 		onChange = () => { },
 		...rest
 	} = props
 
-	const [value, setValue] = React.useState<number | ''>(originValue)
+	const [value, setValue] = React.useState<number | string | ''>(originValue)
 
 	const newChange = (e: any) => {
 
@@ -58,8 +59,13 @@ export function InputNumber(props: InputNumberProps) {
 		<input
 			value={value}
 			type="number"
-			inputMode="decimal"
+			inputMode="numeric"
 			className={classNames("au-input-number", className)}
+			onBlur={(e) => {
+				onBlur && onBlur(e)
+				const newValue = Number(value).toString()
+				setValue(newValue)
+			}}
 			onChange={newChange}
 			{...rest as React.InputHTMLAttributes<HTMLInputElement>} />
 	)
