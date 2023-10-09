@@ -7,6 +7,5 @@ export * from './theme'
 export * from './utils'
 export * from './chart'
 export * from './dataGraph'
-export * from './effects'
 
 import './index.less'

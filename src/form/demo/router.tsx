@@ -52,6 +52,11 @@ export default {
 					</Container>
 				},
 				{
+					name: 'textarea',
+					path: '/form/input/textarea',
+					element: Lazy(import(`../modules/textarea/demo`))
+				},
+				{
 					name: 'number',
 					path: '/form/input/number',
 					element: <Container columns={1}>
@@ -107,11 +112,7 @@ export default {
 			</Container>
 		},
 
-		{
-			name: 'textarea',
-			path: '/form/textarea',
-			element: Lazy(import(`../modules/textarea/demo`))
-		},
+
 		{
 			name: 'checkbox',
 			path: '/form/checkbox',

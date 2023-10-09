@@ -4,7 +4,7 @@ import { Container, Unit } from "unit-testing-react"
 
 export default function () {
 
-	return <Container columns={2}>
+	return (<Container columns={2}>
 		<Unit title="Skeleton(default)">
 			<Skeleton />
 		</Unit>
@@ -47,5 +47,5 @@ export default function () {
 				</div>
 			</Skeleton>
 		</Unit>
-	</Container>
+	</Container>)
 }

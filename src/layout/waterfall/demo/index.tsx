@@ -8,14 +8,14 @@ export default function () {
 		<Unit>
 			<Waterfall.Item title="Waterfall(default)">
 				<Waterfall count={5}>
-					<RDS count={100} style={{ width: '100%' }} />
+					<RDS count={50} style={{ width: '100%' }} />
 				</Waterfall>
 			</Waterfall.Item>
 		</Unit>
 		<Unit>
 			<Waterfall.Item title="Waterfall">
 				<Waterfall count={5}>
-					<RDS count={100} style={{ width: '100%' }} />
+					<RDS count={50} style={{ width: '100%' }} />
 				</Waterfall>
 			</Waterfall.Item>
 		</Unit>

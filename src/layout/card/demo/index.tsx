@@ -3,16 +3,16 @@ import { Card } from '..'
 import { Container, Unit } from "unit-testing-react"
 
 export default function () {
-	return <Container columns={1}>
+	return <Container columns={2}>
 		<Unit title="Card">
 			<Card
-				header={'title'}
+				header={'header'}
 				footer={'footer'}
 			>
 				卡片内容
 			</Card>
 		</Unit>
-		<Unit title="Card(no title)">
+		<Unit title="Card(no header)">
 			<Card
 				footer={'footer'}
 			>
@@ -21,12 +21,12 @@ export default function () {
 		</Unit>
 		<Unit title="Card(no footer)">
 			<Card
-				header={'title'}
+				header={'header'}
 			>
 				卡片内容
 			</Card>
 		</Unit>
-		<Unit title="Card(no title & no footer)">
+		<Unit title="Card(no header & no footer)">
 			<Card>
 				卡片内容
 			</Card>
