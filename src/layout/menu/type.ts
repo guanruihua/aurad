@@ -1,3 +1,4 @@
+import { type ClassNameType } from 'harpe'
 import type { ReactNode } from 'react'
 import type { RouteObject } from 'react-router-dom'
 
@@ -21,7 +22,7 @@ export interface MenuSelectRecord {
 	selectRecords: MenuObject[]
 }
 
-export interface MenuProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onSelect'> {
+export interface MenuProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onSelect' | 'className'> {
 	/**
  * @default true
  */
@@ -36,5 +37,8 @@ export interface MenuProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onSe
 
 	lv?: number
 	onSelect?(value?: MenuSelectRecord): void
+
+	className?: ClassNameType
+
 	[key: string]: any
 }

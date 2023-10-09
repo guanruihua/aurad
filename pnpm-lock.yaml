@@ -104,8 +104,8 @@ devDependencies:
     specifier: ^3.2.0
     version: 3.2.0(eslint@8.50.0)(webpack@5.88.2)
   harpe:
-    specifier: ^0.1.0
-    version: 0.1.0
+    specifier: ^0.1.2
+    version: 0.1.2
   html-webpack-plugin:
     specifier: ^5.5.3
     version: 5.5.3(webpack@5.88.2)
@@ -2920,8 +2920,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /harpe@0.1.0:
-    resolution: {integrity: sha512-gBMX/GkN6RqBCUQebIDKfAjkY0DUNc9RlfMikJOiZGcLkO35O9wgmA3NlqEV+Oe845vUjnwqGRP6d927pWmvoA==}
+  /harpe@0.1.2:
+    resolution: {integrity: sha512-GoL3XFufqf21XlSeczU7/TTIm9a8DhviDjUnCNBgn0S+tWcFdQUMg7mQuxdvcf9p2FdkYGqlw7NMzU8vGEoWyg==}
     engines: {node: '>=16'}
     dev: true
 

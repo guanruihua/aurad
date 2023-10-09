@@ -94,7 +94,6 @@ export function Menu(props: MenuProps) {
 					...{
 						...rest,
 						menu,
-						// selectNames: select,
 						fold,
 					}} />
 			)
@@ -136,36 +135,6 @@ export function Menu(props: MenuProps) {
 				onDragEnter={onMouseCur}
 				onDragOver={onMouseCur}
 			>
-				{/* {
-					select.length < 1
-						? (
-							<div style={{
-								display: 'grid',
-								gap: 8,
-								gridTemplateColumns: 'repeat(auto-fill, 220px)'
-							}}>
-								{groupNames.map(name => {
-									if (name)
-										return (
-											<button
-												style={{
-													display: 'inline-block',
-													padding: '20px 30px',
-													fontSize: 20,
-													fontWeight: 'bold',
-													textTransform: 'capitalize'
-												}}
-												key={name}
-												onClick={() => handleGroup(name)}
-											>
-												{name}
-											</button>
-										)
-								})}
-							</div>
-						)
-						: <Outlet />
-				} */}
 				<Outlet />
 			</div>
 		</div>

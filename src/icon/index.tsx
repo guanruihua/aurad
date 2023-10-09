@@ -15,6 +15,8 @@ export interface IconProps extends ComponentProps {
 
 export function Icon(props: IconProps) {
 	const {
+		// eslint-disable-next-line
+		prefixCls, className,
 		type, size,
 		width, height, fill = 'currentColor',
 		...rest
@@ -22,9 +24,10 @@ export function Icon(props: IconProps) {
 
 	const { viewBox = "0 0 1024 1024", path = '' } = icons[type]
 
-	if(type === 'loading'){
+	if (type === 'loading') {
 		rest.className = classNames(rest.className, 'au-rotate')
-	}
+	} else
+		rest.className = classNames(rest.className)
 
 	return <svg
 		viewBox={viewBox}
