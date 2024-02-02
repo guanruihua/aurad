@@ -65,11 +65,11 @@ devDependencies:
     specifier: ^5.62.0
     version: 5.62.0(typescript@5.2.2)
   abandonjs:
-    specifier: ^2.7.0
-    version: 2.7.0
+    specifier: ^3.7.1
+    version: 3.7.1
   asura-eye:
-    specifier: ^0.6.1
-    version: 0.6.1
+    specifier: ^0.8.0
+    version: 0.8.0
   axios:
     specifier: ^1.5.1
     version: 1.5.1
@@ -1462,8 +1462,8 @@ packages:
       through: 2.3.8
     dev: true
 
-  /abandonjs@2.7.0:
-    resolution: {integrity: sha512-rmpVYQ/gbp1lgR7P4ex+wmOFBsytnZ8+Qli9jmfI0FymuESt1TmRpGXd6uUfFclrgVG+QQXM+ZwO6YGO9n15ew==}
+  /abandonjs@3.7.1:
+    resolution: {integrity: sha512-dfrR4+89SlUOGx67mTYVnr0iEZmhNgtp9sck9yb7dPooitNiN+B7N/2wdW1CYg5G1Ixvc/mWJpsWERN154kg1w==}
     engines: {node: '>=16'}
     dev: true
 
@@ -1626,8 +1626,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /asura-eye@0.6.1:
-    resolution: {integrity: sha512-dUR78qAGaa1xmHZcWffpzOt0Z9SbPfbWkmR2hrR2gSm00k9LXZP3LzEnIyBLgoRZWA3uTg0elbopQSlfR95AOQ==}
+  /asura-eye@0.8.0:
+    resolution: {integrity: sha512-Gs2nttweNUlcIeq9HROy7yDhNGw+iGmeFz1hWe8jIKoftI3Howp6xMnoilnVMfoI62UWw51it2WFeFE0irslBg==}
     engines: {node: '>=16'}
     dev: true
 
