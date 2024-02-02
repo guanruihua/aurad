@@ -1,4 +1,5 @@
-import { ObjectType, isNumber } from 'abandonjs'
+import { isNumber } from 'asura-eye'
+import { ObjectType } from 'abandonjs'
 import { checkValueByRule } from './check'
 
 // mode = 'all' | number // 指定找到数量错误就停止
