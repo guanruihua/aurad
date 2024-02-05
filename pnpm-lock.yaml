@@ -26,8 +26,8 @@ dependencies:
 
 devDependencies:
   0hook:
-    specifier: ^1.3.0
-    version: 1.3.0(react@18.2.0)(webpack@5.88.2)
+    specifier: ^1.4.1
+    version: 1.4.1(react@18.2.0)(webpack@5.88.2)
   0math:
     specifier: ^0.1.3
     version: 0.1.3
@@ -154,8 +154,8 @@ devDependencies:
 
 packages:
 
-  /0hook@1.3.0(react@18.2.0)(webpack@5.88.2):
-    resolution: {integrity: sha512-p8UIR4IMVc/IxZLefQ31mEiT42N7BZgjOJgW90GyNekXWMtrZvQA1yoD33nq9lPZ8LAQ9vwB1PtY7pKHfPXvXg==}
+  /0hook@1.4.1(react@18.2.0)(webpack@5.88.2):
+    resolution: {integrity: sha512-pvi/BDNuK6dMfFIDbjkatBDH9bFT55whFIKMHrgU0r8QGXQAuOHHfEsl6aLLvqKdi3UFsipygzoNnO/Ao/XYjg==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:

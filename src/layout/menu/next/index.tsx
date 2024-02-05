@@ -29,7 +29,7 @@ export function NextSubMenu(props: MenuProps) {
 			if (!name) return;
 
 			const handleSelect = () => {
-				// console.log(uid, open);
+				console.log(uid, open);
 				const newOpens = opens.includes(uid)
 					? opens.filter(i => i !== uid)
 					: [...opens, uid]
@@ -48,7 +48,7 @@ export function NextSubMenu(props: MenuProps) {
 
 			const showName = getShowName()
 			const showNextStatus = !fold && isEffectArray(children)
-			const foldNext = showNextStatus && opens.includes(uid)
+			const foldNext = showNextStatus && !opens.includes(uid)
 
 			const names = [...selectNames, name]
 			const newSelectRecords = [...selectRecords, item]

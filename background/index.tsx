@@ -10,6 +10,7 @@ import msgRoute from '../src/message/demo/router'
 import layoutRoute from '../src/layout/demo/router'
 import dragRoute from '../src/drag/demo/router'
 import feedbackRoute from '../src/feedback/demo/router'
+import DemoRoute from '../src/demo/demo/router'
 import { Menu } from "./home"
 
 const modules: MenuObject[] = [
@@ -26,6 +27,7 @@ const modules: MenuObject[] = [
 	layoutRoute,
 	dragRoute,
 	feedbackRoute,
+	DemoRoute,
 ]
 
 const menu: MenuObject[] = [
