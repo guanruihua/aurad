@@ -9,6 +9,11 @@ export default {
   // icon: <Icon type='drag' size={24} />,
   children: [
     {
+      name: 'demo5',
+      path: '/demo/5',
+      element: Lazy(import('./demo5')),
+    },
+    {
       name: 'demo4',
       path: '/demo/4',
       element: Lazy(import('./demo4')),
