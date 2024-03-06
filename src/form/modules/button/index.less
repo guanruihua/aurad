@@ -5,16 +5,17 @@
 
 .au-btn {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 
   height: 32px;
-  line-height: 32px;
   padding: 0 15px;
   margin: 0;
 
   color: #000000d9;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 500;
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
@@ -39,9 +40,9 @@
 
 .au-btn:disabled {
   cursor: not-allowed;
-  color: #d9d9d9;
-  background: #f5f5f5;
-  border-color: #d9d9d9;
+  color: var(--disabled-color);
+  background: var(--disabled-bg-color);
+  border-color: var(--disabled-border-color);
 }
 
 @disabled-color: var(--au-disabled-color);
@@ -52,7 +53,8 @@
   color: var(--au-primary-color);
   border-color: @primary-bg-color;
   background: @primary-bg-color;
-&:active,
+
+  &:active,
   &:hover {
     border-color: @primary-bg-color-hover;
     background-color: @primary-bg-color-hover;
@@ -79,64 +81,4 @@
     border-color: @primary-bg-color-hover;
   }
 
-}
-
-.au-btn-gradient {
-  --background-spread: 200px;
-
-  position: relative;
-  height: 32px;
-  border: none;
-  background: transparent;
-  padding: 2px;
-  z-index: 0;
-  border: none;
-  margin: 0;
-
-
-  &:disabled {
-    & span {
-      color: rgba(255, 255, 255, .5);
-      background: rgba(0, 0, 0, .5);
-    }
-  }
-
-  &:disabled:after {
-    background: rgba(0, 0, 0, .5);
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    background: conic-gradient(from 180deg at 50% 50%, #00D1FF 0deg, #EE27FF 106.88deg, #205EFF 206.25deg, #00F0FF 286.87deg, #00D1FF 360deg);
-    // background: conic-gradient(from 180deg at 50% 50%, rgba(0, 209, 255, 0) 0deg, rgba(0, 209, 255, 0) 153.75deg, #00D1FF 345deg, rgba(0, 209, 255, 0) 360deg);
-    top: calc(var(--background-spread) * -1);
-    right: calc(var(--background-spread) * -1);
-    bottom: calc(var(--background-spread) * -1);
-    left: calc(var(--background-spread) * -1);
-    z-index: -1;
-    animation: 3s rotate linear infinite;
-  }
-
-  &>span {
-    display: block;
-    height: 28px;
-    line-height: 28px;
-    padding: 0 15px;
-    margin: 0;
-    color: #fff;
-    background: #000;
-    border-radius: @border-radius;
-    border: none;
-  }
-
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg);
-    }
-
-    to {
-      transform: rotate(360deg);
-    }
-  }
 }

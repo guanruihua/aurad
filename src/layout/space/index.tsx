@@ -28,6 +28,11 @@ export interface SpaceProps extends ComponentProps {
 	gap?: number | string
 }
 
+/**
+ * @description flex 布局
+ * @param {SpaceProps} props 
+ * @returns {Element}
+ */
 export function Space(props: SpaceProps) {
 
 	const {

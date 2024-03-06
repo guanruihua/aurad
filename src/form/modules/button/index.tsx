@@ -11,9 +11,7 @@ export interface ButtonProps extends ComponentProps, Omit<ButtonHTMLAttributes<H
 	 * @description 按钮类型
 	 * @default: 'default'
 	 */
-	type?: 'primary' | 'text' | 'default' | 'gradient'
-	// 'Animated Gradient Border'
-	animatedBorder?: boolean
+	type?: 'primary' | 'text' | 'default'
 	danger?: boolean
 }
 
@@ -34,19 +32,6 @@ export function Button(props: ButtonProps) {
 		`au-btn-${getType()}`,
 		className
 	)
-
-	if (type === 'gradient') {
-		return <button
-			type={htmlType}
-			className={newClassName}
-			{...rest as ButtonHTMLAttributes<unknown>}
-		>
-			<span>
-				{children}
-			</span>
-		</button>
-	}
-
 
 	return <button
 		type={htmlType}

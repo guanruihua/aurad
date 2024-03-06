@@ -45,6 +45,7 @@ function FormItemCore(props: FormItemProps) {
 				onChange && onChange(e)
 				const getValue = () => {
 					const newValue = e.target[valueIndex]
+									
 					if (isEmpty(newValue)) return ''
 					return newValue
 				}

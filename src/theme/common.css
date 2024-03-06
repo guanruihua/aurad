@@ -1,0 +1,6 @@
+.disabled {
+  cursor: not-allowed;
+  color: var(--disabled-color);
+  background: var(--disabled-bg-color);
+  border-color: var(--disabled-border-color);
+}

@@ -1,6 +1,6 @@
 @import url(@/style/flex.less);
 
-:where(.au-checkbox) {
+.au-checkbox {
   display: inline-block;
   min-height: 32px;
   height: 32px;
@@ -27,7 +27,6 @@
     }
   }
 
-
   input[type=checkbox] {
     width: 0;
     height: 0;
@@ -39,5 +38,21 @@
     margin: 0 8px;
     color: rgba(0, 0, 0, .88);
     cursor: pointer;
+  }
+
+  .au-checkbox-item {
+
+    &.disabled,
+    &.disabled>span,
+    &.disabled>label {
+      cursor: not-allowed;
+      color: var(--disabled-color);
+      border-color: var(--disabled-border-color);
+
+      &.au-checkbox-select {
+        background: var(--disabled-color);
+        border: none;
+      }
+    }
   }
 }

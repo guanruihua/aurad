@@ -1,46 +1,48 @@
-import React from "react"
+import React from 'react'
 import { Checkbox } from '..'
 import { Container, Unit } from 'unit-testing-react'
-import CheckboxFCPage from './fc'
+import { Form, FormItem, useForm } from '@/form/core'
+import { Space } from '@/layout'
+import { Button } from '../../button'
 
 export default function () {
-	return <Container>
-		<Unit>
-			<CheckboxFCPage />
-		</Unit>
-		{/* <Unit title='Checkbox'>
-			<div>
-				<Checkbox>Default</Checkbox>
-				<Checkbox checked>Value</Checkbox>
-				<Checkbox label="Label"></Checkbox>
-				<Checkbox
-					value={123}
-					onChange={(checked: boolean, value: number) => {
-						console.log({ checked, value })
-					}} >onChange</Checkbox>
-			</div>
-			<div>
-				<div>
-					<Checkbox.Group value={[1, 'a1', 'a2']}>
-						<Checkbox value={1}>1</Checkbox>
-						<Checkbox value='a1'>a1</Checkbox>
-						<Checkbox value='a2'>a2</Checkbox>
-						<Checkbox value='a3'>a3</Checkbox>
-					</Checkbox.Group>
-				</div>
-				<div>
-					<Checkbox.Group
-						value={['a1', { a: 123 }]}
-						onChange={(v) => {
-							console.log(v)
-						}}
-					>
-						<Checkbox value='a1'>a1</Checkbox>
-						<Checkbox value={{ a: 123 }}>a2</Checkbox>
-						<Checkbox value='a3'>a3</Checkbox>
-					</Checkbox.Group>
-				</div>
-			</div>
-		</Unit> */}
-	</Container>
+  const form = useForm()
+
+  return (
+    <Container>
+      <Unit>
+        <Form
+          form={form}
+          onSubmit={(form) => {
+            console.log(form.getValues())
+          }}
+        >
+          <Form.Item label="box1" name="box1">
+            <Checkbox>box1</Checkbox>
+          </Form.Item>
+          <Form.Item label="box2" name="box2">
+            <Checkbox
+              options={[
+                { label: 'Aaa', value: 'aaa' },
+                { label: 'Bbb', value: 'bbb' },
+                { label: 'Ccc', value: 'c', disabled: true },
+              ]}
+            />
+          </Form.Item>
+          <FormItem>
+            <Space>
+              <Button htmlType="submit">Submit</Button>
+              <Button htmlType="reset">Reset</Button>
+              <Button onClick={() => form.setValue('box1', true)}>
+                Form Set value
+              </Button>
+              <Button onClick={() => form.setValue('box2', ['aaa', 'c'])}>
+                Form Set value
+              </Button>
+            </Space>
+          </FormItem>
+        </Form>
+      </Unit>
+    </Container>
+  )
 }

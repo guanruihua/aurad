@@ -1,12 +1,15 @@
 @import url(@/style/flex.less);
 
-:where(.au-radio) {
-  display: inline-block;
+.au-radio {
+  display: block;
   min-height: 32px;
   height: 32px;
   width: auto;
-  .inlineFlexCenter();
   cursor: pointer;
+
+  &-item {
+    .inlineFlexCenter();
+  }
 
   .au-radio-label,
   .au-radio-icon {
@@ -27,17 +30,9 @@
     transition: all .2s ease-in-out;
 
     &.au-radio-select {
-      border: none;
-      position: relative;
-      transition: all .2s ease-in-out;
+      border: 5px solid #1890ff;
+      transition: all .1s ease-in-out;
     }
-  }
-
-  input[type=radio] {
-    width: 0;
-    height: 0;
-    inset: 0;
-    z-index: -1;
   }
 
   label {
@@ -48,7 +43,7 @@
 }
 
 
-:where(.au-radio-button) {
+.au-radio-button {
 
   .au-radio-label {
     display: inline-block;
@@ -85,11 +80,4 @@
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
   }
-}
-
-div:where(.au-radio-group) {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  padding: 0 2.5px;
 }

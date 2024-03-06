@@ -1,28 +1,14 @@
-import React from "react"
-import { Group } from './group'
-import type { RadioGroupContextProps, RadioProps } from './type'
-import { RadioGroupContext } from './context'
-import { equal, stringify } from 'abandonjs'
+import React from 'react'
+import type { RadioProps } from './type'
 import './index.less'
-import { RadioCore } from './core'
+import { RadioCore } from './Radio'
+import { isEffectArray } from 'asura-eye'
+import { MultipleRadioCore } from './MultipleRadio'
 export * from './type'
 
 export function Radio(props: RadioProps) {
-	return <RadioGroupContext.Consumer>
-		{(handler: RadioGroupContextProps) => {
-			if (handler.name) {
-				const {
-					groupValue, setGroupValue,
-					groupProps = {}
-				} = handler
-				const { value } = props
-				const newProps = { ...props, setGroupValue, groupProps }
-				newProps.checked = equal(groupValue, value)
-				return (<RadioCore key={stringify(groupValue)} {...newProps} />)
-			}
-			return (<RadioCore {...props} />)
-		}}
-	</RadioGroupContext.Consumer>
+  if (isEffectArray(props.options)) {
+    return <MultipleRadioCore {...props} />
+  }
+  return <RadioCore {...props} />
 }
-
-Radio.Group = Group
