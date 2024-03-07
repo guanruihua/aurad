@@ -58,22 +58,6 @@ export default function () {
           ]}
         />
       </Unit>
-      <Unit title="RadioGroup(type=button)">
-        <Space direction="vertical">
-          <Radio
-            type="button"
-            value={{ a: 123 }}
-            onChange={(v: RadioChangeEvent) => {
-              console.log(v.target)
-            }}
-            options={[
-              { value: 'a1', label: 'a1' },
-              { value: 'a2', label: 'a2' },
-              { value: { a: 123 }, label: 'a222' },
-            ]}
-          />
-        </Space>
-      </Unit>
     </Container>
   )
 }

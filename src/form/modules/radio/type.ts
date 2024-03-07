@@ -13,11 +13,6 @@ export type RadioChangeEvent = {
  */
 export interface RadioProps extends ComponentProps {
   /**
-   * @description 单选框类型
-   * @default 'radio'
-   */
-  type?: 'radio' | 'button'
-  /**
    * @description input[type="radio"] 的 name 属性, 也作为非单一组件时候的 value
    */
   name?: string
