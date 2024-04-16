@@ -6,7 +6,7 @@ import { isArray, isEmpty, isString } from "asura-eye"
 import { toString, unique } from "abandonjs"
 import { Icon } from '@/icon'
 
-export function MultSelectComponent(props: SelectProps) {
+export function MultipleSelectComponent(props: SelectProps) {
 
 	const { value, className, options = [], onChange, placeholder = '', open = false, defaultValue = [], disabled = false } = props
 

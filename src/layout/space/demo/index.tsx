@@ -19,14 +19,14 @@ export default function () {
 		</Unit>
 		<Unit title="Space(custom align)">
 			<Space style={{ marginBottom: 10 }}>
-				<Radio.Group
+				{/* <Radio.Group
 					type="button"
 					defaultValue={'start'}
 					options={['start', 'end', 'center', 'between', 'around']}
 					onChange={(value: Align) => {
 						setAlign(value)
 					}}
-				/>
+				/> */}
 			</Space>
 			<Space align={align}>
 				<RDS count={20} />
@@ -34,14 +34,14 @@ export default function () {
 		</Unit>
 		<Unit title="Space(custom layout)">
 			<Space style={{ marginBottom: 10 }}>
-				<Radio.Group
+				{/* <Radio.Group
 					type="button"
 					defaultValue={'vertical'}
 					options={['vertical', 'horizontal']}
 					onChange={(value: Direction) => {
 						setLayout(value)
 					}}
-				/>
+				/> */}
 			</Space>
 			<Space gap={10} direction={layout}>
 				<RDS count={5} />

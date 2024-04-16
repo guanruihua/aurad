@@ -1,15 +1,14 @@
 @import '@/theme/variable.css';
 @import '@/style/throttle.less';
 
-@border-radius: var(--au-border-radius);
-
 .au-btn {
   position: relative;
   display: inline-flex;
   justify-content: center;
-  align-items: center;
+  align-items: baseline;
 
   height: 32px;
+  line-height: 32px;
   padding: 0 15px;
   margin: 0;
 
@@ -22,7 +21,7 @@
 
   border-radius: 2px;
   border: 1px solid #d9d9d9;
-  border-radius: @border-radius;
+  border-radius: var(--border-radius);
 
   background-image: none;
   background: #fff;
@@ -38,26 +37,15 @@
   }
 }
 
-.au-btn:disabled {
-  cursor: not-allowed;
-  color: var(--disabled-color);
-  background: var(--disabled-bg-color);
-  border-color: var(--disabled-border-color);
-}
-
-@disabled-color: var(--au-disabled-color);
-@primary-bg-color: var(--au-primary-bg-color);
-@primary-bg-color-hover: var(--au-primary-bg-color-hover);
-
 .au-btn-primary {
-  color: var(--au-primary-color);
-  border-color: @primary-bg-color;
-  background: @primary-bg-color;
+  color: #fff;
+  border-color: var(--color);
+  background: var(--color);
 
   &:active,
   &:hover {
-    border-color: @primary-bg-color-hover;
-    background-color: @primary-bg-color-hover;
+    border-color: var(--hover-color);
+    background-color: var(--hover-color);
   }
 
 }
@@ -77,8 +65,20 @@
 
   &:hover,
   &:active {
-    color: var(--au-default-color);
-    border-color: @primary-bg-color-hover;
+    color: var(--color);
+    border-color: var(--color);
   }
 
+}
+
+
+.au-btn:disabled {
+  cursor: not-allowed;
+  color: var(--disabled-color);
+  background: var(--disabled-bg-color);
+  border-color: var(--disabled-border-color);
+
+  &.au-btn-text {
+    background-color: #fff;
+  }
 }

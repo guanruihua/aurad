@@ -19,6 +19,6 @@ export function Input(props: InputProps) {
 		case 'tags':
 			return <InputTag {...rest} />
 		default:
-			return <InputText {...rest} />
+			return <InputText {...rest as any} />
 	}
 }

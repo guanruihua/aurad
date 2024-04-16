@@ -7,11 +7,11 @@ import { Icon } from '@/icon'
 export default {
   name: 'form',
   path: '/form',
-  icon: <Icon type="form" size={24} />,
+  icon: <Icon type='form' size={24} />,
   children: [
     {
       index: true,
-      element: <div>{Lazy(import('./FCTest'))}</div>,
+      element: <div>{Lazy(import('./FCTest'))}</div>
     },
     {
       name: 'button',
@@ -21,7 +21,7 @@ export default {
           <Unit>{Lazy(import('../modules/button/demo'))}</Unit>
           {/* <Unit>{Lazy(import('./FCTest'))}</Unit> */}
         </Container>
-      ),
+      )
     },
 
     {
@@ -33,95 +33,64 @@ export default {
           path: '/form/input/text',
           element: (
             <Container columns={1}>
-              <Unit title="FC(demo)">
+              <Unit title='demo'>
                 {Lazy(import('../modules/input/demo/fc-test'))}
-              </Unit>
-              <Unit>
-                <Container>
-                  <Unit title="Class(Form)">
-                    {Lazy(import('../modules/input/demo/class'))}
-                  </Unit>
-                  <Unit title="FC(Form)">
-                    {Lazy(import('../modules/input/demo/fc'))}
-                  </Unit>
-                </Container>
               </Unit>
               <Unit>{Lazy(import('../modules/input/demo'))}</Unit>
             </Container>
-          ),
+          )
         },
         {
           name: 'textarea',
           path: '/form/input/textarea',
-          element: Lazy(import(`../modules/textarea/demo`)),
+          element: Lazy(import(`../modules/textarea/demo`))
         },
         {
           name: 'number',
           path: '/form/input/number',
           element: (
             <Container columns={1}>
-              <Unit>
-                <Container>
-                  <Unit title="FC(Form)">
-                    {Lazy(import('../modules/input/number/demo/fc'))}
-                  </Unit>
-                  <Unit title="Class(Form)">
-                    {Lazy(import('../modules/input/number/demo/class'))}
-                  </Unit>
-                </Container>
+              <Unit title='demo'>
+                {Lazy(import('../modules/input/number/demo/fc'))}
               </Unit>
               <Unit>{Lazy(import(`../modules/input/number/demo`))}</Unit>
             </Container>
-          ),
+          )
         },
-        {
-          name: 'tag',
-          path: '/form/input/tag',
-          element: (
-            <Container columns={1}>
-              <Unit>
-                <Container>
-                  <Unit title="FC(Form)">
-                    {Lazy(import('../modules/input/tag/demo/fc'))}
-                  </Unit>
-                  <Unit title="Class(Form)">
-                    {Lazy(import('../modules/input/tag/demo/class'))}
-                  </Unit>
-                </Container>
-              </Unit>
-              <Unit>{Lazy(import(`../modules/input/tag/demo`))}</Unit>
-            </Container>
-          ),
-        },
-      ],
+      ]
     },
     {
       name: 'select',
       path: '/form/select',
       element: (
         <Container columns={1} grid>
-          <Unit title="select(mult)">
+          <Unit title='select(mult)'>
             {Lazy(import('../modules/select/demo/mult'))}
           </Unit>
-          <Unit title="select(form)">
+          <Unit title='select(form)'>
             {Lazy(import('../modules/select/demo/form'))}
           </Unit>
-          <Unit title="select(simple)">
+          <Unit title='select(simple)'>
             {Lazy(import('../modules/select/demo/simple'))}
           </Unit>
         </Container>
-      ),
+      )
     },
 
     {
       name: 'checkbox',
       path: '/form/checkbox',
-      element: Lazy(import(`../modules/checkbox/demo`)),
+      element: Lazy(import(`../modules/checkbox/demo`))
+    },
+    {
+      name: 'ImageUpload',
+      path: '/form/imageUpload',
+      element: Lazy(import(`../modules/ImageUpload/demo`))
     },
     {
       name: 'radio',
       path: '/form/radio',
-      element: Lazy(import('../modules/radio/demo')),
-    },
-  ],
+      element: Lazy(import('../modules/radio/demo'))
+    }
+  ]
 } as MenuObject

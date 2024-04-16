@@ -33,7 +33,7 @@ export function Grid(props: GridProps) {
 			gridTemplateColumns: `repeat(${columns},1fr)`,
 			...style
 		} as CSSProperties}
-		{...rest}>
+		{...rest as any}>
 		{React.Children.map(children, (child, index: number) => {
 
 			if ((index + 1) > total || (ignore as number[]).includes(index)) return

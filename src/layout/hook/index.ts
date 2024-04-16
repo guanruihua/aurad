@@ -1,7 +1,8 @@
 import { RefObject, useEffect, useRef } from 'react'
 import { xs, sm, md, lg, xl, xxl } from '../constant'
 import { isEmpty } from 'asura-eye'
-import { ObjectType, debounce } from 'abandonjs'
+import type { ObjectType } from '0type'
+import { debounce } from 'abandonjs'
 import { ComponentProps } from '@/assets'
 
 export interface UseLayoutProps<Value, Props> {
