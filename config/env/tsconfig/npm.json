@@ -3,6 +3,7 @@
     "target": "ESNext",
     "module": "esnext",
     "jsx": "react",
+    "lib": ["dom", "ESNext"],
     "sourceMap": true,
     "removeComments": true,
     "strict": false,
@@ -19,12 +20,10 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"]
     },
     "typeRoots": [
-      "typings/*.d.ts",
+      "src/**/*.d.ts",
       "node_modules/@types",
       "node_modules/*.d.ts",
       "src/assets/type/*.d.ts"
@@ -34,15 +33,10 @@
     "dist",
     "temp",
     "node_modules",
-    "background/**/*",
     "**/*/__test__/*",
     "**/*/__demo__/*",
     "**/*/demo/*",
     "config/*.ts"
   ],
-  "include": [
-    "components/**/*",
-    "src/**/*",
-    "**/*.d.ts"
-  ]
+  "include": ["components/**/*", "src/**/*", "**/*.d.ts"]
 }

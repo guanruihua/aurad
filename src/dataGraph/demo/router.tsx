@@ -9,6 +9,11 @@ export default {
 	icon: <Icon type='data' size={24} />,
 	children: [
 		{
+			name: 'tab',
+			path: '/graph/tab',
+			element: Lazy(import('../tab/demo')),
+		},
+		{
 			name: 'step',
 			path: '/graph/step',
 			element: Lazy(import('../step/demo')),

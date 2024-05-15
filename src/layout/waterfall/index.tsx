@@ -10,7 +10,15 @@ export interface WaterfallProps extends ComponentProps {
 }
 
 export function Waterfall(props: WaterfallProps) {
-  const { count = 2, xGap = 10, yGap, children, style = {}, ...rest } = props
+  const {
+    count = 2,
+    xGap = 10,
+    yGap = 10,
+    children,
+    style = {},
+    type,
+    ...rest
+  } = props
 
   const [newCount, setCount] = useState<number>(count)
 
@@ -22,6 +30,39 @@ export function Waterfall(props: WaterfallProps) {
     defaultEffectKey: 'count',
     props: rest
   })
+
+  if (type === 'x') {
+    const list = new Array(count).fill('').map(() => new Array())
+    React.Children.map(children, (item, i) => {
+      list[i % count].push(item)
+    })
+
+    return (
+      <div
+        ref={ref}
+        style={{
+          display: 'grid',
+          gridTemplateColumns: `repeat(${count}, 1fr)`,
+          gap: xGap,
+          ...style
+        }}
+        {...(newProps as any)}>
+        {list.map((item, k) => {
+          return (
+            <div key={k}>
+              {item.map((item:any, j) => {
+                const exStyle: CSSProperties = {
+                  marginBottom: yGap
+                }
+
+                return <div key={j} style={exStyle}>{item}</div>
+              })}
+            </div>
+          )
+        })}
+      </div>
+    )
+  }
 
   return (
     <div
@@ -35,7 +76,8 @@ export function Waterfall(props: WaterfallProps) {
       {React.Children.map(children, (item) => {
         const exStyle: CSSProperties = {
           overflow: 'hidden',
-          breakInside: 'avoid'
+          breakInside: 'avoid',
+          marginBottom: yGap
         }
 
         if (!isUndefined(yGap)) {
@@ -54,28 +96,28 @@ export function Waterfall(props: WaterfallProps) {
   )
 }
 
-export interface WaterfallItemProps extends ComponentProps {
-  title?: ReactNode
-  gap?: number | string
-}
+// export interface WaterfallItemProps extends ComponentProps {
+//   title?: ReactNode
+//   gap?: number | string
+// }
 
-Waterfall.Item = function (props: WaterfallItemProps) {
-  const { gap = 0, title, children, style = {}, ...rest } = props
-  if (!isUndefined(title)) {
-    return (
-      <div
-        style={{ breakInside: 'avoid', marginBottom: gap, ...style }}
-        {...(rest as any)}>
-        <h2>{title}</h2>
-        <div>{children}</div>
-      </div>
-    )
-  }
-  return (
-    <div
-      style={{ breakInside: 'avoid', marginBottom: gap, ...style }}
-      {...(rest as any)}>
-      {children}
-    </div>
-  )
-}
+// Waterfall.Item = function (props: WaterfallItemProps) {
+//   const { gap = 0, title, children, style = {}, ...rest } = props
+//   if (!isUndefined(title)) {
+//     return (
+//       <div
+//         style={{ breakInside: 'avoid', marginBottom: gap, ...style }}
+//         {...(rest as any)}>
+//         <h2>{title}</h2>
+//         <div>{children}</div>
+//       </div>
+//     )
+//   }
+//   return (
+//     <div
+//       style={{ breakInside: 'avoid', marginBottom: gap, ...style }}
+//       {...(rest as any)}>
+//       {children}
+//     </div>
+//   )
+// }

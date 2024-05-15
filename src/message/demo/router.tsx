@@ -4,7 +4,7 @@ import type { MenuObject } from "@/layout"
 import { Icon } from "@/icon"
 
 export default {
-	name: 'msg',
+	name: 'message',
 	path: '/msg',
 	icon: <Icon type='message' size={24} />,
 	children: [

@@ -119,7 +119,7 @@ export function ImageUpload() {
 
   return (
     <div className='App'>
-      {!!imgSrc && (
+      {/* {!!imgSrc && (
         <ReactCrop
           crop={crop}
           onChange={(_, percentCrop) => setCrop(percentCrop)}
@@ -131,7 +131,7 @@ export function ImageUpload() {
         >
           <img ref={imgRef} alt='Crop me' src={imgSrc} onLoad={onImageLoad} />
         </ReactCrop>
-      )}
+      )} */}
       {completedCrop && (
         <div>
           <canvas

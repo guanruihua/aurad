@@ -1,3 +1,4 @@
+export * from './tab'
 export * from './paging'
 export * from './progress'
 export * from './step'

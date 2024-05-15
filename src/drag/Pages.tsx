@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import {
   closestCenter,
   DndContext,
@@ -10,46 +10,45 @@ import {
   useDndContext,
   MeasuringStrategy,
   DropAnimation,
-  defaultDropAnimationSideEffects,
-} from '@dnd-kit/core';
+  defaultDropAnimationSideEffects
+} from '@dnd-kit/core'
 import type {
   DragStartEvent,
   DragEndEvent,
   MeasuringConfiguration,
-  UniqueIdentifier,
-} from '@dnd-kit/core';
+  UniqueIdentifier
+} from '@dnd-kit/core'
 import {
   arrayMove,
   useSortable,
   SortableContext,
-  sortableKeyboardCoordinates,
-} from '@dnd-kit/sortable';
-import { CSS, isKeyboardEvent } from '@dnd-kit/utilities';
-import { classNames } from 'harpe';
-import { Page, Layout, Position } from './Page';
-import type { Props as PageProps } from './Page';
-import styles from './Pages.module.less';
-import pageStyles from './Page.module.less';
+  sortableKeyboardCoordinates
+} from '@dnd-kit/sortable'
+import { CSS, isKeyboardEvent } from '@dnd-kit/utilities'
+import { classNames } from 'harpe'
+import { Page, Layout, Position } from './Page'
+import type { Props as PageProps } from './Page'
+import styles from './Pages.module.less'
+import pageStyles from './Page.module.less'
 
 interface Props {
-  layout: Layout;
+  layout: Layout
 }
 
-const defaultInitializer = (index: number) => index;
+const defaultInitializer = (index: number) => index
 
 export function createRange<T = number>(
   length: number,
   initializer: (index: number) => any = defaultInitializer
 ): T[] {
-  return [...new Array(length)].map((_, index) => initializer(index));
+  return [...new Array(length)].map((_, index) => initializer(index))
 }
-
 
 const measuring: MeasuringConfiguration = {
   droppable: {
-    strategy: MeasuringStrategy.Always,
-  },
-};
+    strategy: MeasuringStrategy.Always
+  }
+}
 
 const dropAnimation: DropAnimation = {
   keyframes({ transform }) {
@@ -60,31 +59,31 @@ const dropAnimation: DropAnimation = {
           scaleX: 0.98,
           scaleY: 0.98,
           x: transform.final.x - 10,
-          y: transform.final.y - 10,
-        }),
-      },
-    ];
+          y: transform.final.y - 10
+        })
+      }
+    ]
   },
   sideEffects: defaultDropAnimationSideEffects({
     className: {
-      active: pageStyles.active,
-    },
-  }),
-};
+      active: pageStyles.active
+    }
+  })
+}
 
 export function Pages({ layout }: Props) {
-  const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
+  const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null)
 
   const [items, setItems] = useState(() =>
     createRange<UniqueIdentifier>(20, (index) => `${index + 1}`)
-  );
-  
-  const activeIndex = activeId ? items.indexOf(activeId) : -1;
+  )
+
+  const activeIndex = activeId ? items.indexOf(activeId) : -1
 
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
-  );
+  )
 
   return (
     <DndContext
@@ -93,8 +92,7 @@ export function Pages({ layout }: Props) {
       onDragCancel={handleDragCancel}
       sensors={sensors}
       collisionDetection={closestCenter}
-      measuring={measuring}
-    >
+      measuring={measuring}>
       <SortableContext items={items}>
         <ul className={classNames(styles.Pages, styles[layout])}>
           {items.map((id, index) => (
@@ -113,35 +111,32 @@ export function Pages({ layout }: Props) {
       </SortableContext>
       <DragOverlay dropAnimation={dropAnimation}>
         {activeId ? (
-          <PageOverlay
-          
-            id={activeId}
-            layout={layout} items={items} />
+          <PageOverlay id={activeId} layout={layout} items={items} />
         ) : null}
       </DragOverlay>
     </DndContext>
-  );
+  )
 
   function handleDragStart({ active }: DragStartEvent) {
-    setActiveId(active.id);
+    setActiveId(active.id)
   }
 
   function handleDragCancel() {
-    setActiveId(null);
+    setActiveId(null)
   }
 
   function handleDragEnd({ over }: DragEndEvent) {
     if (over) {
-      const overIndex = items.indexOf(over.id);
+      const overIndex = items.indexOf(over.id)
 
       if (activeIndex !== overIndex) {
-        const newIndex = overIndex;
+        const newIndex = overIndex
 
-        setItems((items) => arrayMove(items, activeIndex, newIndex));
+        setItems((items) => arrayMove(items, activeIndex, newIndex))
       }
     }
 
-    setActiveId(null);
+    setActiveId(null)
   }
 }
 
@@ -150,10 +145,10 @@ function PageOverlay({
   items,
   ...props
 }: Omit<PageProps, 'index'> & { items: UniqueIdentifier[] }) {
-  const { activatorEvent, over } = useDndContext();
-  const isKeyboardSorting = isKeyboardEvent(activatorEvent);
-  const activeIndex = items.indexOf(id);
-  const overIndex = over?.id ? items.indexOf(over?.id) : -1;
+  const { activatorEvent, over } = useDndContext()
+  const isKeyboardSorting = isKeyboardEvent(activatorEvent)
+  const activeIndex = items.indexOf(id)
+  const overIndex = over?.id ? items.indexOf(over?.id) : -1
 
   return (
     <Page
@@ -168,7 +163,7 @@ function PageOverlay({
           : undefined
       }
     />
-  );
+  )
 }
 
 function SortablePage({
@@ -185,11 +180,11 @@ function SortablePage({
     over,
     setNodeRef,
     transform,
-    transition,
+    transition
   } = useSortable({
     id,
-    animateLayoutChanges: always,
-  });
+    animateLayoutChanges: always
+  })
 
   return (
     <Page
@@ -198,7 +193,7 @@ function SortablePage({
       active={isDragging}
       style={{
         transition,
-        transform: isSorting ? undefined : CSS.Translate.toString(transform),
+        transform: isSorting ? undefined : CSS.Translate.toString(transform)
       }}
       insertPosition={
         over?.id === id
@@ -211,9 +206,9 @@ function SortablePage({
       {...attributes}
       {...listeners}
     />
-  );
+  )
 }
 
 function always() {
-  return true;
+  return true
 }

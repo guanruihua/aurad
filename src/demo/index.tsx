@@ -16,10 +16,9 @@ export function RD(props: ComponentProps) {
         background: mock('@color'),
         color: '#fff',
         textAlign: 'center',
-        ...style,
+        ...style
       }}
-      {...rest}
-    >
+      {...rest}>
       {children}
     </div>
   )
@@ -38,10 +37,9 @@ export function RFD(props: ComponentProps) {
         background: mock('@color'),
         color: '#fff',
         textAlign: 'center',
-        ...style,
+        ...style
       }}
-      {...rest}
-    >
+      {...rest}>
       {children}
     </div>
   )
@@ -51,32 +49,24 @@ export function RDS(
   props: ComponentProps & {
     count?: number
     fill?: boolean
-  },
+  }
 ) {
   const { fill, array, count = 10, ...rest } = props
 
   if (fill === true) {
-    return (
-      <React.Fragment>
-        {new Array(count).fill('').map((_, index) => {
-          return (
-            <RFD key={index} {...rest}>
-              {index}
-            </RFD>
-          )
-        })}
-      </React.Fragment>
-    )
+    return new Array(count).fill('').map((_, index) => {
+      return (
+        <RFD key={index} {...rest}>
+          {index}
+        </RFD>
+      )
+    })
   }
-  return (
-    <React.Fragment>
-      {new Array(count).fill('').map((_, index) => {
-        return (
-          <RD key={index} {...rest}>
-            {index}
-          </RD>
-        )
-      })}
-    </React.Fragment>
-  )
+  return new Array(count).fill('').map((_, index) => {
+    return (
+      <RD key={index} {...rest}>
+        {index}
+      </RD>
+    )
+  })
 }

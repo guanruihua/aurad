@@ -1,5 +1,4 @@
 test/
-src/
 push.bat
 *.md
 .gitignore
