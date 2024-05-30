@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes } from 'react'
+import React, { ButtonHTMLAttributes, useRef } from 'react'
 import { ComponentProps } from '@/assets'
 import { classNames } from 'harpe'
 import './index.less'
@@ -31,13 +31,29 @@ export function Button(props: ButtonProps) {
   }
 
   const newClassName = classNames(`au-btn`, `au-btn-${getType()}`, className)
+  const ref = useRef<HTMLButtonElement | null>(null)
+
+  React.useEffect(() => {
+    if (!ref.current || rest.disabled) return
+    const handle = () => {
+      const dom = document.createElement('span')
+      dom.className = 'ripple'
+      ref.current?.appendChild(dom)
+      setTimeout(() => {
+        ref.current?.removeChild(dom)
+      }, 1000)
+    }
+    ref.current.removeEventListener('click', handle, false)
+    ref.current.addEventListener('click', handle, false)
+  }, [ref.current])
 
   return (
     <button
+      ref={ref}
       type={htmlType}
       className={newClassName}
       {...(rest as ButtonHTMLAttributes<unknown>)}>
-      {children}
+      <span className='content'>{children}</span>
     </button>
   )
 }

@@ -9,6 +9,11 @@ export default {
   // icon: <Icon type='drag' size={24} />,
   children: [
     {
+      name: 'addToBody',
+      path: '/demo/addToBody',
+      element: Lazy(import('./addToBody')),
+    },
+    {
       name: 'demo7',
       path: '/demo/7',
       element: Lazy(import('./demo7')),
@@ -33,15 +38,15 @@ export default {
       path: '/demo/3',
       element: Lazy(import('./demo3')),
     },
-    {
-      name: 'demo2',
-      path: '/demo/2',
-      element: Lazy(import('./demo2')),
-    },
-    {
-      name: 'demo1',
-      path: '/demo/1',
-      element: Lazy(import('./demo1')),
-    },
+    // {
+    //   name: 'demo2',
+    //   path: '/demo/2',
+    //   element: Lazy(import('./demo2')),
+    // },
+    // {
+    //   name: 'demo1',
+    //   path: '/demo/1',
+    //   element: Lazy(import('./demo1')),
+    // },
   ],
 } as MenuObject

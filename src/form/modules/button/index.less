@@ -1,15 +1,13 @@
 @import '@/theme/variable.css';
-@import '@/style/throttle.less';
 
 .au-btn {
   position: relative;
   display: inline-flex;
   justify-content: center;
-  align-items: baseline;
+  align-items: center;
 
   height: 32px;
   line-height: 32px;
-  padding: 0 15px;
   margin: 0;
 
   color: #000000d9;
@@ -26,28 +24,63 @@
   background-image: none;
   background: #fff;
 
-  cursor: pointer;
   transition: all .3s cubic-bezier(.645, .045, .355, 1);
   user-select: none;
   touch-action: manipulation;
-  animation: throttle .3s step-end forwards;
 
   &:active {
     animation: none;
+  }
+
+  &>.content {
+    border: none;
+    // cursor: pointer;
+    padding: 0 15px;
+    background-color: transparent;
+    z-index: 10;
+  }
+
+  &>.ripple {
+    cursor: pointer;
+    content: '';
+    position: absolute;
+    width: 100%;
+    padding-top: 100%;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
   }
 }
 
 .au-btn-primary {
   color: #fff;
-  border-color: var(--color);
+  border: none;
   background: var(--color);
 
   &:active,
   &:hover {
-    border-color: var(--hover-color);
     background-color: var(--hover-color);
   }
 
+  @keyframes ripple {
+    from {
+      transform: translate(-50%, -50%) scale(0.5);
+      background: #87c9ff70;
+    }
+
+    to {
+      transform: translate(-50%, -50%) scale(1.25);
+      background: transparent;
+    }
+  }
+
+  &>.ripple {
+    animation: ripple .5s;
+  }
 }
 
 .au-btn-text {
@@ -59,6 +92,11 @@
   &:active {
     background: transparent;
   }
+
+  &:active,
+  &:hover {
+    color: var(--color);
+  }
 }
 
 .au-btn-default {
@@ -69,14 +107,33 @@
     border-color: var(--color);
   }
 
-}
+  @keyframes ripple {
+    from {
+      transform: translate(-50%, -50%) scale(0.5);
+      background: #87c9ff30;
+    }
 
+    to {
+      transform: translate(-50%, -50%) scale(1.25);
+      background: transparent;
+    }
+  }
+
+  &>.ripple {
+    animation: ripple .5s;
+  }
+}
 
 .au-btn:disabled {
   cursor: not-allowed;
   color: var(--disabled-color);
   background: var(--disabled-bg-color);
   border-color: var(--disabled-border-color);
+
+  &>.content {
+    cursor: not-allowed;
+
+  }
 
   &.au-btn-text {
     background-color: #fff;

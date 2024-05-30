@@ -1,27 +1,6 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-// // import { Button, Tab } from '../dist/index.mjs'
-// import { Button, Tab } from '../dist/index.js'
-// import '../dist/style.css'
-// // import a, { Button } from '../dist/index.js'
 
-// function App() {
-//   // console.log(Button)
-//   // console.log(a, Button)
-//   return (
-//     <div>
-//       <Button type='primary'>123</Button>
-//       {/* <Tab /> */}
-//       <Tab
-//         items={[
-//           { title: 'title1', key: '1', children: 'content1' },
-//           { title: 'title2', key: '2', children: 'content2' }
-//         ]}
-//       />
-//       {/* <Tab items={[{ title: '1', key: '1', children: '1' }]} /> */}
-//     </div>
-//   )
-// }
 import './index.less'
 import { BrowserContainer, Icon, Lazy, type MenuObject } from '../src'
 
@@ -31,9 +10,9 @@ import dataGraphRoute from '../src/dataGraph/demo/router'
 import msgRoute from '../src/message/demo/router'
 import layoutRoute from '../src/layout/demo/router'
 import animationRoute from '../src/animation/demo/router'
-// import dragRoute from '../src/drag/demo/router'
-// import feedbackRoute from '../src/feedback/demo/router'
-// import DemoRoute from '../src/demo/demo/router'
+import dragRoute from '../src/drag/demo/router'
+import feedbackRoute from '../src/feedback/demo/router'
+import DemoRoute from '../src/demo/demo/router'
 import { Menu } from "./home"
 
 const modules: MenuObject[] = [
@@ -49,9 +28,9 @@ const modules: MenuObject[] = [
 	msgRoute,
 	layoutRoute,
 	animationRoute,
-	// dragRoute,
-	// feedbackRoute,
-	// DemoRoute,
+	dragRoute,
+	feedbackRoute,
+	DemoRoute,
 ]
 
 const menu: MenuObject[] = [
