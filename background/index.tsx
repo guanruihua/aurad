@@ -10,7 +10,7 @@ import dataGraphRoute from '../src/dataGraph/demo/router'
 import msgRoute from '../src/message/demo/router'
 import layoutRoute from '../src/layout/demo/router'
 import animationRoute from '../src/animation/demo/router'
-import dragRoute from '../src/drag/demo/router'
+// import dragRoute from '../src/drag/demo/router'
 import feedbackRoute from '../src/feedback/demo/router'
 import DemoRoute from '../src/demo/demo/router'
 import { Menu } from "./home"
@@ -28,7 +28,7 @@ const modules: MenuObject[] = [
 	msgRoute,
 	layoutRoute,
 	animationRoute,
-	dragRoute,
+	// dragRoute,
 	feedbackRoute,
 	DemoRoute,
 ]

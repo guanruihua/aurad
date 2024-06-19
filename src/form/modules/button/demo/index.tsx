@@ -20,6 +20,10 @@ export default function ButtonPage() {
 					<Button type='default' onClick={() => { console.log('default') }}>Default</Button>
 					<Button type='default' disabled onClick={() => { console.log('default disabled') }}>Default(disabled)</Button>
 				</Space>
+				{/* <Space>
+					<Button type='default' onClick={() => { console.log('default') }}>btn</Button>
+					<Button type='default' disabled onClick={() => { console.log('default disabled') }}>Default(disabled)</Button>
+				</Space> */}
 			</Space>
 		</Unit>
 	</Container>

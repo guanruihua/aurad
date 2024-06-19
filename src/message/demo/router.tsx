@@ -18,5 +18,10 @@ export default {
 			path: '/msg/popconfirm',
 			element: Lazy(import('../popconfirm/demo')),
 		},
+		{
+			name: 'message',
+			path: '/msg/message',
+			element: Lazy(import('../message/demo')),
+		},
 	],
 } as MenuObject
