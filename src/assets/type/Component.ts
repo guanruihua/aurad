@@ -1,13 +1,15 @@
 import type { CSSProperties, ReactNode } from 'react'
-import type { ObjectType } from '0type'
+import { ClassNameType } from 'harpe'
 
-export interface ComponentProps extends ObjectType {
-	/**
-		* @description 
-		* @default ''
-		*/
-	prefixCls?: string
-	className?: string | Record<string, boolean>
-	style?: CSSProperties
-	children?: ReactNode | string
+export interface ComponentProps
+  extends Omit<React.BaseHTMLAttributes<HTMLDivElement>, 'className'> {
+  /**
+   * @description
+   * @default ''
+   */
+  prefixCls?: string
+  className?: ClassNameType
+  style?: CSSProperties
+  children?: ReactNode | string | any
+  [key: string]: any
 }

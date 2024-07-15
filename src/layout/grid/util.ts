@@ -1,6 +1,6 @@
 import { isEmpty, isNumber } from 'asura-eye';
 import { CSSProperties } from 'react'
-import { Merge } from './type'
+import { type Merge } from './type'
 
 export function getGridSpanLayout(layout: Merge, columns: number) {
 	return function (index: number) {

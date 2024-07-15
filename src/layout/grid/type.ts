@@ -1,6 +1,7 @@
 import { type CSSProperties } from "react"
 import { type ObjectType } from 'abandonjs'
 import { type ComponentProps } from '@/assets'
+import { ClassNameType } from 'harpe'
 
 export type Merge = ObjectType<{
 	row: number,
@@ -11,11 +12,11 @@ export interface GridProps extends ComponentProps {
 	/**
 	 * @description 单元格ClassName
 	 */
-	childClassName?: string
+	childClassName?: ClassNameType
 	/**
 	 * @description 填充(fill)单元格ClassName
 	 */
-	fillChildClassName?: string
+	fillChildClassName?: ClassNameType
 	/**
 	 * @description 单元格style
 	 */
