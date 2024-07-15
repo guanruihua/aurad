@@ -2,7 +2,10 @@ import type { CSSProperties, ReactNode } from 'react'
 import { ClassNameType } from 'harpe'
 
 export interface ComponentProps
-  extends Omit<React.BaseHTMLAttributes<HTMLDivElement>, 'className'> {
+  extends Omit<
+    React.BaseHTMLAttributes<HTMLDivElement>,
+    'className'
+  > {
   /**
    * @description
    * @default ''
@@ -10,6 +13,6 @@ export interface ComponentProps
   prefixCls?: string
   className?: ClassNameType
   style?: CSSProperties
-  children?: ReactNode | string | any
+  children?: ReactNode | any
   [key: string]: any
 }
