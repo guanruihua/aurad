@@ -80,7 +80,7 @@ export function NextSubMenu(props: MenuProps) {
 					}}>
 
 					<div className="label">
-						{icon && <div className="icon">{icon}</div>}
+						{/* {icon && <div className="icon">{icon}</div>} */}
 						<div>
 							{showName}
 						</div>

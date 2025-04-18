@@ -1,55 +1,66 @@
-.au-message {
+.au-message-box {
   --color-success: #52c41a;
   --color-warning: #faad14;
   --color-error: #ff4d4f;
   --color-info: #1677ff;
-
   position: fixed;
   left: 0;
   right: 0;
   top: 30px;
   margin: auto;
-  background-color: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 9999998;
+  text-align: center;
   pointer-events: none;
+  z-index: 999;
 
-  &-inner {
-    background-color: #fff;
+  .au-message {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px 8px 16px;
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, .8);
+    background-color: #000;
+    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08),
+      0 3px 6px -4px rgba(0, 0, 0, 0.12),
+      0 9px 28px 8px rgba(0, 0, 0, 0.05);
     border-radius: 12px;
-    padding: 6px 16px 8px;
-    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    font-size: 12px;
+    margin-bottom: 10px;
+    z-index: 1000;
 
-    &>span {
-      font-size: 16px;
-      line-height: 16px;
-      color: rgba(0, 0, 0, 0.88);
-
-      &:first-child {
-        color: var(--color-info);
-        margin-right: 5px;
-        vertical-align: middle;
-
-        &.success {
-          color: var(--color-success);
-        }
-
-        &.warning {
-          color: var(--color-warning);
-        }
-
-        &.error {
-          color: var(--color-error);
-        }
-
-        &.info {
-          color: var(--color-info);
-        }
-      }
+    &.success {
+      border-color: var(--color-success);
     }
+
+    &.warning {
+      border-color: var(--color-warning);
+    }
+
+    &.error {
+      border-color: var(--color-error);
+    }
+
+    &.info {
+      border-color: var(--color-info);
+    }
+
+    .icon {
+      height: 32px;
+      font-size: 16px;
+      line-height: 32px;
+    }
+
+    .content {
+      height: 32px;
+      line-height: 30px;
+    }
+  }
+}
+
+.light-theme .au-message-box {
+  .au-message {
+    color: #000;
+    background-color: #fff;
+    border: none;
   }
 }

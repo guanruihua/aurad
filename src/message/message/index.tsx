@@ -1,61 +1,65 @@
 import React from 'react'
+import { createRoot } from 'react-dom/client'
 import { icons } from './icons'
 import './index.less'
 
-export type MessageType =
-  | 'open'
-  | 'success'
-  | 'error'
-  | 'info'
-  | 'warning'
-  | 'loading'
-  | string
+export type MessageType = 'success' | 'error' | 'info' | 'warning' | string
 
-const getBox = () => {
-  const oldDom = document.querySelector('.au-message')
-  if (oldDom) {
-    return oldDom
-  }
-  const box = document.createElement('div')
-  box.classList.add('au-message')
-  document.body.appendChild(box)
-  
-  const timer = setInterval(() => {
-    const dom = document.querySelector('.au-message')
-    if (dom) {
-      if (!dom.childNodes.length) {
-        document.body.removeChild(dom)
-        clearInterval(timer)
-      }
-    } else {
-      clearInterval(timer)
-    }
-  }, 3100)
+export const message: {
+  success(content: React.ReactNode, timeout?: number): void
+  error(content: React.ReactNode, timeout?: number): void
+  info(content: React.ReactNode, timeout?: number): void
+  warning(content: React.ReactNode, timeout?: number): void
+  [key: string]: any
+} = {
+  dom: null,
+  init() {
+    const old = document.querySelector('body>.au-message-box')
+    if (old) return
+    const dom = document.createElement('div')
+    dom.className = 'au-message-box'
+    this.dom = dom
+    document.body.appendChild(this.dom)
+  },
+  open(
+    content: React.ReactNode,
+    type: 'success' | 'error' | 'warning' | 'info' = 'info',
+    timeout: number = 3000,
+  ) {
+    this.init()
+    const dom = document.createElement('div')
 
-  return box
-}
+    const JSXdom = (
+      <div className={`au-message ${type}`}>
+        <div className='icon'>{icons[type]}</div>
+        <div className='content'>{content}</div>
+      </div>
+    )
 
-export const message = (type: MessageType, content: string) => {
-  // console.log(type, content, document.body)
+    createRoot(dom).render(JSXdom)
+    this.dom.appendChild(dom)
 
-  const box = getBox()
+    let timer: any = null
+    timer = setTimeout(() => {
+      dom.remove()
+      clearTimeout(timer)
+    }, timeout)
+  },
+  warning(content: React.ReactNode, timeout: number = 3000) {
+    this.open(content, 'warning', timeout)
+  },
+  info(content: React.ReactNode, timeout: number = 3000) {
+    this.open(content, 'info', timeout)
+  },
 
-  const inner = document.createElement('div')
-  inner.classList.add('au-message-inner')
+  error(content: React.ReactNode, timeout: number = 3000) {
+    this.open(content, 'error', timeout)
+  },
 
-  const logo = document.createElement('span')
-  logo.classList.add(type)
-  logo.innerHTML = (icons as any)[type] || icons.warning
-  inner.appendChild(logo)
-
-  const text = document.createElement('span')
-  text.innerText = content
-  inner.appendChild(text)
-
-  box.appendChild(inner)
-
-  const timer = setTimeout(() => {
-    box.removeChild(inner)
-    clearTimeout(timer)
-  }, 3000)
+  success(content: React.ReactNode, timeout: number = 3000) {
+    this.open(content, 'success', timeout)
+  },
+  close() {
+    this.dom && this.dom.remove()
+  },
 }

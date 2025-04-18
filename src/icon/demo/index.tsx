@@ -68,7 +68,7 @@ export default function () {
 						<svg height="30" width="30">
 							<use href="#beats"></use>
 						</svg>
-						<span>加载中</span>
+						<span>Loading...</span>
 					</span>
 
 					<div>
@@ -89,7 +89,7 @@ export default function () {
 								}}>
 								<use href="#demo-clock"></use>
 							</svg>
-							<span>等待中</span>
+							<span>Loading...</span>
 						</div>
 					</div>
 				</Space>

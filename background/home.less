@@ -10,10 +10,10 @@
   z-index: 1;
   .scrollbar();
   transition: grid-template-columns .8s ease 0s;
-  
+
   &.fold {
     transition: grid-template-columns .3s ease 0s;
-    grid-template-columns: 60px 1fr;
+    grid-template-columns: 0 1fr;
   }
 }
 
@@ -126,13 +126,51 @@ aside.au-menu {
       border-radius: 12px;
       border-width: 0;
       color: #c5c5c5;
-      background-color: transparent;
+      background: transparent;
       font-size: 18px;
       font-weight: bold;
 
       &:hover {
-        background-color: #1f1f1f;
+        background: #1f1f1f;
       }
     }
+  }
+}
+
+.light-theme {
+  color: #000;
+
+  .au-menu {
+    color: #000;
+    background: #fff;
+  }
+
+  .au-content-move-border {
+    background: #fff;
+  }
+
+  .au-content {
+    background: #eee;
+
+    .au-header {
+      background: #fff;
+      color: #000;
+
+      button {
+        color: #000;
+
+        &:hover {
+          background: rgba(0, 0, 0, .3);
+        }
+      }
+    }
+  }
+
+}
+
+.night-theme {
+  color: #fff;
+  .au-content .unit-testing-unit {
+    background: #000;
   }
 }

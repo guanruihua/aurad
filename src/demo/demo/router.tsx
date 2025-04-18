@@ -9,35 +9,41 @@ export default {
   // icon: <Icon type='drag' size={24} />,
   children: [
     {
+      name: 'home',
+      // path: '/demo',
+      index: true,
+      element: <div>Demo Home</div>
+    },
+    {
       name: 'addToBody',
       path: '/demo/addToBody',
-      element: Lazy(import('./addToBody')),
+      element: Lazy(import('./addToBody'))
     },
     {
       name: 'demo7',
       path: '/demo/7',
-      element: Lazy(import('./demo7')),
+      element: Lazy(import('./demo7'))
     },
     {
       name: 'demo6',
       path: '/demo/6',
-      element: Lazy(import('./demo6')),
+      element: Lazy(import('./demo6'))
     },
     {
       name: 'demo5',
       path: '/demo/5',
-      element: Lazy(import('./demo5')),
+      element: Lazy(import('./demo5'))
     },
     {
       name: 'demo4',
       path: '/demo/4',
-      element: Lazy(import('./demo4')),
+      element: Lazy(import('./demo4'))
     },
     {
       name: 'demo3',
       path: '/demo/3',
-      element: Lazy(import('./demo3')),
-    },
+      element: Lazy(import('./demo3'))
+    }
     // {
     //   name: 'demo2',
     //   path: '/demo/2',
@@ -48,5 +54,5 @@ export default {
     //   path: '/demo/1',
     //   element: Lazy(import('./demo1')),
     // },
-  ],
+  ]
 } as MenuObject

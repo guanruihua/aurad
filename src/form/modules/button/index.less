@@ -35,7 +35,6 @@
 
   &>.content {
     border: none;
-    // cursor: pointer;
     padding: 0 15px;
     background-color: transparent;
     z-index: 10;
@@ -88,6 +87,10 @@
   border: none;
   background: none;
 
+  .content {
+    padding: 0;
+  }
+
   &:disabled,
   &:hover,
   &:active {
@@ -133,10 +136,51 @@
 
   &>.content {
     cursor: not-allowed;
-
   }
 
   &.au-btn-text {
-    background-color: #fff;
+    background: transparent;
+  }
+
+  // &.au-btn-text {
+  //   background-color: #fff;
+  // }
+}
+
+.night-theme {
+
+
+  .au-btn-text {
+    color: #fff;
+
+    &:hover,
+    &:active {
+      color: var(--color);
+      border-color: var(--color);
+    }
+  }
+
+  .au-btn-default {
+    color: #fff;
+    background: #000;
+
+    &:hover,
+    &:active {
+      color: var(--color);
+      // border-color: var(--color);
+    }
+  }
+
+  .au-btn-primary {}
+
+  .au-btn {
+    &:disabled {
+      color: var(--disabled-color);
+      background: var(--night-disabled-bg-color);
+    }
+
+    &.au-btn-text {
+      background: transparent;
+    }
   }
 }

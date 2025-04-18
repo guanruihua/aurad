@@ -13,7 +13,7 @@ const __dirname = path.dirname(__filename)
 // require('./env/tsconfig/index')('dev')
 
 const devServer = {
-  port: '5300', //默认是8080
+  port: '6322',
   // client: { logging: "error" },//浏览器中设置日志级别
   compress: true, //是否启用 gzip 压缩
   open: false,

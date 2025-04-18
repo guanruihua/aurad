@@ -78,6 +78,11 @@ export default {
     },
 
     {
+      name: 'Picker',
+      path: '/form/picker',
+      element: Lazy(import(`../modules/picker/demo`))
+    },
+    {
       name: 'checkbox',
       path: '/form/checkbox',
       element: Lazy(import(`../modules/checkbox/demo`))

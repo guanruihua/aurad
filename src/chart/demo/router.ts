@@ -26,5 +26,10 @@ export default {
 			path: '/chart/echart',
 			element: Lazy(import('../echart/demo')),
 		},
+		{
+			name: 'pie-half',
+			path: '/chart/pie-half',
+			element: Lazy(import('../pie-half/demo')),
+		},
 	]
 } as MenuObject

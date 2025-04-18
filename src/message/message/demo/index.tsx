@@ -3,11 +3,12 @@ import { Button } from '@/form'
 import { Space } from '@/layout'
 import { message } from '..'
 import { Container, Unit } from 'unit-testing-react'
-const list = [/* 'open', */ 'success', 'error', 'info', 'warning', 'loading']
+const list = ['success', 'error', 'info', 'warning']
+
 export default function () {
-  // React.useEffect(() => {
-  //   message('success', 'Success Content')
-  // }, [])
+  React.useEffect(() => {
+    // message.success('Success Content')
+  }, [])
 
   return (
     <Container>
@@ -17,7 +18,7 @@ export default function () {
             <Button
               key={type}
               onClick={() => {
-                message(type, type + ' Content')
+                message[type](type + ' Content')
               }}>
               {type}
             </Button>
