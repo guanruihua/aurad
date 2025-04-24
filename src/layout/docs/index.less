@@ -1,0 +1,59 @@
+
+.au-docs {
+  --bg: #000;
+  --select-color: #7da8d3;
+
+  &>.content {
+    padding: 10px 16px;
+    overflow-y: auto;
+    // max-height: fit-content;
+    // padding-bottom: 12px;
+  }
+}
+
+.au-docs-has-toc {
+
+  &>.content>.au-docs-item {
+    margin-right: 200px;
+  }
+}
+
+.au-docs-toc {
+  position: fixed;
+  right: 0;
+  top: 60px;
+  width: 200px;
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-size: 12px;
+
+  &>div {
+    cursor: pointer;
+    font-weight: bolder;
+    letter-spacing: .8px;
+
+    &:hover,
+    &:active,
+    &.select {
+      color: var(--select-color);
+    }
+  }
+}
+
+.au-docs-item {
+  background: var(--bg);
+  padding: 10px 16px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+
+  &-title {
+    margin-bottom: 12px;
+  }
+}
+
+.light-theme {
+  .au-docs {
+    --bg: #fff;
+    --select-color: #2C80D2;
+  }
+}

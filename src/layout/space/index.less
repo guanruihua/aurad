@@ -2,7 +2,45 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-	align-items: center;
+  align-items: center;
   word-break: break-all;
   flex-wrap: wrap;
+  max-width: 100%;
+}
+
+.au-column-count {
+  --bg: #000;
+  --select-color: #7da8d3;
+
+  &>.content {
+    column-count: 1;
+    column-gap: 10px;
+  }
+}
+
+.au-column-count-has-toc {
+  position: relative;
+
+  &>.content>.au-column-count-item {
+    margin-right: 200px;
+  }
+}
+
+.au-column-count-item {
+  break-inside: avoid;
+  background: var(--bg);
+  padding: 10px 16px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+
+  &-title {
+    margin-bottom: 12px;
+  }
+}
+
+.light-theme {
+  .au-column-count {
+    --bg: #fff;
+    --select-color: #2C80D2;
+  }
 }

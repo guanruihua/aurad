@@ -1,0 +1,51 @@
+@import '@/theme/variable.css';
+
+.au-btn {
+  color: #000000d9;
+  border-radius: 8px;
+
+  &.au-btn-primary {
+    --ripple-bg: #87c9ff70;
+    --hover-bg: var(--hover-color);
+    color: #fff;
+    background: var(--color);
+    border: none;
+    box-shadow: 0 0 1px var(--color);
+
+    &.disabled {
+      color: rgba(0, 0, 0, .3);
+      border: 1px solid #d9d9d9;
+      background: rgb(250, 250, 250);
+      box-shadow: 0 0 1px rgb(250, 250, 250);
+    }
+  }
+
+  &.au-btn-default {
+    --ripple-bg: #87c9ff30;
+    --hover-color: var(--color);
+    --hover-border-color: var(--color);
+    color: #000000d9;
+    border: .5px solid #d9d9d9;
+    box-shadow: 0 0 .5px #d9d9d9;
+
+    &:hover {
+      box-shadow: 0 0 1px var(--color);
+    }
+
+    &.disabled {
+      color: rgba(0, 0, 0, .3);
+      border: 1px solid #d9d9d9;
+      background: rgb(250, 250, 250);
+      box-shadow: 0 0 1px rgb(250, 250, 250);
+    }
+  }
+
+  &.au-btn-text {
+    --hover-color: var(--color);
+    color: #000000d9;
+
+    &.disabled {
+      color: rgba(0, 0, 0, .3);
+    }
+  }
+}

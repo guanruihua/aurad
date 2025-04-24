@@ -1,8 +1,10 @@
 import React, { ButtonHTMLAttributes, useRef } from 'react'
 import { ComponentProps } from '@/assets'
 import { classNames } from 'harpe'
-import './index.less'
 import { isUndefined } from 'asura-eye'
+import './style/index.less'
+import './style/color.less'
+import './style/night-color.less'
 
 export interface ButtonProps extends ComponentProps {
   htmlType?: 'submit' | 'reset' | 'button'
@@ -11,8 +13,7 @@ export interface ButtonProps extends ComponentProps {
    * @default: 'default'
    */
   type?: 'primary' | 'text' | 'default'
-  danger?: boolean
-  children?: React.ReactNode
+  disabled?: boolean
 }
 
 export function Button(props: ButtonProps) {
@@ -25,7 +26,12 @@ export function Button(props: ButtonProps) {
     return type
   }
 
-  const newClassName = classNames(`au-btn`, `au-btn-${getType()}`, className)
+  const newClassName = classNames(
+    `au-btn`,
+    `au-btn-${getType()}`,
+    { disabled: rest?.disabled },
+    className,
+  )
   const ref = useRef<HTMLButtonElement | null>(null)
 
   React.useEffect(() => {
@@ -47,7 +53,7 @@ export function Button(props: ButtonProps) {
       ref={ref}
       type={htmlType}
       className={newClassName}
-      {...(rest as ButtonHTMLAttributes<unknown>)}>
+      {...(rest as ButtonHTMLAttributes<any>)}>
       <span className='content'>{children}</span>
     </button>
   )

@@ -7,5 +7,5 @@ export * from './menu'
 export * from './card'
 export * from './space'
 export * from './waterfall'
-
+export * from './docs'
 export * from './type'

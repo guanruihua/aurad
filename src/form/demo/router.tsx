@@ -11,17 +11,12 @@ export default {
   children: [
     {
       index: true,
-      element: <div>{Lazy(import('./FCTest'))}</div>
+      element: <div>{Lazy(import('./FCTest'))}</div>,
     },
     {
       name: 'button',
       path: '/form/button',
-      element: (
-        <Container columns={1}>
-          <Unit>{Lazy(import('../modules/button/demo'))}</Unit>
-          {/* <Unit>{Lazy(import('./FCTest'))}</Unit> */}
-        </Container>
-      )
+      element: Lazy(import('../modules/button/demo')),
     },
 
     {
@@ -38,12 +33,12 @@ export default {
               </Unit>
               <Unit>{Lazy(import('../modules/input/demo'))}</Unit>
             </Container>
-          )
+          ),
         },
         {
           name: 'textarea',
           path: '/form/input/textarea',
-          element: Lazy(import(`../modules/textarea/demo`))
+          element: Lazy(import(`../modules/textarea/demo`)),
         },
         {
           name: 'number',
@@ -55,9 +50,9 @@ export default {
               </Unit>
               <Unit>{Lazy(import(`../modules/input/number/demo`))}</Unit>
             </Container>
-          )
+          ),
         },
-      ]
+      ],
     },
     {
       name: 'select',
@@ -74,28 +69,28 @@ export default {
             {Lazy(import('../modules/select/demo/simple'))}
           </Unit>
         </Container>
-      )
+      ),
     },
 
     {
       name: 'Picker',
       path: '/form/picker',
-      element: Lazy(import(`../modules/picker/demo`))
+      element: Lazy(import(`../modules/picker/demo`)),
     },
     {
       name: 'checkbox',
       path: '/form/checkbox',
-      element: Lazy(import(`../modules/checkbox/demo`))
+      element: Lazy(import(`../modules/checkbox/demo`)),
     },
     {
       name: 'ImageUpload',
       path: '/form/imageUpload',
-      element: Lazy(import(`../modules/ImageUpload/demo`))
+      element: Lazy(import(`../modules/ImageUpload/demo`)),
     },
     {
       name: 'radio',
       path: '/form/radio',
-      element: Lazy(import('../modules/radio/demo'))
-    }
-  ]
+      element: Lazy(import('../modules/radio/demo')),
+    },
+  ],
 } as MenuObject

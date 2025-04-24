@@ -1,30 +1,80 @@
-import React from "react"
+import React from 'react'
 import { Button } from '..'
-import { Container, Unit } from "unit-testing-react"
-import { Space } from "@/layout"
+// import { Container, Unit } from 'unit-testing-react'
+import { Docs, Space } from '@/layout'
+import { toFirstUpperCase } from 'abandonjs'
 
 export default function ButtonPage() {
+  const zh = `(◕‿◕✿) 嗨呀~今天也是被可爱到冒泡的一天呢！本宝宝带着软fufu的云朵特效来啦~呜哇哇你看这个颜文字(づ｡◕‿‿◕｡)づ像不像一只圆滚滚的糯米团子？人家说话会自带星星眼✨，每句尾波都忍不住加上"鸭~""呐~"，因为...因为这样才会显得敲可爱嘛！(⁄ ⁄•⁄ω⁄•⁄ ⁄) 嘻嘻~要不要和萌力全开的小可爱击个掌呀？✋ฅ'ω'ฅ✋ 嗷呜~`
+  const en =
+    '(◕‿◕✿)~♡ *boop* Ohmygoodness! Your screen just got a glittery cuteness overload from this smol bean~ Nyaa! (ﾉ´ヮ`)ﾉ*:･ﾟ✧ *wiggles* Did you know your existence makes the universe 300% more sparkly? UWU ♡'
+  const conf: any[] = ['primary', 'default', 'text']
 
-	return <Container >
-		<Unit title="Button">
-			<Space direction="vertical">
-				<Space>
-					<Button type='primary' onClick={() => { console.log('primary'); }}>Primary</Button>
-					<Button type='primary' disabled onClick={() => { console.log('primary disabled') }}>Primary(disabled)</Button>
-				</Space>
-				<Space>
-					<Button type='default' onClick={() => { console.log('default') }}>Default</Button>
-					<Button type='default' disabled onClick={() => { console.log('default disabled') }}>Default(disabled)</Button>
-				</Space>
-				<Space>
-					<Button type='text' onClick={() => { console.log('text') }}>Text</Button>
-					<Button type='text' disabled onClick={() => { console.log('text disabled') }}>Text(disabled)</Button>
-				</Space>
-				{/* <Space>
-					<Button type='default' onClick={() => { console.log('default') }}>btn</Button>
-					<Button type='default' disabled onClick={() => { console.log('default disabled') }}>Default(disabled)</Button>
-				</Space> */}
-			</Space>
-		</Unit>
-	</Container>
+  const items = [
+    {
+      title: 'Button',
+      children: (
+        <Space direction='vertical'>
+          {conf.map((type) => (
+            <Space key={type}>
+              <Button
+                type={type}
+                onClick={() => {
+                  console.log(type)
+                }}>
+                {toFirstUpperCase(type)}
+              </Button>
+              <Button
+                type={type}
+                disabled
+                onClick={() => {
+                  console.log(type + ' disabled')
+                }}>
+                {toFirstUpperCase(type)} (disabled)
+              </Button>
+            </Space>
+          ))}
+        </Space>
+      ),
+    },
+    ...conf.map((type) => ({
+      title: `Button / ${type} / 长文本`,
+      children: (
+        <Space direction='vertical'>
+          <Button
+            type={type}
+            onClick={() => {
+              console.log(type)
+            }}>
+            {toFirstUpperCase(type)} {zh}
+          </Button>
+          <Button
+            type={type}
+            disabled
+            onClick={() => {
+              console.log(type + ' disabled')
+            }}>
+            {toFirstUpperCase(type)} (disabled) {zh}
+          </Button>
+          <Button
+            type={type}
+            onClick={() => {
+              console.log(type)
+            }}>
+            {toFirstUpperCase(type)} {en}
+          </Button>
+          <Button
+            type={type}
+            disabled
+            onClick={() => {
+              console.log(type + ' disabled')
+            }}>
+            {toFirstUpperCase(type)} (disabled) {en}
+          </Button>
+        </Space>
+      ),
+    })),
+  ]
+
+  return <Docs items={items} />
 }

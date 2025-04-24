@@ -72,7 +72,7 @@ aside.au-menu {
     &.isSelect,
     &:hover {
       color: #9afc8d;
-      background: #1f1f1f;
+      // background: #1f1f1f;
     }
   }
 }
@@ -85,8 +85,10 @@ aside.au-menu {
 
   &-container {
     height: 100vh;
+    // height: calc(100vh - 60px);
     max-height: 100vh;
-    padding: 70px 15px 30px 20px;
+    padding-top: 60px;
+    // padding: 70px 15px 30px 20px;
 
     overflow-y: auto;
     .scrollbar();
@@ -155,12 +157,13 @@ aside.au-menu {
     .au-header {
       background: #fff;
       color: #000;
+      box-shadow: 0 0 3px rgba(0, 0, 0, .3);
 
       button {
         color: #000;
 
         &:hover {
-          background: rgba(0, 0, 0, .3);
+          background: #fff;
         }
       }
     }
