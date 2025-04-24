@@ -23,7 +23,7 @@
   /* 主背景色(半透明度) */
   --half-background: rgba(250, 250, 250, .5);
   /* hover背景色 */
-  --hover-background: rgba(250, 250, 250, .7);
+  --hover-background: rgba(250, 250, 250, .9);
 
   --au-border-radius: 8px;
 
@@ -113,4 +113,10 @@
   --docsearch-footer-height: 44px;
   --docsearch-footer-background: #fff;
   --docsearch-footer-shadow: 0 -1px 0 0 #e0e3e8, 0 -3px 6px 0 rgba(69, 98, 155, .12);
+}
+
+:root.night-theme {
+  --background: rgb(15, 15, 15);
+  --half-background: rgba(15, 15, 15, .5);
+  --hover-background: rgba(15, 15, 15, .9);
 }

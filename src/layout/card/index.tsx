@@ -1,11 +1,13 @@
 import React, { ReactNode } from "react"
 import { classNames } from 'harpe'
-import './index.less'
 import { ComponentProps } from "@/assets"
 import { isNoEmpty } from "asura-eye"
+import './index.less'
+import './night.less'
 
 export interface CardProps extends ComponentProps {
 	header?: ReactNode
+	title?: ReactNode
 	headerStyle?: React.CSSProperties
 	footer?: ReactNode
 	footerStyle?: React.CSSProperties
@@ -15,7 +17,7 @@ export function Card(props: CardProps) {
 
 	const {
 		footer, footerStyle,
-		header, headerStyle,
+		header, title, headerStyle,
 		className, children, ...rest
 	} = props
 
@@ -23,11 +25,11 @@ export function Card(props: CardProps) {
 		className={classNames("au-card", className)}
 		{...rest}>
 		{
-			isNoEmpty(header) &&
+			isNoEmpty(header || title) &&
 			<div
 				className="au-card-header"
 				style={headerStyle}>
-				{header}
+				{header || title}
 			</div>
 		}
 		<div className="au-card-content">

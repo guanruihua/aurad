@@ -11,7 +11,7 @@ export default {
   children: [
     {
       index: true,
-      element: <div>{Lazy(import('./FCTest'))}</div>,
+      element: Lazy(import('./FCTest')),
     },
     {
       name: 'button',
@@ -26,14 +26,7 @@ export default {
         {
           name: 'text',
           path: '/form/input/text',
-          element: (
-            <Container columns={1}>
-              <Unit title='demo'>
-                {Lazy(import('../modules/input/demo/fc-test'))}
-              </Unit>
-              <Unit>{Lazy(import('../modules/input/demo'))}</Unit>
-            </Container>
-          ),
+          element: Lazy(import('../modules/input/demo')),
         },
         {
           name: 'textarea',
@@ -43,33 +36,14 @@ export default {
         {
           name: 'number',
           path: '/form/input/number',
-          element: (
-            <Container columns={1}>
-              <Unit title='demo'>
-                {Lazy(import('../modules/input/number/demo/fc'))}
-              </Unit>
-              <Unit>{Lazy(import(`../modules/input/number/demo`))}</Unit>
-            </Container>
-          ),
+          element: Lazy(import(`../modules/input/number/demo`)),
         },
       ],
     },
     {
       name: 'select',
       path: '/form/select',
-      element: (
-        <Container columns={1} grid>
-          <Unit title='select(mult)'>
-            {Lazy(import('../modules/select/demo/mult'))}
-          </Unit>
-          <Unit title='select(form)'>
-            {Lazy(import('../modules/select/demo/form'))}
-          </Unit>
-          <Unit title='select(simple)'>
-            {Lazy(import('../modules/select/demo/simple'))}
-          </Unit>
-        </Container>
-      ),
+      element: Lazy(import('../modules/select/demo')),
     },
 
     {

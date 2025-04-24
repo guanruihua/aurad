@@ -1,51 +1,71 @@
-import React from "react"
+import React from 'react'
 import { Skeleton } from '..'
-import { Container, Unit } from "unit-testing-react"
+import { Docs } from '@/layout'
 
 export default function () {
+  return (
+    <Docs
+      items={[
+        { title: 'Skeleton(default)', children: <Skeleton /> },
+        {
+          title: 'Skeleton(active=false)',
+          children: <Skeleton active={false} />,
+        },
 
-	return (<Container columns={2}>
-		<Unit title="Skeleton(default)">
-			<Skeleton />
-		</Unit>
-		<Unit title="Skeleton(active=false)">
-			<Skeleton active={false} />
-		</Unit>
-		<Unit title="Skeleton(type='large')">
-			<Skeleton size="large" />
-		</Unit>
-		<Unit title="Skeleton(type='small')">
-			<Skeleton size="small" />
-		</Unit>
-		<Unit title="Skeleton(type='square')">
-			<Skeleton >
-				<Skeleton.Item type="square" />
-			</Skeleton>
-		</Unit>
-		<Unit title="Skeleton(type='round')">
-			<Skeleton >
-				<Skeleton.Item type="round" />
-			</Skeleton>
-		</Unit>
-		<Unit title="Skeleton(type='circle')">
-			<Skeleton >
-				<Skeleton.Item type="circle" />
-			</Skeleton>
-		</Unit>
-		<Unit title="Skeleton(type='round-circle')">
-			<Skeleton >
-				<Skeleton.Item type="round-circle" />
-			</Skeleton>
-		</Unit>
-		<Unit title="Skeleton(Custom Layout)">
-			<Skeleton >
-				<Skeleton.Item type="square" />
-				<Skeleton.Item type="round" />
-				<div>
-					<Skeleton.Item type="circle" style={{ marginRight: 8 }} />
-					<Skeleton.Item type="round-circle" />
-				</div>
-			</Skeleton>
-		</Unit>
-	</Container>)
+        {
+          title: "Skeleton(type='large')",
+          children: <Skeleton size='large' />,
+        },
+        {
+          title: "Skeleton(type='small')",
+          children: <Skeleton size='small' />,
+        },
+
+        {
+          title: "Skeleton(type='square')",
+          children: (
+            <Skeleton>
+              <Skeleton.Item type='square' />
+            </Skeleton>
+          ),
+        },
+        {
+          title: "Skeleton(type='round')",
+          children: (
+            <Skeleton>
+              <Skeleton.Item type='round' />
+            </Skeleton>
+          ),
+        },
+        {
+          title: "Skeleton(type='circle')",
+          children: (
+            <Skeleton>
+              <Skeleton.Item type='circle' />
+            </Skeleton>
+          ),
+        },
+        {
+          title: "Skeleton(type='round-circle')",
+          children: (
+            <Skeleton>
+              <Skeleton.Item type='round-circle' />
+            </Skeleton>
+          ),
+        },
+        {
+          title: 'Skeleton(Custom Layout)',
+          children: (
+            <Skeleton>
+              <Skeleton.Item type='square' />
+              <Skeleton.Item type='round' />
+              <div>
+                <Skeleton.Item type='circle' style={{ marginRight: 8 }} />
+                <Skeleton.Item type='round-circle' />
+              </div>
+            </Skeleton>
+          ),
+        },
+      ]}></Docs>
+  )
 }

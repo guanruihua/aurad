@@ -1,10 +1,11 @@
 import React from "react"
 import { Background } from '..'
 import { Container, Unit } from "unit-testing-react"
+import { Docs } from '@/layout/docs'
 
 export default function () {
 	return (
-		<div>
+		<Docs>
 			<Container columns={3}>
 				{
 					['s', 'm', 'l', 'xl'].map(size => {
@@ -59,7 +60,7 @@ export default function () {
 					})
 				}
 			</Container>
-		</div>
+		</Docs>
 	)
 
 }

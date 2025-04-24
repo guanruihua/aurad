@@ -4,14 +4,25 @@ import { classNames } from 'harpe'
 import './index.less'
 
 export interface FlexProps extends ComponentProps {
+  row?: boolean
+  column?: boolean
   [key: string]: any
 }
 
 export function Flex(props: FlexProps) {
-  const { className, children, ...rest } = props
+  const { row, column, className, children, ...rest } = props
 
   return (
-    <div className={classNames(className, 'au-flex')} {...rest}>
+    <div
+      className={classNames(
+        'au-flex',
+        {
+          row,
+          column,
+        },
+        className,
+      )}
+      {...rest}>
       {children}
     </div>
   )

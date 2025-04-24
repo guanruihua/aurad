@@ -1,13 +1,15 @@
-.au-tab{
-  .header{
+.au-tab {
+  &>.header {
     display: flex;
     gap: 10px;
     color: #7e7e7e;
     padding-bottom: 10px;
     margin-bottom: 10px;
     border-bottom: 1px solid #eee;
+    letter-spacing: .5px;
+
     .select,
-    div:hover{
+    div:hover {
       color: var(--color);
     }
   }
@@ -15,4 +17,10 @@
   // .content{
 
   // }
+}
+
+.night-theme .au-tab {
+  &>.header {
+    color: rgba(255, 255, 255, .9);
+  }
 }

@@ -1,37 +1,33 @@
-import React from "react"
+import React from 'react'
 import { Card } from '..'
-import { Container, Unit } from "unit-testing-react"
+import { Docs } from '@/layout/docs'
 
 export default function () {
-	return <Container columns={2}>
-		<Unit title="Card">
-			<Card
-				header={'header'}
-				footer={'footer'}
-			>
-				卡片内容
-			</Card>
-		</Unit>
-		<Unit title="Card(no header)">
-			<Card
-				footer={'footer'}
-			>
-				卡片内容
-			</Card>
-		</Unit>
-		<Unit title="Card(no footer)">
-			<Card
-				header={'header'}
-			>
-				卡片内容
-			</Card>
-		</Unit>
-		<Unit title="Card(no header & no footer)">
-			<Card>
-				卡片内容
-			</Card>
-		</Unit>
-
-
-	</Container>
+  return (
+    <Docs
+      items={[
+        {
+          title: 'Card',
+          children: (
+            <Card header={'header'} footer={'footer'}>
+              {' '}
+              卡片内容{' '}
+            </Card>
+          ),
+        },
+        {
+          title: 'Card(no header)',
+          children: <Card footer={'footer'}> 卡片内容 </Card>,
+        },
+        {
+          title: 'Card(no footer)',
+          children: <Card header={'header'}> 卡片内容 </Card>,
+        },
+        {
+          title: 'Card(no header & no footer)',
+          children: <Card> 卡片内容 </Card>,
+        },
+      ]}
+    />
+  )
 }

@@ -1,5 +1,12 @@
-.au-flex{
+.au-flex {
   display: flex;
-  gap: 10px; 
+  gap: 10px;
   flex-flow: row wrap;
+
+  &.row {
+    flex-direction: row;
+  }
+  &.column{
+    flex-direction: column;
+  }
 }

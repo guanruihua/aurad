@@ -5,7 +5,7 @@ import type { InputProps } from './type'
 import { InputText } from "./text"
 import { InputTag } from "./tag"
 import { InputNumber, InputNumberProps } from "./number"
-
+import './night.less'
 export * from './number'
 export * from './type'
 

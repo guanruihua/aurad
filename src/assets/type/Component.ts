@@ -1,11 +1,7 @@
 import type { CSSProperties, ReactNode } from 'react'
 import { ClassNameType } from 'harpe'
 
-export interface ComponentProps
-  extends Omit<
-    React.BaseHTMLAttributes<HTMLDivElement>,
-    'className'
-  > {
+export interface ComponentProps {
   /**
    * @description
    * @default ''

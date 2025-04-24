@@ -3,7 +3,14 @@ import { ComponentProps, useSetState } from '@/assets'
 import { classNames } from 'harpe'
 import './index.less'
 
-export function Docs(props: ComponentProps & { items?: ComponentProps[] }) {
+export function Docs(
+  props: ComponentProps & {
+    items?: {
+      title: React.ReactNode
+      children: React.ReactNode
+    }[]
+  },
+) {
   const { height, className, items, children, ...rest } = props
 
   const ref = useRef<HTMLDivElement>(null)
@@ -25,7 +32,7 @@ export function Docs(props: ComponentProps & { items?: ComponentProps[] }) {
       ref.current?.parentElement?.scrollTo({
         left: 0,
         top: h,
-        behavior: 'smooth'
+        behavior: 'smooth',
       })
       setState({
         select: i,

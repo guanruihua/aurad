@@ -6,6 +6,7 @@ import { Select, Input } from '@/form'
 import { Icon } from '@/icon'
 import { getShowPageNumRange } from './util'
 import './index.less'
+import './night.less'
 
 export interface PagingProps
   extends ComponentProps,
@@ -74,7 +75,7 @@ export function Paging(props: PagingProps) {
   const renderPageArray = getShowPageNumRange(nowCurrent, showPageNum, pageNos)
 
   return (
-    <div className={classNames('paging', className)} {...rest}>
+    <div className={classNames('au-paging', className)} {...rest}>
       <div className='total'>Total: {total}</div>
       <div onClick={() => handleChange(nowCurrent - 1, pageSize)}>
         <Icon type='leftArrow' size={10} />

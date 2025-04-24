@@ -1,9 +1,10 @@
 import React from "react"
 import type { ComponentProps } from "@/assets"
-import './index.less'
 import { classNames } from "harpe"
 import { type SkeletonItemProps, Item } from './item'
 import { SkeletonChildDefault } from "./constant"
+import './index.less'
+import './night.less'
 
 export { SkeletonItemProps }
 
