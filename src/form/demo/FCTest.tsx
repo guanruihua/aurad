@@ -1,14 +1,13 @@
 import React from "react"
 import { Form, useForm } from '..'
 import { initChildren } from './initChildren'
-import { Container, Unit } from "unit-testing-react"
+import { Docs } from '@/layout'
 
 export default function TestFormFunc() {
 	const form = useForm()
 	const [result, setResult] = React.useState<string>('')
 
-	return <Container columns={1}>
-		<Unit>
+	return <Docs>
 			<Form
 				form={form}
 				onSubmit={() => {
@@ -18,6 +17,5 @@ export default function TestFormFunc() {
 				{initChildren(form)}
 			</Form>
 			<div>{result}</div>
-		</Unit>
-	</Container>
+	</Docs>
 }

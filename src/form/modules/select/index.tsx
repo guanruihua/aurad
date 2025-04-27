@@ -3,6 +3,7 @@ import { classNames } from 'harpe'
 import { SelectComponent, MultipleSelectComponent } from './components'
 import { SelectProps } from './type'
 import './style/index.less'
+import './style/night.less'
 
 export type Select = SelectProps
 

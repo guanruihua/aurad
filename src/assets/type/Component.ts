@@ -9,6 +9,6 @@ export interface ComponentProps {
   prefixCls?: string
   className?: ClassNameType
   style?: CSSProperties
-  children?: ReactNode | any
+  children?: ReactNode
   [key: string]: any
 }

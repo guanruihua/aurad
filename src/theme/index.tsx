@@ -27,7 +27,7 @@ export function ThemeSwitch() {
     }
   }
   const setNight = (status: boolean) => {
-    console.log({ status })
+    // console.log({ status })
     setClass(status)
     if (status === night) return
     _setNight(status)

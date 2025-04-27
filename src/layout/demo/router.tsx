@@ -14,11 +14,6 @@ export default {
 			element: Lazy(import('../card/demo')),
 		},
 		{
-			name: 'background',
-			path: '/layout/background',
-			element: Lazy(import('../background/demo')),
-		},
-		{
 			name: 'grid',
 			path: '/layout/grid',
 			element: Lazy(import('../grid/demo')),

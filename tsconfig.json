@@ -33,6 +33,9 @@
     "dist",
     "temp",
     "node_modules",
+    "**/*/__test__/*",
+    "**/*/__demo__/*",
+    "**/*/demo/*",
     "config/*.ts"
   ],
   "include": ["components/**/*", "src/**/*", "**/*.d.ts"]

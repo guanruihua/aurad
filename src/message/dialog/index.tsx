@@ -3,8 +3,9 @@ import { classNames } from 'harpe'
 import { ComponentProps } from '@/assets'
 import { Icon } from '@/icon'
 import { Button } from '@/form'
-import './index.less'
 import { isNoEmpty } from 'asura-eye'
+import './index.less'
+import './night.less'
 
 export interface DialogProps extends ComponentProps {
   title?: string | ReactNode

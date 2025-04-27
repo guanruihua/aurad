@@ -18,7 +18,7 @@ export default () => (
         children: (
           <Table
             columns={[
-              { title: 'Component', prop: 'commonent' },
+              { title: 'Component', prop: 'component' },
               { title: 'Props', prop: 'prop' },
               { title: 'Description', prop: 'desc' },
             ]}
