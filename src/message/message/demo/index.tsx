@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from '@/form'
-import { Docs, Space } from '@/layout'
+import { Docs, Flex } from '@/layout'
 import { message } from '..'
 const list = ['success', 'error', 'info', 'warning']
 
@@ -11,7 +11,7 @@ export default function () {
 
   return (
     <Docs>
-      <Space>
+      <Flex>
         {list.map((type) => (
           <Button
             key={type}
@@ -21,7 +21,7 @@ export default function () {
             {type}
           </Button>
         ))}
-      </Space>
+      </Flex>
     </Docs>
   )
 }

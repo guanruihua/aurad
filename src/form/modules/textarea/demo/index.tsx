@@ -1,7 +1,7 @@
 import React from 'react'
 import { TextArea } from '..'
 import { Form, FormItem, useForm } from '@/form/core'
-import { Docs, Space } from '@/layout'
+import { Docs, Flex } from '@/layout'
 import { Button } from '../../button'
 
 export default function TextAreaPage() {
@@ -32,13 +32,13 @@ export default function TextAreaPage() {
                 <TextArea placeholder='name2' />
               </FormItem>
               <FormItem>
-                <Space>
+                <Flex>
                   <Button htmlType='submit'>Submit</Button>
                   <Button htmlType='reset'>Reset</Button>
                   <Button onClick={() => form.setValue('name', 'new Value')}>
                     Form Set value
                   </Button>
-                </Space>
+                </Flex>
               </FormItem>
             </Form>
           ),

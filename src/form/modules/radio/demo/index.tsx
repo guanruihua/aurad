@@ -1,7 +1,7 @@
 import React from 'react'
 import { Radio } from '..'
 import { Container, Unit } from 'unit-testing-react'
-import { Space } from '@/layout'
+import { Flex } from '@/layout'
 import { Form, useForm, FormItem } from '@/form'
 import { Button } from '../../button'
 import { RadioChangeEvent } from '../type'
@@ -34,12 +34,12 @@ export default function () {
               ]}
             />
           </FormItem>
-          <Space>
+          <Flex>
             <Button htmlType="submit">Submit</Button>
             <Button htmlType="reset">Reset</Button>
             <Button onClick={() => form.setValue('a1', true)}>set val</Button>
             <Button onClick={() => form.setValue('cc', 'c1')}>set val</Button>
-          </Space>
+          </Flex>
         </Form>
       </Unit>
       <Unit title="Radio">

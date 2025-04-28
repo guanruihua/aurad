@@ -1,7 +1,7 @@
 import React from "react"
 import { InputNumber } from '..'
 import { Form, FormItem, useForm, Button } from "@/form"
-import { Space } from "@/layout"
+import { Flex } from "@/layout"
 
 export default function () {
 
@@ -20,7 +20,7 @@ export default function () {
 				<InputNumber placeholder="num" min={0} max={99} step={13} />
 			</FormItem>
 			<FormItem>
-				<Space>
+				<Flex>
 					<Button htmlType="submit">
 						Submit
 					</Button>
@@ -33,7 +33,7 @@ export default function () {
 						}>
 						Form Set value(3)
 					</Button>
-				</Space>
+				</Flex>
 			</FormItem>
 		</Form>
 	)

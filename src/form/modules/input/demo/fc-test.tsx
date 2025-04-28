@@ -3,7 +3,7 @@ import React from "react"
 import { Input } from '../..'
 import { Button } from "../../button"
 import { Form, FormItem, useForm } from "@/form"
-import { Space } from "@/layout"
+import { Flex } from "@/layout"
 
 export default function () {
 	const form = useForm()
@@ -31,7 +31,7 @@ export default function () {
 				<Input placeholder="name2" />
 			</FormItem>
 			<FormItem>
-				<Space>
+				<Flex>
 					<Button htmlType="submit">
 						Submit
 					</Button>
@@ -42,7 +42,7 @@ export default function () {
 						onClick={() =>
 							form.setValue('name', 'new Value')
 						}>Form Set value</Button>
-				</Space>
+				</Flex>
 			</FormItem>
 		</Form>
 	)

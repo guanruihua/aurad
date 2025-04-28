@@ -12,7 +12,7 @@ export function Grid(props: GridProps) {
     className,
     fill = true,
     merge = {},
-    columns = 12,
+    columns = 1,
     rows = 'auto',
     maxRows = 'auto',
     childClassName,

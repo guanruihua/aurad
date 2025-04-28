@@ -1,7 +1,7 @@
 import React from "react"
 import { Icon } from '..'
 import { IconType, icons } from '../icons'
-import { Space } from '@/layout'
+import { Flex } from '@/layout'
 import { Container, Unit } from "unit-testing-react"
 import './index.less'
 
@@ -35,7 +35,7 @@ export default function () {
 							setColor(color)
 						}} />
 				</div>
-				<Space
+				<Flex
 					style={{ color }}
 				>
 					{Object
@@ -45,10 +45,10 @@ export default function () {
 							key={item}
 							type={item} />)
 						)}
-				</Space>
+				</Flex>
 			</Unit>
 			<Unit title="test(svg)">
-				<Space>
+				<Flex>
 					<svg className="demo2" height="0" width="0">
 						<symbol id="beats" viewBox="0 0 100 100" >
 							<line className="beat" x1="15" y1="40" x2="15" y2="100" stroke="currentColor" strokeWidth="10" strokeLinecap="round"></line>
@@ -92,7 +92,7 @@ export default function () {
 							<span>Loading...</span>
 						</div>
 					</div>
-				</Space>
+				</Flex>
 			</Unit>
 		</Container >
 	)

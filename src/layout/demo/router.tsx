@@ -19,9 +19,9 @@ export default {
 			element: Lazy(import('../grid/demo')),
 		},
 		{
-			name: 'space',
-			path: '/layout/space',
-			element: Lazy(import('../space/demo')),
+			name: 'Flex',
+			path: '/layout/flex',
+			element: Lazy(import('../flex/demo')),
 		},
 		{
 			name: 'waterfall',

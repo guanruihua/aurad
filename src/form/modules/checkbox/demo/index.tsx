@@ -2,7 +2,7 @@ import React from 'react'
 import { Checkbox } from '..'
 import { Container, Unit } from 'unit-testing-react'
 import { Form, FormItem, useForm } from '@/form/core'
-import { Space } from '@/layout'
+import { Flex } from '@/layout'
 import { Button } from '../../button'
 
 export default function () {
@@ -30,7 +30,7 @@ export default function () {
             />
           </Form.Item>
           <FormItem>
-            <Space>
+            <Flex>
               <Button htmlType="submit">Submit</Button>
               <Button htmlType="reset">Reset</Button>
               <Button onClick={() => form.setValue('box1', true)}>
@@ -39,7 +39,7 @@ export default function () {
               <Button onClick={() => form.setValue('box2', ['aaa', 'c'])}>
                 Form Set value
               </Button>
-            </Space>
+            </Flex>
           </FormItem>
         </Form>
       </Unit>

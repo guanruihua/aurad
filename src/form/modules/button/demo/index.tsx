@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from '..'
 // import { Container, Unit } from 'unit-testing-react'
-import { Docs, Space } from '@/layout'
+import { Docs, Flex } from '@/layout'
 import { toFirstUpperCase } from 'abandonjs'
 
 export default function ButtonPage() {
@@ -14,9 +14,9 @@ export default function ButtonPage() {
     {
       title: 'Button',
       children: (
-        <Space direction='vertical'>
+        <Flex direction='vertical'>
           {conf.map((type) => (
-            <Space key={type}>
+            <Flex key={type}>
               <Button
                 type={type}
                 onClick={() => {
@@ -32,15 +32,15 @@ export default function ButtonPage() {
                 }}>
                 {toFirstUpperCase(type)} (disabled)
               </Button>
-            </Space>
+            </Flex>
           ))}
-        </Space>
+        </Flex>
       ),
     },
     ...conf.map((type) => ({
       title: `Button / ${type} / 长文本`,
       children: (
-        <Space direction='vertical'>
+        <Flex direction='vertical'>
           <Button
             type={type}
             onClick={() => {
@@ -71,7 +71,7 @@ export default function ButtonPage() {
             }}>
             {toFirstUpperCase(type)} (disabled) {en}
           </Button>
-        </Space>
+        </Flex>
       ),
     })),
   ]

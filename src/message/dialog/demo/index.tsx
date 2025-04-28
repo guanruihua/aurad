@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button } from '@/form'
-import { Docs, Space } from '@/layout'
+import { Docs, Flex } from '@/layout'
 import { Dialog } from '..'
 
 export default function DialogPage() {
@@ -11,7 +11,7 @@ export default function DialogPage() {
 
   return (
     <Docs>
-      <Space>
+      <Flex>
         <Button
           onClick={() => {
             setOpen(true)
@@ -24,7 +24,7 @@ export default function DialogPage() {
           }}>
           close
         </Button>
-      </Space>
+      </Flex>
       <Dialog
         title={'Title xxx'}
         maskClosable

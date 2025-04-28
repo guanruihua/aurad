@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Unit } from 'unit-testing-react'
 import { Button, Form, Input, InputChangeEvent, useForm } from '@/form'
 import { InputTag } from '..'
-import { Space } from '@/layout'
+import { Flex } from '@/layout'
 
 export default function InputTestCmp() {
 	const form = useForm()
@@ -35,13 +35,13 @@ export default function InputTestCmp() {
         />
       </Form.Item>
       <Form.Item>
-        <Space>
+        <Flex>
           <Button htmlType='submit'>Submit</Button>
           <Button htmlType='reset'>Reset</Button>
           <Button onClick={() => form.setValue('b', 3)}>
             Form Set value(3)
           </Button>
-        </Space>
+        </Flex>
       </Form.Item>
     </Container>
   )

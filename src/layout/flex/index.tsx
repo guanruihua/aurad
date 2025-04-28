@@ -6,11 +6,56 @@ import './index.less'
 export interface FlexProps extends ComponentProps {
   row?: boolean
   column?: boolean
+  /**
+   * @description 水平对齐方式
+   */
+  start?: boolean
+  /**
+   * @description 水平对齐方式
+   */
+  end?: boolean
+  /**
+   * @description 水平对齐方式
+   */
+  center?: boolean
+  /**
+   * @description 水平对齐方式
+   */
+  between?: boolean
+  /**
+   * @description 水平对齐方式
+   */
+  around?: boolean
+  /**
+   * @description 不换行
+   */
+  nowrap?: boolean
+
+  /**
+   * @description 间隔大小
+   * @default 10px
+   * @example '10px 5px': 垂直间隔10px, 水平间隔5px
+   */
+  gap?: number | string
   [key: string]: any
 }
 
 export function Flex(props: FlexProps) {
-  const { row, column, className, children, ...rest } = props
+  const {
+    row,
+    column,
+    start,
+    end,
+    center,
+    between,
+    around,
+    nowrap,
+    className,
+    gap,
+    style = {},
+    children,
+    ...rest
+  } = props
 
   return (
     <div
@@ -19,9 +64,19 @@ export function Flex(props: FlexProps) {
         {
           row,
           column,
+          start,
+          end,
+          center,
+          between,
+          around,
+          nowrap,
         },
         className,
       )}
+      style={{
+        gap,
+        ...style,
+      }}
       {...rest}>
       {children}
     </div>

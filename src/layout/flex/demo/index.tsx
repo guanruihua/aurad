@@ -1,5 +1,5 @@
 import React from 'react'
-import { Space } from '..'
+import { Flex } from '..'
 import { Direction, type Align } from '../../type'
 import { RDS } from '@/demo'
 import { Docs } from '../../docs'
@@ -12,15 +12,15 @@ export default function () {
     <Docs
       items={[
         {
-          title: 'Space(default)',
+          title: 'Flex(default)',
           children: (
-            <Space gap={10}>
+            <Flex gap={10}>
               <RDS count={20} />
-            </Space>
+            </Flex>
           ),
         },
         {
-          title: 'Space(custom align)',
+          title: 'Flex(custom align)',
           children: (
             <div style={{ marginBottom: 10 }}>
               {/* <Radio.Group
@@ -31,18 +31,18 @@ export default function () {
 						setAlign(value)
 					}}
 				/> */}
-              {/* </Space> */}
-              <Space align={align}>
+              {/* </Flex> */}
+              <Flex align={align}>
                 <RDS count={20} />
-              </Space>
+              </Flex>
             </div>
           ),
         },
         {
-          title: 'Space(custom layout)',
+          title: 'Flex(custom layout)',
           children: (
             <div>
-              <Space style={{ marginBottom: 10 }}>
+              <Flex style={{ marginBottom: 10 }}>
                 {/* <Radio.Group
 					type="button"
 					defaultValue={'vertical'}
@@ -51,10 +51,10 @@ export default function () {
 						setLayout(value)
 					}}
 				/> */}
-              </Space>
-              <Space gap={10} direction={layout}>
+              </Flex>
+              <Flex gap={10} direction={layout}>
                 <RDS count={5} />
-              </Space>
+              </Flex>
             </div>
           ),
         },

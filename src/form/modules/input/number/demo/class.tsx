@@ -1,6 +1,6 @@
 import React from "react"
 import { Button, Form, FormItem, injectForm, InputNumber } from '@/form'
-import { Space } from "@/layout"
+import { Flex } from "@/layout"
 
 @injectForm
 export default class extends React.Component {
@@ -20,7 +20,7 @@ export default class extends React.Component {
 					<InputNumber placeholder="num" min={0} max={99} step={13} />
 				</FormItem>
 				<FormItem>
-					<Space>
+					<Flex>
 						<Button htmlType="submit">
 							Submit
 						</Button>
@@ -32,7 +32,7 @@ export default class extends React.Component {
 							}>
 							From Set Value(3)
 						</Button>
-					</Space>
+					</Flex>
 				</FormItem>
 			</Form>
 		)
