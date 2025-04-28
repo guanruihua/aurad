@@ -1,7 +1,6 @@
 import React from 'react'
-import { Unit } from 'unit-testing-react'
 import { PieHalf } from '..'
-import { Flex, Grid } from '@/layout'
+import { Flex, Docs } from '@/layout'
 
 export default function () {
   const total = 1000
@@ -13,31 +12,36 @@ export default function () {
     [total, 40 * r],
     [total, 50 * r],
     [total, 70 * r],
-    [total, 10 * r]
+    [total, 10 * r],
   ]
   const conf: [number, [number, number][]][] = [
     [100, list],
     [200, list],
     [300, list],
-    [400, list]
+    [400, list],
   ]
   return (
-    <Flex>
-      {conf.map((item, i) => {
-        const [size, list] = item
-        return (
-          <Flex>
-            {list.map((unit, j) => {
-              const [total, value] = unit
-              return (
-                <Unit key={i + '_' + j}>
-                  <PieHalf total={total} value={value} size={size} />
-                </Unit>
-              )
-            })}
-          </Flex>
-        )
-      })}
-    </Flex>
+    <Docs>
+      <Flex>
+        {conf.map((item, i) => {
+          const [size, list] = item
+          return (
+            <Flex>
+              {list.map((unit, j) => {
+                const [total, value] = unit
+                return (
+                  <PieHalf
+                    key={i + '_' + j}
+                    total={total}
+                    value={value}
+                    size={size}
+                  />
+                )
+              })}
+            </Flex>
+          )
+        })}
+      </Flex>
+    </Docs>
   )
 }

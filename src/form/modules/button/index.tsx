@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes, ReactNode, useRef } from 'react'
+import React, { ButtonHTMLAttributes, useRef } from 'react'
 import { ComponentProps } from '@/assets'
 import { classNames } from 'harpe'
 import { isUndefined } from 'asura-eye'
@@ -14,6 +14,7 @@ export interface ButtonProps extends ComponentProps {
    */
   type?: 'primary' | 'text' | 'default'
   disabled?: boolean
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void | (() => void)
 }
 
 export function Button(props: ButtonProps) {

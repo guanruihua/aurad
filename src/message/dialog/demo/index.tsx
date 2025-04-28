@@ -5,8 +5,8 @@ import { Dialog } from '..'
 
 export default function DialogPage() {
   const [open, setOpen] = useState<boolean>(
-    true
-    // false,
+    // true
+    false,
   )
 
   return (

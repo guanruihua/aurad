@@ -2,7 +2,8 @@ import { InputHTMLAttributes, ChangeEvent } from 'react'
 import { ComponentProps } from "@/assets"
 
 
-type InputMode = 'text' | 'number' | 'tags'
+type InputMode = 'text' | 'number' | 'tags'  | 'password' | 'pwd' | 'textarea'
+
 type excludeInputType = 'children' | 'style' | 'defaultChecked' | 'value' | 'defaultValue' | 'className'
 
 type InputValue =

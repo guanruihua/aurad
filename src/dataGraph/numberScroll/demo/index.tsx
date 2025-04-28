@@ -1,6 +1,5 @@
 import React from 'react'
 import { NumberScroll, SimpleNumberScroll } from '..'
-import { Container, Unit } from 'unit-testing-react'
 import { useInterval } from '0hook'
 import { Docs } from '@/layout'
 

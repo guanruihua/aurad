@@ -1,6 +1,5 @@
 import React from 'react'
 import { Button } from '..'
-// import { Container, Unit } from 'unit-testing-react'
 import { Docs, Flex } from '@/layout'
 import { toFirstUpperCase } from 'abandonjs'
 

@@ -1,13 +1,9 @@
-import React from 'react'
 import { Lazy } from '@/utils'
 import type { MenuObject } from '@/layout'
-import { Container, Unit } from 'unit-testing-react'
-import { Icon } from '@/icon'
 
 export default {
   name: 'form',
   path: '/form',
-  icon: <Icon type='form' size={24} />,
   children: [
     {
       index: true,
@@ -18,7 +14,6 @@ export default {
       path: '/form/button',
       element: Lazy(import('../modules/button/demo')),
     },
-
     {
       name: 'input',
       path: '/form/input',
@@ -31,7 +26,7 @@ export default {
         {
           name: 'textarea',
           path: '/form/input/textarea',
-          element: Lazy(import(`../modules/textarea/demo`)),
+          element: Lazy(import(`../modules/input/textarea/demo`)),
         },
         {
           name: 'number',

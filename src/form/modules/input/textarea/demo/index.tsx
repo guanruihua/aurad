@@ -2,7 +2,7 @@ import React from 'react'
 import { TextArea } from '..'
 import { Form, FormItem, useForm } from '@/form/core'
 import { Docs, Flex } from '@/layout'
-import { Button } from '../../button'
+import { Button } from '../../../button'
 
 export default function TextAreaPage() {
   const form = useForm()

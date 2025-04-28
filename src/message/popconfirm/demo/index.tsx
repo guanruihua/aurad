@@ -1,8 +1,8 @@
 import { Button } from '@/form'
 import React from 'react'
-import { Container, Unit } from 'unit-testing-react'
 import { PopConfirm } from '..'
 import './index.less'
+import { Docs } from '@/layout'
 
 const content = (
   <div>
@@ -14,7 +14,7 @@ const content = (
 
 export default function () {
   const cmmProps = {
-    content
+    content,
   }
 
   const doms = [
@@ -72,26 +72,31 @@ export default function () {
     <PopConfirm {...cmmProps} placement='bottomRight'>
       <Button>BottomRight</Button>
     </PopConfirm>,
-    <div />
+    <div />,
   ]
 
   return (
-    <Container columns={1}>
-      <Unit title='PopConfirm'>
-        <div
-          className='popconfirm-test'
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(5, 1fr)',
-            gridTemplateRows: 'repeat(5, 100px)',
-            gap: 10,
-            padding: '50px 120px'
-          }}>
-          {doms.map((i, k) => (
-            <div key={k}>{i}</div>
-          ))}
-        </div>
-      </Unit>
-    </Container>
+    <Docs
+      items={[
+        {
+          title: 'PopConfirm',
+          children: (
+            <div
+              className='popconfirm-test'
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(5, 1fr)',
+                gridTemplateRows: 'repeat(5, 100px)',
+                gap: 10,
+                padding: '50px 120px',
+              }}>
+              {doms.map((i, k) => (
+                <div key={k}>{i}</div>
+              ))}
+            </div>
+          ),
+        },
+      ]}
+    />
   )
 }

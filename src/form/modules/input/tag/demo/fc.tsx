@@ -1,15 +1,14 @@
 import React from 'react'
-import { Container, Unit } from 'unit-testing-react'
 import { Button, Form, Input, InputChangeEvent, useForm } from '@/form'
 import { InputTag } from '..'
-import { Flex } from '@/layout'
+import { Docs, Flex } from '@/layout'
 
 export default function InputTestCmp() {
 	const form = useForm()
   const [value, setValue] = React.useState<string>('value')
 
   return (
-    <Container columns={1} title='Input'>
+    <Docs>
       <Form form={form}>
         <Form.Item name='a'>
           <InputTag />
@@ -43,6 +42,6 @@ export default function InputTestCmp() {
           </Button>
         </Flex>
       </Form.Item>
-    </Container>
+    </Docs>
   )
 }
