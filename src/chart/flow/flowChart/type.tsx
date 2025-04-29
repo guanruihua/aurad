@@ -1,5 +1,6 @@
 import { CSSProperties, ReactNode } from 'react'
 import { ArrowProps } from '../arrow'
+import { ClassNameType } from 'harpe'
 
 export type FlowChartNodeStatus =
   | 'operable'
@@ -73,8 +74,10 @@ export interface FlowChartProps
 }
 
 export interface FlowGridChartProps extends FlowChartProps {
+  className?: ClassNameType
   type?: never
 }
 export interface FlowRightWardChartProps extends FlowChartProps {
+  className?: ClassNameType
   type?: never
 }

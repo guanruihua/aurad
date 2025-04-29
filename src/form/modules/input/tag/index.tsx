@@ -5,8 +5,17 @@ import './index.less'
 import { isEffectArray, isEmpty } from 'asura-eye'
 import { type ObjectType } from '0type'
 import { Icon } from '@/icon'
+import { equal } from 'abandonjs'
 
-export function InputTag(props: InputProps) {
+export function InputTag(
+  props: InputProps<
+    {
+      id?: string | number
+      label?: string | React.ReactNode
+      value?: string | number
+    }[]
+  >,
+) {
   // const { className, onChange, ...rest } = props
 
   const {
@@ -26,23 +35,22 @@ export function InputTag(props: InputProps) {
       list.filter((unit) => {
         if (!isEmpty(unit.id) && unit.id === item.id) return false
         return true
-      })
+      }),
     )
   }
 
-	React.useEffect(() => {
-		if (originValue === value) return;
-		if (isEmpty(originValue) || originValue === '') {
-			setValue('')
-			return
-		}
+  React.useEffect(() => {
+    if (equal(originValue, value)) return
+    if (isEmpty(originValue)) {
+      setValue('')
+      return
+    }
     console.log(originValue)
-		// if (isNumber(originValue)) {
-		// 	setValue(originValue)
-		// 	return
-		// }
-	}, [originValue])
-
+    // if (isNumber(originValue)) {
+    // 	setValue(originValue)
+    // 	return
+    // }
+  }, [originValue])
 
   const uId = () => new Date().getTime() + '_' + list.length
 
@@ -73,8 +81,8 @@ export function InputTag(props: InputProps) {
               {
                 id: uId() + value,
                 value: value,
-                label: value
-              }
+                label: value,
+              },
             ])
             setValue('')
           }
