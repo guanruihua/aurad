@@ -11,17 +11,6 @@ type excludeInputType =
   | 'defaultValue'
   | 'className'
 
-// type InputValue =
-//   | number
-//   | string
-//   | number[]
-//   | string[]
-//   | {
-//       id?: string | number
-//       label?: string | React.ReactNode
-//       value?: string | number
-//     }[]
-
 export interface InputProps<T>
   extends Omit<React.HTMLAttributes<HTMLInputElement>, excludeInputType> {
   value?: T
