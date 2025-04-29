@@ -1,6 +1,11 @@
 import { ReactNode } from 'react'
-import { ComponentProps } from '@/assets'
 import { ObjectType } from 'abandonjs'
+import { ClassNameType } from 'harpe'
+
+interface Props
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className' | 'defaultValue' | 'onChange'> {
+  className?: ClassNameType
+}
 
 export type CheckboxValue = boolean | string | number | ObjectType
 
@@ -13,7 +18,7 @@ export type CheckboxChangeEvent = {
 /**
  * @description 复选框属性
  */
-export interface CheckboxItemProps extends ComponentProps {
+export interface CheckboxItemProps extends Props {
   /**
    * @description input[type="checkbox"] 的 name 属性, 也作为非单一组件时候的 value
    */
@@ -36,7 +41,7 @@ export interface CheckboxItemProps extends ComponentProps {
 /**
  * @description 复选框属性
  */
-export interface CheckboxProps extends ComponentProps {
+export interface CheckboxProps extends Props {
   /**
    * @description 选中状态(默认)
    */
@@ -62,7 +67,7 @@ export interface CheckboxProps extends ComponentProps {
 /**
  * @description 复选框组属性
  */
-export interface CheckboxGroupProps extends ComponentProps {
+export interface CheckboxGroupProps extends Props {
   value?: CheckboxValue[]
   onChange?: (event: CheckboxChangeEvent) => void
   defaultValue?: CheckboxValue[]

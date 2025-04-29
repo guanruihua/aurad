@@ -1,6 +1,5 @@
-import { ComponentProps } from "@/assets"
+export interface ArrowProps  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children' | 'className'> {
 
-export interface ArrowProps extends ComponentProps {
 	hidden?: boolean
 	size?: number
 	/**

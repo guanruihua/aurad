@@ -1,44 +1,44 @@
-import React from "react"
-import type { ComponentProps } from "@/assets"
-import { classNames } from "harpe"
+import React from 'react'
+import { classNames, ClassNameType } from 'harpe'
 import { type SkeletonItemProps, Item } from './item'
-import { SkeletonChildDefault } from "./constant"
+import { SkeletonChildDefault } from './constant'
 import './index.less'
 import './night.less'
 
 export { SkeletonItemProps }
 
-export interface SkeletonProps extends ComponentProps {
-	size?: 'small' | 'default' | 'large'
-	active?: boolean
+export interface SkeletonProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className'> {
+  className?: ClassNameType
+  size?: 'small' | 'default' | 'large'
+  active?: boolean
 }
 
 export function Skeleton(props: SkeletonProps) {
-	const {
-		size = 'default',
-		active = true,
-		className,
-		children = SkeletonChildDefault,
-		style = {},
-		...rest
-	} = props
+  const {
+    size = 'default',
+    active = true,
+    className,
+    children = SkeletonChildDefault,
+    style = {},
+    ...rest
+  } = props
 
-	const newStyle: React.CSSProperties = {
-		'--size': `var(--size-${size})`,
-		...style,
-	} as React.CSSProperties
+  const newStyle: React.CSSProperties = {
+    '--size': `var(--size-${size})`,
+    ...style,
+  } as React.CSSProperties
 
-	return (
-		<div className={classNames("au-skeleton",
-			className,
-			{
-				'au-skeleton-active': active
-			})}
-			style={newStyle}
-			{...rest}>
-			{children}
-		</div>
-	)
+  return (
+    <div
+      className={classNames('au-skeleton', className, {
+        'au-skeleton-active': active,
+      })}
+      style={newStyle}
+      {...rest}>
+      {children}
+    </div>
+  )
 }
 
 Skeleton.Item = Item

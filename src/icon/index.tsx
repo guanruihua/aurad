@@ -1,10 +1,11 @@
 import React from "react"
-import { type ComponentProps } from "@/assets"
 import { icons, type IconType } from './icons'
 import { isArray } from "asura-eye"
 import './index.less'
-import { classNames } from "harpe"
-export interface IconProps extends ComponentProps {
+import { classNames, ClassNameType } from "harpe"
+
+export interface IconProps  extends Omit<React.HTMLAttributes<HTMLOrSVGElement>, 'className'> {
+  className?: ClassNameType
 	type: IconType
 	size?: number
 	width?: number

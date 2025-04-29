@@ -1,17 +1,18 @@
 import React from 'react'
-import { ComponentProps, prefixHoc } from '@/assets'
+import { prefixHoc } from '@/assets'
 import './index.less'
 import { SimpleNumberScroll } from './simple'
 import { isNumber } from 'asura-eye'
 import { padNumber } from 'abandonjs'
-import { classNames } from 'harpe'
+import { classNames, ClassNameType } from 'harpe'
 import { getEffectNumber } from './util'
 
 export * from './simple'
 
 const prefix = prefixHoc('au-number-scroll')
 
-export interface NumberScroll extends ComponentProps {
+export interface NumberScroll
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children' | 'className'> {
   value?: number
   /**
    * @description 位数
@@ -21,6 +22,7 @@ export interface NumberScroll extends ComponentProps {
   rootStyle?: React.CSSProperties
   style?: React.CSSProperties
   itemStyle?: React.CSSProperties
+  className?: ClassNameType
 }
 
 export function NumberScroll(props: NumberScroll) {
@@ -45,8 +47,7 @@ export function NumberScroll(props: NumberScroll) {
         gridTemplateColumns: `repeat(${maxLength}, 30px)`,
         ...rootStyle,
       }}
-      {...rest}
-    >
+      {...rest}>
       {Array.from({ length: maxLength }, (_, index) => {
         const tmp = Number(newValueStr[index])
         const val = isNumber(tmp) ? tmp : 0

@@ -1,13 +1,14 @@
 import React, { ReactNode } from 'react'
-import { classNames } from 'harpe'
-import { ComponentProps } from '@/assets'
+import { classNames, ClassNameType } from 'harpe'
 import { Icon } from '@/icon'
 import { Button } from '@/form'
 import { isNoEmpty } from 'asura-eye'
 import './index.less'
 import './night.less'
 
-export interface DialogProps extends ComponentProps {
+export interface DialogProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className' | 'title'> {
+  className?: ClassNameType
   title?: string | ReactNode
   open?: boolean
   /**
@@ -49,7 +50,7 @@ export function Dialog(props: DialogProps) {
     hiddenCancel = false,
     onOk,
     hiddenOk = false,
-    maskClosable = false
+    maskClosable = false,
   } = props
 
   if (open === false) return <div />

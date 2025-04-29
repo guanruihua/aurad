@@ -1,8 +1,13 @@
 import React from 'react'
-import { ComponentProps } from '@/assets'
 import { mock } from 'mock-record'
+import { ClassNameType } from 'harpe'
 
-export function RD(props: ComponentProps) {
+interface Props
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className'> {
+  className?: ClassNameType
+}
+
+export function RD(props: Props) {
   const { style, children, ...rest } = props as any
   const height = mock('@num(30,80)')
   return (
@@ -16,7 +21,7 @@ export function RD(props: ComponentProps) {
         background: mock('@color'),
         color: '#fff',
         textAlign: 'center',
-        ...style
+        ...style,
       }}
       {...rest}>
       {children}
@@ -24,7 +29,7 @@ export function RD(props: ComponentProps) {
   )
 }
 
-export function RFD(props: ComponentProps) {
+export function RFD(props: Props) {
   const { style, children, ...rest } = props as any
   return (
     <div
@@ -37,7 +42,7 @@ export function RFD(props: ComponentProps) {
         background: mock('@color'),
         color: '#fff',
         textAlign: 'center',
-        ...style
+        ...style,
       }}
       {...rest}>
       {children}
@@ -46,12 +51,12 @@ export function RFD(props: ComponentProps) {
 }
 
 export function RDS(
-  props: ComponentProps & {
+  props: Props & {
     count?: number
     fill?: boolean
-  }
+  },
 ) {
-  const { fill, array, count = 10, ...rest } = props
+  const { fill, count = 10, ...rest } = props
 
   if (fill === true) {
     return new Array(count).fill('').map((_, index) => {

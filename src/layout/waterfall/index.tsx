@@ -1,10 +1,13 @@
-import React, { CSSProperties, ReactNode, useState } from 'react'
-import { ComponentProps } from '@/assets'
+import React, { CSSProperties, useState } from 'react'
 import { isUndefined } from 'asura-eye'
 import { useLayout } from '../hook'
+import { ClassNameType } from 'harpe'
 
-export interface WaterfallProps extends ComponentProps {
+export interface WaterfallProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className'> {
+  className?: ClassNameType
   count?: number
+  type?: 'x'
   xGap?: number | string
   yGap?: number | string
 }
@@ -28,7 +31,7 @@ export function Waterfall(props: WaterfallProps) {
     },
     defaultValue: count,
     defaultEffectKey: 'count',
-    props: rest
+    props: rest,
   })
 
   if (type === 'x') {
@@ -44,18 +47,22 @@ export function Waterfall(props: WaterfallProps) {
           display: 'grid',
           gridTemplateColumns: `repeat(${count}, 1fr)`,
           gap: xGap,
-          ...style
+          ...style,
         }}
         {...(newProps as any)}>
         {list.map((item, k) => {
           return (
             <div key={k}>
-              {item.map((item:any, j) => {
+              {item.map((item: any, j) => {
                 const exStyle: CSSProperties = {
-                  marginBottom: yGap
+                  marginBottom: yGap,
                 }
 
-                return <div key={j} style={exStyle}>{item}</div>
+                return (
+                  <div key={j} style={exStyle}>
+                    {item}
+                  </div>
+                )
               })}
             </div>
           )
@@ -70,14 +77,14 @@ export function Waterfall(props: WaterfallProps) {
       style={{
         columnCount: newCount,
         gap: xGap,
-        ...style
+        ...style,
       }}
       {...(newProps as any)}>
       {React.Children.map(children, (item) => {
         const exStyle: CSSProperties = {
           overflow: 'hidden',
           breakInside: 'avoid',
-          marginBottom: yGap
+          marginBottom: yGap,
         }
 
         if (!isUndefined(yGap)) {
@@ -95,29 +102,3 @@ export function Waterfall(props: WaterfallProps) {
     </div>
   )
 }
-
-// export interface WaterfallItemProps extends ComponentProps {
-//   title?: ReactNode
-//   gap?: number | string
-// }
-
-// Waterfall.Item = function (props: WaterfallItemProps) {
-//   const { gap = 0, title, children, style = {}, ...rest } = props
-//   if (!isUndefined(title)) {
-//     return (
-//       <div
-//         style={{ breakInside: 'avoid', marginBottom: gap, ...style }}
-//         {...(rest as any)}>
-//         <h2>{title}</h2>
-//         <div>{children}</div>
-//       </div>
-//     )
-//   }
-//   return (
-//     <div
-//       style={{ breakInside: 'avoid', marginBottom: gap, ...style }}
-//       {...(rest as any)}>
-//       {children}
-//     </div>
-//   )
-// }

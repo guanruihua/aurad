@@ -1,6 +1,8 @@
-import type { ComponentProps } from '@/assets'
+import { ClassNameType } from 'harpe'
 
-export interface PopConfirmProps extends ComponentProps {
+export interface PopConfirmProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className' | 'content'> {
+  className?: ClassNameType
   open?: boolean
   /**
    * @description

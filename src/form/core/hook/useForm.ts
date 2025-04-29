@@ -18,19 +18,22 @@ export function useForm(props: UseFormProps = {}): UseForm {
 
   const [initialValues, setInitialValues] = useState<ObjectType>({})
   const [values, setValues, clearValues] = useSetState<ObjectType>({})
-  const [error, setError, resetError] = useSetState<ObjectType>(
-    {},
-  )
+  const [error, setError, resetError] = useSetState<ObjectType>({})
 
   const allFieldNames: string[] = Array.from(fields.keys())
   const getRule = (name: string) => fields.get(name)?.rules || rules[name]
 
   // console.log(initialValues, values)
-
+  // for (const [key, value] of fields.entries()) {
+  //   console.log(key, value);
+  // }
   return {
+    // fields
     fields,
     fieldAction,
+    // rules
     rules,
+    // value
     initialValues,
     setInitialValues,
     values,
@@ -46,9 +49,6 @@ export function useForm(props: UseFormProps = {}): UseForm {
         setError(newError)
       }
     },
-    error,
-    setError,
-		resetError,
     setValue: (name: string, value: any) => {
       setValues({ [name]: value })
       getRule(name) &&
@@ -68,6 +68,11 @@ export function useForm(props: UseFormProps = {}): UseForm {
         return values
       }
     },
+    // error
+    error,
+    setError,
+    resetError,
+    // validate
     validateField: (name: string, value: any) => {
       if (!allFieldNames.includes(name)) return {}
       setError({
@@ -80,11 +85,7 @@ export function useForm(props: UseFormProps = {}): UseForm {
       if (names) {
         names.forEach((name) => {
           if (allFieldNames.includes(name)) {
-            newError[name] = validateField(
-              name,
-              values[name],
-              getRule(name),
-            )
+            newError[name] = validateField(name, values[name], getRule(name))
           }
         })
       } else {

@@ -1,4 +1,4 @@
-import { ComponentProps } from '@/assets'
+import { ClassNameType } from 'harpe'
 
 export type RadioValue = boolean | string | any
 
@@ -11,7 +11,12 @@ export type RadioChangeEvent = {
 /**
  * @description 复选框属性
  */
-export interface RadioProps extends ComponentProps {
+export interface RadioProps
+  extends Omit<
+    React.HTMLAttributes<HTMLDivElement>,
+    'className' | 'defaultValue' | 'onChange'
+  > {
+  className?: ClassNameType
   /**
    * @description input[type="radio"] 的 name 属性, 也作为非单一组件时候的 value
    */
@@ -28,9 +33,9 @@ export interface RadioProps extends ComponentProps {
    * @description
    */
   label?: string | number
-	/**
-	 * @description 禁用
-	 */
+  /**
+   * @description 禁用
+   */
   disabled?: boolean
   /**
    * @description 值发生改变而触发

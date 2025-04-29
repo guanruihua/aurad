@@ -1,7 +1,8 @@
 import { ReactNode } from 'react'
-import { ComponentProps } from '@/assets'
+import { ClassNameType } from 'harpe'
 
-export interface SelectProps extends ComponentProps {
+export interface SelectProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className'> {
+  className?: ClassNameType
 	prefix?: string
 	value?: string | string[]
 	defaultValue?: string | string[]

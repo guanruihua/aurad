@@ -1,44 +1,48 @@
-import { ComponentProps } from '@/assets'
 import { CSSProperties, ReactNode } from 'react'
 import { ArrowProps } from '../arrow'
 
-export type FlowChartNodeStatus = 'operable' | 'finish' | 'error' | 'prohibit' | 'empty'
+export type FlowChartNodeStatus =
+  | 'operable'
+  | 'finish'
+  | 'error'
+  | 'prohibit'
+  | 'empty'
 export type FlowFloatCover = ArrowProps
 
 export type FlowChartNode = {
-	status?: FlowChartNodeStatus
-	id?: string
-	label?: string | ReactNode
-	style?: CSSProperties
-	link?: string | string[]
-	width?: number
+  status?: FlowChartNodeStatus
+  id?: string
+  label?: string | ReactNode
+  style?: CSSProperties
+  link?: string | string[]
+  width?: number
 
-	/**
-	 * @description 水平对齐方式
-	 * @default 'center'
-	 */
-	align?: 'center' | 'start' | 'end'
-	/**
-	 * @description 水平方向占用单元格
-	 * @value 0 相当于 display: none;
-	 * @default 1
-	 */
-	span?: number
-	/**
-	 * @description 虚线
-	 * @default false
-	 */
-	dottedLine?: boolean
-	series?: {
-		[link: string]: {
-			dottedLine?: boolean
-			lineStyle?: CSSProperties
-		}
-	}
+  /**
+   * @description 水平对齐方式
+   * @default 'center'
+   */
+  align?: 'center' | 'start' | 'end'
+  /**
+   * @description 水平方向占用单元格
+   * @value 0 相当于 display: none;
+   * @default 1
+   */
+  span?: number
+  /**
+   * @description 虚线
+   * @default false
+   */
+  dottedLine?: boolean
+  series?: {
+    [link: string]: {
+      dottedLine?: boolean
+      lineStyle?: CSSProperties
+    }
+  }
 }
 
-export interface FlowChartProps extends ComponentProps {
-
+export interface FlowChartProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children' | 'className'> {
   type?: 'grid' | 'rightWard'
 
   /**
@@ -62,15 +66,15 @@ export interface FlowChartProps extends ComponentProps {
    * @default { strokeDasharray: "5 5", strokeDashoffset: "5" }
    */
   dottedProps?: {
-    strokeDasharray?: string,
+    strokeDasharray?: string
     strokeDashoffset?: string
   }
-  nodes: FlowChartNode[];
+  nodes: FlowChartNode[]
 }
 
-export interface FlowGridChartProps extends FlowChartProps{
-	type?: never
+export interface FlowGridChartProps extends FlowChartProps {
+  type?: never
 }
-export interface FlowRightWardChartProps extends FlowChartProps{
-	type?: never
+export interface FlowRightWardChartProps extends FlowChartProps {
+  type?: never
 }

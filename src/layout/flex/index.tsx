@@ -1,9 +1,10 @@
 import React from 'react'
-import { ComponentProps } from '@/assets'
-import { classNames } from 'harpe'
+import { classNames, ClassNameType } from 'harpe'
 import './index.less'
 
-export interface FlexProps extends ComponentProps {
+export interface FlexProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className'> {
+  className?: ClassNameType
   row?: boolean
   column?: boolean
   /**

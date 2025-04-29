@@ -1,9 +1,10 @@
 import React from 'react'
 import { BrowserRouter, useRoutes, RouteObject } from 'react-router-dom'
 import type { MenuObject } from '@/layout'
-import type { ComponentProps } from '@/assets'
+import { ClassNameType } from 'harpe'
 
-export interface BrowserContainer extends ComponentProps {
+export interface BrowserContainer   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className'> {
+  className?: ClassNameType
   menu: MenuObject[]
   /**
    * @default '/'

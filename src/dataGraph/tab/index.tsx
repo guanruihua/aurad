@@ -1,5 +1,4 @@
-import { ComponentProps } from '@/assets'
-import { classNames } from 'harpe'
+import { classNames, ClassNameType } from 'harpe'
 import React from 'react'
 import './index.less'
 
@@ -9,7 +8,12 @@ interface TabItem {
   children: React.ReactNode
 }
 
-export interface TabProps extends ComponentProps {
+export interface TabProps
+  extends Omit<
+    React.HTMLAttributes<HTMLDivElement>,
+    'children' | 'className' | 'onChange'
+  > {
+  className?: ClassNameType
   items: TabItem[]
   defaultValue?: string
   value?: string
@@ -19,7 +23,6 @@ export interface TabProps extends ComponentProps {
 
 export function Tab(props: TabProps) {
   const {
-    prefixCls,
     defaultValue,
     value,
     onChange,
@@ -49,7 +52,7 @@ export function Tab(props: TabProps) {
                 if (value === undefined) setNowActiveKey(key)
               }}
               style={{
-                cursor: 'pointer'
+                cursor: 'pointer',
               }}>
               {title}
             </div>

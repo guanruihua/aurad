@@ -5,8 +5,7 @@ import React, {
 } from 'react'
 import { ObjectType, stringify } from 'abandonjs'
 import { isNumber } from 'asura-eye'
-import { ComponentProps } from '@/assets'
-import { classNames } from 'harpe'
+import { classNames, ClassNameType } from 'harpe'
 import './index.less'
 
 export type ColumnsType<DataType extends ObjectType = ObjectType> = {
@@ -18,7 +17,8 @@ export type ColumnsType<DataType extends ObjectType = ObjectType> = {
 }[]
 
 export interface Table<DataType extends ObjectType = ObjectType>
-  extends ComponentProps {
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className'> {
+  className?: ClassNameType
   /**
    * @description 序号
    * @default false

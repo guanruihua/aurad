@@ -1,9 +1,14 @@
 import React from 'react'
-import { ComponentProps } from '@/assets'
-import { classNames } from 'harpe'
+import { classNames, ClassNameType } from 'harpe'
 import './index.less'
 
-export function ColumnCount(props: ComponentProps & { column?: number }) {
+export interface ColumnCountProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className'> {
+  className?: ClassNameType
+  column?: number
+}
+
+export function ColumnCount(props: ColumnCountProps) {
   const { className, column, children, ...rest } = props
   if (column && column > 0) {
     if (rest.style) {
@@ -22,9 +27,13 @@ export function ColumnCount(props: ComponentProps & { column?: number }) {
   )
 }
 
-export function ColumnCountItem(
-  props: ComponentProps & { title?: React.ReactNode },
-) {
+export interface ColumnCountItemProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className' | 'title'> {
+  className?: ClassNameType
+  title?: React.ReactNode
+}
+
+export function ColumnCountItem(props: ColumnCountItemProps) {
   const { className, title, children, ...rest } = props
   return (
     <div className={classNames('au-column-count-item', className)} {...rest}>

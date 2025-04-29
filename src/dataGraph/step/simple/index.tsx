@@ -1,19 +1,21 @@
 import React from 'react'
-import { ComponentProps } from '@/assets'
-import { classNames } from 'harpe'
+import { classNames, ClassNameType } from 'harpe'
 import { Icon } from '@/icon'
 import { StepBar } from '../bar'
 import './index.less'
 import './night.less'
 
-export interface StepProps extends ComponentProps {
+export interface StepProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className'> {
+  className?: ClassNameType
   direction?: 'horizontal' | 'vertical'
   initial?: number
   items:
     | ({
         status?: 'wait' | 'process' | 'finish' | 'error'
         value?: any
-      } & ComponentProps)[]
+        className?: ClassNameType
+      } & Omit<React.HTMLAttributes<HTMLDivElement>, 'className'>[])
     | string[]
 }
 

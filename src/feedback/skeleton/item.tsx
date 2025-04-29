@@ -1,9 +1,9 @@
 import React from "react"
-import type { ComponentProps } from "@/assets"
 import './index.less'
-import { classNames } from "harpe"
+import { classNames, ClassNameType } from "harpe"
 
-export interface SkeletonItemProps extends ComponentProps {
+export interface SkeletonItemProps    extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className'> {
+  className?: ClassNameType
 	type?: 'square' | 'round' | 'circle' | 'round-circle'
 }
 

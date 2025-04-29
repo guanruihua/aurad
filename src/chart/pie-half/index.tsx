@@ -2,7 +2,8 @@ import React from 'react'
 import './index.less'
 import { classNames, ClassNameUnit } from 'harpe'
 
-export interface PieHalfProps {
+export interface PieHalfProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children' | 'className'> {
   /**
    * @description 图表尺寸大小
    */
@@ -31,7 +32,7 @@ export function PieHalf(props: PieHalfProps) {
       className={classNames('au-pie-half', className)}
       style={
         {
-          '--s': size + 'px'
+          '--s': size + 'px',
         } as React.CSSProperties
       }
       {...rest}>
@@ -42,7 +43,7 @@ export function PieHalf(props: PieHalfProps) {
       <div
         className='value'
         style={{
-          transform: `rotate(${angle}deg)`
+          transform: `rotate(${angle}deg)`,
         }}></div>
     </div>
   )

@@ -1,17 +1,23 @@
 import React, { useRef } from 'react'
-import { ComponentProps, useSetState } from '@/assets'
-import { classNames } from 'harpe'
+import { useSetState } from '@/assets'
+import { classNames, ClassNameType } from 'harpe'
 import './index.less'
 
-export function Docs(
-  props: ComponentProps & {
-    items?: {
-      title: React.ReactNode
-      children: React.ReactNode
-    }[]
-  },
-) {
-  const { height, className, items, children, ...rest } = props
+export interface DocsItemProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className' | 'title'> {
+  className?: ClassNameType
+  title: React.ReactNode
+  children: React.ReactNode
+}
+
+export interface DocsProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className'> {
+  className?: ClassNameType
+  items?: DocsItemProps[]
+}
+
+export function Docs(props: DocsProps) {
+  const { className, items, children, ...rest } = props
 
   const ref = useRef<HTMLDivElement>(null)
   const [state, setState] = useSetState({
@@ -75,7 +81,7 @@ export function Docs(
   )
 }
 
-export function DocsItem(props: ComponentProps & { title?: React.ReactNode }) {
+export function DocsItem(props: DocsItemProps) {
   const { className, title, children, ...rest } = props
   return (
     <div className={classNames('au-docs-item', className)} {...rest}>

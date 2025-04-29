@@ -1,6 +1,5 @@
 import React, { CSSProperties } from 'react'
 import { isNumber } from 'asura-eye'
-import { ComponentProps } from '@/assets'
 import { classNames } from 'harpe'
 import { getGridSpanLayout, initIgnore } from './util'
 import type { GridProps } from './type'
@@ -50,7 +49,7 @@ export function Grid(props: GridProps) {
       {React.Children.map(children, (child, index: number) => {
         if (index + 1 > total || (ignore as number[]).includes(index)) return
 
-        if (React.isValidElement<ComponentProps>(child)) {
+        if (React.isValidElement<React.HTMLAttributes<HTMLDivElement>>(child)) {
           const {
             className: unitClassName,
             style: unitStyle,

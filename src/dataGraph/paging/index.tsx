@@ -1,6 +1,5 @@
 import React, { HTMLAttributes, useState } from 'react'
-import { ComponentProps } from '@/assets'
-import { classNames } from 'harpe'
+import { classNames, ClassNameType } from 'harpe'
 import { isNumber } from 'asura-eye'
 import { Select, Input } from '@/form'
 import { Icon } from '@/icon'
@@ -9,8 +8,11 @@ import './index.less'
 import './night.less'
 
 export interface PagingProps
-  extends ComponentProps,
-    Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'onChange' | 'className'> {
+  extends Omit<
+    HTMLAttributes<HTMLDivElement>,
+    'children' | 'onChange' | 'className'
+  > {
+  className?: ClassNameType
   /**
    * @description 当前页数
    */
@@ -53,12 +55,12 @@ export function Paging(props: PagingProps) {
 
   const [gotoValue, setGotoValue] = useState<string>('')
   const [nowCurrent, setNowCurrent] = useState<number>(
-    current === undefined ? defaultCurrent : current
+    current === undefined ? defaultCurrent : current,
   )
   const [nowPageSize, setNowPageSize] = useState<number>(
     pageSize === undefined
       ? defaultPageSize || pageSizeOptions[0] || 10
-      : pageSize
+      : pageSize,
   )
   // 总页数
   const pageNos = Math.ceil(total / nowPageSize)
@@ -104,7 +106,7 @@ export function Paging(props: PagingProps) {
           <div
             key={uIndex}
             className={classNames({
-              selected: nowCurrent === uIndex
+              selected: nowCurrent === uIndex,
             })}
             onClick={() => handleChange(uIndex, pageSize)}>
             {uIndex}
@@ -121,7 +123,7 @@ export function Paging(props: PagingProps) {
 
           options={pageSizeOptions.map((item) => ({
             value: item.toString(),
-            label: item.toString() + '/page'
+            label: item.toString() + '/page',
           }))}
         />
       </div>

@@ -3,12 +3,11 @@ import { xs, sm, md, lg, xl, xxl } from '../constant'
 import { isEmpty } from 'asura-eye'
 import type { ObjectType } from '0type'
 import { debounce } from 'abandonjs'
-import { ComponentProps } from '@/assets'
 
-export interface UseLayoutProps<Value, Props> {
+export interface UseLayoutProps<Value> {
 	defaultValue: Value
 	defaultEffectKey: string
-	props: Props
+	props: any
 	callback: (value: Value, effectKey?: string) => void
 }
 
@@ -27,13 +26,12 @@ function exclude<T extends ObjectType>(
 export function useLayout<
 	RefElement extends Element,
 	Value extends any = any,
-	Props extends ComponentProps = ComponentProps
->(params: UseLayoutProps<Value, Props>) {
+>(params: UseLayoutProps<Value>) {
 
 	const { callback, props, defaultEffectKey, defaultValue } = params
 
 	const ref: RefObject<RefElement> = useRef(null)
-	const newProps: Props = exclude<Props>(props, ['xxl', 'xl', 'lg', 'md', 'sm', 'xs'])
+	const newProps = exclude<any>(props, ['xxl', 'xl', 'lg', 'md', 'sm', 'xs'])
 
 	function handleWidth(width: number) {
 		if (!isEmpty(props.xxl) && width > xxl) return callback(props.xxl as Value, 'xxl')
