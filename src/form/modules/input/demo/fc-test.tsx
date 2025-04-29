@@ -1,49 +1,41 @@
-/* eslint-disable*/
-import React from "react"
+import React from 'react'
 import { Input } from '../..'
-import { Button } from "../../button"
-import { Form, FormItem, useForm } from "@/form"
-import { Flex } from "@/layout"
+import { Button } from '../../button'
+import { Form, FormItem, useForm } from '@/form'
+import { Flex } from '@/layout'
 
 export default function () {
-	const form = useForm()
+  const form = useForm()
 
-	return (
-		<Form
-			form={form}
-			initialValues={{
-				name: '123'
-			}}
-			onSubmit={() => {
-				console.log(form.values)
-				// form.validateFields()
-				// console.log(form.getValues())
-			}}>
-			<FormItem
-				label="name"
-				name="name"
-				rules={[{ required: true, message: '不可以为空' }]}>
-				<Input placeholder="name" />
-			</FormItem>
-			<FormItem
-				label="name2"
-				name="name2" >
-				<Input placeholder="name2" />
-			</FormItem>
-			<FormItem>
-				<Flex>
-					<Button htmlType="submit">
-						Submit
-					</Button>
-					<Button htmlType="reset">
-						Reset
-					</Button>
-					<Button
-						onClick={() =>
-							form.setValue('name', 'new Value')
-						}>Form Set value</Button>
-				</Flex>
-			</FormItem>
-		</Form>
-	)
+  return (
+    <Form
+      form={form}
+      initialValues={{
+        name: '123',
+      }}
+      rules={{
+        name: [{ required: true, message: '不可以为空' }],
+      }}
+      onSubmit={() => {
+        console.log(form.values)
+        // form.validateFields()
+        // console.log(form.getValues())
+      }}>
+      <FormItem label='name' name='name'>
+        <Input placeholder='name' />
+      </FormItem>
+      <FormItem label='name2' name='name2'>
+        <Input placeholder='name2' />
+      </FormItem>
+      <FormItem>
+        <Flex>
+          <Button htmlType='submit'>Submit</Button>
+          <Button htmlType='reset'>Reset</Button>
+          <Button onClick={() => form.setValue('name', 'new Value')}>
+            Form Set value
+          </Button>
+        </Flex>
+      </FormItem>
+    </Form>
+  )
 }

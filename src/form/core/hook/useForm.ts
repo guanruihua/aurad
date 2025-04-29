@@ -1,79 +1,111 @@
 import { useMap, useSetState } from '@/assets'
-import { type ObjectType } from "abandonjs"
-import { type UseForm } from './type'
+import { ObjectType } from '0type'
+import { Rule, UseFormProps, type UseForm } from './type'
 import { useState } from 'react'
 import { validateField } from '../validate'
 import { isArray } from 'asura-eye'
 
-export function useForm(): UseForm {
+export function useForm(props: UseFormProps = {}): UseForm {
+  const { rules = {} } = props
+  const [fields, fieldAction] = useMap<
+    string,
+    {
+      name?: string
+      rules?: Rule[]
+      [key: string]: any
+    }
+  >([])
 
-	const [fields, fieldAction] = useMap<string, ObjectType>([])
-	const [rules, ruleAction] = useMap<string, any[]>([])
+  const [initialValues, setInitialValues] = useState<ObjectType>({})
+  const [values, setValues, clearValues] = useSetState<ObjectType>({})
+  const [error, setError, resetError] = useSetState<ObjectType>(
+    {},
+  )
 
-	const [initialValues, setInitialValues] = useState<ObjectType>({})
-	const [values, setValues] = useSetState<ObjectType>({})
-	const [errorState, setErrorState, resetErrorState] = useSetState<ObjectType>({})
+  const allFieldNames: string[] = Array.from(fields.keys())
+  const getRule = (name: string) => fields.get(name)?.rules || rules[name]
 
-	const allFieldNames: string[] = Array.from(fields.keys())
+  // console.log(initialValues, values)
 
-	// console.log(initialValues, values)
-
-	return {
-		fields, fieldAction,
-		rules, ruleAction,
-		initialValues, setInitialValues,
-		values, setValues,
-		errorState, setErrorState,
-		setValue: (fieldName: string, value: any) => setValues({ [fieldName]: value }),
-		getValue: (fieldName: string) => {
-			return values[fieldName]
-		},
-		getValues: (fieldNames?: string[]) => {
-			if (fieldNames) {
-				const result: ObjectType = {}
-				fieldNames.forEach(name => {
-					result[name] = values[name]
-				})
-				return result
-			} else {
-				return values
-			}
-		},
-		validateField: (fieldName: string, value: any) => {
-			if (!allFieldNames.includes(fieldName)) return {}
-			setErrorState({ [fieldName]: validateField(fieldName, value, ruleAction.get(fieldName)) })
-			return {}
-		},
-		validateFields: (fieldNames?: string[]) => {
-			const newErrorState: ObjectType = {}
-			if (fieldNames) {
-				fieldNames.forEach(name => {
-					if (allFieldNames.includes(name)) {
-						newErrorState[name] = validateField(name, values[name], ruleAction.get(name))
-					}
-				})
-			} else {
-				allFieldNames.forEach(name => {
-					newErrorState[name] = validateField(name as string, values[name], ruleAction.get(name))
-				})
-			}
-			setErrorState(newErrorState)
-			return {}
-		},
-		resetFields: (fieldNames?: string[]) => {
-			resetErrorState(fieldNames)
-			if (fieldNames && isArray(fieldNames)) {
-				const newValues: ObjectType = {}
-				fieldNames.forEach((name: string) => {
-					newValues[name] = initialValues[name]
-				})
-				setValues(newValues, true)
-			} else {
-				setValues(initialValues, true)
-			}
-		},
-		resetErrorStatus: (fieldNames?: string[]) => {
-			resetErrorState(fieldNames)
-		}
-	}
+  return {
+    fields,
+    fieldAction,
+    rules,
+    initialValues,
+    setInitialValues,
+    values,
+    clearValues,
+    setValues(values: ObjectType) {
+      setValues(values)
+      const names = Object.keys(values)
+      if (names.length) {
+        const newError: ObjectType = {}
+        names.forEach((name) => {
+          newError[name] = validateField(name, values[name], getRule(name))
+        })
+        setError(newError)
+      }
+    },
+    error,
+    setError,
+		resetError,
+    setValue: (name: string, value: any) => {
+      setValues({ [name]: value })
+      getRule(name) &&
+        setError({
+          [name]: validateField(name, value, getRule(name)),
+        })
+    },
+    getValue: (name: string) => values[name],
+    getValues: (names?: string[]) => {
+      if (names) {
+        const result: ObjectType = {}
+        names.forEach((name) => {
+          result[name] = values[name]
+        })
+        return result
+      } else {
+        return values
+      }
+    },
+    validateField: (name: string, value: any) => {
+      if (!allFieldNames.includes(name)) return {}
+      setError({
+        [name]: validateField(name, value, getRule(name)),
+      })
+      return {}
+    },
+    validateFields(names?: string[]) {
+      const newError: ObjectType = {}
+      if (names) {
+        names.forEach((name) => {
+          if (allFieldNames.includes(name)) {
+            newError[name] = validateField(
+              name,
+              values[name],
+              getRule(name),
+            )
+          }
+        })
+      } else {
+        allFieldNames.forEach((name) => {
+          newError[name] = validateField(name, values[name], getRule(name))
+        })
+      }
+      setError(newError)
+      return {}
+    },
+    resetFields: (names?: string[]) => {
+      resetError(names)
+      if (names && isArray(names)) {
+        const newValues: ObjectType = {}
+        names.forEach((name: string) => {
+          newValues[name] = initialValues[name]
+        })
+        setValues(newValues, true)
+      } else {
+        setValues(initialValues, true)
+      }
+    },
+  }
 }

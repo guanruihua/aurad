@@ -1,12 +1,12 @@
-import React, { ButtonHTMLAttributes, useRef } from 'react'
-import { ComponentProps } from '@/assets'
-import { classNames } from 'harpe'
+import React from 'react'
+import { classNames, ClassNameType } from 'harpe'
 import { isUndefined } from 'asura-eye'
 import './style/index.less'
 import './style/color.less'
 import './style/night-color.less'
 
-export interface ButtonProps extends ComponentProps {
+export interface ButtonProps
+  extends Omit<React.HTMLAttributes<HTMLButtonElement>, 'className'> {
   htmlType?: 'submit' | 'reset' | 'button'
   /**
    * @description 按钮类型
@@ -14,7 +14,8 @@ export interface ButtonProps extends ComponentProps {
    */
   type?: 'primary' | 'text' | 'default'
   disabled?: boolean
-  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void | (() => void)
+  className?: ClassNameType
+  // onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void | (() => void)
 }
 
 export function Button(props: ButtonProps) {
@@ -33,7 +34,7 @@ export function Button(props: ButtonProps) {
     { disabled: rest?.disabled },
     className,
   )
-  const ref = useRef<HTMLButtonElement | null>(null)
+  const ref = React.useRef<HTMLButtonElement>(null)
 
   React.useEffect(() => {
     if (!ref.current || rest.disabled) return
@@ -50,11 +51,7 @@ export function Button(props: ButtonProps) {
   }, [ref.current])
 
   return (
-    <button
-      ref={ref}
-      type={htmlType}
-      className={newClassName}
-      {...(rest as ButtonHTMLAttributes<any>)}>
+    <button ref={ref} type={htmlType} className={newClassName} {...rest}>
       <span className='content'>{children}</span>
     </button>
   )

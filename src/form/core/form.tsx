@@ -1,24 +1,27 @@
 import React from 'react'
 import { FormContext } from './context'
-import type { Rule, UseForm } from './hook/type'
+import type { UseForm } from './hook/type'
 import { useForm } from './hook'
-import { ComponentProps } from '@/assets'
 import { FormItem } from './item'
-import './index.less'
 import { ObjectType, toString } from 'abandonjs'
-import { classNames } from 'harpe'
+import { classNames, ClassNameType } from 'harpe'
+import './index.less'
 
 export type FormHandle =
   | ((form: UseForm) => void | Promise<void>)
   | (() => void | Promise<void>)
 
-export interface FormProps extends ComponentProps {
+export interface FormProps
+  extends Omit<
+    React.HtmlHTMLAttributes<HTMLFormElement>,
+    'className' | 'onReset' | 'onSubmit'
+  > {
   form?: UseForm
   layout?: 'horizontal' | 'vertical' | 'inline'
   onReset?: FormHandle
   onSubmit?: FormHandle
-  rules?: Record<string, Rule>
   initialValues?: ObjectType<any>
+  className?: ClassNameType
   [key: string]: any
 }
 
@@ -56,8 +59,7 @@ export function Form(props: FormProps) {
           e.preventDefault()
           onSubmit && onSubmit(form)
         }}
-        {...rest}
-      >
+        {...rest}>
         {children}
       </form>
     </FormContext.Provider>

@@ -17,6 +17,7 @@ export default function InputTestCmp() {
   return (
     <Docs
       items={[
+        { title: 'Input & Form', children: <WithForm /> },
         {
           title: 'Input',
           children: (
@@ -55,7 +56,6 @@ export default function InputTestCmp() {
             />
           ),
         },
-        { title: 'Input & Form', children: <WithForm /> },
       ]}
     />
   )

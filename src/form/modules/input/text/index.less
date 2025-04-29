@@ -1,15 +1,6 @@
 .au-input {
   display: inline-block;
-
   width: 100%;
-  min-width: 0;
-  height: 32px;
-  line-height: 32px;
-
-  margin: 0;
-  margin-bottom: 5px;
-  padding: 4px 8px;
-  font-size: 14px;
 
   border-radius: 8px;
   border: 1px solid #d9d9d9;
@@ -21,6 +12,27 @@
   box-sizing: border-box;
   list-style: none;
   transition: all 0.2s;
+  margin: 0;
+
+  &>input {
+    display: inline-flex;
+    width: 100%;
+    min-width: 0;
+    height: 32px;
+    line-height: 32px;
+
+    margin: 0;
+    padding: 4px 8px;
+    font-size: 14px;
+    color: #fff;
+    display: inline-block;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    list-style: none;
+    transition: all 0.2s;
+    background: transparent;
+  }
 
   &.isHover,
   &:focus,

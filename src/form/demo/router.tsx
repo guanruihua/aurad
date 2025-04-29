@@ -7,7 +7,7 @@ export default {
   children: [
     {
       index: true,
-      element: Lazy(import('./FCTest')),
+      element: Lazy(import('.')),
     },
     {
       name: 'button',
@@ -21,17 +21,17 @@ export default {
         {
           name: 'text',
           path: '/form/input/text',
-          element: Lazy(import('../modules/input/demo')),
-        },
-        {
-          name: 'textarea',
-          path: '/form/input/textarea',
-          element: Lazy(import(`../modules/input/textarea/demo`)),
+          element: Lazy(import('../modules/input/text/demo')),
         },
         {
           name: 'number',
           path: '/form/input/number',
           element: Lazy(import(`../modules/input/number/demo`)),
+        },
+        {
+          name: 'textarea',
+          path: '/form/input/textarea',
+          element: Lazy(import(`../modules/input/textarea/demo`)),
         },
       ],
     },

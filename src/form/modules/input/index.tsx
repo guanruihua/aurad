@@ -4,18 +4,17 @@ import type { InputProps } from './type'
 import { InputText } from './text'
 import { InputTag } from './tag'
 import { InputNumber, InputNumberProps } from './number'
-import { InputPassword } from './pwd'
-import { InputPasswordProps } from './pwd/type'
+import { InputPassword, InputPasswordProps } from './pwd'
 export * from './number'
 export * from './textarea'
 export * from './type'
 import './night.less'
 import { TextArea, TextAreaProps } from './textarea'
 
-export function Input(props: InputProps) {
-  const { mode = 'text', ...rest } = props
+export function Input(props: InputProps<any>) {
+  const { type = 'text', ...rest } = props
 
-  switch (mode) {
+  switch (type) {
     case 'textarea':
       return <TextArea {...(rest as TextAreaProps)} />
     case 'password':
@@ -26,6 +25,6 @@ export function Input(props: InputProps) {
     case 'tags':
       return <InputTag {...rest} />
     default:
-      return <InputText {...(rest as any)} />
+      return <InputText {...rest} />
   }
 }

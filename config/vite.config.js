@@ -10,26 +10,24 @@ switchTSConfig('npm')
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-function resolve(str) {
-  return path.resolve(__dirname, str)
-}
+const resolve = (str) => path.resolve(__dirname, str)
 
 export default defineConfig({
   esbuild: {
-    drop: ['console', 'debugger']
+    drop: ['console', 'debugger'],
   },
   css: {
     // 预处理器配置项
     preprocessorOptions: {
       less: {
-        math: 'always'
-      }
-    }
+        math: 'always',
+      },
+    },
   },
   resolve: {
     alias: {
-      '@': resolve('../src')
-    }
+      '@': resolve('../src'),
+    },
   },
   build: {
     sourcemap: true,
@@ -43,7 +41,7 @@ export default defineConfig({
       // 组件库名称
       name: 'aurad',
       // 文件名称, 打包结果举例: my-packages.umd.cjs
-      fileName: 'index'
+      fileName: 'index',
     },
     rollupOptions: {
       // 确保外部化处理那些你不想打包进库的依赖
@@ -52,10 +50,10 @@ export default defineConfig({
         // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
         globals: {
           react: 'react',
-          'react-dom': 'react-dom'
-        }
-      }
-    }
+          'react-dom': 'react-dom',
+        },
+      },
+    },
   },
   plugins: [
     react(),
@@ -63,19 +61,17 @@ export default defineConfig({
       // rollupTypes: true,
       // lib: ["es2016", "dom"],
       entryRoot: resolve('../src'),
-      outDir: [resolve('../dist')],
+      outDir: resolve('../dist'),
       rollupTypes: true,
       // logLevel: 'warn',
-      // pathsToAliases: true,
+      pathsToAliases: true,
       paths: {
-        '@/*': ['./src/*']
+        '@/*': ['./src/*'],
         // '@': [resolve('../src')]
       },
       // outputDir: ["../easyest/es/src", "../easyest/lib/src"],
       //指定使用的tsconfig.json为我们整个项目根目录下,如果不配置,你也可以在components下新建tsconfig.json
-      // tsConfigFilePath: './tsconfig.json'
-      // tsconfigPath: './tsconfig.npm.json'
-      tsconfigPath: resolve('../tsconfig.json')
+      tsconfigPath: resolve('../tsconfig.json'),
     }),
     typescript({
       target: 'ESNext',
@@ -87,9 +83,9 @@ export default defineConfig({
       allowSyntheticDefaultImports: true,
       paths: {
         // '@/*': ['../src/*']
-        '@/*': ['./src/*']
+        '@/*': ['./src/*'],
         // '@': resolve('../src')
-      }
-    })
-  ]
+      },
+    }),
+  ],
 })

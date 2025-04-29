@@ -1,6 +1,9 @@
 import type { CSSProperties, ReactNode } from 'react'
 import { ClassNameType } from 'harpe'
 
+/**
+ * @deprecated
+ */
 export interface ComponentProps {
   /**
    * @description

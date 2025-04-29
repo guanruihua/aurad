@@ -1,24 +1,33 @@
-import React from "react"
+import React from 'react'
 import { classNames } from 'harpe'
+import { setDefault } from '../util'
+import type { InputProps } from '../type'
 import './index.less'
-import { setDefault } from "../util"
-import type { InputTextProps } from './type'
+
+export interface InputTextProps
+  extends Omit<InputProps<string>, 'value' | 'defaultValue'> {
+  value?: string | number
+  defaultValue?: string | number
+}
 
 export function InputText(props: InputTextProps) {
+	const { mode = 'text', className,  ...rest } = props
+  const getNewProps = () => {
 
-	const getNewProps = () => {
-		const { mode = 'text', className, ...rest } = props
-		const newProps: InputTextProps = {
-			inputMode: "text",
-			className: classNames("au-input", className as any),
-			...rest
-		}
+    const newProps: InputTextProps = {
+      type: 'text',
+      inputMode: 'text',
+      ...rest,
+    }
 
-		setDefault(newProps)
+    setDefault(newProps)
 
-		return newProps
-	}
+    return newProps
+  }
 
-	return <input {...getNewProps()} />
-
+  return (
+    <div className={classNames('au-input au-input-text', className)}>
+      <input {...getNewProps()} />
+    </div>
+  )
 }

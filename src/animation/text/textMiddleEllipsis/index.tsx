@@ -1,11 +1,17 @@
 import React from 'react'
 import './index.less'
-import { ComponentProps } from '@/assets'
-import { classNames } from 'harpe'
+import { classNames, ClassNameType } from 'harpe'
 
-export interface TextMiddleEllipsisProps extends ComponentProps {
+export interface TextMiddleEllipsisProps
+  extends Omit<
+    React.HTMLAttributes<HTMLDivElement>,
+    'className' | 'children' | 'style'
+  > {
   text?: string
   children?: string
+
+  style?: React.CSSProperties
+  className?: ClassNameType
   [key: string]: any
 }
 

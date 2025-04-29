@@ -1,7 +1,7 @@
 import { isEmpty } from "asura-eye"
 import type { InputProps } from "../type"
 
-export const setDefault = (props: InputProps) => {
+export const setDefault = (props: InputProps<any>) => {
 
 	const hasValue = !isEmpty(props.value)
 	const hasChange = !isEmpty(props.onChange)
