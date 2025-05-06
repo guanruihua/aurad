@@ -1,0 +1,30 @@
+.night-theme .au-checkbox {
+  .au-checkbox-icon {
+    background-color: #eee;
+
+    &.au-checkbox-select {
+      background: #1890ff;
+    }
+  }
+
+  label {
+    color: rgba(255, 255, 255, .88);
+  }
+
+  .au-checkbox-item {
+
+    &.disabled,
+    &.disabled>span,
+    &.disabled>label {
+      cursor: not-allowed;
+      color: rgba(255, 255, 255, .44);
+      border-color: var(--disabled-border-color);
+
+      &.au-checkbox-select {
+        color: rgba(255, 255, 255, .22);
+        background:  rgba( 98, 98, 98);
+        border: none;
+      }
+    }
+  }
+}

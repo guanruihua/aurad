@@ -11,9 +11,9 @@ export default {
       element: Lazy(import('./demo5'))
     },
     {
-      name: 'demo3',
-      path: '/demo/3',
-      element: Lazy(import('./demo3'))
-    }
+      name: 'demo6',
+      path: '/demo/6',
+      element: Lazy(import('./demo6'))
+    },
   ]
 } as MenuObject
