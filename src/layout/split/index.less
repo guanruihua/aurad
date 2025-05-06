@@ -1,0 +1,33 @@
+.au-split {
+  width: 100%;
+  display: grid;
+  align-items: center;
+  grid-template-columns: auto 10px 1fr;
+
+  &>.au-split-box {
+    display: inline-block;
+    width: 100%;
+  }
+
+
+  &>.au-split-btn {
+    display: inline-flex;
+    justify-content: center;
+    cursor: col-resize;
+    width: 10px;
+    height: 95%;
+
+    &::after {
+      display: block;
+      height: 100%;
+      content: '';
+      width: 1px;
+      border-left: 2px solid;
+      border-color: transparent;
+    }
+
+    &:hover::after {
+      border-color: rgba(0, 0, 0, .2);
+    }
+  }
+}

@@ -28,5 +28,10 @@ export default {
 			path: '/layout/waterfall',
 			element: Lazy(import('../waterfall/demo')),
 		},
+		{
+			name: 'split',
+			path: '/layout/split',
+			element: Lazy(import('../split/demo')),
+		},
 	]
 } as MenuObject

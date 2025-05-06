@@ -40,21 +40,10 @@ export default {
       path: '/form/select',
       element: Lazy(import('../modules/select/demo')),
     },
-
-    {
-      name: 'Picker',
-      path: '/form/picker',
-      element: Lazy(import(`../modules/picker/demo`)),
-    },
     {
       name: 'checkbox',
       path: '/form/checkbox',
       element: Lazy(import(`../modules/checkbox/demo`)),
-    },
-    {
-      name: 'ImageUpload',
-      path: '/form/imageUpload',
-      element: Lazy(import(`../modules/ImageUpload/demo`)),
     },
     {
       name: 'radio',
