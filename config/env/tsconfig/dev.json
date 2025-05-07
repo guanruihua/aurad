@@ -14,7 +14,7 @@
     "experimentalDecorators": true,
     "allowJs": true,
     "declaration": true,
-    "declarationDir": "dist",
+    "declarationDir": "dist/types",
     "declarationMap": true,
     "outDir": "dist",
     "allowSyntheticDefaultImports": true,
@@ -25,8 +25,7 @@
     "typeRoots": [
       "src/**/*.d.ts",
       "node_modules/@types",
-      "node_modules/*.d.ts",
-      "src/assets/type/*.d.ts"
+      "node_modules/*.d.ts"
     ]
   },
   "exclude": [

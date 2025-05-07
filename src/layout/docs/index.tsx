@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { useSetState } from '@/assets'
+import { useSetState } from '0hook'
 import { classNames, ClassNameType } from 'harpe'
 import './index.less'
 

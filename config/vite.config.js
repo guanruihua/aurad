@@ -57,35 +57,29 @@ export default defineConfig({
   },
   plugins: [
     react(),
-    dts({
-      // rollupTypes: true,
-      // lib: ["es2016", "dom"],
-      entryRoot: resolve('../src'),
-      outDir: resolve('../dist'),
-      rollupTypes: true,
-      // logLevel: 'warn',
-      pathsToAliases: true,
-      paths: {
-        '@/*': ['./src/*'],
-        // '@': [resolve('../src')]
-      },
-      // outputDir: ["../easyest/es/src", "../easyest/lib/src"],
-      //指定使用的tsconfig.json为我们整个项目根目录下,如果不配置,你也可以在components下新建tsconfig.json
-      tsconfigPath: resolve('../tsconfig.json'),
-    }),
     typescript({
       target: 'ESNext',
       lib: ['ESNext', 'dom'],
       rootDir: resolve('../src'),
-      declaration: true,
-      declarationDir: resolve('../dist'),
+      // declaration: true,
+      // declarationDir: resolve('../dist'),
       exclude: resolve('node_modules/**'),
-      allowSyntheticDefaultImports: true,
+      // allowSyntheticDefaultImports: true,
       paths: {
-        // '@/*': ['../src/*']
-        '@/*': ['./src/*'],
+        '@/*': ['src/*'],
         // '@': resolve('../src')
       },
+    }),
+    dts({
+      // lib: ["es2016", "dom"],
+      // entryRoot: resolve('../src'),
+      outDir: resolve('../dist'),
+      // outDir: resolve('../dist/types'),
+      // outputDir: 'dist/types',
+      insertTypesEntry: true,
+      rollupTypes: true,
+      pathsToAliases: true,
+      tsconfigPath: resolve('../tsconfig.json'),
     }),
   ],
 })

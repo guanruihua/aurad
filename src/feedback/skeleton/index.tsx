@@ -1,18 +1,12 @@
 import React from 'react'
-import { classNames, ClassNameType } from 'harpe'
-import { type SkeletonItemProps, Item } from './item'
+import { classNames } from 'harpe'
+import type { SkeletonProps } from './type'
 import { SkeletonChildDefault } from './constant'
 import './index.less'
 import './night.less'
 
-export { SkeletonItemProps }
-
-export interface SkeletonProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className'> {
-  className?: ClassNameType
-  size?: 'small' | 'default' | 'large'
-  active?: boolean
-}
+export * from './type'
+export * from './item'
 
 export function Skeleton(props: SkeletonProps) {
   const {
@@ -40,5 +34,3 @@ export function Skeleton(props: SkeletonProps) {
     </div>
   )
 }
-
-Skeleton.Item = Item

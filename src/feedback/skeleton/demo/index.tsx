@@ -1,5 +1,5 @@
 import React from 'react'
-import { Skeleton } from '..'
+import { Skeleton, SkeletonItem } from '..'
 import { Docs } from '@/layout'
 
 export default function () {
@@ -25,7 +25,7 @@ export default function () {
           title: "Skeleton(type='square')",
           children: (
             <Skeleton>
-              <Skeleton.Item type='square' />
+              <SkeletonItem type='square' />
             </Skeleton>
           ),
         },
@@ -33,7 +33,7 @@ export default function () {
           title: "Skeleton(type='round')",
           children: (
             <Skeleton>
-              <Skeleton.Item type='round' />
+              <SkeletonItem type='round' />
             </Skeleton>
           ),
         },
@@ -41,7 +41,7 @@ export default function () {
           title: "Skeleton(type='circle')",
           children: (
             <Skeleton>
-              <Skeleton.Item type='circle' />
+              <SkeletonItem type='circle' />
             </Skeleton>
           ),
         },
@@ -49,7 +49,7 @@ export default function () {
           title: "Skeleton(type='round-circle')",
           children: (
             <Skeleton>
-              <Skeleton.Item type='round-circle' />
+              <SkeletonItem type='round-circle' />
             </Skeleton>
           ),
         },
@@ -57,11 +57,11 @@ export default function () {
           title: 'Skeleton(Custom Layout)',
           children: (
             <Skeleton>
-              <Skeleton.Item type='square' />
-              <Skeleton.Item type='round' />
+              <SkeletonItem type='square' />
+              <SkeletonItem type='round' />
               <div>
-                <Skeleton.Item type='circle' style={{ marginRight: 8 }} />
-                <Skeleton.Item type='round-circle' />
+                <SkeletonItem type='circle' style={{ marginRight: 8 }} />
+                <SkeletonItem type='round-circle' />
               </div>
             </Skeleton>
           ),

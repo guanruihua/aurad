@@ -1,4 +1,4 @@
-import { useMap, useSetState } from '@/assets'
+import { useMap, useSetState } from '0hook'
 import { ObjectType } from '0type'
 import { Rule, UseFormProps, type UseForm } from './type'
 import { useState } from 'react'

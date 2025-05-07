@@ -1,4 +1,5 @@
-export * from './assets'
+import './index.less'
+
 export * from './form'
 export * from './icon'
 export * from './layout'
@@ -7,5 +8,3 @@ export * from './theme'
 export * from './utils'
 export * from './chart'
 export * from './dataGraph'
-
-import './index.less'

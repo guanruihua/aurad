@@ -1,13 +1,14 @@
 import React from 'react'
-import './index.less'
 import { classNames, ClassNameType } from 'harpe'
+import './index.less'
+import { DivProps } from '@/element/type'
 
-export interface SplitItemProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className'> {
+export interface SplitItemProps extends DivProps {
+  // extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className'> {
   min?: number
   max?: number
-  className?: ClassNameType
-  children?: React.ReactNode
+  // className?: ClassNameType
+  // children?: React.ReactNode
 }
 
 export interface SplitProps
