@@ -1,10 +1,7 @@
-import { prefixHoc } from '@/assets'
 import React, { CSSProperties } from 'react'
 import { getEffectNumber, getMapHoc } from './util'
 import { classNames, ClassNameType } from 'harpe'
 import './index.less'
-
-const prefix = prefixHoc('au-simple-scroll')
 
 export interface SimpleNumberScrollProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children' | 'className'> {
@@ -49,7 +46,7 @@ export function SimpleNumberScroll(props: SimpleNumberScrollProps) {
 
   return (
     <div
-      className={classNames(prefix(), className)}
+      className={classNames('au-simple-scroll', className)}
       style={{
         width: itemWidth,
         height: itemHeight,
@@ -59,7 +56,7 @@ export function SimpleNumberScroll(props: SimpleNumberScrollProps) {
       {list.map((item, index) => {
         const { value, style } = item
         return (
-          <div className={prefix('item')} style={style} key={index}>
+          <div className={'au-simple-scroll-item'} style={style} key={index}>
             {value}
           </div>
         )

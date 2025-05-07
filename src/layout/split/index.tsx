@@ -7,14 +7,12 @@ export interface SplitItemProps
   min?: number
   max?: number
   className?: ClassNameType
-  style?: React.CSSProperties
   children?: React.ReactNode
 }
 
 export interface SplitProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className'> {
   className?: ClassNameType
-  style?: React.CSSProperties
   /**
    * @default 10
    */

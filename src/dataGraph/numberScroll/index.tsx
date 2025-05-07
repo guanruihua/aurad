@@ -1,15 +1,12 @@
 import React from 'react'
-import { prefixHoc } from '@/assets'
-import './index.less'
 import { SimpleNumberScroll } from './simple'
 import { isNumber } from 'asura-eye'
 import { padNumber } from 'abandonjs'
 import { classNames, ClassNameType } from 'harpe'
 import { getEffectNumber } from './util'
+import './index.less'
 
 export * from './simple'
-
-const prefix = prefixHoc('au-number-scroll')
 
 export interface NumberScroll
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children' | 'className'> {
@@ -42,7 +39,7 @@ export function NumberScroll(props: NumberScroll) {
 
   return (
     <div
-      className={classNames(prefix(), className)}
+      className={classNames('au-number-scroll', className)}
       style={{
         gridTemplateColumns: `repeat(${maxLength}, 30px)`,
         ...rootStyle,
