@@ -1,90 +1,81 @@
-import React, { CSSProperties } from 'react'
-import './index.less'
+import React from 'react'
 import { classNames } from 'harpe'
 import type { PopConfirmProps } from './type'
 import { getPopStyle } from './util'
+import { ObjectType } from '0type'
+import './index.less'
 
-export { PopConfirmProps }
+export * from './type'
 
 export function PopConfirm(props: PopConfirmProps) {
-  const { placement = 'top', children, content = '' } = props
-  const ref = React.useRef<HTMLDivElement>(null)
-
-  const newClassName = classNames(
-    'au-popConfirm-box',
-    `au-popConfirm-box-placement-${placement}`,
-    {}
+  const {
+    placement = 'top',
+    className,
+    children,
+    content = '',
+    ...rest
+  } = props
+  const [styles, setStyles] = React.useState<ObjectType<React.CSSProperties>>(
+    {},
   )
 
-  const [childSize, setChildSize] = React.useState<DOMRect>({} as DOMRect)
-  const [popSize, setPopSize] = React.useState<DOMRect>({} as DOMRect)
+  const ref = React.useRef<HTMLDivElement>(null)
+  const popRef = React.useRef<HTMLDivElement>(null)
+  const statusRef = React.useRef({
+    box: false,
+    pop: false,
+  })
+  const timer = React.useRef<any>(null)
 
-  const [boxStyle, setBoxStyle] = React.useState<CSSProperties>({})
+  function handleOpen() {
+    if (!popRef.current || !ref.current?.firstElementChild) return
+    const r = ref.current.firstElementChild.getBoundingClientRect()
+    const p = popRef.current.getBoundingClientRect()
+    popRef.current.style.visibility = 'visible'
+    statusRef.current.box = true
+    statusRef.current.pop = false
+
+    const { innerStyle, popStyle } = getPopStyle({
+      placement,
+      childSize: r,
+      popSize: p,
+    })
+    setStyles({
+      innerStyle,
+      popStyle,
+    })
+  }
 
   React.useEffect(() => {
-    if (!ref.current) return
-
-    const dom = ref.current
-    const firstDom = dom.firstChild as HTMLButtonElement
-    const lastDom = dom.lastChild as HTMLDivElement
-    setChildSize(firstDom.getBoundingClientRect())
-    setPopSize(lastDom.getBoundingClientRect())
-    /**
-		 {
-  		 "x": 404.6007080078125,
-  		 "y": 128.21180725097656,
-  		 "width": 78.15972900390625,
-  		 "height": 31.99652862548828,
-  		 "top": 128.21180725097656,
-  		 "right": 482.76043701171875,
-  		 "bottom": 160.20833587646484,
-  		 "left": 404.6007080078125
-		 }
-		 */
-    const hoverEvent = 'mouseenter'
-    const leaveEvent = 'mouseleave'
-
-    const hover = () => {
-      if (boxStyle.visibility !== 'visible') {
-        setBoxStyle({
-          visibility: 'visible'
-        })
-        dom.addEventListener(leaveEvent, leave)
+    timer.current = setInterval(() => {
+      if (!Object.values(statusRef.current).includes(true)) {
+        if (!popRef.current) return
+        popRef.current.style.visibility = 'hidden'
       }
-    }
-
-    const leave = () => {
-      setBoxStyle({
-        visibility: 'hidden'
-      })
-      dom.removeEventListener(leaveEvent, leave)
-    }
-
-    dom.removeEventListener(hoverEvent, hover)
-    dom.addEventListener(hoverEvent, hover)
-
+    }, 800)
     return () => {
-      dom.removeEventListener(hoverEvent, hover)
-      dom.removeEventListener(leaveEvent, leave)
+      timer && clearInterval(timer.current)
     }
-  }, [ref.current])
-
-  const { arrowStyle, innerStyle, popStyle } = getPopStyle({
-    placement,
-    childSize,
-    popSize
-  })
+  }, [statusRef.current.pop, statusRef.current.box])
 
   return (
-    <span className={newClassName} ref={ref}>
+    <div
+      ref={ref}
+      className={classNames('au-popConfirm', className)}
+      onMouseLeave={() => (statusRef.current.box = false)}
+      onMouseEnter={() => ((statusRef.current.box = true), handleOpen())}
+      {...rest}>
       {children}
-      {/* <div className='au-popConfirm' style={popStyle}> */}
-      <div className='au-popConfirm' style={{ ...popStyle, ...boxStyle }}>
-        <div className='au-popConfirm-arrow' style={arrowStyle} />
-        <div className='au-popConfirm-inner' style={innerStyle}>
+      <div
+        ref={popRef}
+        className='au-popConfirm-dialog'
+        onMouseLeave={() => (statusRef.current.pop = false)}
+        onMouseEnter={() => (statusRef.current.pop = true)}
+        style={styles.popStyle}>
+        <div className='au-popConfirm-inner' style={styles.innerStyle}>
           {content}
         </div>
       </div>
-    </span>
+    </div>
   )
 }

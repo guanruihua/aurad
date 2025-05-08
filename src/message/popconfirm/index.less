@@ -1,33 +1,26 @@
-.au-popConfirm-box {
+.au-popConfirm {
   position: relative;
-  background: #eee;
 
-  .au-popConfirm {
+  &>.au-popConfirm-dialog {
     position: absolute;
     width: 120px;
     z-index: 10;
     visibility: hidden;
-    // display: none;
+    // border: 0.5px solid rgba(255, 255, 255, .6);
+    // border-radius: 12px;
+    // background-color: rgba(255, 255, 255, .6);
 
-    &-inner {
+    &>.au-popConfirm-inner {
       position: relative;
       padding: 10px;
       border: none;
       border-radius: 8px;
-      background: #fff;
-      box-shadow: inset 1px 1px 0 0 hsla(0, 0%, 100%, .5), 0 3px 12px 0 #555a64;
+      // background-color: rgba(255,255,255, .6);
+      background: var(--wh-3);
+      // box-shadow: inset 1px 1px 0 0 hsla(0, 0%, 100%, .5), 0 3px 12px 0 #555a64;
+      box-shadow: 0 0 3px #555a64;
+      padding: 10px 12px;
       z-index: 1000;
     }
-
-    &-arrow {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      transform: rotate(45deg);
-      background: #fff;
-      z-index: 2000;
-      border: none;
-    }
   }
-
 }

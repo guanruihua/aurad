@@ -1,5 +1,9 @@
 @import url('../src/style/scrollbar.less');
 
+body {
+  background: #000;
+}
+
 .au-main {
   display: grid;
   gap: 0;
@@ -85,11 +89,9 @@ aside.au-menu {
 
   &-container {
     height: 100vh;
-    // height: calc(100vh - 60px);
     max-height: 100vh;
-    padding-top: 60px;
-    // padding: 70px 15px 30px 20px;
-
+    margin-top: 60px;
+    margin-left: 5px;
     overflow-y: auto;
     .scrollbar();
   }
@@ -105,7 +107,7 @@ aside.au-menu {
     padding-right: 20px;
     transition: all .3s ease-in-out;
     background: transparent;
-    background: #111111;
+    background: #000;
     border-radius: 0;
     z-index: 999;
 
@@ -173,7 +175,16 @@ aside.au-menu {
 
 .night-theme {
   color: #fff;
-  .au-content .unit-testing-unit {
+
+  .au-menu {
     background: #000;
+  }
+
+  .au-content {
+    background: rgba(255, 255, 255, .1);
+
+    .unit-testing-unit {
+      background: #000;
+    }
   }
 }

@@ -21,6 +21,5 @@ export interface PopConfirmProps
     | 'leftBottom'
     | 'rightTop'
     | 'rightBottom'
-    | 'center'
   content?: React.ReactNode
 }
