@@ -75,7 +75,10 @@ export function Dialog(props: DialogProps) {
           </div>
         )}
         <div className='au-dialog-body'>{children}</div>
-        <div className='au-dialog-footer'>
+        <div
+          className={classNames('au-dialog-footer', {
+            hidden: (hiddenCancel || !onCancel) && (hiddenOk || !onOk),
+          })}>
           <div className='au-dialog-footer-controls'>
             {!hiddenCancel && onCancel && (
               <Button onClick={() => onCancel()}>Cancel</Button>
