@@ -5,20 +5,20 @@ import { classNames } from 'harpe'
 export * from './type'
 
 export function Div(props: DivProps) {
-  const { className, children, ...rest } = props
+  const { className, hidden, none, children, ...rest } = props
 
   return (
-    <div className={classNames(className)} {...rest}>
+    <div className={classNames(className, { hidden, none })} {...rest}>
       {children}
     </div>
   )
 }
 
 export function Span(props: SpanProps) {
-  const { className, children, ...rest } = props
+  const { className, hidden, none, children, ...rest } = props
 
   return (
-    <span className={classNames(className)} {...rest}>
+    <span className={classNames(className, { hidden, none })} {...rest}>
       {children}
     </span>
   )
