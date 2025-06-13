@@ -88,11 +88,16 @@ aside.au-menu {
   overflow: hidden;
 
   &-container {
-    height: 100vh;
-    max-height: 100vh;
-    margin-top: 60px;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    --h: calc(100vh - 60px);
+    min-height: var(--h);
+    max-height: var(--h);
+    // padding-top: 60px;
     margin-left: 5px;
     overflow-y: auto;
+    width: 100%;
     .scrollbar();
   }
 

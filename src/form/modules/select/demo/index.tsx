@@ -1,7 +1,6 @@
 import React from 'react'
 import { Card, Docs, Grid } from '@/layout'
 import SelectFormDemo from './form'
-import SelectSimpleDemo from './simple'
 import { Select } from '..'
 import { options } from './data'
 import { Table } from '@/dataGraph'
@@ -10,8 +9,20 @@ export default () => (
   <Docs
     items={[
       {
-        title: 'Select (Simple)',
-        children: <SelectSimpleDemo />,
+        title: '基础使用',
+        children: (
+          <Select options={options} placeholder='name' onChange={() => {}} />
+        ),
+      },
+      {
+        title: '基础使用(value)',
+        children: (
+          <Select value={'lucy1'} options={options} placeholder='name' />
+        ),
+      },
+      {
+        title: '禁用',
+        children: <Select disabled placeholder='name' options={options} />,
       },
       {
         title: 'Select Multiple',

@@ -15,7 +15,7 @@ export function CodeBlock({ language, code }: any) {
   }, [code])
 
   return (
-    <div className="code-block" style={{ position: 'relative' }}>
+    <div className='code-block' style={{ position: 'relative' }}>
       <pre ref={preRef} className={language}>
         <code>{code}</code>
       </pre>

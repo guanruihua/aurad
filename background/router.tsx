@@ -1,6 +1,5 @@
 import React from 'react'
 import { Icon, Lazy, type MenuObject } from '../src'
-import chartRoute from '../src/chart/demo/router'
 import formRoute from '../src/form/demo/router'
 import dataGraphRoute from '../src/dataGraph/demo/router'
 import msgRoute from '../src/message/demo/router'
@@ -17,7 +16,6 @@ export const modules: MenuObject[] = [
     icon: <Icon size={24} type='icon' />,
     element: Lazy(import(`../src/icon/demo`)),
   },
-  chartRoute,
   formRoute,
   dataGraphRoute,
   msgRoute,

@@ -6,7 +6,9 @@ export default {
   path: '/form',
   children: [
     {
-      index: true,
+      // index: true,
+      name: 'form',
+      path: '/form/form',
       element: Lazy(import('.')),
     },
     {

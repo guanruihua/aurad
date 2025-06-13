@@ -2,152 +2,110 @@ import React from 'react'
 import { Icon } from '..'
 import { IconType, icons } from '../icons'
 import { Docs, Flex } from '@/layout'
+import { useSetState } from '0hook'
 import './index.less'
+import { Div } from '@/element'
+import { copyText } from 'harpe'
+import { message } from '@/message'
 
 export default function () {
-  const [color, setColor] = React.useState<string>('#444')
+  const [state, setState] = useSetState(
+    {
+      color: '#999',
+      size: '48',
+      select: '',
+    },
+    'demo-page-icon',
+  )
+
   return (
     <Docs
+      className='demo-page-icon'
       items={[
         {
           title: 'Icon',
           children: (
-            <Flex>
-              <div
-                style={{
-                  verticalAlign: 'center',
-                  margin: '20px 10px',
-                }}>
-                <label
-                  style={{
-                    marginRight: 10,
-                  }}
-                  htmlFor='color'>
-                  Select Color
-                </label>
+            <Flex column>
+              <Flex style={{ alignItems: 'center' }}>
+                <label>Color</label>
                 <input
                   style={{
+                    background: 'rgba(255,255,255,.4)',
                     border: 'none',
-                    background: 'transparent',
+                    padding: 0,
+                    margin: 0,
+                    lineHeight: '24px',
+                    width: 64,
+                    borderRadius: 4,
                   }}
-                  value={color}
-                  name='color'
+                  value={state.color}
                   type='color'
                   onChange={(e) => {
                     const color = e.target.value
-                    setColor(color)
+                    setState({ color })
                   }}
                 />
-              </div>
-              <Flex style={{ color }}>
+                <label>Size</label>
+                <input
+                  style={{
+                    background: 'transparent',
+                    color: '#fff',
+                    border: '2px solid #fff',
+                    lineHeight: '24px',
+                    padding: '0 5px',
+                    width: 64,
+                    borderRadius: 4,
+                  }}
+                  value={state.size}
+                  name='size'
+                  type='number'
+                  onChange={(e) => {
+                    const size = e.target.value
+                    setState({ size })
+                  }}
+                />
+              </Flex>
+              <Flex>
                 {Object.keys(icons).map((item: IconType) => (
-                  <Icon key={item} type={item} />
+                  <Icon
+                    key={item}
+                    type={item}
+                    color={state.color}
+                    size={Number(state.size)}
+                    style={{
+                      cursor: 'pointer',
+                      borderBottom:
+                        state.select === item ? '3px solid #88CA97' : 'none',
+                    }}
+                    onClick={() => {
+                      setState({ select: item })
+                    }}
+                  />
                 ))}
               </Flex>
-            </Flex>
-          ),
-        },
-        {
-          title: 'test(svg)',
-          children: (
-            <Flex>
-              <svg className='demo2' height='0' width='0'>
-                <symbol id='beats' viewBox='0 0 100 100'>
-                  <line
-                    className='beat'
-                    x1='15'
-                    y1='40'
-                    x2='15'
-                    y2='100'
-                    stroke='currentColor'
-                    strokeWidth='10'
-                    strokeLinecap='round'></line>
-                  <line
-                    className='beat'
-                    x1='50'
-                    y1='40'
-                    x2='50'
-                    y2='100'
-                    stroke='currentColor'
-                    strokeWidth='10'
-                    strokeLinecap='round'></line>
-                  <line
-                    className='beat'
-                    x1='85'
-                    y1='40'
-                    x2='85'
-                    y2='100'
-                    stroke='currentColor'
-                    strokeWidth='10'
-                    strokeLinecap='round'></line>
-                </symbol>
-              </svg>
-
-              <span
+              <Div
+                none={!state.select}
                 style={{
-                  color: '#ff6699',
-                  border: '1px solid #ff6699',
-                  borderRadius: 5,
-                  paddingLeft: 5,
-                  fontSize: 24,
+                  fontWeight: 'bold',
+                  letterSpacing: 1,
+                  display: 'flex',
+                  gap: 20,
+                  fontSize: 17,
+                  height: 60,
+                  alignItems: 'center',
                 }}>
-                <svg height='30' width='30'>
-                  <use href='#beats'></use>
-                </svg>
-                <span>Loading...</span>
-              </span>
-
-              <div>
-                <svg className='demo3' height='0' width='0'>
-                  <symbol id='demo-clock' viewBox='-52 -52 104 104'>
-                    <circle
-                      fill='none'
-                      stroke='currentColor'
-                      strokeWidth='6'
-                      strokeMiterlimit='10'
-                      cx='0'
-                      cy='0'
-                      r='48'
-                    />
-                    <line
-                      className='fast-hand'
-                      fill='none'
-                      strokeLinecap='round'
-                      stroke='currentColor'
-                      strokeWidth='6'
-                      strokeMiterlimit='10'
-                      x1='0'
-                      y1='0'
-                      x2='35'
-                      y2='0.5'></line>
-                    <line
-                      className='slow-hand'
-                      fill='none'
-                      strokeLinecap='round'
-                      stroke='currentColor'
-                      strokeWidth='6'
-                      strokeMiterlimit='10'
-                      x1='0'
-                      y1='0'
-                      x2='-0.5'
-                      y2='-24'></line>
-                  </symbol>
-                </svg>
-                <div style={{ color: '#fa8919', fontSize: 16 }}>
-                  <svg
-                    height='26'
-                    width='26'
-                    style={{
-                      verticalAlign: 'top',
-                      marginTop: -2,
-                      marginRight: 3,
-                      color: '#fa8919',
-                    }}>
-                    <use href='#demo-clock'></use>
-                  </svg>
-                  <span>Loading...</span>
-                </div>
-              </div>
+                <p>{`<Icon icon='${state.select}' />`}</p>
+                <Icon
+                  style={{
+                    cursor: 'pointer',
+                  }}
+                  type='copy'
+                  onClick={() => {
+                    copyText(`<Icon icon='${state.select}' />`) &&
+                      message.success('Copy Success')
+                  }}
+                />
+              </Div>
             </Flex>
           ),
         },
