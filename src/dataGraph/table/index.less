@@ -6,6 +6,8 @@
   margin: 0;
   box-sizing: border-box;
   padding: 0;
+  overflow: hidden;
+  width: 100%;
 
   table {
     width: 100%;
@@ -13,6 +15,7 @@
     letter-spacing: 1px;
     border-color: transparent;
   }
+
 
   td,
   th {
@@ -28,8 +31,18 @@
     &:last-child {
       border-right: none;
     }
-
   }
+
+  &.noBorder {
+    border: none;
+    border-radius: none;
+
+    td,
+    th {
+      border: none;
+    }
+  }
+
 
   tr {
     &:nth-child(2n+2) {

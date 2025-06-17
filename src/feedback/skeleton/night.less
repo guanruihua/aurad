@@ -1,14 +1,13 @@
 .night-theme .au-skeleton {
   &-item {
-    background: rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.35);
   }
 
-  // &-active {
-  //   &>.au-skeleton-item {
-  //     // background: linear-gradient(120deg, rgba(255, 255, 255, 0.45) 25%,
-  //     //     rgba(255, 255, 255, 0.25) 37%,
-  //     //     rgba(255, 255, 255, 0.45) 63%);
-  //   }
-
-  // }
+  &.au-skeleton-active {
+    &>.au-skeleton-item {
+      background: linear-gradient(120deg, rgba(255, 255, 255, 0.35) 25%,
+          rgba(255, 255, 255, 0.25) 37%,
+          rgba(255, 255, 255, 0.35) 63%);
+    }
+  }
 }

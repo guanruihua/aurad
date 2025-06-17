@@ -1,16 +1,23 @@
 .au-tab {
   &>.header {
     display: flex;
-    gap: 10px;
+    gap: 16px;
     font-size: 15px;
-    color: #7e7e7e;
+    color: var(--title-color);
     padding-bottom: 10px;
     margin-bottom: 10px;
-    border-bottom: 1px solid #eee;
+    border-bottom: var(--border);
     letter-spacing: .5px;
+    transition: all .6s;
+    letter-spacing: 1px;
+    
+    .disabled {
+      cursor: not-allowed;
+      color: var(--disabled-color);
+    }
 
-    .select,
-    div:hover {
+    .select:not(.disabled),
+    div:hover:not(.disabled) {
       color: var(--color);
     }
   }

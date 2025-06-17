@@ -1,6 +1,13 @@
 import React from 'react'
-import type { DivProps, PProps, SpanProps } from './type'
+import type {
+  DataListObjectProps,
+  DivProps,
+  PProps,
+  SpanProps,
+  UListProps,
+} from './type'
 import { classNames as _classNames } from 'harpe'
+import { isEffectObject, isString } from 'asura-eye'
 
 export * from './type'
 
@@ -37,5 +44,38 @@ export function P(props: PProps) {
       {...rest}>
       {children}
     </p>
+  )
+}
+
+export function Ul(props: UListProps) {
+  const { className, classNames, hidden, none, items, children, ...rest } =
+    props
+
+  return (
+    <ul
+      className={_classNames(className, classNames, { hidden, none })}
+      {...rest}>
+      {items?.map((item, i) => {
+        if (isString(item)) return <li key={i}>{item}</li>
+        if (isEffectObject<DataListObjectProps>(item)) {
+          const {
+            className,
+            classNames,
+            hidden,
+            none,
+            children,
+            ...rest
+          } = item
+
+          return (
+            <li
+              key={i}
+              className={_classNames(className, classNames, { hidden, none })}
+              {...rest}>{children as any}</li>
+          )
+        }
+      })?.filter(Boolean)}
+      {children}
+    </ul>
   )
 }

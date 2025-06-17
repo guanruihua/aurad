@@ -3,16 +3,14 @@ import { ObjectType } from '0type'
 import { echarts } from './core'
 import { classNames } from 'harpe'
 
-export interface ChartProps
-  extends Omit<
-    React.HTMLAttributes<HTMLDivElement>,
-    'className' | 'children'
-  > {
+export { echarts }
+
+export type ChartProps = {
   className?: string
   options: ObjectType
   initCharFn?: (chart: any) => void
   [key: string]: any
-}
+} & Omit<React.HTMLAttributes<HTMLDivElement>, 'className' | 'children'>
 
 export function Chart(props: ChartProps) {
   const { className, style, options, initCharFn, ...rest } = props

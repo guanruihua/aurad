@@ -7,6 +7,7 @@ import { ObjectType, stringify } from 'abandonjs'
 import { isNumber } from 'asura-eye'
 import { classNames, ClassNameType } from 'harpe'
 import './index.less'
+import { Div } from '@/element'
 
 export type ColumnsType<DataType extends ObjectType = ObjectType> = {
   title?: string
@@ -57,18 +58,10 @@ export function Table<DataType extends ObjectType = ObjectType>(
     ...rest
   } = props
 
-  const newClassName = classNames('au-table', className)
-
   return (
-    <div
-      className={newClassName}
-      style={
-        {
-          '--border': noBorder ? 'none' : '1px solid #e9e9e9',
-          '--border-radius': noBorder ? '0' : '12px',
-          ...style,
-        } as CSSProperties
-      }
+    <Div
+      className={['au-table', className, { noBorder }]}
+      style={style}
       {...rest}>
       <table cellSpacing={0}>
         <thead>
@@ -123,6 +116,6 @@ export function Table<DataType extends ObjectType = ObjectType>(
           })}
         </tbody>
       </table>
-    </div>
+    </Div>
   )
 }

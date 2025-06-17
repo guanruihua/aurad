@@ -5,7 +5,7 @@
   padding: 16px 8px;
   border-radius: 8px;
 
-  --size: var(--size-default);
+  --size: var(--line-height);
 
   &-item {
     display: inline-block;
@@ -14,7 +14,17 @@
     border-radius: 4px;
   }
 
-  &-active {
+  @keyframes loading {
+    0% {
+      background-position: 250% 50%;
+    }
+
+    100% {
+      background-position: 50% 50%;
+    }
+  }
+
+  &.au-skeleton-active {
     &>.au-skeleton-item {
       background-attachment: fixed;
       background-repeat: repeat;
@@ -52,13 +62,5 @@
     border-radius: 50%;
   }
 
-  @keyframes loading {
-    0% {
-      background-position: 250% 50%;
-    }
 
-    100% {
-      background-position: 50% 50%;
-    }
-  }
 }

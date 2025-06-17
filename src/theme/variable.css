@@ -1,19 +1,19 @@
 :root {
-
   /* 主色调 */
   --color: #108ee9;
   --hover-color: #40a9ff;
   --error-color: #ff4d4f;
   --border-radius: 8px;
 
+  --title-color: rgba(0, 0, 0, .88);
   /* 禁用状态色 */
-  --disabled-color: rgba(0, 0, 0, .6);
+  --disabled-color: rgba(0, 0, 0, .25);
   --disabled-night-color: rgba(255, 255, 255, .6);
   --disabled-bg-color: #f5f5f5;
   --disabled-border-color: #d9d9d9;
   --night-disabled-bg-color: rgba(255, 255, 255, .3);
   /* 主边框 */
-  --border: 2px solid #e9e9e9;
+  --border: 1px solid #e9e9e9;
   /* 主圆角 */
   /* --border-radius: 12px; */
   /* 控件圆角 */
@@ -25,14 +25,7 @@
   /* hover背景色 */
   --hover-background: rgba(250, 250, 250, .9);
 
-  --au-border-radius: 8px;
-
-  --au-primary-color: #ffffff;
-  --au-primary-bg-color: #1890ff;
-  --au-default-color: #1890ff;
-  --au-primary-bg-color-hover: #40a9ff;
-  --au-primary-color-active: #096dd9;
-  --au-disabled-color: #f5f5f5;
+  --line-height: 24px;
 
   /* 控件尺寸 */
   --size-small: 24px;
@@ -46,8 +39,6 @@
   --size-xl: 400px;
   --size-xxl: 800px;
   --size-xxxl: 1200px;
-
-  /* --au-primary-color-outline: rgba(24, 144, 255, .2); */
 
   --wh-1: rgba(255, 255, 255, .1);
   --wh-2: rgba(255, 255, 255, .2);
@@ -70,73 +61,15 @@
   --bl-7: rgba(0, 0, 0, .7);
   --bl-8: rgba(0, 0, 0, .8);
   --bl-9: rgba(0, 0, 0, .9);
-
-
-  --au-primary-1: #e6f7ff;
-  --au-primary-2: #bae7ff;
-  --au-primary-3: #91d5ff;
-  --au-primary-4: #69c0ff;
-  --au-primary-5: #40a9ff;
-  --au-primary-6: #1890ff;
-  --au-primary-7: #096dd9;
-  --au-primary-color-deprecated-l-35: #cbe6ff;
-  --au-primary-color-deprecated-l-20: #7ec1ff;
-  --au-primary-color-deprecated-t-20: #46a6ff;
-  --au-primary-color-deprecated-t-50: #8cc8ff;
-  --au-primary-color-deprecated-f-12: rgba(24, 144, 255, .12);
-  --au-primary-color-active-deprecated-f-30: rgba(230, 247, 255, .3);
-  --au-primary-color-active-deprecated-d-02: #dcf4ff;
-  --au-success-color: #52c41a;
-  --au-success-color-hover: #73d13d;
-  --au-success-color-active: #389e0d;
-  --au-success-color-outline: rgba(82, 196, 26, .2);
-  --au-success-color-deprecated-bg: #f6ffed;
-  --au-success-color-deprecated-border: #b7eb8f;
-  --au-error-color: #ff4d4f;
-  --au-error-color-hover: #ff7875;
-  --au-error-color-active: #d9363e;
-  --au-error-color-outline: rgba(255, 77, 79, .2);
-  --au-error-color-deprecated-bg: #fff2f0;
-  --au-error-color-deprecated-border: #ffccc7;
-  --au-warning-color: #faad14;
-  --au-warning-color-hover: #ffc53d;
-  --au-warning-color-active: #d48806;
-  --au-warning-color-outline: rgba(250, 173, 20, .2);
-  --au-warning-color-deprecated-bg: #fffbe6;
-  --au-warning-color-deprecated-border: #ffe58f;
-  --au-info-color: #1890ff;
-  --au-info-color-deprecated-bg: #e6f7ff;
-  --au-info-color-deprecated-border: #91d5ff;
-  --docsearch-primary-color: #5468ff;
-  --docsearch-text-color: #1c1e21;
-  --docsearch-spacing: 12px;
-  --docsearch-icon-stroke-width: 1.4;
-  --docsearch-highlight-color: var(--docsearch-primary-color);
-  --docsearch-muted-color: #969faf;
-  --docsearch-container-background: rgba(101, 108, 133, .8);
-  --docsearch-logo-color: #5468ff;
-  --docsearch-modal-width: 560px;
-  --docsearch-modal-height: 600px;
-  --docsearch-modal-background: #f5f6f7;
-  --docsearch-modal-shadow: inset 1px 1px 0 0 hsla(0, 0%, 100%, .5), 0 3px 8px 0 #555a64;
-  --docsearch-searchbox-height: 56px;
-  --docsearch-searchbox-background: #ebedf0;
-  --docsearch-searchbox-focus-background: #fff;
-  --docsearch-searchbox-shadow: inset 0 0 0 2px var(--docsearch-primary-color);
-  --docsearch-hit-height: 56px;
-  --docsearch-hit-color: #444950;
-  --docsearch-hit-active-color: #fff;
-  --docsearch-hit-background: #fff;
-  --docsearch-hit-shadow: 0 1px 3px 0 #d4d9e1;
-  --docsearch-key-gradient: linear-gradient(-225deg, #d5dbe4, #f8f8f8);
-  --docsearch-key-shadow: inset 0 -2px 0 0 #cdcde6, inset 0 0 1px 1px #fff, 0 1px 2px 1px rgba(30, 35, 90, .4);
-  --docsearch-footer-height: 44px;
-  --docsearch-footer-background: #fff;
-  --docsearch-footer-shadow: 0 -1px 0 0 #e0e3e8, 0 -3px 6px 0 rgba(69, 98, 155, .12);
 }
 
 :root.night-theme {
   --background: rgb(15, 15, 15);
   --half-background: rgba(15, 15, 15, .5);
   --hover-background: rgba(15, 15, 15, .9);
+  --border: 1px solid rgba(255, 255, 255, .3);
+
+  --title-color: rgba(255, 255, 255, .88);
+  /* 禁用状态色 */
+  --disabled-color: rgba(255, 255, 255, .25);
 }

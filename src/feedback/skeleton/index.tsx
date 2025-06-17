@@ -18,17 +18,21 @@ export function Skeleton(props: SkeletonProps) {
     ...rest
   } = props
 
-  const newStyle: React.CSSProperties = {
-    '--size': `var(--size-${size})`,
-    ...style,
-  } as React.CSSProperties
-
   return (
     <div
-      className={classNames('au-skeleton', className, {
-        'au-skeleton-active': active,
-      })}
-      style={newStyle}
+      className={classNames(
+        'au-skeleton',
+        {
+          'au-skeleton-active': active,
+        },
+        className,
+      )}
+      style={
+        {
+          '--size': `var(--size-${size})`,
+          ...style,
+        } as React.CSSProperties
+      }
       {...rest}>
       {children}
     </div>

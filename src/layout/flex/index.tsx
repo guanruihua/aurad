@@ -20,6 +20,10 @@ export interface FlexProps
    */
   center?: boolean
   /**
+   * @description 垂直对齐方式
+   */
+  alginCenter?: boolean
+  /**
    * @description 水平对齐方式
    */
   between?: boolean
@@ -48,6 +52,7 @@ export function Flex(props: FlexProps) {
     start,
     end,
     center,
+    alginCenter,
     between,
     around,
     nowrap,
@@ -68,6 +73,7 @@ export function Flex(props: FlexProps) {
           start,
           end,
           center,
+          alginCenter,
           between,
           around,
           nowrap,

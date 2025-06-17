@@ -75,3 +75,21 @@ export function RDS(
     )
   })
 }
+
+export const getTableColumns = () => {
+  return [
+    { title: '属性', prop: 'prop' },
+    {
+      title: '描述',
+      prop: 'desc',
+    },
+    {
+      title: '类型',
+      prop: 'type',
+    },
+    {
+      title: '默认值',
+      prop: 'default',
+    },
+  ]
+}

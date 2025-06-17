@@ -80,7 +80,7 @@ export function Paging(props: PagingProps) {
     <div className={classNames('au-paging', className)} {...rest}>
       <div className='total'>Total: {total}</div>
       <div onClick={() => handleChange(nowCurrent - 1, pageSize)}>
-        <Icon type='leftArrow' size={10} />
+        <Icon type='left' size={10} />
       </div>
       {renderPageArray.map((uIndex: number) => {
         if (uIndex === -1)
@@ -114,7 +114,7 @@ export function Paging(props: PagingProps) {
         )
       })}
       <div onClick={() => handleChange(nowCurrent + 1, pageSize)}>
-        <Icon size={10} type='rightArrow' />
+        <Icon size={10} type='right' />
       </div>
       <div className='pageSize-select'>
         <Select

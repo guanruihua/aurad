@@ -1,15 +1,7 @@
 import React from 'react'
 import { classNames, ClassNameType } from 'harpe'
 import './index.less'
-import { DivProps } from '@/element/type'
-
-export interface SplitItemProps extends DivProps {
-  // extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className'> {
-  min?: number
-  max?: number
-  // className?: ClassNameType
-  // children?: React.ReactNode
-}
+import { useState } from './util'
 
 export interface SplitProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className'> {
@@ -18,87 +10,44 @@ export interface SplitProps
    * @default 10
    */
   gap?: number
-  items?: [SplitItemProps, SplitItemProps]
+  /**
+   * @default 20%
+   * @type {number|`{number}px`|`{number}%`}
+   */
+  leftMinWidth?: string | number
+  /**
+   * @default 20%
+   * @type {number|`{number}px`|`{number}%`}
+   */
+  rightMinWidth?: string | number
+  items?: [React.ReactNode, React.ReactNode]
   [key: string]: any
 }
 
 export function Split(props: SplitProps) {
-  const { gap = 10, items = [], className, style, ...rest } = props
-  const leftRef = React.useRef<HTMLDivElement>(null)
+  const { gap = 10, items = [], leftMinWidth, rightMinWidth, className, style, ...rest } = props
   const [left, right] = items
-  const startX = React.useRef(0)
-  const startWidth = React.useRef(0)
-  const boxWidth = React.useRef(0)
 
-  const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.preventDefault()
-    e.stopPropagation()
-    startX.current = e.clientX
-    startWidth.current = leftRef.current?.getBoundingClientRect()?.width || 0
-    boxWidth.current =
-      leftRef.current?.parentElement?.getBoundingClientRect().width || 0
-    document.addEventListener('mousemove', onMouseMove)
-    document.addEventListener('mouseup', onMouseUp)
-  }
+  const { boxRef, onMouseDown } = useState(props)
 
-  const onMouseMove = (e: MouseEvent) => {
-    const newWidth = startWidth.current - (startX.current - e.clientX)
-    const getWidth = () => {
-      if (newWidth < 0) return 0
-      // left
-      if (left?.max && newWidth > left.max) return left.max
-      if (left?.min && newWidth < left.min) return left.min
-      // right
-      if (right?.min && newWidth + right.min > boxWidth.current - gap)
-        return boxWidth.current - gap - right.min
-      return newWidth
-    }
-
-    if (leftRef.current) {
-      leftRef.current.style.width = getWidth() + 'px'
-    }
-  }
-
-  const onMouseUp = () => {
-    document.removeEventListener('mousemove', onMouseMove)
-    document.removeEventListener('mouseup', onMouseUp)
-  }
-  const getRest = (cfg: SplitItemProps = {}) => {
-    const { style, className, children, ...rest } = cfg
-    return rest
-  }
   return (
     <div
+      ref={boxRef as any}
       className={classNames('au-split', className)}
       style={{
         gridTemplateColumns: `auto ${gap}px 1fr`,
         ...style,
       }}
       {...rest}>
-      <div
-        ref={leftRef}
-        className={classNames('au-split-box au-split-left', className)}
-        style={{
-          maxWidth: left?.max ?? 'auto',
-          minWidth: left?.min ?? 'auto',
-          ...left?.style,
-        }}
-        {...getRest(left)}>
-        {left?.children}
+      <div className={classNames('au-split-box au-split-left', className)}>
+        {left}
       </div>
       <div
         className='au-split-btn'
         onMouseDown={onMouseDown}
         style={{ width: gap }}></div>
-      <div
-        className={classNames('au-split-box au-split-right', className)}
-        style={{
-          maxWidth: right?.max ?? 'auto',
-          minWidth: right?.min ?? 'auto',
-          ...right?.style,
-        }}
-        {...getRest(left)}>
-        {right?.children}
+      <div className={classNames('au-split-box au-split-right', className)}>
+        {right}
       </div>
     </div>
   )

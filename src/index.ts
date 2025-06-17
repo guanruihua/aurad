@@ -8,3 +8,6 @@ export * from './theme'
 export * from './utils'
 export * from './dataGraph'
 export * from './element'
+export * from './feedback'
+export * from './echart'
+

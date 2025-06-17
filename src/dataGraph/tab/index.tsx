@@ -1,10 +1,14 @@
 import { classNames, ClassNameType } from 'harpe'
 import React from 'react'
 import './index.less'
+import { Div } from '@/element'
 
-interface TabItem {
+export interface TabItemProps {
   title: string | React.ReactNode
   key: string
+  className?: ClassNameType
+  disabled?: boolean
+  style?: React.CSSProperties
   children: React.ReactNode
 }
 
@@ -14,7 +18,7 @@ export interface TabProps
     'children' | 'className' | 'onChange'
   > {
   className?: ClassNameType
-  items: TabItem[]
+  items: TabItemProps[]
   defaultValue?: string
   value?: string
   onChange?(key: string): void
@@ -32,7 +36,7 @@ export function Tab(props: TabProps) {
   } = props
   const getHandle = () => {
     if (value) {
-      return [value, (val: string) => {}] as [string, (val: string) => void]
+      return [value, (val: string) => {}] as [string , (val: string) => void]
     }
     return React.useState<string>(defaultValue ?? items[0].key)
   }
@@ -42,32 +46,37 @@ export function Tab(props: TabProps) {
     <div className={classNames('au-tab', className as any)} {...rest}>
       <div className='header'>
         {items.map((item, i) => {
-          const { title, key } = item
+          const { title, key = String(i), disabled, style, className } = item
           return (
-            <div
+            <Div
               key={i}
-              className={classNames({ select: key === nowActiveKey })}
+              className={className}
+              classNames={{
+                select: key === nowActiveKey,
+                disabled,
+              }}
               onClick={() => {
                 onChange && onChange(key)
                 if (value === undefined) setNowActiveKey(key)
               }}
               style={{
                 cursor: 'pointer',
+                ...style,
               }}>
               {title}
-            </div>
+            </Div>
           )
         })}
       </div>
       <div className='content'>
         {items.map((item, i) => {
-          const { key, children } = item
+          const { key = i, children } = item
           return (
-            <div
+            <Div
               key={i}
               style={{ display: nowActiveKey === key ? 'block' : 'none' }}>
               {children}
-            </div>
+            </Div>
           )
         })}
       </div>
