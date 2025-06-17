@@ -33,6 +33,12 @@ export default function () {
           ),
         },
         {
+          title: 'Table(Empty)',
+          children: (
+            <Table columns={columns} />
+          ),
+        },
+        {
           title: 'Table',
           children: (
             <Table

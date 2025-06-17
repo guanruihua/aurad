@@ -4,15 +4,12 @@ import { IconType, icons } from '../icons'
 import { Docs, Flex } from '@/layout'
 import { useSetState } from '0hook'
 import './index.less'
-import { Div } from '@/element'
-import { copyText } from 'harpe'
-import { message } from '@/message'
 
 export default function () {
   const [state, setState] = useSetState(
     {
       color: '#999',
-      size: '48',
+      size: '32',
       select: '',
     },
     'demo-page-icon',
@@ -83,31 +80,10 @@ export default function () {
                   />
                 ))}
               </Flex>
-              <Div
-                none={!state.select}
-                style={{
-                  fontWeight: 'bold',
-                  letterSpacing: 1,
-                  display: 'flex',
-                  gap: 20,
-                  fontSize: 17,
-                  height: 60,
-                  alignItems: 'center',
-                }}>
-                <p>{`<Icon icon='${state.select}' />`}</p>
-                <Icon
-                  style={{
-                    cursor: 'pointer',
-                  }}
-                  type='copy'
-                  onClick={() => {
-                    copyText(`<Icon icon='${state.select}' />`) &&
-                      message.success('Copy Success')
-                  }}
-                />
-              </Div>
             </Flex>
           ),
+          defaultShowCode: true,
+          code: `<Icon icon='${state.select}' />`,
         },
       ]}></Docs>
   )

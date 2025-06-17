@@ -1,55 +1,61 @@
-import React, { useState } from 'react'
-import { Button } from '@/form'
-import { Docs, Flex } from '@/layout'
-import { Dialog } from '..'
+import React from 'react'
+import { Docs } from '@/layout'
+import Demo from './demo'
+import { Code } from './code'
+import { Table } from '@/dataGraph'
+import { getTableColumns } from '@/demo'
 
 export default function DialogPage() {
-  const [open, setOpen] = useState<boolean>(
-    // true
-    false,
-  )
-
   return (
-    <Docs>
-      <Flex>
-        <Button
-          onClick={() => {
-            setOpen(true)
-          }}>
-          open
-        </Button>
-        <Button
-          onClick={() => {
-            setOpen(false)
-          }}>
-          close
-        </Button>
-      </Flex>
-      <Dialog
-        title={'Title xxx'}
-        maskClosable
-        // hiddenCancel
-        onCancel={() => {
-          setOpen(false)
-        }}
-        open={open}>
-        <div>
-          <h4>WHERE IN THE WORLD</h4>
-          <p>Mount Greylock, Massachusetts, North America</p>
-          <h4>TYPE</h4>
-          <p>School of witchcraft and wizardry</p>
-          <h4>RESIDENTS OR OWNERS</h4>
-          <p>
-            Founded by Isolt Sayre, James Steward, Chadwick Boot and Webster
-            Boot
-          </p>
-          <h4>MAGICAL PROPERTIES</h4>
-          <p>
-            Enchanted carvings of the four house beasts that react in the
-            presence of new students
-          </p>
-        </div>
-      </Dialog>
-    </Docs>
+    <Docs
+      items={[
+        {
+          title: '基本使用',
+          children: <Demo />,
+          code: Code,
+        },
+        {
+          title: 'Props',
+          children: (
+            <Table
+              columns={getTableColumns()}
+              dataSource={[
+                { prop: 'title', type: 'ReactNode', desc: '标题' },
+                { prop: 'open', type: 'boolean', desc: '打开弹框' },
+                {
+                  desc: '取消按钮方法回调',
+                  prop: 'onCancel',
+                  type: '() => void',
+                },
+                {
+                  desc: '隐藏取消按钮',
+                  prop: 'hiddenCancel',
+                  type: 'boolean',
+                  default: 'false',
+                },
+                { desc: '确定按钮方法回调', prop: 'onOk', type: '() => void' },
+                {
+                  desc: '隐藏确定按钮',
+                  prop: 'hiddenOk',
+                  type: 'boolean',
+                  default: 'false',
+                },
+                {
+                  desc: '点击遮罩(蒙层)关闭',
+                  prop: 'maskClosable',
+                  type: 'boolean',
+                  default: 'true',
+                },
+                {
+                  prop: 'children',
+                  type: 'ReactNode',
+                  desc: '弹框内容',
+                },
+                { prop: 'className', type: 'ClassNameType', desc: 'className' },
+              ]}
+            />
+          ),
+        },
+      ]}></Docs>
   )
 }

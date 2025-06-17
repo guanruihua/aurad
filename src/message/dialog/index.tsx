@@ -9,7 +9,7 @@ import './night.less'
 export interface DialogProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className' | 'title'> {
   className?: ClassNameType
-  title?: string | ReactNode
+  title?: ReactNode
   open?: boolean
   /**
    * @description 取消按钮方法回调
@@ -33,7 +33,7 @@ export interface DialogProps
   hiddenOk?: boolean
   /**
    * @description 点击遮罩(蒙层)关闭
-   * @default false
+   * @default true
    * @type {boolean}
    */
   maskClosable?: boolean
@@ -50,17 +50,15 @@ export function Dialog(props: DialogProps) {
     hiddenCancel = false,
     onOk,
     hiddenOk = false,
-    maskClosable = false,
+    maskClosable = true,
   } = props
 
   if (open === false) return <div />
 
   return (
-    <div className={classNames('au-dialog', className)}>
-      <div
-        className='au-dialog-mask'
-        onClick={() => maskClosable && onCancel && onCancel()}
-      />
+    <div
+      className={classNames('au-dialog', className)}
+      onClick={() => maskClosable && onCancel && onCancel()}>
       <div className='au-dialog-layout'>
         {isNoEmpty(title) && (
           <div className='au-dialog-header'>

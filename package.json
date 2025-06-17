@@ -8,16 +8,12 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "start": "cross-env NODE_ENV=development node config/webpack.dev.js",
-    "publish": "node config/publish.cjs",
     "build": "vite build --config config/vite.config.js",
     "build2": "rimraf dist && cross-env webpack --config config/webpack.npm.js",
     "build3": "cross-env webpack --config config/webpack.npm.js",
     "build4": "NODE_ENV=production rollup -c config/rollup.npm.js",
     "commitlint": "commitlint -e",
-    "prepare": "husky install",
-    "release": "npm version prerelease",
-    "git": "node config/script/git.js",
-    "pub": "npm publish"
+    "prepare": "husky install"
   },
   "keywords": [],
   "husky": {
@@ -40,6 +36,7 @@
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/react": "^18.2.23",
     "@types/react-dom": "^18.2.8",
+    "@types/react-syntax-highlighter": "^15.5.13",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "@typescript-eslint/typescript-estree": "^5.62.0",
@@ -49,7 +46,6 @@
     "axios": "^1.5.1",
     "babel-loader": "^8.3.0",
     "clean-webpack-plugin": "^4.0.0",
-    "command-go": "^0.1.1",
     "commitlint": "^17.7.1",
     "cross-env": "^7.0.3",
     "css-loader": "^6.8.1",
@@ -67,6 +63,7 @@
     "postcss": "^8.4.30",
     "postcss-loader": "^7.3.3",
     "react-image-crop": "^11.0.5",
+    "react-syntax-highlighter": "^15.6.1",
     "style-loader": "^3.3.3",
     "terser-webpack-plugin": "^5.3.9",
     "ts-loader": "^9.4.4",

@@ -1,13 +1,10 @@
-import React, {
-  CSSProperties,
-  DetailedHTMLProps,
-  TdHTMLAttributes,
-} from 'react'
+import React, { DetailedHTMLProps, TdHTMLAttributes } from 'react'
 import { ObjectType, stringify } from 'abandonjs'
 import { isNumber } from 'asura-eye'
-import { classNames, ClassNameType } from 'harpe'
+import { ClassNameType } from 'harpe'
 import './index.less'
 import { Div } from '@/element'
+import { Empty } from '@/feedback'
 
 export type ColumnsType<DataType extends ObjectType = ObjectType> = {
   title?: string
@@ -36,7 +33,7 @@ export interface Table<DataType extends ObjectType = ObjectType>
    */
   noBorder?: boolean
   columns: ColumnsType<DataType>
-  dataSource: DataType[]
+  dataSource?: DataType[]
   rowSelection?: {
     onChange?: (selectedRowKeys: string[], selectedRows: DataType[]) => void
     getCheckboxProps?: (record: ObjectType<any>) => { disabled: boolean }
@@ -79,41 +76,49 @@ export function Table<DataType extends ObjectType = ObjectType>(
           </tr>
         </thead>
         <tbody>
-          {dataSource.map((item, index) => {
-            const { key = index, ...rest } = item
-            return (
-              <tr key={stringify(key)}>
-                {rowSelection && (
-                  <td style={{ width: 30 }}>
-                    <input type={'checkbox'} />
-                  </td>
-                )}
-                {serialNumber && <td style={{ width: 30 }}>{index + 1}</td>}
-                {columns.map((column, cIndex) => {
-                  const { dataIndex, prop, render, key = cIndex } = column
-                  const itemProps = {} as DetailedHTMLProps<
-                    TdHTMLAttributes<HTMLTableCellElement>,
-                    HTMLTableCellElement
-                  >
-                  const { col, row } = marge[`${index}-${cIndex}`] || {}
-
-                  if (isNumber(col)) itemProps['colSpan'] = col
-                  if (isNumber(row)) itemProps['rowSpan'] = row
-
-                  const dataKey: string = dataIndex || prop || ''
-                  const Render = render
-                    ? render(rest[dataKey], item, index)
-                    : (rest[dataKey] as React.ReactNode)
-
-                  return (
-                    <td key={key} {...itemProps}>
-                      {Render}
+          {dataSource.length > 0 ? (
+            dataSource.map((item, index) => {
+              const { key = index, ...rest } = item
+              return (
+                <tr key={stringify(key)}>
+                  {rowSelection && (
+                    <td style={{ width: 30 }}>
+                      <input type={'checkbox'} />
                     </td>
-                  )
-                })}
-              </tr>
-            )
-          })}
+                  )}
+                  {serialNumber && <td style={{ width: 30 }}>{index + 1}</td>}
+                  {columns.map((column, cIndex) => {
+                    const { dataIndex, prop, render, key = cIndex } = column
+                    const itemProps = {} as DetailedHTMLProps<
+                      TdHTMLAttributes<HTMLTableCellElement>,
+                      HTMLTableCellElement
+                    >
+                    const { col, row } = marge[`${index}-${cIndex}`] || {}
+
+                    if (isNumber(col)) itemProps['colSpan'] = col
+                    if (isNumber(row)) itemProps['rowSpan'] = row
+
+                    const dataKey: string = dataIndex || prop || ''
+                    const Render = render
+                      ? render(rest[dataKey], item, index)
+                      : (rest[dataKey] as React.ReactNode)
+
+                    return (
+                      <td key={key} {...itemProps}>
+                        {Render}
+                      </td>
+                    )
+                  })}
+                </tr>
+              )
+            })
+          ) : (
+            <tr className='au-table-empty'>
+              <td rowSpan={2} colSpan={columns.length}>
+                <Empty style={{ minHeight: 100 }} />
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </Div>

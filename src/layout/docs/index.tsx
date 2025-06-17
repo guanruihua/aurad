@@ -1,12 +1,17 @@
 import React, { useRef } from 'react'
 import { useSetState } from '0hook'
-import { classNames, ClassNameType } from 'harpe'
+import { classNames, ClassNameType, copyText } from 'harpe'
 import './index.less'
+import { Code } from './code'
+import { Icon } from '@/icon'
+import { message } from '@/message'
 
 export interface DocsItemProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className' | 'title'> {
   className?: ClassNameType
   title: React.ReactNode
+  defaultShowCode?: boolean
+  code?: string
   children: React.ReactNode
 }
 
@@ -82,13 +87,42 @@ export function Docs(props: DocsProps) {
 }
 
 export function DocsItem(props: DocsItemProps) {
-  const { className, title, children, ...rest } = props
+  const {
+    className,
+    title,
+    defaultShowCode = false,
+    code,
+    children,
+    ...rest
+  } = props
+  const [showCode, setShowCode] = React.useState(defaultShowCode)
+
   return (
     <div className={classNames('au-docs-item', className)} {...rest}>
       {title && <h2 className='au-docs-item-title'>{title}</h2>}
-      {children}
+      <div className='au-docs-item-content'>{children}</div>
+      {code && (
+        <div className='au-docs-item-code'>
+          <span className='btns'>
+            {showCode && (
+              <Icon
+                type='copy'
+                onClick={() =>
+                  copyText(code)
+                    ? message.success('Copy Success')
+                    : message.error('Copy Error')
+                }
+              />
+            )}
+            <Icon type='code' onClick={() => setShowCode((v) => !v)} />
+          </span>
+          {showCode && <Code code={code} />}
+        </div>
+      )}
     </div>
   )
 }
 
 Docs.Item = DocsItem
+
+export { Code }

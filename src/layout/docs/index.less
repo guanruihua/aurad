@@ -1,9 +1,8 @@
-
 .au-docs {
   --bg: #000;
   --select-color: #7da8d3;
   position: relative;
-  
+
   &>.content {
     overflow-y: auto;
   }
@@ -41,12 +40,44 @@
 
 .au-docs-item {
   background: var(--bg);
-  padding: 10px 16px;
+  padding-top: 10px;
   border-radius: 12px;
   margin-bottom: 10px;
 
   &-title {
+    padding: 0 16px;
     margin-bottom: 12px;
+  }
+
+  &-content {
+    padding: 0 16px 10px;
+  }
+
+  &-code {
+    position: relative;
+    padding: 24px 2px 2px;
+
+    &>.btns {
+      position: absolute;
+      top: 2px;
+      right: 4px;
+      display: inline-flex;
+      justify-content: center;
+      gap: 6px;
+
+      &>svg {
+        color: #999;
+
+        &:hover {
+          color: #eee;
+        }
+      }
+    }
+
+    &>div>pre {
+      border-radius: 12px !important;
+      letter-spacing: .5px;
+    }
   }
 }
 
