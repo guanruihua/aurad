@@ -1,6 +1,6 @@
 import React from "react"
 import { classNames } from 'harpe'
-import { SelectComponent, MultipleSelectComponent } from './components'
+import { OneSelect, MultipleSelect } from './components'
 import { SelectProps } from './type'
 import './style/index.less'
 import './style/night.less'
@@ -10,12 +10,12 @@ export type Select = SelectProps
 export function Select(props: Select) {
 	const { mode, className, ...rest } = props
 	if (mode == 'multiple') {
-		return <MultipleSelectComponent
+		return <MultipleSelect
 			className={classNames('au-select', className)}
 			{...rest}
 		/>
 	}
-	return <SelectComponent
+	return <OneSelect
 		className={classNames('au-select', className)}
 		{...rest}
 	/>

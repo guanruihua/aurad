@@ -9,9 +9,10 @@
 
   &-input {
     width: 100%;
-    padding: 4px 6px;
+    padding: 0 6px;
     border-radius: @select-border-radius;
     border: 1px solid #d9d9d9;
+    line-height: 32px;
 
     & input {
       background: transparent;
@@ -26,6 +27,7 @@
       list-style: none;
       width: 100%;
       cursor: pointer;
+      color: #fff;
     }
 
     &.isHover,
@@ -38,29 +40,44 @@
   }
 
   &-multi-input {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 6px;
     max-width: 100%;
     min-height: 32px;
+    line-height: 32px;
     padding: 2px 6px;
 
     box-sizing: border-box;
 
-    .select-item {
+    .au-select-item {
       display: inline-flex;
+      height: 24px;
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid rgba(255, 255, 255, .4);
+      padding: 0 6px;
+      border-radius: 4px;
+
+      &>span {
+        // border: 1px solid rgba(5, 5, 5, .06);
+        background: rgba(0, 0, 0, .06);
+        font-size: 12px;
+
+      }
+
+      .icon-close {
+        display: none;
+        color: #919191;
+      }
     }
 
-    &>span {
-      display: inline-block;
-      padding: 3px 0 3px 4.5px;
-      margin: 2px;
-      margin-right: 6px;
-      border: 1px solid rgba(5, 5, 5, .06);
-      border-radius: 4px;
-      background: rgba(0, 0, 0, .06);
-      font-size: 12px;
-
-      &>.icon-close {
-        margin-left: 3px;
-        color: #919191;
+    &:hover {
+      .icon-close {
+        display: block;
       }
     }
 
@@ -77,44 +94,7 @@
     }
   }
 
-  &-options {
-    box-sizing: border-box;
-    position: absolute;
-    z-index: 99;
-    border: none;
-    overflow-y: auto;
-    max-height: 300px;
 
-    padding: 6px;
-    margin-top: 4px;
-    border-radius: @select-border-radius;
-    box-shadow: 0 6px 16px 0 rgb(0 0 0 / 8%),
-      0 3px 6px -4px rgb(0 0 0 / 12%),
-      0 9px 28px 8px rgb(0 0 0 / 5%);
-    display: none;
-    width: 100%;
-    transition: all 1s ease-in-out;
-    background: #fff;
-
-    .scrollbar(rgb(158, 158, 158));
-
-    &-hover {
-      display: block;
-    }
-
-    &-item {
-      box-sizing: border-box;
-      padding: 8px 8px;
-      border-radius: @select-border-radius;
-      margin-bottom: 3px;
-      cursor: pointer;
-
-      &:hover,
-      &.selected {
-        background: #c8e0fa;
-      }
-    }
-  }
 
   /*** hidden start ***/
   &.hidden {
@@ -139,4 +119,42 @@
   }
 
   /*** hidden end ***/
+}
+
+.au-select-options {
+  position: fixed;
+  box-sizing: border-box;
+  z-index: 99;
+  border: none;
+  overflow-y: auto;
+  max-height: 300px;
+
+  padding: 6px;
+  margin-top: 4px;
+  border-radius: @select-border-radius;
+  box-shadow: 0 6px 16px 0 rgb(0 0 0 / 8%),
+    0 3px 6px -4px rgb(0 0 0 / 12%),
+    0 9px 28px 8px rgb(0 0 0 / 5%);
+
+  width: 100%;
+  transition: height .6s ease-in-out;
+  background: #fff;
+
+  .scrollbar(rgb(158, 158, 158));
+
+  &-item {
+    box-sizing: border-box;
+    padding: 8px 8px;
+    border-radius: @select-border-radius;
+    margin-bottom: 3px;
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(255, 255, 255, .1);
+    }
+
+    &.selected {
+      background: rgba(255, 255, 255, .4);
+    }
+  }
 }

@@ -1,2 +1,2 @@
-export * from './SelectComponent'
-export * from './MultipleSelectComponent'
+export * from './one-select'
+export * from './multiple-select'
