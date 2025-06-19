@@ -1,9 +1,9 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import path from 'path'
+import CopyWebpackPlugin from 'copy-webpack-plugin'
 import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-
 // const MyPlugin  = require('./plugin')
 // const { ESBuildPlugin } = require('esbuild-loader')
 
@@ -12,13 +12,21 @@ export default {
   mode: 'development',
   // stats: 'errors-only',
   experiments: {
-    outputModule: true
+    outputModule: true,
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, '../src')
+      '@': path.resolve(__dirname, '../src'),
     },
-    extensions: ['.tsx', '.js', '.ts', '.less', '.css', '.module.less', '.d.ts']
+    extensions: [
+      '.tsx',
+      '.js',
+      '.ts',
+      '.less',
+      '.css',
+      '.module.less',
+      '.d.ts',
+    ],
   },
   module: {
     rules: [
@@ -38,25 +46,25 @@ export default {
           {
             loader: 'esbuild-loader',
             options: {
-              loader: 'tsx'
-            }
-          }
+              loader: 'tsx',
+            },
+          },
         ],
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.less$/,
         exclude: /\.module.less/,
         use: [
           {
-            loader: 'style-loader'
+            loader: 'style-loader',
           },
           {
-            loader: 'css-loader' // translates CSS into CommonJS
+            loader: 'css-loader', // translates CSS into CommonJS
           },
           {
             loader: 'less-loader', // compiles Less to CSS
@@ -65,11 +73,11 @@ export default {
                 // 如果使用less-loader@5，请移除 lessOptions 这一级直接配置选项。
                 // modifyVars: themes[process.env.theme],
                 // modifyVars: themes[process.env.theme],
-                javascriptEnabled: true
-              }
-            }
-          }
-        ]
+                javascriptEnabled: true,
+              },
+            },
+          },
+        ],
       },
       //设置模块化样式，添加hash命名，antd的样式修改只能引入.less文件覆盖
       {
@@ -81,45 +89,56 @@ export default {
             loader: 'css-loader',
             options: {
               modules: {
-                localIdentName: '_[local]_[hash:base64:6]'
+                localIdentName: '_[local]_[hash:base64:6]',
               },
-              importLoaders: 2
-            }
+              importLoaders: 2,
+            },
           },
           {
-            loader: 'postcss-loader'
+            loader: 'postcss-loader',
           },
           {
             loader: 'less-loader',
             options: {
               lessOptions: {
                 importLoaders: 2,
-                javascriptEnabled: true
-              }
-            }
-          }
-        ]
+                javascriptEnabled: true,
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.(jpe?g|png|gif|)$/i,
         type: 'asset/resource',
         generator: {
-          filename: 'img/[name][ext]'
-        }
+          filename: 'img/[name][ext]',
+        },
       },
       {
         test: /\.(svg|woff|woff2|eot|ttf|otf|ico)$/i,
         // test: /\.(jpe?g|png|gif|svg|woff|woff2|eot|ttf|otf|ico)$/i,
         type: 'asset/resource',
-        exclude: /node_modules/
-      }
-    ]
+        exclude: /node_modules/,
+      },
+    ],
   },
   plugins: [
     // new MyPlugin({
     // 	name: 'myPlugin',
     // }),
     // new ESBuildPlugin(),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'public',
+          to: 'dist',
+          globOptions: {
+            ignore: ['**/index.html'], // 忽略不想复制的文件
+          },
+        },
+      ],
+    }),
     //数组 放着所有的webpack插件
     new HtmlWebpackPlugin({
       // title: '0Design',
@@ -135,7 +154,7 @@ export default {
         // collapseWhitespace: true,
         // minifyJS: true, // 在脚本元素和事件属性中缩小JavaScript(使用UglifyJS)
         // minifyCSS: true // 缩小CSS样式元素和样式属性
-      }
-    })
-  ]
+      },
+    }),
+  ],
 }

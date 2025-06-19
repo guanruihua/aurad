@@ -1,16 +1,9 @@
-/* eslint-disable*/
-import React, { useState, useEffect } from 'react'
-import { Outlet, useNavigate } from 'react-router-dom'
-import { isUndefined, isEmpty } from 'asura-eye'
+import React, { useEffect } from 'react'
+import { Outlet } from 'react-router-dom'
+import { isEmpty } from 'asura-eye'
 import { classNames } from 'harpe'
 import { stringify } from 'abandonjs'
-import {
-  SubMenu,
-  type MenuObject,
-  Icon,
-  MenuSelectRecord,
-  ThemeSwitch,
-} from '../src'
+import { SubMenu, type MenuObject, Icon, ThemeSwitch, useMenu } from '../src'
 import './home.less'
 
 export function move() {
@@ -42,26 +35,14 @@ export interface MenuProps {
 
 export function Menu(props: MenuProps) {
   const { menu: originMenu = [], ...rest } = props
-  const nav = useNavigate()
-  const getMenu = () => {
-    return (originMenu[0].children || []).map((item) => {
-      // !item.icon && (item.icon = <Icon type="base-component" size={24} />)
-      return item
-    })
-  }
+  const getMenu = () => originMenu[0].children || []
+
   const menu = getMenu()
+  const menuHook = useMenu()
+  const { state, setState } = menuHook
+  const { fold = false } = state
 
-  const [select, setSelect] = useState<string[]>([])
-
-  const [fold, _setFold] = useState<boolean>(
-    isUndefined(props.fold) ? true : props.fold,
-  )
-  const setFold = (status: boolean) => {
-    _setFold(status)
-    localStorage.setItem('fold', String(status))
-  }
-
-  const asideWidth = localStorage.getItem('au-aside-menu-width') || 45
+  const asideWidth = localStorage.getItem('au-aside-menu-width') || 250
 
   const hasASide = menu && menu.length > 0
 
@@ -71,8 +52,7 @@ export function Menu(props: MenuProps) {
 
   const newStyle = hasASide
     ? fold
-      ? // ? { gridTemplateColumns: `45px 1fr` }
-        { gridTemplateColumns: `0 1fr` }
+      ? { gridTemplateColumns: `0 1fr` }
       : {
           gridTemplateColumns: `${asideWidth ? asideWidth + 'px' : '10vw'} 1fr`,
         }
@@ -86,22 +66,16 @@ export function Menu(props: MenuProps) {
   }
 
   return (
-    <div className={classNames('au-main', { fold })} style={newStyle}>
+    <div className={classNames('au-main', { fold })} style={{
+       gridTemplateColumns: hasASide? (fold?`0 1fr`: `${asideWidth ? asideWidth + 'px' : '10vw'} 1fr`): `1fr` ,
+    }}>
       {hasASide && (
         <SubMenu
           onDragEnter={onMouseCur}
           onDragOver={onMouseCur}
-          onSelect={(value: MenuSelectRecord) => {
-            const { names, record } = value
-            const { path } = record
-            setSelect(names)
-            path && nav(path)
-          }}
-          {...{
-            ...rest,
-            menu,
-            fold,
-          }}
+          hook={menuHook}
+          menu={menu}
+          {...rest}
         />
       )}
 
@@ -111,25 +85,20 @@ export function Menu(props: MenuProps) {
             {hasASide && (
               <button
                 onClick={() => {
-                  setFold(!fold)
+                  setState({ fold: !fold })
                 }}>
                 <Icon type={fold ? 'fold' : 'unFold'} size={32} />
               </button>
             )}
             <button
               onClick={() => {
-                nav('/')
-                setSelect([])
+                menuHook.onSelect({ path: '/', name: 'home' })
               }}>
               <Icon type='home' size={24} />
             </button>
             <ThemeSwitch />
           </div>
-          <h2 key={stringify(select)}>
-            {select
-              .map((str) => str.charAt(0).toUpperCase() + str.slice(1))
-              .join(' / ')}
-          </h2>
+          <h2 key={stringify(state.select)}>{state?.select?.name}</h2>
         </div>
         {hasASide && (
           <div

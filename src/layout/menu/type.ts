@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 import type { RouteObject } from 'react-router-dom'
 
 export interface MenuObject extends Omit<RouteObject, 'children'> {
+	id?: string
 	/**
 	 * @description 当前菜单 的 唯一标识
 	 */
@@ -19,24 +20,12 @@ export interface MenuSelectRecord {
 	name: string
 	names: string[]
 	record: MenuObject
-	selectRecords: MenuObject[]
 }
 
 export interface MenuProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onSelect' | 'className'> {
-	/**
- * @default true
- */
-	fold?: boolean
-	menu: MenuObject[]
-	/**
-	 * @description 当前选中的 选项的name, 
-	 */
-	selectNames?: string[]
-
-	selectRecords?: MenuObject[]
+	hook: any
 
 	lv?: number
-	onSelect?(value?: MenuSelectRecord): void
 
 	className?: ClassNameType
 

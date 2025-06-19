@@ -12,7 +12,6 @@ const menu: MenuObject[] = [
     name: 'home',
     element: (
       <Menu
-        fold={localStorage.fold === 'true'}
         menu={[
           {
             path: '/',

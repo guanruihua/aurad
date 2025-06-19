@@ -2,121 +2,58 @@ import React from 'react'
 import { isEffectArray, isString } from 'asura-eye'
 import { classNames } from 'harpe'
 import type { MenuObject, MenuProps } from '../type'
-import { equal, stringify } from 'abandonjs'
 import './index.less'
 import { Icon } from '@/icon'
+import { Div } from '@/element'
 
 export function NextSubMenu(props: MenuProps) {
-  const {
-    fold,
-    select,
-    onSelect,
-    menu,
-    selectNames = [],
-    selectRecords = [],
-    lv = 1,
-    className,
-    open,
-    setOpen,
-  } = props
+  const { hook, menu, lv = 1, prePath='/',  className } = props
 
-  const opens: string[] = JSON.parse(open || '[]')
+  const { state, setState, onSelect } = hook
+  const { fold = false, select = {}, opens = [] } = state
 
   return (
     <React.Fragment>
-      {menu.map((item: MenuObject, index: number) => {
-        const { icon, title, name, path = '', children } = item
-
-        const uid = name + path
+      {menu.map((item: MenuObject) => {
+        const { title, name, path = '', children = [] } = item
+        const newPath = prePath + path
+        let { id } = item
+        if (!id) {
+          id = `lv${lv}|${newPath}`
+          item.id = id
+        }
 
         if (!name) return
 
-        const handleSelect = () => {
-          // console.log(uid, open);
-          const newOpens = opens.includes(uid)
-            ? opens.filter((i) => i !== uid)
-            : [...opens, uid]
-          setOpen(stringify(newOpens))
-        }
-
-        const getShowName = () => {
-          const showTitle = title || name
-          if (fold) {
-            if (icon) return
-            if (isString(showTitle)) return showTitle[0]
-          }
-          return showTitle
-        }
-
-        const showName = getShowName()
-        const showNextStatus = !fold && isEffectArray(children)
-        const foldNext = showNextStatus && !opens.includes(uid)
-
-        const names = [...selectNames, name]
-        const newSelectRecords = [...selectRecords, item]
-        const isSelect =
-          name &&
-          selectNames[lv - 1] === name &&
-          equal(select.slice(0, lv), names.slice(0, lv))
-
         return (
           <div
-            key={name + path + index}
+            key={id}
             className={classNames('au-next-menu', 'lv' + lv, className)}>
             <div
               className={classNames('au-next-menu-content', {
-                isSelect,
+                select: select.id === id,
                 fold,
               })}
               title={name}
-              onClick={() => {
-                handleSelect()
-                !isEffectArray(children) &&
-                  onSelect &&
-                  onSelect({
-                    name,
-                    names,
-                    record: item,
-                    selectRecords: newSelectRecords,
-                  })
-              }}>
+              onClick={() => onSelect(item)}>
               <div className='label'>
-                {/* {icon && <div className="icon">{icon}</div>} */}
-                <div>{showName}</div>
+                <div>{title || name}</div>
               </div>
-              {showNextStatus && (
+              {!fold && isEffectArray(children) && (
                 <Icon
+                  type='bottom'
                   style={{
                     cursor: 'pointer',
                   }}
-                  onClick={() => {
-                    handleSelect()
-                  }}
-                  type='bottom'
+                  onClick={() => onSelect(item)}
                 />
               )}
             </div>
-
-            {showNextStatus && (
-              <div
-                style={{
-                  height: foldNext ? 0 : 'auto',
-                  // height: foldNext ? 0 : 38 * children.length
-                }}
-                className={'au-next-menu-content-children'}>
-                <NextSubMenu
-                  lv={lv + 1}
-                  selectNames={select}
-                  menu={children}
-                  selectName={names}
-                  {...{
-                    open,
-                    setOpen,
-                    onSelect,
-                  }}
-                />
-              </div>
-            )}
+            <Div
+              none={fold || !opens.includes(id) || children.length < 1}
+              className={'au-next-menu-content-children'}>
+              <NextSubMenu prePath={newPath} hook={hook} lv={lv + 1} menu={children} />
+            </Div>
           </div>
         )
       })}
