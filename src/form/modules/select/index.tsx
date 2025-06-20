@@ -8,8 +8,8 @@ import './style/night.less'
 export type Select = SelectProps
 
 export function Select(props: Select) {
-	const { mode, className, ...rest } = props
-	if (mode == 'multiple') {
+	const { multiple, className, ...rest } = props
+	if (multiple) {
 		return <MultipleSelect
 			className={classNames('au-select', className)}
 			{...rest}
