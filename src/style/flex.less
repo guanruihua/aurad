@@ -1,11 +1,13 @@
-.flexCenter(@horizontalAlign : 'start') {
+.flexCenter(@horizontalAlign : start) {
   display: flex;
   justify-content: @horizontalAlign;
   align-items: center;
+  flex-wrap: wrap;
 }
 
-.inlineFlexCenter(@horizontalAlign : 'start') {
+.inlineFlexCenter(@horizontalAlign : start) {
   display: inline-flex;
   justify-content: @horizontalAlign;
   align-items: center;
+  flex-wrap: wrap;
 }

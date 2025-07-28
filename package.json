@@ -1,6 +1,6 @@
 {
   "name": "aurad",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "type": "module",
   "description": "",
   "module": "dist/",
@@ -9,9 +9,6 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development node config/webpack.dev.js",
     "build": "vite build --config config/vite.config.js",
-    "build2": "rimraf dist && cross-env webpack --config config/webpack.npm.js",
-    "build3": "cross-env webpack --config config/webpack.npm.js",
-    "build4": "NODE_ENV=production rollup -c config/rollup.npm.js",
     "commitlint": "commitlint -e",
     "prepare": "husky install"
   },
