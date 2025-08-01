@@ -1,11 +1,5 @@
 import React from 'react'
-import type {
-  DataListObjectProps,
-  DivProps,
-  PProps,
-  SpanProps,
-  UListProps,
-} from './type'
+import type { DivProps, OListProps, PProps, SpanProps, UListProps } from './type'
 import { classNames as _classNames } from 'harpe'
 import { isEffectObject, isString } from 'asura-eye'
 
@@ -55,27 +49,56 @@ export function Ul(props: UListProps) {
     <ul
       className={_classNames(className, classNames, { hidden, none })}
       {...rest}>
-      {items?.map((item, i) => {
-        if (isString(item)) return <li key={i}>{item}</li>
-        if (isEffectObject<DataListObjectProps>(item)) {
-          const {
-            className,
-            classNames,
-            hidden,
-            none,
-            children,
-            ...rest
-          } = item
+      {items
+        ?.map((item, i) => {
+          if (isString(item)) return <li key={i}>{item}</li>
+          if (isEffectObject(item)) {
+            const { className, classNames, hidden, none, children, ...rest } =
+              item
 
-          return (
-            <li
-              key={i}
-              className={_classNames(className, classNames, { hidden, none })}
-              {...rest}>{children as any}</li>
-          )
-        }
-      })?.filter(Boolean)}
+            return (
+              <li
+                key={i}
+                className={_classNames(className, classNames, { hidden, none })}
+                {...(rest as any)}>
+                {children as any}
+              </li>
+            )
+          }
+        })
+        ?.filter(Boolean)}
       {children}
     </ul>
+  )
+}
+
+export function Ol(props: OListProps) {
+  const { className, classNames, hidden, none, items, children, ...rest } =
+    props
+
+  return (
+    <ol
+      className={_classNames(className, classNames, { hidden, none })}
+      {...rest}>
+      {items
+        ?.map((item, i) => {
+          if (isString(item)) return <li key={i}>{item}</li>
+          if (isEffectObject(item)) {
+            const { className, classNames, hidden, none, children, ...rest } =
+              item
+
+            return (
+              <li
+                key={i}
+                className={_classNames(className, classNames, { hidden, none })}
+                {...(rest as any)}>
+                {children as any}
+              </li>
+            )
+          }
+        })
+        ?.filter(Boolean)}
+      {children}
+    </ol>
   )
 }

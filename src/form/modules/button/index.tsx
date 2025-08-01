@@ -15,11 +15,21 @@ export interface ButtonProps
   type?: 'primary' | 'text' | 'default'
   disabled?: boolean
   className?: ClassNameType
+  hidden?: boolean
+  none?: boolean
   // onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void | (() => void)
 }
 
 export function Button(props: ButtonProps) {
-  const { htmlType = 'button', children = '', className, type, ...rest } = props
+  const {
+    htmlType = 'button',
+    children = '',
+    className,
+    type,
+    hidden,
+    none,
+    ...rest
+  } = props
 
   const getType = (): ButtonProps['type'] => {
     if (htmlType === 'submit' && isUndefined(type)) return 'primary'
@@ -31,7 +41,7 @@ export function Button(props: ButtonProps) {
   const newClassName = classNames(
     `au-btn`,
     `au-btn-${getType()}`,
-    { disabled: rest?.disabled },
+    { disabled: rest?.disabled, none, hidden },
     className,
   )
   const ref = React.useRef<HTMLButtonElement>(null)
