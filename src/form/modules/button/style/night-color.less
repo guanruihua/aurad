@@ -2,7 +2,6 @@
 
   .au-btn.au-btn-default {
     color: rgba(255, 255, 255, .9);
-    // background: rgba(255, 255, 255, .2);
     background: transparent;
     border-color: rgba(255, 255, 255, .6);
 
@@ -13,11 +12,13 @@
         color: var(--color);
         box-shadow: 0 0 1px var(--color);
         border-color: var(--color);
+        background: rgba(24, 71, 116, .5);
       }
     }
 
-    // &:not(.disabled):hover {
-    //   background: rgba(255, 255, 255, .1);
-    // }
+    &.disabled {
+      filter: brightness(.5);
+    }
+
   }
 }
