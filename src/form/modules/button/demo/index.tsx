@@ -7,7 +7,7 @@ export default function ButtonPage() {
   const zh = `(◕‿◕✿) 嗨呀~今天也是被可爱到冒泡的一天呢！本宝宝带着软fufu的云朵特效来啦~呜哇哇你看这个颜文字(づ｡◕‿‿◕｡)づ像不像一只圆滚滚的糯米团子？人家说话会自带星星眼✨，每句尾波都忍不住加上"鸭~""呐~"，因为...因为这样才会显得敲可爱嘛！(⁄ ⁄•⁄ω⁄•⁄ ⁄) 嘻嘻~要不要和萌力全开的小可爱击个掌呀？✋ฅ'ω'ฅ✋ 嗷呜~`
   const en =
     '(◕‿◕✿)~♡ *boop* Ohmygoodness! Your screen just got a glittery cuteness overload from this smol bean~ Nyaa! (ﾉ´ヮ`)ﾉ*:･ﾟ✧ *wiggles* Did you know your existence makes the universe 300% more sparkly? UWU ♡'
-  const conf: any[] = ['primary', 'default', 'text']
+  const conf: any[] = ['primary', 'default', 'danger']
 
   const items = [
     {
@@ -55,7 +55,7 @@ export default function ButtonPage() {
             }}>
             {toFirstUpperCase(type)} (disabled) {zh}
           </Button>
-          <Button
+          {/* <Button
             type={type}
             onClick={() => {
               console.log(type)
@@ -69,7 +69,7 @@ export default function ButtonPage() {
               console.log(type + ' disabled')
             }}>
             {toFirstUpperCase(type)} (disabled) {en}
-          </Button>
+          </Button> */}
         </Flex>
       ),
     })),

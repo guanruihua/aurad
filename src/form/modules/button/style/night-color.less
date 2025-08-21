@@ -1,33 +1,23 @@
 .night-theme {
-  .au-btn.au-btn-primary {
-    &.disabled {
-      color: rgba(255, 255, 255, .6);
-      border-color: rgba(255, 255, 255, .3);
-      background: rgba(255, 255, 255, .1);
-    }
-  }
 
   .au-btn.au-btn-default {
     color: rgba(255, 255, 255, .9);
-    background: rgba(255, 255, 255, .2);
-    border-color:  rgba(255, 255, 255, .6);
+    // background: rgba(255, 255, 255, .2);
+    background: transparent;
+    border-color: rgba(255, 255, 255, .6);
 
-    &:hover {
-      background: rgba(255, 255, 255, .1);
+    &:not(.disabled) {
+
+      &:active,
+      &:hover {
+        color: var(--color);
+        box-shadow: 0 0 1px var(--color);
+        border-color: var(--color);
+      }
     }
 
-    &.disabled {
-      color: rgba(255, 255, 255, .6);
-      border-color: rgba(255, 255, 255, .3);
-      background: rgba(255, 255, 255, .1);
-    }
-  }
-
-  .au-btn.au-btn-text {
-    color: rgba(255, 255, 255, .9);
-
-    &.disabled {
-      color: rgba(255, 255, 255, .6);
-    }
+    // &:not(.disabled):hover {
+    //   background: rgba(255, 255, 255, .1);
+    // }
   }
 }

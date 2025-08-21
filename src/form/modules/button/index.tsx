@@ -12,7 +12,7 @@ export interface ButtonProps
    * @description 按钮类型
    * @default: 'default'
    */
-  type?: 'primary' | 'text' | 'default'
+  type?: 'primary' | 'default' | 'danger'
   disabled?: boolean
   className?: ClassNameType
   hidden?: boolean

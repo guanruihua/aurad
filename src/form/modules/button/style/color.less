@@ -11,13 +11,17 @@
     background: var(--color);
     border: none;
     box-shadow: 0 0 1px var(--color);
+  }
 
-    &.disabled {
-      color: rgba(0, 0, 0, .3);
-      border: 1px solid #d9d9d9;
-      background: rgb(250, 250, 250);
-      box-shadow: 0 0 1px rgb(250, 250, 250);
-    }
+  &.au-btn-danger {
+
+    --ripple-bg: rgba(255 255 255 / 20%);
+    --hover-bg: rgba(247, 74, 73, .8);
+    color: #fff;
+    background: rgb(247, 74, 73);
+    border: none;
+    box-shadow: 0 0 1px rgb(247, 74, 73);
+
   }
 
   &.au-btn-default {
@@ -25,27 +29,24 @@
     --hover-color: var(--color);
     --hover-border-color: var(--color);
     color: #000000d9;
-    border: .5px solid #d9d9d9;
+    border: 1px solid #d9d9d9;
     box-shadow: 0 0 .5px #d9d9d9;
 
-    &:hover {
-      box-shadow: 0 0 1px var(--color);
+    &:not(.disabled) {
+
+      &:active,
+      &:hover {
+        color: var(--color);
+        box-shadow: 0 0 1px var(--color);
+        border-color: var(--color);
+      }
     }
 
     &.disabled {
-      color: rgba(0, 0, 0, .3);
-      border: 1px solid #d9d9d9;
-      background: rgb(250, 250, 250);
-      box-shadow: 0 0 1px rgb(250, 250, 250);
-    }
-  }
-
-  &.au-btn-text {
-    --hover-color: var(--color);
-    color: #000000d9;
-
-    &.disabled {
-      color: rgba(0, 0, 0, .3);
+      filter: none;
+      color: rgb(217, 217, 217);
+      background-color: rgb(245, 245, 245);
+      border-color: rgb(217, 217, 217);
     }
   }
 }

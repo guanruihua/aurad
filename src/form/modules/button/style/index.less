@@ -1,4 +1,7 @@
 .au-btn {
+  --ripple-bg: transparent;
+  --hover-bg: transparent;
+
   position: relative;
   display: inline-flex;
   justify-content: center;
@@ -30,7 +33,7 @@
 
   &>.content {
     border: none;
-    padding: 0 15px;
+    padding: 0 12px;
     background-color: transparent;
     z-index: 10;
     word-spacing: .3px;
@@ -54,19 +57,6 @@
     transform: translate(-50%, -50%);
     z-index: 1;
   }
-}
-
-.au-btn.au-btn-default {
-  --ripple-bg: transparent;
-
-  &:not(.disabled) {
-
-    &:hover,
-    &:active {
-      color: var(--color);
-      border-color: var(--color);
-    }
-  }
 
   @keyframes ripple {
     from {
@@ -83,11 +73,15 @@
   &>.ripple {
     animation: ripple .5s;
   }
-}
 
-.au-btn.au-btn-primary {
-  --ripple-bg: transparent;
-  --hover-bg: transparent;
+  &.disabled {
+    cursor: not-allowed;
+    filter: brightness(.5);
+
+    &>.content {
+      cursor: not-allowed;
+    }
+  }
 
   &:not(.disabled) {
 
@@ -95,56 +89,5 @@
     &:hover {
       background: var(--hover-bg);
     }
-  }
-
-  @keyframes ripple {
-    from {
-      transform: translate(-50%, -50%) scale(0.5);
-      background: var(--ripple-bg);
-    }
-
-    to {
-      transform: translate(-50%, -50%) scale(1.25);
-      background: transparent;
-    }
-  }
-
-  &>.ripple {
-    animation: ripple .5s;
-  }
-}
-
-.au-btn.au-btn-text {
-  border: none;
-  background: transparent;
-
-  .content {
-    padding: 0;
-  }
-
-  &:disabled,
-  &:hover,
-  &:active {
-    background: transparent;
-  }
-
-  &:not(.disabled) {
-
-    &:active,
-    &:hover {
-      color: var(--hover-color);
-    }
-  }
-}
-
-.au-btn.disabled {
-  cursor: not-allowed;
-
-  &>.content {
-    cursor: not-allowed;
-  }
-
-  &.au-btn-text {
-    background: transparent;
   }
 }
