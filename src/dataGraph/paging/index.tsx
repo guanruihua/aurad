@@ -118,7 +118,9 @@ export function Paging(props: PagingProps) {
       </div>
       <div className='pageSize-select'>
         <Select
-          value={pageSize?.toString()}
+          value={
+            pageSize?.toString() || pageSizeOptions.at(0)?.toString() || '10'
+          }
           // defaultValue={pageSize?.toString()}
 
           options={pageSizeOptions.map((item) => ({

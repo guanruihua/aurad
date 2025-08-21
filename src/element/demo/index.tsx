@@ -30,6 +30,12 @@ export default function () {
                     default: 'false',
                   },
                   {
+                    prop: 'disabled',
+                    desc: 'true =>   cursor: not-allowed; filter: brightness(...);',
+                    type: 'boolean',
+                    default: 'false',
+                  },
+                  {
                     prop: 'className',
                     desc: '支持 String, Array, Object 的 className',
                     type: 'ClassNameType',

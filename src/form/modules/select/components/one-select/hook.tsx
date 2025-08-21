@@ -1,10 +1,11 @@
 import { SelectProps } from '../../type'
 import React, { useState } from 'react'
 import { classNames } from 'harpe'
-import { isArray, isEmpty, isString } from 'asura-eye'
+import { isArray, isEmpty, isNumber, isString } from 'asura-eye'
 import { addElementValue, removeElementValue, xyInRang, getUUID } from '../util'
 import { getRefValue, setRefValue } from './help'
 import { useSetState } from '0hook'
+import { toString } from 'abandonjs'
 
 export const useSelectState = (props: SelectProps) => {
   const {
@@ -19,7 +20,7 @@ export const useSelectState = (props: SelectProps) => {
   } = props
   const allPropsKeys = Object.keys(props)
 
-  const [uuid, setUUID] = React.useState('')
+  const [uuid, setUUID] = React.useState(Date.now().toString())
 
   React.useEffect(() => {
     !uuid && setUUID(getUUID())
@@ -38,7 +39,7 @@ export const useSelectState = (props: SelectProps) => {
     if (isEmpty(value) || value === '') return
 
     ref.current.setAttribute('data-value', value)
-
+    // setTimeout()
     addElementValue(uuid, value)
   }
 

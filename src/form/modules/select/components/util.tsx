@@ -65,9 +65,13 @@ export const removeElementValue = (uuid: string, val?: string) => {
  * @param val
  */
 export const addElementValue = (uuid: string, val?: string) => {
-  document
-    .querySelector(
-      `.au-select-options.uuid-${uuid} .au-select-options-item[data-value=${val}]`,
-    )
-    ?.classList.add('selected')
+  try {
+    document
+      .querySelector(
+        `.au-select-options.uuid-${uuid}>.au-select-options-item[data-value='${val}']`,
+      )
+      ?.classList.add('selected')
+  } catch (error) {
+    console.error(error)
+  }
 }

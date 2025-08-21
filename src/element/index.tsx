@@ -1,54 +1,66 @@
 import React from 'react'
-import type { DivProps, OListProps, PProps, SpanProps, UListProps } from './type'
+import type {
+  DivProps,
+  OListProps,
+  PProps,
+  SpanProps,
+  UListProps,
+} from './type'
 import { classNames as _classNames } from 'harpe'
 import { isEffectObject, isString } from 'asura-eye'
 
 export * from './type'
 
+const getConf = (props: any) => {
+  const { className, classNames, hidden, none, disabled, children, ...rest } =
+    props
+  return {
+    className: _classNames(className, classNames, {
+      hidden,
+      none,
+      'au-element-disabled': disabled,
+    }),
+    children,
+    rest,
+  }
+}
+
 export function Div(props: DivProps) {
-  const { className, classNames, hidden, none, children, ...rest } = props
+  const { className, children, rest } = getConf(props)
 
   return (
-    <div
-      className={_classNames(className, classNames, { hidden, none })}
-      {...rest}>
+    <div className={className} {...rest}>
       {children}
     </div>
   )
 }
 
 export function Span(props: SpanProps) {
-  const { className, classNames, hidden, none, children, ...rest } = props
+  const { className, children, rest } = getConf(props)
 
   return (
-    <span
-      className={_classNames(className, classNames, { hidden, none })}
-      {...rest}>
+    <span className={className} {...rest}>
       {children}
     </span>
   )
 }
 
 export function P(props: PProps) {
-  const { className, classNames, hidden, none, children, ...rest } = props
+  const { className, children, rest } = getConf(props)
 
   return (
-    <p
-      className={_classNames(className, classNames, { hidden, none })}
-      {...rest}>
+    <p className={className} {...rest}>
       {children}
     </p>
   )
 }
 
 export function Ul(props: UListProps) {
-  const { className, classNames, hidden, none, items, children, ...rest } =
-    props
+  const { items, ..._props } = props
+  const { className, children, rest } = getConf(_props)
 
   return (
-    <ul
-      className={_classNames(className, classNames, { hidden, none })}
-      {...rest}>
+    <ul className={className} {...rest}>
       {items
         ?.map((item, i) => {
           if (isString(item)) return <li key={i}>{item}</li>
@@ -73,13 +85,11 @@ export function Ul(props: UListProps) {
 }
 
 export function Ol(props: OListProps) {
-  const { className, classNames, hidden, none, items, children, ...rest } =
-    props
+  const { items, ..._props } = props
+  const { className, children, rest } = getConf(_props)
 
   return (
-    <ol
-      className={_classNames(className, classNames, { hidden, none })}
-      {...rest}>
+    <ol className={className} {...rest}>
       {items
         ?.map((item, i) => {
           if (isString(item)) return <li key={i}>{item}</li>

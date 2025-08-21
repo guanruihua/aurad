@@ -8,12 +8,19 @@ export { echarts }
 export type ChartProps = {
   className?: string
   options: ObjectType
+  /**
+   * @deprecated
+   * @use init
+   * @param chart
+   * @returns
+   */
   initCharFn?: (chart: any) => void
+  init?: (chart: any) => void
   [key: string]: any
 } & Omit<React.HTMLAttributes<HTMLDivElement>, 'className' | 'children'>
 
 export function Chart(props: ChartProps) {
-  const { className, style, options, initCharFn, ...rest } = props
+  const { className, style, options, init, initCharFn, ...rest } = props
   let chartDom: any
   let myChart: any
 
@@ -27,7 +34,9 @@ export function Chart(props: ChartProps) {
           myChart = echarts.init(chartDom)
         }
         //回传实例
-        initCharFn && initCharFn(myChart)
+        if (init) init(myChart)
+        else if (initCharFn) initCharFn(myChart)
+
         myChart.setOption(options)
         window.addEventListener('resize', function () {
           myChart.resize()

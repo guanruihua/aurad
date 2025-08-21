@@ -68,9 +68,9 @@
       padding: 0 6px;
       border-radius: 4px;
       white-space: nowrap;
+      background: rgba(0, 0, 0, .06);
 
       &>span {
-        background: rgba(0, 0, 0, .06);
         font-size: 12px;
 
       }
@@ -159,11 +159,12 @@
     transition: all .6s;
 
     &:hover {
-      background: rgba(255, 255, 255, .1);
+      background: rgb(0 0 0 / 10%);
     }
 
     &.selected {
-      background: rgba(255, 255, 255, .4);
+      color: rgb(255, 255, 255, .4);
+      background: rgb(0 0 0 / 40%);
     }
   }
 }
