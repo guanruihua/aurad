@@ -2,52 +2,11 @@ import React from 'react'
 import './variable.css'
 import './index.less'
 import { classNames } from 'harpe'
+import { useTheme } from './useTheme'
+export * from './useTheme'
 
 export function ThemeSwitch() {
-  const [night, _setNight] = React.useState(true)
-  const root = document.documentElement.classList
-  const setClass = (status: boolean) => {
-    const hasNight = root?.contains('night-theme')
-    const hasLight = root?.contains('light-theme')
-
-    if (status) {
-      if (!hasNight) {
-        root.add('night-theme')
-      }
-      if (hasLight) {
-        root.remove('light-theme')
-      }
-    } else {
-      if (hasNight) {
-        root.remove('night-theme')
-      }
-      if (!hasLight) {
-        root.add('light-theme')
-      }
-    }
-  }
-  const setNight = (status: boolean) => {
-    // console.log({ status })
-    setClass(status)
-    if (status === night) return
-    _setNight(status)
-    localStorage.setItem('theme', status ? 'night' : 'light')
-  }
-
-  React.useEffect(() => {
-    const theme = localStorage.getItem('theme')
-    if (theme === 'night') {
-      setNight(true)
-      return
-    }
-    if (theme === 'light') {
-      setNight(false)
-      return
-    }
-    const hasNight = root?.contains('night-theme')
-    setNight(hasNight)
-  }, [])
-
+  const { night, setNight } = useTheme()
   return (
     <div
       className={classNames('au-theme-switch', { night })}
