@@ -16,6 +16,7 @@ import {
   MapChart,
   LinesChart,
   GraphChart,
+  ScatterChart,
 } from 'echarts/charts'
 import type {
   TitleComponentOption,
@@ -73,6 +74,7 @@ echarts.use([
   LinesChart,
   VisualMapComponent,
   DataZoomComponent,
+  ScatterChart,
 ])
 
 export { echarts }
