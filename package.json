@@ -1,6 +1,6 @@
 {
   "name": "aurad",
-  "version": "1.11.1",
+  "version": "1.11.3",
   "type": "module",
   "description": "",
   "module": "dist/",
