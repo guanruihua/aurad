@@ -1,7 +1,7 @@
 import { ClassNameType } from 'harpe'
 import React from 'react'
 
-interface ExtendElement {
+export interface ExtendElement {
   disabled?: boolean
   hidden?: boolean
   none?: boolean

@@ -3,6 +3,7 @@ import { isNumber } from 'asura-eye'
 import { classNames } from 'harpe'
 import { getGridSpanLayout, initIgnore } from './util'
 import type { GridProps } from './type'
+import { Div } from '../../element'
 import './index.less'
 export { GridProps }
 
@@ -37,12 +38,12 @@ export function Grid(props: GridProps) {
   const ignore = initIgnore(merge, columns)
 
   return (
-    <div
+    <Div
       className={classNames('au-grid', className)}
       style={
         {
           gridTemplateColumns: `repeat(${columns},1fr)`,
-          ...style
+          ...style,
         } as CSSProperties
       }
       {...(rest as any)}>
@@ -61,9 +62,9 @@ export function Grid(props: GridProps) {
             style: {
               ...getSpanLayout(index),
               ...childStyle,
-              ...unitStyle
+              ...unitStyle,
             },
-            ...unitRest
+            ...unitRest,
           })
         }
 
@@ -77,13 +78,13 @@ export function Grid(props: GridProps) {
           return (
             <div
               style={{
-                ...childStyle
+                ...childStyle,
               }}
               key={index}
               className={classNames(fillChildClassName, childClassName)}
             />
           )
         })}
-    </div>
+    </Div>
   )
 }

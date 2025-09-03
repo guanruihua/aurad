@@ -8,14 +8,16 @@ import type {
 } from './type'
 import { classNames as _classNames } from 'harpe'
 import { isEffectObject, isString } from 'asura-eye'
+import './index.less'
 
 export * from './type'
 
-const getConf = (props: any) => {
+const getConf = (props: any, { expandClassName }: any = {}) => {
   const { className, classNames, hidden, none, disabled, children, ...rest } =
     props
   return {
     className: _classNames(className, classNames, {
+      expandClassName,
       hidden,
       none,
       'au-element-disabled': disabled,
@@ -27,6 +29,20 @@ const getConf = (props: any) => {
 
 export function Div(props: DivProps) {
   const { className, children, rest } = getConf(props)
+
+  return (
+    <div className={className} {...rest}>
+      {children}
+    </div>
+  )
+}
+
+export type BoxProps = DivProps
+
+export function Box(props: BoxProps) {
+  const { className, children, rest } = getConf(props, {
+    expandClassName: 'au-box',
+  })
 
   return (
     <div className={className} {...rest}>

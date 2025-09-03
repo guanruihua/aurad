@@ -1,6 +1,7 @@
 import { type CSSProperties } from 'react'
 import { type ObjectType } from 'abandonjs'
 import { ClassNameType } from 'harpe'
+import { DivProps } from '../../element'
 
 export type Merge = ObjectType<{
   row: number
@@ -8,7 +9,7 @@ export type Merge = ObjectType<{
 }>
 
 export interface GridProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className'> {
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className'>, DivProps {
   className?: ClassNameType
   /**
    * @description 单元格ClassName

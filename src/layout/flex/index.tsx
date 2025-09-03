@@ -1,9 +1,10 @@
 import React from 'react'
 import { classNames, ClassNameType } from 'harpe'
+import { DivProps, Div } from '../../element'
 import './index.less'
 
 export interface FlexProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className'> {
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className'>, DivProps {
   className?: ClassNameType
   row?: boolean
   column?: boolean
@@ -64,7 +65,7 @@ export function Flex(props: FlexProps) {
   } = props
 
   return (
-    <div
+    <Div
       className={classNames(
         'au-flex',
         {
@@ -86,6 +87,6 @@ export function Flex(props: FlexProps) {
       }}
       {...rest}>
       {children}
-    </div>
+    </Div>
   )
 }

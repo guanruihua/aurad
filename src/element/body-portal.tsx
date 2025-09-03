@@ -20,7 +20,7 @@ export function BodyPortal(props: BodyPortalProps) {
   const { children, className, style } = props
   const el = document.createElement('div')
   if(className) el.className = className
-  if(style) el.style = styleToString(style)
+  if(style) el.style.cssText = styleToString(style)
 
   useEffect(() => {
     document.body.appendChild(el)
