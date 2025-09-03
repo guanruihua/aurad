@@ -17,7 +17,7 @@ const getConf = (props: any, { expandClassName }: any = {}) => {
     props
   return {
     className: _classNames(className, classNames, {
-      expandClassName,
+      ...expandClassName,
       hidden,
       none,
       'au-element-disabled': disabled,
