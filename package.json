@@ -1,8 +1,8 @@
 {
   "name": "aurad",
-  "version": "1.11.3",
+  "version": "1.11.4",
   "type": "module",
-  "description": "",
+  "description": "React UI Component",
   "module": "dist/",
   "main": "dist/",
   "types": "dist/index.d.ts",

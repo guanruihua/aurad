@@ -34,24 +34,13 @@ export function Docs(props: DocsProps) {
   const scrollIntoView = (i: number) => {
     if (!ref.current) return
 
-    setTimeout(() => {
-      const selectors = `.au-docs>.content>.au-docs-item`
-      const doms = document.querySelectorAll(selectors)
-      let h = 0
-      doms.forEach((dom, j: number) => {
-        if (j >= i) return
-        const { height } = dom.getBoundingClientRect()
-        h += height + 10
-      })
-      ref.current?.parentElement?.scrollTo({
-        left: 0,
-        top: h,
-        behavior: 'smooth',
-      })
-      setState({
-        select: i,
-      })
-    }, 300)
+    const selectors = `.au-docs>.content>.au-docs-item`
+    const doms = document.querySelectorAll(selectors)
+    doms[i].scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    })
+    setState({ select: i })
   }
 
   return (
