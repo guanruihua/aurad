@@ -1,35 +1,24 @@
 .au-textarea {
-  display: grid;
   border-radius: 8px;
+  border: 1px solid #d9d9d9;
+  padding: 6px 8px;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 15px;
+  line-height: 24px;
+  resize: none;
+  overflow: hidden;
 
-  &::after {
-    content: attr(data-replicated-value) " ";
-    white-space: pre-wrap;
-    visibility: hidden;
+  &.isHover,
+  &:focus,
+  &:hover,
+  &:active {
+    border-color: #4989e7;
+    box-shadow: #4989e7 0 0 3px;
   }
+}
 
-  &>textarea {
-    outline: none;
-    resize: none;
-    overflow: hidden;
-    border: none;
-    border: 1px solid #d9d9d9;
-
-    &.isHover,
-    &:focus,
-    &:hover,
-    &:active {
-      border-radius: 8px;
-      border-color: #4989e7;
-      box-shadow: #4989e7 0 0 3px;
-    }
-  }
-
-  &>textarea,
-  &::after {
-    border-radius: 9px;
-    padding: 0.5rem;
-    font: inherit;
-    grid-area: 1 / 1 / 2 / 2;
-  }
+.night-theme .au-textarea {
+  color: #fff;
+  background: rgba(0, 0, 0, .2);
 }

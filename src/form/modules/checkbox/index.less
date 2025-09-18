@@ -40,12 +40,16 @@
   }
 
   .au-checkbox-item {
+    .inlineFlexCenter(center);
+
+    &.disabled{
+      opacity: .5;
+    }
 
     &.disabled,
     &.disabled>span,
     &.disabled>label {
       cursor: not-allowed;
-      color: var(--disabled-color);
       border-color: var(--disabled-border-color);
 
       &.au-checkbox-select {

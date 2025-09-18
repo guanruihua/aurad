@@ -2,6 +2,7 @@ import React from 'react'
 import { ObjectType } from '0type'
 import { echarts } from './core'
 import { classNames } from 'harpe'
+import { debounce } from 'abandonjs'
 
 export { echarts }
 
@@ -38,9 +39,14 @@ export function Chart(props: ChartProps) {
         else if (initCharFn) initCharFn(myChart)
 
         myChart.setOption(options)
-        window.addEventListener('resize', function () {
+        const resize = debounce(function () {
           myChart.resize()
-        })
+        }, 100)
+
+        window.addEventListener('resize', resize)
+        return () => {
+          window.removeEventListener('resize', resize)
+        }
       }
     } catch (error) {
       console.log(error)

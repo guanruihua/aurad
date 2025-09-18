@@ -3,7 +3,8 @@ import { BrowserRouter, useRoutes, RouteObject } from 'react-router-dom'
 import type { MenuObject } from '@/layout'
 import { ClassNameType } from 'harpe'
 
-export interface BrowserContainer   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className'> {
+export interface BrowserContainer
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className'> {
   className?: ClassNameType
   menu: MenuObject[]
   /**
@@ -23,7 +24,13 @@ export function BrowserContainer(props: BrowserContainer) {
   const { basename = '/', window: w = window, menu } = props
   return (
     <React.StrictMode>
-      <BrowserRouter basename={basename} window={w}>
+      <BrowserRouter
+        future={{
+          v7_relativeSplatPath: true,
+          v7_startTransition: true,
+        }}
+        basename={basename}
+        window={w}>
         <Content routes={menu} />
       </BrowserRouter>
     </React.StrictMode>

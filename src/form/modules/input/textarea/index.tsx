@@ -6,9 +6,15 @@ export interface TextAreaProps
   extends Omit<React.HTMLAttributes<HTMLTextAreaElement>, 'className'> {
   className?: ClassNameType
   /**
-   * @description 自动随着内容增大高度
+   * @default 1
+   * @description 最小行数
    */
-  autoZoom?: boolean
+  minRow?: number
+  /**
+   * @default 10
+   * @description 最大行数
+   */
+  maxRow?: number
   [key: string]: any
 }
 
@@ -17,11 +23,38 @@ export function TextArea(props: TextAreaProps) {
     value = '',
     onChange,
     className,
-    autoZoom = false,
+    minRow = 1,
+    maxRow = 10,
+    style,
     onInput,
     ...rest
   } = props
   const [replicatedValue, setReplicatedValue] = useState<string>(value)
+
+  const ref = React.useRef<HTMLTextAreaElement>(null)
+
+  function getVisualLines(text: string, textarea: HTMLTextAreaElement | null) {
+    const canvas = document.createElement('canvas')
+    const ctx = canvas.getContext('2d')
+    if (!ctx || !textarea) return minRow
+    ctx.font = window.getComputedStyle(textarea).font
+    const maxWidth = textarea.getBoundingClientRect().width
+    let total = 2
+    const rows = text.split('\n')
+
+    rows.forEach((row) => {
+      const metrics = ctx.measureText(row)
+      total += Math.round(metrics.width / maxWidth)
+      // console.log(total)
+    })
+    if (maxRow && maxRow < total) {
+      return maxRow
+    }
+    if (minRow && minRow > total) {
+      return minRow
+    }
+    return total
+  }
 
   React.useEffect(() => {
     if (value !== replicatedValue) {
@@ -29,34 +62,24 @@ export function TextArea(props: TextAreaProps) {
     }
   }, [value])
 
-  if (autoZoom)
-    return (
-      <div
-        className={classNames('au-textarea', className)}
-        data-replicated-value={replicatedValue}>
-        <textarea
-          value={replicatedValue}
-          onChange={(e) => onChange && onChange(e)}
-          onInput={(e: ChangeEvent<HTMLTextAreaElement>) => {
-            setReplicatedValue(e.target.value || '')
-            onInput && onInput(e)
-          }}
-          {...rest}
-        />
-      </div>
-    )
+  const rowCount = getVisualLines(replicatedValue, ref.current) || 1
 
   return (
-    <div className={classNames('au-textarea', className)}>
-      <textarea
-        onChange={(e) => onChange && onChange(e)}
-        value={replicatedValue}
-        onInput={(e: ChangeEvent<HTMLTextAreaElement>) => {
-          setReplicatedValue(e.target.value || '')
-          onInput && onInput(e)
-        }}
-        {...rest}
-      />
-    </div>
+    <textarea
+      ref={ref}
+      className={classNames('au-textarea', className)}
+      value={replicatedValue}
+      rows={rowCount}
+      style={{
+        height: rowCount * 24,
+        ...style,
+      }}
+      onChange={(e) => onChange?.(e)}
+      onInput={(e: ChangeEvent<HTMLTextAreaElement>) => {
+        setReplicatedValue(e.target.value || '')
+        onInput?.(e)
+      }}
+      {...rest}
+    />
   )
 }

@@ -19,6 +19,11 @@ export const modules: MenuObject[] = [
     path: '/element',
     element: Lazy(import('../src/element/demo'))
   },
+  {
+    name: 'echarts',
+    path: '/echarts',
+    element: Lazy(import('../src/echart/demo'))
+  },
   dataGraphRoute,
   msgRoute,
   layoutRoute,

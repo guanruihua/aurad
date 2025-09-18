@@ -22,7 +22,7 @@ export function move() {
     localStorage.setItem('au-aside-menu-width', String(asideWidth))
   }
 
-  contentDom.addEventListener('dragend', onMouseMove)
+  contentDom?.addEventListener('dragend', onMouseMove)
 }
 
 export interface MenuProps {

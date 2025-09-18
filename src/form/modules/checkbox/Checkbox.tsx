@@ -37,15 +37,13 @@ export function CheckboxCore(props: CheckboxProps) {
   return (
     <span
       className={classNames('au-checkbox', className)}
-      style={props.style || {}}
-    >
-      <span className="au-checkbox-item" onClick={handleClick}>
+      style={props.style || {}}>
+      <span className='au-checkbox-item' onClick={handleClick}>
         <div
           className={classNames('au-checkbox-icon', {
             'au-checkbox-select': status,
-          })}
-        >
-          {status && <Icon type="yes" size={12} fill="#fff" />}
+          })}>
+          {status && <Icon type='yes' size={12} fill='#fff' />}
         </div>
         <label>{children || label || ''}</label>
       </span>
