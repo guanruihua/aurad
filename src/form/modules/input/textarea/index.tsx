@@ -9,12 +9,12 @@ export interface TextAreaProps
    * @default 1
    * @description 最小行数
    */
-  minRow?: number
+  // minRow?: number
   /**
    * @default 10
    * @description 最大行数
    */
-  maxRow?: number
+  // maxRow?: number
   [key: string]: any
 }
 
@@ -23,8 +23,8 @@ export function TextArea(props: TextAreaProps) {
     value = '',
     onChange,
     className,
-    minRow = 1,
-    maxRow = 10,
+    // minRow = 1,
+    // maxRow = 10,
     style,
     onInput,
     ...rest
@@ -33,28 +33,28 @@ export function TextArea(props: TextAreaProps) {
 
   const ref = React.useRef<HTMLTextAreaElement>(null)
 
-  function getVisualLines(text: string, textarea: HTMLTextAreaElement | null) {
-    const canvas = document.createElement('canvas')
-    const ctx = canvas.getContext('2d')
-    if (!ctx || !textarea) return minRow
-    ctx.font = window.getComputedStyle(textarea).font
-    const maxWidth = textarea.getBoundingClientRect().width
-    let total = 2
-    const rows = text.split('\n')
+  // function getVisualLines(text: string, textarea: HTMLTextAreaElement | null) {
+  //   const canvas = document.createElement('canvas')
+  //   const ctx = canvas.getContext('2d')
+  //   if (!ctx || !textarea) return minRow
+  //   ctx.font = window.getComputedStyle(textarea).font
+  //   const maxWidth = textarea.getBoundingClientRect().width
+  //   let total = 2
+  //   const rows = text.split('\n')
 
-    rows.forEach((row) => {
-      const metrics = ctx.measureText(row)
-      total += Math.round(metrics.width / maxWidth)
-      // console.log(total)
-    })
-    if (maxRow && maxRow < total) {
-      return maxRow
-    }
-    if (minRow && minRow > total) {
-      return minRow
-    }
-    return total
-  }
+  //   rows.forEach((row) => {
+  //     const metrics = ctx.measureText(row)
+  //     total += Math.round(metrics.width / maxWidth)
+  //     // console.log(total)
+  //   })
+  //   if (maxRow && maxRow < total) {
+  //     return maxRow
+  //   }
+  //   if (minRow && minRow > total) {
+  //     return minRow
+  //   }
+  //   return total
+  // }
 
   React.useEffect(() => {
     if (value !== replicatedValue) {
@@ -62,16 +62,17 @@ export function TextArea(props: TextAreaProps) {
     }
   }, [value])
 
-  const rowCount = getVisualLines(replicatedValue, ref.current) || 1
+  // const rowCount = getVisualLines(replicatedValue, ref.current) || 1
 
   return (
     <textarea
       ref={ref}
       className={classNames('au-textarea', className)}
       value={replicatedValue}
-      rows={rowCount}
+      // rows={rowCount}
+      // rows={10}
       style={{
-        height: rowCount * 24,
+        // height: rowCount * 24,
         ...style,
       }}
       onChange={(e) => onChange?.(e)}

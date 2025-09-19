@@ -1,8 +1,15 @@
-// .night-theme {
-//   input,
-//   textarea,
-//   .au-input {
-//     color: #fff;
-//     background: rgba(255, 255, 255, .2);
-//   }
-// }
+  input,
+  textarea,
+  :where(.au-input) {
+    background: transparent;
+    color: rgba(0, 0, 0, .9);
+  }
+
+  .night-theme {
+
+    input,
+    textarea,
+    :where(.au-input) {
+      color: rgba(255, 255, 255, .9);
+    }
+  }
