@@ -1,6 +1,6 @@
 {
   "name": "aurad",
-  "version": "1.11.8",
+  "version": "1.11.10",
   "type": "module",
   "description": "React UI Component",
   "module": "dist/",
