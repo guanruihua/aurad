@@ -1,3 +1,4 @@
+import { Flex } from '@/layout'
 import React, { Suspense, lazy } from 'react'
 
 /**
@@ -5,13 +6,15 @@ import React, { Suspense, lazy } from 'react'
  * @description Suspense 和 lazy 结合
  * @param component {Promise<{ default: React.ComponentType<any> }>}
  * @param loading {React.ReactNode = <div>Loading</div> } loading 组件
- * @returns 
+ * @returns
  */
 export function Lazy(
-	component: Promise<{ default: React.ComponentType<any> }>,
-	loading: React.ReactNode = <div>Loading</div>
+  component: Promise<{ default: React.ComponentType<any> }>,
+  loading: React.ReactNode = <Flex center alginCenter style={{ minHeight: 100 }}>Loading</Flex>,
 ) {
-	return <Suspense fallback={loading}>
-		{React.createElement(lazy(() => component))}
-	</Suspense>
+  return (
+    <Suspense fallback={loading}>
+      {React.createElement(lazy(() => component))}
+    </Suspense>
+  )
 }

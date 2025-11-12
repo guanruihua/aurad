@@ -4,7 +4,7 @@ import { echarts } from './core'
 import { classNames } from 'harpe'
 import { debounce } from 'abandonjs'
 
-export { echarts }
+export * from './core'
 
 export type ChartProps = {
   className?: string
@@ -17,11 +17,15 @@ export type ChartProps = {
    */
   initCharFn?: (chart: any) => void
   init?: (chart: any) => void
+  /**
+   * @description echarts
+   */
+  customEcharts?: any
   [key: string]: any
 } & Omit<React.HTMLAttributes<HTMLDivElement>, 'className' | 'children'>
 
 export function Chart(props: ChartProps) {
-  const { className, style, options, init, initCharFn, ...rest } = props
+  const { customEcharts = echarts, className, style, options, init, initCharFn, ...rest } = props
   const chartDom = React.useRef<HTMLDivElement>(null)
   let myChart: any
 
@@ -32,9 +36,9 @@ export function Chart(props: ChartProps) {
       // console.log(echarts, chartDom, options)
       if (chartDom) {
         //判断是否已存在实例
-        myChart = echarts.getInstanceByDom(chartDom.current)
+        myChart = customEcharts.getInstanceByDom(chartDom.current)
         if (!myChart) {
-          myChart = echarts.init(chartDom.current)
+          myChart = customEcharts.init(chartDom.current)
         }
         //回传实例
         if (init) init(myChart)

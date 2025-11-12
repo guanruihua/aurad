@@ -55,7 +55,7 @@ export type ECOption = echarts.ComposeOption<
 >
 
 // Register the required components
-echarts.use([
+export const echartsComponents = [
   GraphChart,
   TitleComponent,
   TooltipComponent,
@@ -75,6 +75,8 @@ echarts.use([
   VisualMapComponent,
   DataZoomComponent,
   ScatterChart,
-])
+]
+
+echarts.use(echartsComponents)
 
 export { echarts }

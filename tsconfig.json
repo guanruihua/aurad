@@ -20,7 +20,7 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     },
     "typeRoots": [
       "src/**/*.d.ts",
@@ -32,6 +32,9 @@
     "dist",
     "temp",
     "node_modules",
+    "**/*/__test__/*",
+    "**/*/__demo__/*",
+    "**/*/demo/*",
     "config/*.ts"
   ],
   "include": ["components/**/*", "src/**/*", "**/*.d.ts"]
