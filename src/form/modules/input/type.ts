@@ -1,7 +1,15 @@
 import { ClassNameType } from 'harpe'
 import { ChangeEvent } from 'react'
 
-type InputMode = 'text' | 'number' | 'tags' | 'password' | 'pwd' | 'textarea'
+type InputMode =
+  | 'text'
+  | 'number'
+  | 'tags'
+  | 'password'
+  | 'pwd'
+  | 'textarea'
+  | 'color'
+  | string
 
 type excludeInputType =
   | 'children'
@@ -16,8 +24,8 @@ export interface InputProps<T>
   value?: T
   defaultValue?: T
   type?: InputMode
-	className?: ClassNameType
-	[key: string]: any
+  className?: ClassNameType
+  [key: string]: any
 }
 
 export type InputChangeEvent = ChangeEvent<HTMLInputElement>
