@@ -98,6 +98,7 @@ export function Ul(props: UListProps) {
     </ul>
   )
 }
+export const UL = Ul
 
 export function Ol(props: OListProps) {
   const { items, ..._props } = props
@@ -127,3 +128,5 @@ export function Ol(props: OListProps) {
     </ol>
   )
 }
+
+export const OL = Ol

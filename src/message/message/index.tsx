@@ -31,8 +31,8 @@ export const message: {
 
     const JSXdom = (
       <div className={`au-message ${type}`}>
-        <div className='icon'>{icons[type]}</div>
-        <div className='content'>{content}</div>
+        {icons[type]}
+        <span className='content'>{content}</span>
       </div>
     )
 

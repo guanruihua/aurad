@@ -18,7 +18,7 @@
     }
 
     &-placeholder {
-      line-height: 26px;
+      // line-height: 26px;
       color: rgb(117, 117, 117);
     }
 
@@ -51,13 +51,19 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: flex-start;
     gap: 2px 6px;
     max-width: 100%;
     min-height: 32px;
     line-height: 32px;
+    // min-height: 28px;
+    // line-height: 28px;
     padding: 2px 6px;
 
-    box-sizing: border-box;
+    // box-sizing: border-box;
+    .au-select-input-placeholder {
+      line-height: 24px;
+    }
 
     .au-select-item {
       display: inline-flex;
@@ -73,6 +79,7 @@
       background: rgba(0, 0, 0, .06);
 
       &>span {
+        white-space: nowrap;
         font-size: 12px;
 
       }
@@ -167,8 +174,9 @@
     }
 
     &.selected {
-      color: rgba(255, 255, 255, .4);
-      background: rgb(0 0 0 / 40%);
+      color: #fff;
+      // color: rgba(255, 255, 255, .8);
+      background: rgb(0, 0, 0, .4);
     }
   }
 }

@@ -29,7 +29,7 @@ export const renderOptions = async (conf: RenderOptionsProps) => {
       '.au-select-options.uuid-' + uuid,
     )
     if (optionDom) {
-      optionDom.style.display = 'block'
+      optionDom.style.display = 'flex'
       optionDom.style.width = parentRect.width + 'px'
       optionDom.style.left = parentRect.left + 'px'
       optionDom.style.top = parentRect.bottom + 'px'

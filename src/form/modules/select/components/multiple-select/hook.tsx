@@ -3,7 +3,13 @@ import { classNames } from 'harpe'
 import { SelectProps } from '../../type'
 import { isArray, isEmpty, isString } from 'asura-eye'
 import { unique } from 'abandonjs'
-import { addElementValue, removeElementValue, xyInRang, getUUID, removeAllElementValue } from '../util'
+import {
+  addElementValue,
+  removeElementValue,
+  xyInRang,
+  getUUID,
+  removeAllElementValue,
+} from '../util'
 import { useSetState } from '0hook'
 import { getRefValue, setRefValue, addElementValues } from './help'
 
@@ -35,7 +41,7 @@ export const useSelectState = (props: SelectProps) => {
   const handleSelect = (value: string) => {
     const selectValue: string[] = getRefValue(ref)
     let newValue: string[] = []
-    
+
     if (selectValue.includes(value)) {
       removeElementValue(uuid, value)
       newValue = selectValue.filter((v) => v !== value)
@@ -62,6 +68,10 @@ export const useSelectState = (props: SelectProps) => {
     const optionDom: any = document.querySelector(
       '.au-select-options.uuid-' + uuid,
     )
+    if (ref.current) {
+      const parentRect = ref.current.getBoundingClientRect()
+      optionDom.style.top = parentRect.bottom + 'px'
+    }
 
     if (optionDom && xyInRang(x, y, optionDom.getBoundingClientRect())) return
     if (selectDom && xyInRang(x, y, selectDom.getBoundingClientRect())) return
@@ -74,11 +84,7 @@ export const useSelectState = (props: SelectProps) => {
   }
 
   React.useEffect(() => {
-    if (
-      !allPropsKeys.includes('value') ||
-      !isArray(value)
-    )
-      return
+    if (!allPropsKeys.includes('value') || !isArray(value)) return
 
     setRefValue(ref, value || [])
     setSelectValues(value || [])
@@ -95,7 +101,7 @@ export const useSelectState = (props: SelectProps) => {
       (allPropsKeys.includes('value') && !isEmpty(value))
     )
       return
-    
+
     setRefValue(ref, defaultValue || [])
     setSelectValues(defaultValue || [])
     removeAllElementValue(uuid)
