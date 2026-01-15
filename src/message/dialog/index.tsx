@@ -3,6 +3,7 @@ import { classNames, ClassNameType } from 'harpe'
 import { Icon } from '@/icon'
 import { Button } from '@/form'
 import { isNoEmpty } from 'asura-eye'
+import ReactDOM from 'react-dom'
 import './index.less'
 import './night.less'
 
@@ -40,7 +41,7 @@ export interface DialogProps
   children?: ReactNode
 }
 
-export function Dialog(props: DialogProps) {
+function DialogCore(props: DialogProps) {
   const {
     open = false,
     children,
@@ -95,4 +96,8 @@ export function Dialog(props: DialogProps) {
       </div>
     </div>
   )
+}
+
+export function Dialog(props: DialogProps) {
+  return ReactDOM.createPortal(<DialogCore {...props} />, document.body)
 }
